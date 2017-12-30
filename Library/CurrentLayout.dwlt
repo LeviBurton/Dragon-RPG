@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 0
     width: 212
     height: 566
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -67,10 +67,10 @@ MonoBehaviour:
     y: 0
     width: 1312
     height: 566
-  m_MinSize: {x: 406, y: 221}
-  m_MaxSize: {x: 8006, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 5545
+  controlID: 143
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -114,7 +114,7 @@ MonoBehaviour:
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: LDB - Wide
+  m_LastLoadedLayoutName: 
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -155,10 +155,10 @@ MonoBehaviour:
     y: 30
     width: 1707
     height: 837
-  m_MinSize: {x: 683, y: 492}
-  m_MaxSize: {x: 18008, y: 14042}
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 18006, y: 14042}
   vertical: 0
-  controlID: 5606
+  controlID: 44
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -179,10 +179,10 @@ MonoBehaviour:
     y: 0
     width: 1312
     height: 837
-  m_MinSize: {x: 406, y: 492}
-  m_MaxSize: {x: 14006, y: 14042}
+  m_MinSize: {x: 402, y: 492}
+  m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 5544
+  controlID: 142
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -229,10 +229,10 @@ MonoBehaviour:
     y: 566
     width: 1312
     height: 271
-  m_MinSize: {x: 336, y: 271}
-  m_MaxSize: {x: 14006, y: 10021}
+  m_MinSize: {x: 334, y: 271}
+  m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
-  controlID: 5510
+  controlID: 84
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,8 +251,8 @@ MonoBehaviour:
     y: 0
     width: 474
     height: 271
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -411,14 +411,14 @@ MonoBehaviour:
     width: 1098
     height: 545
   m_SceneLighting: 1
-  lastFramingTime: 34502.319418528634
+  lastFramingTime: 237.0983812656877
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.0002888441, y: 0.7777107, z: -0.04062943}
+    m_Target: {x: 0, y: 0.8, z: 0}
     speed: 2
-    m_Value: {x: 0.0002888441, y: 0.7777107, z: -0.04062943}
+    m_Value: {x: 0, y: 0.8, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -441,13 +441,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.057174783, y: -0.902249, z: 0.14687766, w: 0.4013714}
+    m_Target: {x: 0.06739012, y: -0.8982096, z: 0.16983458, w: 0.39978302}
     speed: 2
-    m_Value: {x: 0.057174947, y: -0.90225154, z: 0.14687808, w: 0.40137255}
+    m_Value: {x: 0.06739039, y: -0.8982131, z: 0.16983525, w: 0.3997846}
   m_Size:
-    m_Target: 7.8150935
+    m_Target: 4.3332458
     speed: 2
-    m_Value: 7.8150935
+    m_Value: 4.3332458
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -523,19 +523,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Enemies
+    - Assets/Player
   m_ViewMode: 1
   m_StartGridSize: 55
   m_LastFolders:
-  - Assets/Enemies
+  - Assets/Player
   m_LastFoldersGridSize: 55
   m_LastProjectPath: C:\Projects\Dragon RPG
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: bc1b0300
-    m_LastClickedID: 203708
-    m_ExpandedIDs: 000000008427000048290000a81b030000ca9a3bffffff7f
+    m_SelectedIDs: c6270000
+    m_LastClickedID: 10182
+    m_ExpandedIDs: 00000000882700006a290000a229000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -563,7 +563,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000842700008a270000262800004829000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000882700006a290000a2290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -591,7 +591,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300007a290000
+    m_ExpandedInstanceIDs: c62300007a2900009c29000066340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -617,7 +617,7 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 55
-  m_DirectoriesAreaWidth: 284
+  m_DirectoriesAreaWidth: 218
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -645,26 +645,26 @@ MonoBehaviour:
     width: 208
     height: 545
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b6910200
-    m_LastClickedID: 0
-    m_ExpandedIDs: 880df6ff401bf6ff9025feff7c31fefffe36fefffc49feff8a51feff0cb3feff6ebdfeff6ac8feff12fdfefffc08ffff80fbffffa6fbffff00000000f62900001a2a0000d44000009cd10000
+    scrollPos: {x: 0, y: 48}
+    m_SelectedIDs: 30c4ffff
+    m_LastClickedID: -15312
+    m_ExpandedIDs: 8cc4ffffc4d1ffff34dcffffa6fbffff000000006a310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Player
+      m_OriginalName: Player
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -15312
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 2}
     m_SearchString: 
   m_ExpandedScenes:
   - Levis Village
@@ -697,7 +697,7 @@ MonoBehaviour:
     y: 92
     width: 393
     height: 816
-  m_ScrollPosition: {x: 0, y: 0}
+  m_ScrollPosition: {x: 0, y: 164.95508}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -160

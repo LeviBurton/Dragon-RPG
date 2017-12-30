@@ -2991,19 +2991,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 496262, guid: cc4ec4a68494a96409f69d27e04ad808, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.53267515
+      value: 0.5326752
       objectReference: {fileID: 0}
     - target: {fileID: 496262, guid: cc4ec4a68494a96409f69d27e04ad808, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.07034045
+      value: 0.070340455
       objectReference: {fileID: 0}
     - target: {fileID: 496262, guid: cc4ec4a68494a96409f69d27e04ad808, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.83613265
+      value: 0.83613276
       objectReference: {fileID: 0}
     - target: {fileID: 496262, guid: cc4ec4a68494a96409f69d27e04ad808, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.11041513
+      value: -0.110415146
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc4ec4a68494a96409f69d27e04ad808, type: 2}
@@ -5964,14 +5964,6 @@ Prefab:
     - target: {fileID: 496262, guid: 89ebcee24ac11984eb8a0a3fac46b182, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.11041513
-      objectReference: {fileID: 0}
-    - target: {fileID: 11469404, guid: 89ebcee24ac11984eb8a0a3fac46b182, type: 2}
-      propertyPath: m_MoveSpeedMultiplier
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11469404, guid: 89ebcee24ac11984eb8a0a3fac46b182, type: 2}
-      propertyPath: m_AnimSpeedMultiplier
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89ebcee24ac11984eb8a0a3fac46b182, type: 2}

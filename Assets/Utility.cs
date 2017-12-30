@@ -1,4 +1,4 @@
-﻿public enum Layer
+﻿public enum ELayer
 {
     Walkable = 8,
     Enemy = 9,

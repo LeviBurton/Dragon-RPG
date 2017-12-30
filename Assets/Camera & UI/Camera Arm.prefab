@@ -127,6 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a754101b41a784299d8b5178658b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WalkCursor: {fileID: 2800000, guid: c29f141808a36b742a1c99382f65bf2c, type: 3}
+  TargetCursor: {fileID: 2800000, guid: 0de65a9176e29d346ac17f65ede10d1e, type: 3}
+  UnknownCursor: {fileID: 2800000, guid: 46302abf86078a5419f45fa6e42a637b, type: 3}
+  CursorHotSpot: {x: 96, y: 96}
 --- !u!114 &114616932684102880
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,17 +5,17 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(ThirdPersonCharacter))]
 public class PlayerMovement : MonoBehaviour
 {
-    ThirdPersonCharacter m_Character;   // A reference to the ThirdPersonCharacter on the object
-    CameraRaycaster cameraRaycaster;
-    Vector3 currentClickTarget;
+    ThirdPersonCharacter Character;   // A reference to the ThirdPersonCharacter on the object
+    CameraRaycaster CameraRaycaster;
+    Vector3 CurrentClickTarget;
 
     [SerializeField] float walkMoveStopRadius = 0.2f;
 
     private void Start()
     {
-        cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-        m_Character = GetComponent<ThirdPersonCharacter>();
-        currentClickTarget = transform.position;
+        CameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
+        Character = GetComponent<ThirdPersonCharacter>();
+        CurrentClickTarget = transform.position;
     }
 
     // Fixed update is called in sync with physics
@@ -23,14 +23,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            switch (cameraRaycaster.layerHit)
+            switch (CameraRaycaster.LayerHit)
             {
-                case Layer.Walkable:
-                    currentClickTarget = cameraRaycaster.hit.point;
+                case ELayer.Walkable:
+                    CurrentClickTarget = CameraRaycaster.Hit.point;
                     break;
 
-                case Layer.Enemy:
-                    print("not walking to enemy");
+                case ELayer.Enemy:
                     break;
 
                 default:
@@ -39,15 +38,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        var playerToClickPoint = currentClickTarget - transform.position;
+        var PlayerToClickPoint = CurrentClickTarget - transform.position;
 
-        if (playerToClickPoint.magnitude > walkMoveStopRadius)
+        if (PlayerToClickPoint.magnitude > walkMoveStopRadius)
         {
-            m_Character.Move(playerToClickPoint, false, false);
+            Character.Move(PlayerToClickPoint, false, false);
         }
         else
         {
-            m_Character.Move(Vector3.zero, false, false);
+            Character.Move(Vector3.zero, false, false);
         }
     }
 }

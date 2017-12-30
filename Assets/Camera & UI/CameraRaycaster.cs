@@ -2,61 +2,61 @@
 
 public class CameraRaycaster : MonoBehaviour
 {
-    public Layer[] layerPriorities = {
-        Layer.Enemy,
-        Layer.Walkable
+    public ELayer[] LayerPriorities = {
+        ELayer.Enemy,
+        ELayer.Walkable
     };
 
     [SerializeField]
-    float distanceToBackground = 100f;
-    Camera viewCamera;
+    float DistanceToBackground = 100f;
+    Camera ViewCamera;
 
     RaycastHit m_hit;
-    public RaycastHit hit
+    public RaycastHit Hit
     {
         get { return m_hit; }
     }
 
-    Layer m_layerHit;
-    public Layer layerHit
+    ELayer m_layerHit;
+    public ELayer LayerHit
     {
         get { return m_layerHit; }
     }
 
     void Start() // TODO Awake?
     {
-        viewCamera = Camera.main;
+        ViewCamera = Camera.main;
     }
 
     void Update()
     {
         // Look for and return priority layer hit
-        foreach (Layer layer in layerPriorities)
+        foreach (ELayer Layer in LayerPriorities)
         {
-            var hit = RaycastForLayer(layer);
-            if (hit.HasValue)
+            var LayerHit = RaycastForLayer(Layer);
+            if (LayerHit != null)
             {
-                m_hit = hit.Value;
-                m_layerHit = layer;
+                m_hit = LayerHit.Value;
+                m_layerHit = Layer;
                 return;
             }
         }
 
         // Otherwise return background hit
-        m_hit.distance = distanceToBackground;
-        m_layerHit = Layer.RaycastEndStop;
+        m_hit.distance = DistanceToBackground;
+        m_layerHit = ELayer.RaycastEndStop;
     }
 
-    RaycastHit? RaycastForLayer(Layer layer)
+    RaycastHit? RaycastForLayer(ELayer Layer)
     {
-        int layerMask = 1 << (int)layer; // See Unity docs for mask formation
-        Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
+        int LayerMask = 1 << (int)Layer; // See Unity docs for mask formation
+        Ray CameraToWorld = ViewCamera.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit; // used as an out parameter
-        bool hasHit = Physics.Raycast(ray, out hit, distanceToBackground, layerMask);
-        if (hasHit)
+        RaycastHit RayCastHit; // used as an out parameter
+        bool bHit = Physics.Raycast(CameraToWorld, out RayCastHit, DistanceToBackground, LayerMask);
+        if (bHit)
         {
-            return hit;
+            return RayCastHit;
         }
         return null;
     }
