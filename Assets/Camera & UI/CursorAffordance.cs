@@ -18,13 +18,14 @@ public class CursorAffordance : MonoBehaviour
 
     CameraRaycaster CameraRaycaster;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         CameraRaycaster = GetComponent<CameraRaycaster>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void LateUpdate()
     {
         switch (CameraRaycaster.LayerHit)
         {
@@ -36,9 +37,12 @@ public class CursorAffordance : MonoBehaviour
                 Cursor.SetCursor(TargetCursor, CursorHotSpot, CursorMode.Auto);
                 break;
 
-            default:
+            case ELayer.RaycastEndStop:
                 Cursor.SetCursor(UnknownCursor, CursorHotSpot, CursorMode.Auto);
                 break;
+
+            default:
+                break;
         }
-	}
+    }
 }

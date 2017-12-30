@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 4}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 143
+  controlID: 134
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 18006, y: 14042}
   vertical: 0
-  controlID: 44
+  controlID: 9
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 142
+  controlID: 133
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_MinSize: {x: 334, y: 271}
   m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
-  controlID: 84
+  controlID: 24
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -416,9 +416,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0.8, z: 0}
+    m_Target: {x: -1.5594635, y: -0.5586729, z: -0.7856605}
     speed: 2
-    m_Value: {x: 0, y: 0.8, z: 0}
+    m_Value: {x: -1.5594635, y: -0.5586729, z: -0.7856605}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -441,13 +441,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.06739012, y: -0.8982096, z: 0.16983458, w: 0.39978302}
+    m_Target: {x: 0.16490544, y: -0.802061, z: 0.27804154, w: 0.5021925}
     speed: 2
-    m_Value: {x: 0.06739039, y: -0.8982131, z: 0.16983525, w: 0.3997846}
+    m_Value: {x: -0.16490544, y: 0.802061, z: -0.27804154, w: -0.5021925}
   m_Size:
-    m_Target: 4.3332458
+    m_Target: 10
     speed: 2
-    m_Value: 4.3332458
+    m_Value: 10
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -523,19 +523,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Player
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 55
   m_LastFolders:
-  - Assets/Player
+  - Assets/Scenes
   m_LastFoldersGridSize: 55
   m_LastProjectPath: C:\Projects\Dragon RPG
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c6270000
-    m_LastClickedID: 10182
-    m_ExpandedIDs: 00000000882700006a290000a229000000ca9a3bffffff7f
+    m_SelectedIDs: a4290000
+    m_LastClickedID: 10660
+    m_ExpandedIDs: 00000000862700003e2800006c290000a429000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -563,7 +563,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000882700006a290000a2290000
+    m_ExpandedIDs: 00000000862700008c2700003e2800006c290000a4290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -645,24 +645,24 @@ MonoBehaviour:
     width: 208
     height: 545
   m_TreeViewState:
-    scrollPos: {x: 0, y: 48}
-    m_SelectedIDs: 30c4ffff
-    m_LastClickedID: -15312
-    m_ExpandedIDs: 8cc4ffffc4d1ffff34dcffffa6fbffff000000006a310000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: ac270000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 2a1fffff7c22ffff8cabffffc6abffffa6fbffff00000000c2510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Player
-      m_OriginalName: Player
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -15312
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 2}
     m_SearchString: 
@@ -697,7 +697,7 @@ MonoBehaviour:
     y: 92
     width: 393
     height: 816
-  m_ScrollPosition: {x: 0, y: 164.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -160

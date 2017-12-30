@@ -9,7 +9,10 @@ public class PlayerMovement : MonoBehaviour
     CameraRaycaster CameraRaycaster;
     Vector3 CurrentClickTarget;
 
-    [SerializeField] float walkMoveStopRadius = 0.2f;
+    [SerializeField]
+    float walkMoveStopRadius = 0.2f;
+
+    bool bIsInDirectMovementMode = false;   // Consider making this static
 
     private void Start()
     {
@@ -20,6 +23,34 @@ public class PlayerMovement : MonoBehaviour
 
     // Fixed update is called in sync with physics
     private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.G)) // G for gamepad.  
+        {
+            bIsInDirectMovementMode = !bIsInDirectMovementMode;
+        }
+
+        if (bIsInDirectMovementMode)
+        {
+            ProcessDirectMovement();
+        }
+        else
+        {
+            ProcessMouseMovement();
+        }
+    }
+
+    private void ProcessDirectMovement()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        Vector3 CamForword = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 Move = v * CamForword + h * Camera.main.transform.right;
+
+        Character.Move(Move, false, false);
+    }
+
+    private void ProcessMouseMovement()
     {
         if (Input.GetMouseButton(0))
         {
@@ -34,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
                 default:
                     return;
-
             }
         }
 
