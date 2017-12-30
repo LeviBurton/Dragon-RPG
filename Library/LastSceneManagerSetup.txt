@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Combat Sandbox.unity
+- path: Assets/Scenes/Levis Village.unity
   isLoaded: 1
   isActive: 1

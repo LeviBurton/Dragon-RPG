@@ -225,9 +225,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraFollow.cs" />
-    <Compile Include="Assets\CameraRaycaster.cs" />
-    <Compile Include="Assets\Cursor.cs" />
+    <Compile Include="Assets\Camera &amp; UI\CameraFollow.cs" />
+    <Compile Include="Assets\Camera &amp; UI\CameraRaycaster.cs" />
+    <Compile Include="Assets\Camera &amp; UI\Cursor.cs" />
+    <Compile Include="Assets\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Utility.cs" />
   </ItemGroup>
   <ItemGroup>

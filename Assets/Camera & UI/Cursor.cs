@@ -15,7 +15,7 @@ public class Cursor : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            print(CameraRaycaster.layerHit);
+            
         }
 	}
 }
