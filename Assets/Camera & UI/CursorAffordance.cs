@@ -23,12 +23,14 @@ public class CursorAffordance : MonoBehaviour
     void Start()
     {
         CameraRaycaster = GetComponent<CameraRaycaster>();
+        CameraRaycaster.LayerChangeObservers += OnLayerChange;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    void OnLayerChange(ELayer NewLayer)
     {
-        switch (CameraRaycaster.CurrentLayerHit)
+        print("CursorAffordance_OnLayerChange: " + NewLayer.ToString());
+
+        switch (NewLayer)
         {
             case ELayer.Walkable:
                 Cursor.SetCursor(WalkCursor, CursorHotSpot, CursorMode.Auto);
@@ -46,4 +48,5 @@ public class CursorAffordance : MonoBehaviour
                 break;
         }
     }
+
 }

@@ -17,12 +17,16 @@ public class CameraRaycaster : MonoBehaviour
         get { return raycastHit; }
     }
 
-    ELayer layerHit;
+    ELayer currentLayerHit;
     public ELayer CurrentLayerHit
     {
-        get { return layerHit; }
+        get { return currentLayerHit; }
     }
 
+    public delegate void OnLayerChange(ELayer NewLayer);       // delcare new delegate type
+    public OnLayerChange LayerChangeObservers;   // instantiate an observer set
+
+   
     void Start() 
     {
         ViewCamera = Camera.main;
@@ -30,21 +34,29 @@ public class CameraRaycaster : MonoBehaviour
 
     void Update()
     {
-        // Look for and return priority layer hit
-        foreach (ELayer Layer in LayerPriorities)
+        // Look for and return the first priority layer hit
+        foreach (ELayer LayerToCheck in LayerPriorities)
         {
-            var LayerHit = RaycastForLayer(Layer);
-            if (LayerHit != null)
+            var LayerHit = RaycastForLayer(LayerToCheck);
+            if (LayerHit == null)
+                continue;
+
+            raycastHit = LayerHit.Value;
+
+            // Has the layer changed?
+            if (currentLayerHit != LayerToCheck)
             {
-                raycastHit = LayerHit.Value;
-                layerHit = Layer;
-                return;
+                LayerChangeObservers(LayerToCheck);
             }
+
+            currentLayerHit = LayerToCheck;
+
+            return;
         }
 
         // Otherwise return background hit
         raycastHit.distance = DistanceToBackground;
-        layerHit = ELayer.RaycastEndStop;
+        currentLayerHit = ELayer.RaycastEndStop;
     }
 
     RaycastHit? RaycastForLayer(ELayer Layer)
