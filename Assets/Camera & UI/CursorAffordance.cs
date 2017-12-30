@@ -23,10 +23,10 @@ public class CursorAffordance : MonoBehaviour
     void Start()
     {
         CameraRaycaster = GetComponent<CameraRaycaster>();
-        CameraRaycaster.LayerChangeObservers += OnLayerChange;
+        CameraRaycaster.OnLayerChangedListeners += OnLayerChanged;
     }
 
-    void OnLayerChange(ELayer NewLayer)
+    void OnLayerChanged(ELayer NewLayer)
     {
         print("CursorAffordance_OnLayerChange: " + NewLayer.ToString());
 
@@ -49,4 +49,5 @@ public class CursorAffordance : MonoBehaviour
         }
     }
 
+    // TODO consider de-registering OnLayerChanged on leaving all game scenes
 }
