@@ -5,19 +5,19 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(ThirdPersonCharacter))]
 public class PlayerMovement : MonoBehaviour
 {
-    ThirdPersonCharacter Character;   // A reference to the ThirdPersonCharacter on the object
+    ThirdPersonCharacter ThirdPersonCharacter;   // A reference to the ThirdPersonCharacter on the object
     CameraRaycaster CameraRaycaster;
     Vector3 CurrentClickTarget;
 
     [SerializeField]
     float walkMoveStopRadius = 0.2f;
 
-    bool bIsInDirectMovementMode = false;   // Consider making this static
+    bool bIsInDirectMovementMode = false;  
 
     private void Start()
     {
         CameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-        Character = GetComponent<ThirdPersonCharacter>();
+        ThirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
         CurrentClickTarget = transform.position;
     }
 
@@ -27,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G)) // G for gamepad.  
         {
             bIsInDirectMovementMode = !bIsInDirectMovementMode;
+            CurrentClickTarget = transform.position;    // clear the click target
         }
 
         if (bIsInDirectMovementMode)
         {
+
             ProcessDirectMovement();
         }
         else
@@ -47,17 +49,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 CamForword = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         Vector3 Move = v * CamForword + h * Camera.main.transform.right;
 
-        Character.Move(Move, false, false);
+        ThirdPersonCharacter.Move(Move, false, false);
     }
 
     private void ProcessMouseMovement()
     {
         if (Input.GetMouseButton(0))
         {
-            switch (CameraRaycaster.LayerHit)
+            switch (CameraRaycaster.CurrentLayerHit)
             {
                 case ELayer.Walkable:
-                    CurrentClickTarget = CameraRaycaster.Hit.point;
+                    CurrentClickTarget = CameraRaycaster.RaycastHit.point;
                     break;
 
                 case ELayer.Enemy:
@@ -72,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (PlayerToClickPoint.magnitude > walkMoveStopRadius)
         {
-            Character.Move(PlayerToClickPoint, false, false);
+            ThirdPersonCharacter.Move(PlayerToClickPoint, false, false);
         }
         else
         {
-            Character.Move(Vector3.zero, false, false);
+            ThirdPersonCharacter.Move(Vector3.zero, false, false);
         }
     }
 }
