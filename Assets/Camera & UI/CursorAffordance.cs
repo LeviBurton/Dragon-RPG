@@ -28,8 +28,6 @@ public class CursorAffordance : MonoBehaviour
 
     void OnLayerChanged(ELayer NewLayer)
     {
-        print("CursorAffordance_OnLayerChange: " + NewLayer.ToString());
-
         switch (NewLayer)
         {
             case ELayer.Walkable:
