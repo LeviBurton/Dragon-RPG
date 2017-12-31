@@ -63,9 +63,11 @@ public class PlayerMovement : MonoBehaviour
                     break;
 
                 case ELayer.Enemy:
+                    CurrentClickTarget = transform.position;
                     break;
 
                 default:
+                    CurrentClickTarget = transform.position;
                     return;
             }
         }
