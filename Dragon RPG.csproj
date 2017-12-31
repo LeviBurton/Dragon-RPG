@@ -228,6 +228,8 @@
     <Compile Include="Assets\Camera &amp; UI\CameraFollow.cs" />
     <Compile Include="Assets\Camera &amp; UI\CameraRaycaster.cs" />
     <Compile Include="Assets\Camera &amp; UI\CursorAffordance.cs" />
+    <Compile Include="Assets\Camera &amp; UI\PlayerHealthBar.cs" />
+    <Compile Include="Assets\Player\Player.cs" />
     <Compile Include="Assets\Player\PlayerMovement.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
