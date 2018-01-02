@@ -5,15 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    float MaxHealthPoints;
+    float maxHealthPoints;
 
-    float CurrentHealthPoints = 100;
+    float currentHealthPoints = 100;
 
-    public float HealthAsPercentage
+    public float healthAsPercentage
     {
         get
         {
-            return CurrentHealthPoints / (float)MaxHealthPoints;
+            return currentHealthPoints / (float)maxHealthPoints;
         }
     }
 }
