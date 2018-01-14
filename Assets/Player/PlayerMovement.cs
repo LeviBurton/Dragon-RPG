@@ -25,26 +25,6 @@ public class PlayerMovement : MonoBehaviour
         CurrentDestination = transform.position;
     }
 
-    // Fixed update is called in sync with physics
-    private void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.G)) // G for gamepad.  
-        {
-            bIsInDirectMovementMode = !bIsInDirectMovementMode;
-            CurrentDestination = transform.position;    // clear the click target
-        }
-
-        if (bIsInDirectMovementMode)
-        {
-
-            ProcessDirectMovement();
-        }
-        else
-        {
-            ProcessMouseMovement();
-        }
-    }
-
     private void ProcessDirectMovement()
     {
         float h = Input.GetAxis("Horizontal");
@@ -56,30 +36,30 @@ public class PlayerMovement : MonoBehaviour
         ThirdPersonCharacter.Move(Move, false, false);
     }
 
-    private void ProcessMouseMovement()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            ClickPoint = CameraRaycaster.RaycastHit.point;
+    //private void ProcessMouseMovement()
+    //{
+    //    if (Input.GetMouseButton(0))
+    //    {
+    //        ClickPoint = CameraRaycaster.RaycastHit.point;
 
-            switch (CameraRaycaster.CurrentLayerHit)
-            {
-                case ELayer.Walkable:
-                    CurrentDestination = ShortDestination(ClickPoint, WalkMoveStopRadius);
-                    break;
+    //        switch (CameraRaycaster.CurrentLayerHit)
+    //        {
+    //            case ELayer.Walkable:
+    //                CurrentDestination = ShortDestination(ClickPoint, WalkMoveStopRadius);
+    //                break;
 
-                case ELayer.Enemy:
-                    CurrentDestination = ShortDestination(ClickPoint, AttackMoveStopRadius);
-                    break;
+    //            case ELayer.Enemy:
+    //                CurrentDestination = ShortDestination(ClickPoint, AttackMoveStopRadius);
+    //                break;
 
-                default:
-                    CurrentDestination = transform.position;
-                    return;
-            }
-        }
+    //            default:
+    //                CurrentDestination = transform.position;
+    //                return;
+    //        }
+    //    }
 
-        WalkToDestination();
-    }
+    //    WalkToDestination();
+    //}
 
     private void WalkToDestination()
     {
