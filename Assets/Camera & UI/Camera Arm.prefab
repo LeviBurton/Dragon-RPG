@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 81963459637549164}
   - component: {fileID: 114990577368864418}
   - component: {fileID: 114267558803072026}
+  - component: {fileID: 114351820328549798}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -105,6 +106,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -131,6 +133,18 @@ MonoBehaviour:
   TargetCursor: {fileID: 2800000, guid: 0de65a9176e29d346ac17f65ede10d1e, type: 3}
   UnknownCursor: {fileID: 2800000, guid: 46302abf86078a5419f45fa6e42a637b, type: 3}
   CursorHotSpot: {x: 0, y: 0}
+--- !u!114 &114351820328549798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598997767812440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02853f5d34bd8f429969ac34c466d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerPriorities: 090000000000000008000000
 --- !u!114 &114616932684102880
 MonoBehaviour:
   m_ObjectHideFlags: 1
