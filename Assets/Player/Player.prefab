@@ -657,8 +657,10 @@ GameObject:
   - component: {fileID: 9579096}
   - component: {fileID: 5426510}
   - component: {fileID: 13615390}
+  - component: {fileID: 195100771892319102}
   - component: {fileID: 11469404}
   - component: {fileID: 114806657957388568}
+  - component: {fileID: 114825676987786734}
   - component: {fileID: 114954009941125392}
   m_Layer: 0
   m_Name: Player
@@ -1372,7 +1374,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149790}
-  m_LocalRotation: {x: -0, y: -0.70710635, z: -0, w: 0.7071073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2407,7 +2409,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100098}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2711,8 +2713,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30917347d6596a48b2625c2fe4a5dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkMoveStopRadius: 0.3
-  AttackMoveStopRadius: 0.61
+--- !u!114 &114825676987786734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!114 &114954009941125392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2724,4 +2736,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08988053f33db04d83cbb38b7abb08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealthPoints: 100
+  maxHealthPoints: 0
+--- !u!195 &195100771892319102
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149790}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 1.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
