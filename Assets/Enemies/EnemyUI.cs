@@ -19,10 +19,18 @@ public class EnemyUI : MonoBehaviour {
         Instantiate(enemyCanvasPrefab, transform.position, Quaternion.identity, transform);
     }
 
+    private void OnDrawGizmos()
+    {
+       // Gizmos.DrawLine(transform.position, Camera.main.transform.position);
 
+    }
+  
     // Update is called once per frame 
     void LateUpdate()
     {
-        transform.LookAt(cameraToLookAt.transform);
+        var Parent = transform.parent.transform;
+
+        transform.LookAt(transform.position + (cameraToLookAt.transform.rotation *  Parent.transform.rotation) * Vector3.forward,
+                         cameraToLookAt.transform.rotation * Vector3.up);
     }
 }

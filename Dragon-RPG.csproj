@@ -294,11 +294,6 @@
     <Compile Include="Assets\Camera &amp; UI\CameraFollow.cs" />
     <Compile Include="Assets\Camera &amp; UI\CameraRaycaster.cs" />
     <Compile Include="Assets\Camera &amp; UI\CursorAffordance.cs" />
-    <Compile Include="Assets\Camera &amp; UI\PlayerHealthBar.cs" />
-    <Compile Include="Assets\Enemies\Enemy.cs" />
-    <Compile Include="Assets\Enemies\EnemyHealthBar.cs" />
-    <Compile Include="Assets\Enemies\EnemyUI.cs" />
-    <Compile Include="Assets\Player\Player.cs" />
     <Compile Include="Assets\Player\PlayerMovement.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
@@ -345,7 +340,7 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\Utility\SpinMe.cs" />
+    <Compile Include="Assets\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
@@ -389,7 +384,6 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
-    <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />

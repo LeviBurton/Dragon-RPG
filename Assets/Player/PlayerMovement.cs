@@ -1,64 +1,50 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 [RequireComponent(typeof(ThirdPersonCharacter))]
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(AICharacterControl))]
 public class PlayerMovement : MonoBehaviour
 {
-    ThirdPersonCharacter ThirdPersonCharacter= null;
-    AICharacterControl AiCharacterControl = null;
-    CameraRaycaster CameraRaycaster = null;
+    ThirdPersonCharacter ThirdPersonCharacter;   // A reference to the ThirdPersonCharacter on the object
+    CameraRaycaster CameraRaycaster;
     Vector3 CurrentDestination;
     Vector3 ClickPoint;
 
     [SerializeField]
-    const int walkableLayerNumber = 8;
-    [SerializeField]
-    const int enemyLayerNumber = 9;
+    float WalkMoveStopRadius = 0.2f;
 
-    GameObject WalkTarget = null;
+    [SerializeField]
+    float AttackMoveStopRadius = 5.0f;
+
+    bool bIsInDirectMovementMode = false;  
 
     private void Start()
     {
         CameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-        AiCharacterControl = GetComponent<AICharacterControl>();
         ThirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
-
-        CameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
         CurrentDestination = transform.position;
-        WalkTarget = new GameObject("WalkTarget");
     }
-        
-    void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
+
+    // Fixed update is called in sync with physics
+    private void FixedUpdate()
     {
-        switch (layerHit)
+        if (Input.GetKeyDown(KeyCode.G)) // G for gamepad.  
         {
-            case enemyLayerNumber:
-                // Navigate to enemy
-                GameObject enemy = raycastHit.collider.gameObject;
-                AiCharacterControl.SetTarget(enemy.transform);
-                break;
+            bIsInDirectMovementMode = !bIsInDirectMovementMode;
+            CurrentDestination = transform.position;    // clear the click target
+        }
 
-            case walkableLayerNumber:
-                // Navigate to point on ground
-                WalkTarget.transform.position = raycastHit.point;
-                AiCharacterControl.SetTarget(WalkTarget.transform);
-                break;
+        if (bIsInDirectMovementMode)
+        {
 
-            default:
-                Debug.LogWarning("Don't know how to handle mouse click for player movement");
-                return;
-
+            ProcessDirectMovement();
+        }
+        else
+        {
+            ProcessMouseMovement();
         }
     }
 
-
-
-    // TODO make this get called again.
-    bool bIsInDirectMovementMode = false;
     private void ProcessDirectMovement()
     {
         float h = Input.GetAxis("Horizontal");
@@ -68,6 +54,64 @@ public class PlayerMovement : MonoBehaviour
         Vector3 Move = v * CamForword + h * Camera.main.transform.right;
 
         ThirdPersonCharacter.Move(Move, false, false);
+    }
+
+    private void ProcessMouseMovement()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            ClickPoint = CameraRaycaster.RaycastHit.point;
+
+            switch (CameraRaycaster.CurrentLayerHit)
+            {
+                case ELayer.Walkable:
+                    CurrentDestination = ShortDestination(ClickPoint, WalkMoveStopRadius);
+                    break;
+
+                case ELayer.Enemy:
+                    CurrentDestination = ShortDestination(ClickPoint, AttackMoveStopRadius);
+                    break;
+
+                default:
+                    CurrentDestination = transform.position;
+                    return;
+            }
+        }
+
+        WalkToDestination();
+    }
+
+    private void WalkToDestination()
+    {
+        var PlayerToClickPoint = CurrentDestination - transform.position;
+
+        // TODO: bug here -- this only takes WalkMoveStopRadius into account.  Needs AttackMoveStopRadius as well
+        if (PlayerToClickPoint.magnitude > WalkMoveStopRadius)
+        {
+           
+            ThirdPersonCharacter.Move(PlayerToClickPoint, false, false);
+        }
+        else
+        {
+            ThirdPersonCharacter.Move(Vector3.zero, false, false);
+        }
+    }
+
+    Vector3 ShortDestination(Vector3 Destination, float Scale)
+    {
+        Vector3 ScaledVector = (Destination - transform.position).normalized * Scale;
+        return Destination - ScaledVector;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, CurrentDestination);
+        Gizmos.DrawSphere(CurrentDestination, 0.1f);
+        Gizmos.DrawSphere(ClickPoint, 0.15f);
+
+        // Draw attack sphere
+        // Gizmos.color = new Color(255f, 255f, 0f, .2f);
+       // Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.1f, AttackMoveStopRadius);
     }
 }
 
