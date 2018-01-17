@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float DamageCaused;
-    public float ProjectileSpeed;
+    float DamageCaused;
 
+    public float ProjectileSpeed;
+  
 	// Use this for initialization
 	void Start () {
 		
@@ -24,5 +25,10 @@ public class Projectile : MonoBehaviour
         {
             (DamageableComponent as IDamageable).TakeDamage(DamageCaused);
         }
+    }
+
+    public void SetDamage(float Damage)
+    {
+        DamageCaused = Damage;
     }
 }

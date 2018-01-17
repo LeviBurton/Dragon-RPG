@@ -24,8 +24,13 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     float DamagePerShot = 10;
 
+    [SerializeField]
+    float SecondsBetweenShots = 0.5f;
+
     AICharacterControl AICharacterControl = null;
     GameObject Player = null;
+
+    bool bIsAttacking = false;
 
     public float HealthAsPercentage
     {
@@ -50,14 +55,18 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         float DistanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
 
-        if (DistanceToPlayer <= AttackRadius)
+        if (DistanceToPlayer <= AttackRadius && !bIsAttacking)
         {
+            bIsAttacking = true;
 
-            SpawnProjectile();
+            // TODO switch to coroutines
+            InvokeRepeating("SpawnProjectile", 0f, SecondsBetweenShots);
         }
-        else
+
+        if (DistanceToPlayer > AttackRadius)
         {
-            AICharacterControl.SetTarget(transform);
+            bIsAttacking = false;
+            CancelInvoke();
         }
 
         if (DistanceToPlayer <= ChaseRadius)
@@ -77,7 +86,8 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 DirectionToPlayer = (Player.transform.position - ProjectileSocket.transform.position).normalized;
         float Speed = ProjectileComponent.ProjectileSpeed;
 
-        ProjectileComponent.DamageCaused = DamagePerShot;
+        ProjectileComponent.SetDamage(DamagePerShot);
+
         NewProjectile.GetComponent<Rigidbody>().velocity = DirectionToPlayer * Speed;
     }
 
