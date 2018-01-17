@@ -6,36 +6,44 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    float maxHealthPoints = 100;
+    float MaxHealthPoints = 100;
+    float CurrentHealthPoints = 100;
 
-    float currentHealthPoints = 100;
+    [SerializeField]
+    GameObject ProjectileToUse;
+
+    [SerializeField]
+    GameObject ProjectileSocket;
 
     [SerializeField]
     float AttackRadius = 5;
 
+    [SerializeField]
+    float ChaseRadius = 10;
+
+    [SerializeField]
+    float DamagePerShot = 10;
+
     AICharacterControl AICharacterControl = null;
-    Transform OriginalPosition;
     GameObject Player = null;
 
-    public float healthAsPercentage
+    public float HealthAsPercentage
     {
         get
         {
-            return currentHealthPoints / (float)maxHealthPoints;
+            return CurrentHealthPoints / (float)MaxHealthPoints;
         }
     }
 
     public void TakeDamage(float Damage)
     {
-        currentHealthPoints = Mathf.Clamp(currentHealthPoints - Damage, 0, maxHealthPoints);
+        CurrentHealthPoints = Mathf.Clamp(CurrentHealthPoints - Damage, 0, MaxHealthPoints);
     }
 
     private void Start()
     {
         AICharacterControl = GetComponent<AICharacterControl>();
         Player = GameObject.FindGameObjectWithTag("Player");
-
-        OriginalPosition = AICharacterControl.transform;
     }
 
     private void Update()
@@ -44,12 +52,42 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (DistanceToPlayer <= AttackRadius)
         {
+
+            SpawnProjectile();
+        }
+        else
+        {
+            AICharacterControl.SetTarget(transform);
+        }
+
+        if (DistanceToPlayer <= ChaseRadius)
+        {
             AICharacterControl.SetTarget(Player.transform);
         }
         else
         {
-            AICharacterControl.SetTarget(OriginalPosition);
+            AICharacterControl.SetTarget(transform);
         }
     }
 
+    private void SpawnProjectile()
+    {
+        GameObject NewProjectile = Instantiate(ProjectileToUse, ProjectileSocket.transform.position, Quaternion.identity);
+        Projectile ProjectileComponent = NewProjectile.GetComponent<Projectile>();
+        Vector3 DirectionToPlayer = (Player.transform.position - ProjectileSocket.transform.position).normalized;
+        float Speed = ProjectileComponent.ProjectileSpeed;
+
+        ProjectileComponent.DamageCaused = DamagePerShot;
+        NewProjectile.GetComponent<Rigidbody>().velocity = DirectionToPlayer * Speed;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, AttackRadius);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, ChaseRadius);
+
+    }
 }
