@@ -5,19 +5,64 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    float maxHealthPoints = 100;
-    float currentHealthPoints = 100;
+    int EnemyLayer = 9;
+
+    [SerializeField]
+    float DamagePerHit = 10;
+
+    [SerializeField]
+    float MinTimeBetweenHits = 0.5f;
+
+    [SerializeField]
+    float MaxAttackRange = 2f;
+
+    [SerializeField]
+    float MaxHealthPoints = 100;
+
+    GameObject CurrentTarget;
+    CameraRaycaster CameraRayCaster;
+    float CurrentHealthPoints = 100;
+    float LastHitTime = 0f;
+
+    private void Start()
+    {
+        CameraRayCaster = FindObjectOfType<CameraRaycaster>();
+        CameraRayCaster.notifyMouseClickObservers += OnMouseClick;
+        CurrentHealthPoints = MaxHealthPoints;
+    }
+
+    void OnMouseClick(RaycastHit RaycastHit, int LayerHit)
+    {
+        if (LayerHit == EnemyLayer)
+        {
+            var Enemy = RaycastHit.collider.gameObject;
+            var EnemyComponent = Enemy.GetComponent<Enemy>();
+      
+            if (Vector3.Distance(Enemy.transform.position, transform.position) > MaxAttackRange)
+            {
+                return;
+            }
+
+            CurrentTarget = Enemy;
+
+            if (Time.time - LastHitTime > MinTimeBetweenHits)
+            {
+                EnemyComponent.TakeDamage(DamagePerHit);
+                LastHitTime = Time.time;
+            }
+        }
+    }
 
     public void TakeDamage(float Damage)
     {
-        currentHealthPoints = Mathf.Clamp(currentHealthPoints - Damage, 0, maxHealthPoints);
+        CurrentHealthPoints = Mathf.Clamp(CurrentHealthPoints - Damage, 0, MaxHealthPoints);
     }
 
     public float healthAsPercentage
     {
         get
         {
-            return currentHealthPoints / (float)maxHealthPoints;
+            return CurrentHealthPoints / (float)MaxHealthPoints;
         }
     }
 }

@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField]
     float MaxHealthPoints = 100;
-    float CurrentHealthPoints = 100;
 
     [SerializeField]
     GameObject ProjectileToUse;
@@ -27,9 +26,12 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     float SecondsBetweenShots = 0.5f;
 
+    [SerializeField]
+    Vector3 AimOffset = new Vector3(0, 1, 0);
+
     AICharacterControl AICharacterControl = null;
     GameObject Player = null;
-
+    float CurrentHealthPoints = 0;
     bool bIsAttacking = false;
 
     public float HealthAsPercentage
@@ -43,12 +45,14 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(float Damage)
     {
         CurrentHealthPoints = Mathf.Clamp(CurrentHealthPoints - Damage, 0, MaxHealthPoints);
+        if (CurrentHealthPoints <= 0) { Destroy(gameObject); }
     }
 
     private void Start()
     {
         AICharacterControl = GetComponent<AICharacterControl>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        CurrentHealthPoints = MaxHealthPoints;
     }
 
     private void Update()
@@ -83,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         GameObject NewProjectile = Instantiate(ProjectileToUse, ProjectileSocket.transform.position, Quaternion.identity);
         Projectile ProjectileComponent = NewProjectile.GetComponent<Projectile>();
-        Vector3 DirectionToPlayer = (Player.transform.position - ProjectileSocket.transform.position).normalized;
+        Vector3 DirectionToPlayer = (Player.transform.position + AimOffset - ProjectileSocket.transform.position).normalized;
         float Speed = ProjectileComponent.ProjectileSpeed;
 
         ProjectileComponent.SetDamage(DamagePerShot);

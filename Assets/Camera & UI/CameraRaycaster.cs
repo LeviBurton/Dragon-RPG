@@ -6,10 +6,10 @@ using System.Collections.Generic;
 public class CameraRaycaster : MonoBehaviour
 {
 	// INSPECTOR PROPERTIES RENDERED BY CUSTOM EDITOR SCRIPT
-	[SerializeField] int[] layerPriorities;
+	[SerializeField] int[] LayerPriorities;
 
-    float maxRaycastDepth = 100f; // Hard coded value
-	int topPriorityLayerLastFrame = -1; // So get ? from start with Default layer terrain
+    float MaxRaycastDepth = 100f; // Hard coded value
+	int TopPriorityLayerLastFrame = -1; // So get ? from start with Default layer terrain
 
 	// Setup delegates for broadcasting layer changes to other classes
     public delegate void OnCursorLayerChange(int newLayer); // declare new delegate type
@@ -29,7 +29,7 @@ public class CameraRaycaster : MonoBehaviour
 
 		// Raycast to max depth, every frame as things can move under mouse
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit[] raycastHits = Physics.RaycastAll (ray, maxRaycastDepth);
+		RaycastHit[] raycastHits = Physics.RaycastAll (ray, MaxRaycastDepth);
 
         RaycastHit? priorityHit = FindTopPriorityHit(raycastHits);
         if (!priorityHit.HasValue) // if hit no priority object
@@ -51,9 +51,9 @@ public class CameraRaycaster : MonoBehaviour
 
 	void NotifyObserersIfLayerChanged(int newLayer)
 	{
-		if (newLayer != topPriorityLayerLastFrame)
+		if (newLayer != TopPriorityLayerLastFrame)
 		{
-			topPriorityLayerLastFrame = newLayer;
+			TopPriorityLayerLastFrame = newLayer;
 			notifyLayerChangeObservers (newLayer);
 		}
 	}
@@ -68,7 +68,7 @@ public class CameraRaycaster : MonoBehaviour
 		}
 
 		// Step through layers in order of priority looking for a gameobject with that layer
-		foreach (int layer in layerPriorities)
+		foreach (int layer in LayerPriorities)
 		{
 			foreach (RaycastHit hit in raycastHits)
 			{

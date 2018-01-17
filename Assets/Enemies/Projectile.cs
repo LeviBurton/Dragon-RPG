@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public float ProjectileSpeed;
+
     float DamageCaused;
 
-    public float ProjectileSpeed;
-  
 	// Use this for initialization
 	void Start () {
 		
