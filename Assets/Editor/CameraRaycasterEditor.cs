@@ -27,20 +27,20 @@ public class CameraRaycasterEditor : Editor
 
     void BindArraySize()
     {
-        int currentArraySize = serializedObject.FindProperty("layerPriorities.Array.size").intValue;
+        int currentArraySize = serializedObject.FindProperty("LayerPriorities.Array.size").intValue;
         int requiredArraySize = EditorGUILayout.IntField("Size", currentArraySize);
         if (requiredArraySize != currentArraySize)
         {
-            serializedObject.FindProperty("layerPriorities.Array.size").intValue = requiredArraySize;
+            serializedObject.FindProperty("LayerPriorities.Array.size").intValue = requiredArraySize;
         }
     }
 
     void BindArrayElements()
     {
-        int currentArraySize = serializedObject.FindProperty("layerPriorities.Array.size").intValue;
+        int currentArraySize = serializedObject.FindProperty("LayerPriorities.Array.size").intValue;
         for (int i = 0; i < currentArraySize; i++)
         {
-            var prop = serializedObject.FindProperty(string.Format("layerPriorities.Array.data[{0}]", i));
+            var prop = serializedObject.FindProperty(string.Format("LayerPriorities.Array.data[{0}]", i));
             prop.intValue = EditorGUILayout.LayerField(string.Format("Layer {0}:", i), prop.intValue);
         }
     }
