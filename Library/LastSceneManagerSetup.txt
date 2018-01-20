@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Combat Sandbox.unity
+- path: Assets/Levels/Desert Temple.unity
   isLoaded: 1
   isActive: 1
