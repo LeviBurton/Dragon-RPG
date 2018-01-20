@@ -298,7 +298,6 @@
     <Compile Include="Assets\Enemies\Enemy.cs" />
     <Compile Include="Assets\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\Enemies\EnemyUI.cs" />
-    <Compile Include="Assets\Enemies\Projectile.cs" />
     <Compile Include="Assets\Player\Player.cs" />
     <Compile Include="Assets\Player\PlayerMovement.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
@@ -348,6 +347,7 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Utility\IDamageable.cs" />
     <Compile Include="Assets\Utility\SpinMe.cs" />
+    <Compile Include="Assets\Weapons\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
