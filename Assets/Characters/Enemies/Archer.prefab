@@ -1228,7 +1228,7 @@ GameObject:
   - component: {fileID: 114570612477982038}
   - component: {fileID: 114438534437285674}
   - component: {fileID: 195988269921240096}
-  - component: {fileID: 114712126302783778}
+  - component: {fileID: 114718000099179064}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Untagged
@@ -2103,7 +2103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886068730627342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.46, y: 0, z: -7.98}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4121762356551644}
@@ -2590,7 +2590,7 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1.35
   m_GroundCheckDistance: 1
---- !u!114 &114712126302783778
+--- !u!114 &114718000099179064
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2598,18 +2598,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886068730627342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 851631369a0c64846a0b3d2ad7b7d025, type: 3}
+  m_Script: {fileID: 11500000, guid: ac46da830b7bf0443b928b3e59950ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealthPoints: 100
-  ProjectileToUse: {fileID: 1029236375062990, guid: 3d610edbc56f4c046b33aa560171a407,
+  maxHealthPoints: 100
+  chaseRadius: 6
+  attackRadius: 4
+  damagePerShot: 9
+  secondsBetweenShots: 0.5
+  projectileToUse: {fileID: 1029236375062990, guid: ad845ed82dc97eb4eb4f661e39028a1e,
     type: 2}
-  ProjectileSocket: {fileID: 1738507890137382}
-  AttackRadius: 13
-  ChaseRadius: 3.75
-  DamagePerShot: 25
-  SecondsBetweenShots: 0.75
-  AimOffset: {x: 0, y: 1, z: 0}
+  projectileSocket: {fileID: 1738507890137382}
+  aimOffset: {x: 0, y: 1, z: 0}
 --- !u!136 &136837052023818472
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23672544701300620}
   - component: {fileID: 135713786012705396}
   - component: {fileID: 54230097613071622}
-  - component: {fileID: 114393506758980456}
+  - component: {fileID: 114346728557519982}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -217,7 +217,7 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 1
---- !u!114 &114393506758980456
+--- !u!114 &114346728557519982
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -225,10 +225,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029236375062990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7470833267270439943a7d7bd2035c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1259fd4d21b427d418cd929a763f9a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileSpeed: 15
+  projectileSpeed: 50
 --- !u!135 &135713786012705396
 SphereCollider:
   m_ObjectHideFlags: 1
