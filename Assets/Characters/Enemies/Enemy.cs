@@ -3,105 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class Enemy : MonoBehaviour, IDamageable
-{
-    [SerializeField]
-    float MaxHealthPoints = 100;
+public class Enemy : MonoBehaviour, IDamageable {
 
-    [SerializeField]
-    GameObject ProjectileToUse;
+    [SerializeField] float maxHealthPoints = 100f;
+    [SerializeField] float chaseRadius = 6f;
 
-    [SerializeField]
-    GameObject ProjectileSocket;
+    [SerializeField] float attackRadius = 4f;
+    [SerializeField] float damagePerShot = 9f;
+    [SerializeField] float secondsBetweenShots = 0.5f;
+    [SerializeField] GameObject projectileToUse;
+    [SerializeField] GameObject projectileSocket;
+    [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
 
-    [SerializeField]
-    float AttackRadius = 5;
+    bool isAttacking = false;
+    float currentHealthPoints;
+    AICharacterControl aiCharacterControl = null;
+    GameObject player = null;
 
-    [SerializeField]
-    float ChaseRadius = 10;
+    public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; }}
 
-    [SerializeField]
-    float DamagePerShot = 10;
-
-    [SerializeField]
-    float SecondsBetweenShots = 0.5f;
-
-    [SerializeField]
-    Vector3 AimOffset = new Vector3(0, 1, 0);
-
-    AICharacterControl AICharacterControl = null;
-    GameObject Player = null;
-    float CurrentHealthPoints = 0;
-    bool bIsAttacking = false;
-
-    public float HealthAsPercentage
+    public void TakeDamage(float damage)
     {
-        get
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        if (currentHealthPoints <= 0) { Destroy(gameObject); }
+    }
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        aiCharacterControl = GetComponent<AICharacterControl>();
+        currentHealthPoints = maxHealthPoints;
+    }
+
+    void Update()
+    {
+        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        if (distanceToPlayer <= attackRadius && !isAttacking)
         {
-            return CurrentHealthPoints / (float)MaxHealthPoints;
+            isAttacking = true;
+            InvokeRepeating("SpawnProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
         }
-    }
-
-    public void TakeDamage(float Damage)
-    {
-        CurrentHealthPoints = Mathf.Clamp(CurrentHealthPoints - Damage, 0, MaxHealthPoints);
-        if (CurrentHealthPoints <= 0) { Destroy(gameObject); }
-    }
-
-    private void Start()
-    {
-        AICharacterControl = GetComponent<AICharacterControl>();
-        Player = GameObject.FindGameObjectWithTag("Player");
-        CurrentHealthPoints = MaxHealthPoints;
-    }
-
-    private void Update()
-    {
-        float DistanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
-
-        if (DistanceToPlayer <= AttackRadius && !bIsAttacking)
+        
+        if (distanceToPlayer > attackRadius)
         {
-            bIsAttacking = true;
-
-            // TODO switch to coroutines
-            InvokeRepeating("SpawnProjectile", 0f, SecondsBetweenShots);
-        }
-
-        if (DistanceToPlayer > AttackRadius)
-        {
-            bIsAttacking = false;
+            isAttacking = false;
             CancelInvoke();
         }
 
-        if (DistanceToPlayer <= ChaseRadius)
+        if (distanceToPlayer <= chaseRadius)
         {
-            AICharacterControl.SetTarget(Player.transform);
+            aiCharacterControl.SetTarget(player.transform);
         }
         else
         {
-            AICharacterControl.SetTarget(transform);
+            aiCharacterControl.SetTarget(transform);
         }
     }
 
-    private void SpawnProjectile()
+    void SpawnProjectile()
     {
-        GameObject NewProjectile = Instantiate(ProjectileToUse, ProjectileSocket.transform.position, Quaternion.identity);
-        Projectile ProjectileComponent = NewProjectile.GetComponent<Projectile>();
-        Vector3 DirectionToPlayer = (Player.transform.position + AimOffset - ProjectileSocket.transform.position).normalized;
-        float Speed = ProjectileComponent.ProjectileSpeed;
+        GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
+        Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+        projectileComponent.SetDamage(damagePerShot);
 
-        ProjectileComponent.SetDamage(DamagePerShot);
-
-        NewProjectile.GetComponent<Rigidbody>().velocity = DirectionToPlayer * Speed;
+        Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
+        float projectileSpeed = projectileComponent.projectileSpeed;
+        newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, AttackRadius);
+        // Draw attack sphere 
+        Gizmos.color = new Color(255f, 0, 0, .5f);
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, ChaseRadius);
-
+        // Draw chase sphere 
+        Gizmos.color = new Color(0, 0, 255, .5f);
+        Gizmos.DrawWireSphere(transform.position, chaseRadius);
     }
 }

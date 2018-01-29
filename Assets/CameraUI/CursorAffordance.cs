@@ -3,47 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CameraRaycaster))]
-public class CursorAffordance : MonoBehaviour
-{
-    [SerializeField]
-    Texture2D WalkCursor = null;
-    [SerializeField]
-    Texture2D TargetCursor = null;
-    [SerializeField]
-    Texture2D UnknownCursor = null;
-    [SerializeField]
-    Vector2 CursorHotSpot = new Vector2(0, 0);
-    [SerializeField]
-    const int walkableLayerNumber = 8;
-    [SerializeField]
-    const int enemyLayerNumber = 9;
+public class CursorAffordance : MonoBehaviour {
 
-    CameraRaycaster CameraRaycaster;
+    [SerializeField] Texture2D walkCursor = null;
+    [SerializeField] Texture2D unknownCursor = null;
+    [SerializeField] Texture2D targetCursor = null;
+    [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 
-    // Use this for initialization  
-    void Start()
-    {
-        CameraRaycaster = GetComponent<CameraRaycaster>();
-        CameraRaycaster.notifyLayerChangeObservers += OnLayerChanged;
-    }
+    // TODO solve fight between serialize and const
+    [SerializeField] const int walkableLayerNumber = 8;
+    [SerializeField] const int enemyLayerNumber = 9;
 
-    void OnLayerChanged(int NewLayer)
-    {
-        switch (NewLayer)
+    CameraRaycaster cameraRaycaster;
+
+	// Use this for initialization
+	void Start () {
+        cameraRaycaster = GetComponent<CameraRaycaster>();
+        cameraRaycaster.notifyLayerChangeObservers += OnLayerChanged; // registering
+	}
+
+    void OnLayerChanged(int newLayer) {
+        switch (newLayer)
         {
             case walkableLayerNumber:
-                Cursor.SetCursor(WalkCursor, CursorHotSpot, CursorMode.Auto);
+                Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
                 break;
-
             case enemyLayerNumber:
-                Cursor.SetCursor(TargetCursor, CursorHotSpot, CursorMode.Auto);
+                Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
                 break;
-
             default:
-                Cursor.SetCursor(UnknownCursor, CursorHotSpot, CursorMode.Auto);
-                break;
+                Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
+                return;
         }
     }
-
-    // TODO consider de-registering OnLayerChanged on leaving all game scenes
 }

@@ -291,10 +291,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Core\IDamageable.cs" />
+    <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\CameraUI\CameraRaycaster.cs" />
     <Compile Include="Assets\CameraUI\CursorAffordance.cs" />
     <Compile Include="Assets\CameraUI\PlayerHealthBar.cs" />
+    <Compile Include="Assets\Characters\DominantHand.cs" />
     <Compile Include="Assets\Characters\Enemies\Enemy.cs" />
     <Compile Include="Assets\Characters\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\Characters\Enemies\EnemyUI.cs" />
@@ -345,11 +348,11 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\Utility\IDamageable.cs" />
-    <Compile Include="Assets\Utility\SpinMe.cs" />
     <Compile Include="Assets\Weapons\Projectile.cs" />
+    <Compile Include="Assets\Weapons\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
@@ -396,6 +399,7 @@
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

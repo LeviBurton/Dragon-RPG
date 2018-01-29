@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Levels/Desert Temple.unity
+- path: Assets/Levels/Showcase.unity
   isLoaded: 1
   isActive: 1

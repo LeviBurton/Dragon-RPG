@@ -1,68 +1,83 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class Player : MonoBehaviour, IDamageable
-{
-    [SerializeField]
-    int EnemyLayer = 9;
+public class Player : MonoBehaviour, IDamageable {
 
-    [SerializeField]
-    float DamagePerHit = 10;
+    [SerializeField] int enemyLayer = 9;
+    [SerializeField] float maxHealthPoints = 100f;
+    [SerializeField] float damagePerHit = 10f;
+    [SerializeField] float minTimeBetweenHits = .5f;
+    [SerializeField] float maxAttackRange = 2f;
+    [SerializeField] Weapon weaponInUse;
 
-    [SerializeField]
-    float MinTimeBetweenHits = 0.5f;
+    GameObject currentTarget;
+    float currentHealthPoints;
+    CameraRaycaster cameraRaycaster;
+    float lastHitTime = 0f;
 
-    [SerializeField]
-    float MaxAttackRange = 2f;
+    public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; }}
 
-    [SerializeField]
-    float MaxHealthPoints = 100;
-
-    GameObject CurrentTarget;
-    CameraRaycaster CameraRayCaster;
-    float CurrentHealthPoints = 100;
-    float LastHitTime = 0f;
-
-    private void Start()
+    void Start()
     {
-        CameraRayCaster = FindObjectOfType<CameraRaycaster>();
-        CameraRayCaster.notifyMouseClickObservers += OnMouseClick;
-        CurrentHealthPoints = MaxHealthPoints;
+        RegisterForMouseClick();
+        currentHealthPoints = maxHealthPoints;
+        PutWeaponInHand();
     }
 
-    void OnMouseClick(RaycastHit RaycastHit, int LayerHit)
+    private void PutWeaponInHand()
     {
-        if (LayerHit == EnemyLayer)
-        {
-            var Enemy = RaycastHit.collider.gameObject;
-            var EnemyComponent = Enemy.GetComponent<Enemy>();
+        var weaponPrefab = weaponInUse.GetWeaponPrefab();
       
-            if (Vector3.Distance(Enemy.transform.position, transform.position) > MaxAttackRange)
+        GameObject dominantHand = RequestDominantHand();
+        var weapon = Instantiate(weaponPrefab, dominantHand.transform);
+        weapon.transform.localPosition = weaponInUse.gripTransform.transform.localPosition;
+        weapon.transform.localRotation = weaponInUse.gripTransform.transform.localRotation;
+
+    }
+
+    private GameObject RequestDominantHand()
+    {
+        var dominantHands = GetComponentsInChildren<DominantHand>();
+        int numberOfDominantHands = dominantHands.Length;
+        Assert.AreNotEqual(numberOfDominantHands, 0 , "No dominant hand found on player, please add one.");
+        Assert.IsFalse(numberOfDominantHands > 1, "Multiple dominant hand scripts on player.  Only 1 allowed.");
+        return dominantHands[0].gameObject;
+    }
+
+    private void RegisterForMouseClick()
+    {
+        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+        cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
+    }
+
+    void OnMouseClick(RaycastHit raycastHit, int layerHit)
+    {
+        if (layerHit == enemyLayer)
+        {
+            var enemy = raycastHit.collider.gameObject;
+             
+            // Check enemy is in range
+            if ((enemy.transform.position - transform.position).magnitude > maxAttackRange)
             {
                 return;
             }
 
-            CurrentTarget = Enemy;
+            currentTarget = enemy;
 
-            if (Time.time - LastHitTime > MinTimeBetweenHits)
+            var enemyComponent = enemy.GetComponent<Enemy>();
+            if (Time.time - lastHitTime > minTimeBetweenHits)
             {
-                EnemyComponent.TakeDamage(DamagePerHit);
-                LastHitTime = Time.time;
+                enemyComponent.TakeDamage(damagePerHit);
+                lastHitTime = Time.time;
             }
         }
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(float damage)
     {
-        CurrentHealthPoints = Mathf.Clamp(CurrentHealthPoints - Damage, 0, MaxHealthPoints);
-    }
-
-    public float healthAsPercentage
-    {
-        get
-        {
-            return CurrentHealthPoints / (float)MaxHealthPoints;
-        }
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
     }
 }

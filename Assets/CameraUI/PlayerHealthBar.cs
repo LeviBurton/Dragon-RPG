@@ -6,10 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RawImage))]
 public class PlayerHealthBar : MonoBehaviour
 {
-    // Image specs
-    // health bar: 2048x32
-    // health bar mask: 2048x128
-
     RawImage healthBarRawImage;
     Player player;
 

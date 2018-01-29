@@ -6,10 +6,10 @@ using System.Collections.Generic;
 public class CameraRaycaster : MonoBehaviour
 {
 	// INSPECTOR PROPERTIES RENDERED BY CUSTOM EDITOR SCRIPT
-	[SerializeField] int[] LayerPriorities;
+	[SerializeField] int[] layerPriorities;
 
-    float MaxRaycastDepth = 100f; // Hard coded value
-	int TopPriorityLayerLastFrame = -1; // So get ? from start with Default layer terrain
+    float maxRaycastDepth = 100f; // Hard coded value
+	int topPriorityLayerLastFrame = -1; // So get ? from start with Default layer terrain
 
 	// Setup delegates for broadcasting layer changes to other classes
     public delegate void OnCursorLayerChange(int newLayer); // declare new delegate type
@@ -18,29 +18,30 @@ public class CameraRaycaster : MonoBehaviour
 	public delegate void OnClickPriorityLayer(RaycastHit raycastHit, int layerHit); // declare new delegate type
 	public event OnClickPriorityLayer notifyMouseClickObservers; // instantiate an observer set
 
+
     void Update()
 	{
 		// Check if pointer is over an interactable UI element
 		if (EventSystem.current.IsPointerOverGameObject ())
 		{
-			NotifyObserersIfLayerChanged (5);
+			NotifyObserversIfLayerChanged (5);
 			return; // Stop looking for other objects
 		}
 
 		// Raycast to max depth, every frame as things can move under mouse
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit[] raycastHits = Physics.RaycastAll (ray, MaxRaycastDepth);
+		RaycastHit[] raycastHits = Physics.RaycastAll (ray, maxRaycastDepth);
 
         RaycastHit? priorityHit = FindTopPriorityHit(raycastHits);
         if (!priorityHit.HasValue) // if hit no priority object
 		{
-			NotifyObserersIfLayerChanged (0); // broadcast default layer
+			NotifyObserversIfLayerChanged (0); // broadcast default layer
 			return;
 		}
 
 		// Notify delegates of layer change
 		var layerHit = priorityHit.Value.collider.gameObject.layer;
-		NotifyObserersIfLayerChanged(layerHit);
+		NotifyObserversIfLayerChanged(layerHit);
 		
 		// Notify delegates of highest priority game object under mouse when clicked
 		if (Input.GetMouseButton (0))
@@ -49,11 +50,11 @@ public class CameraRaycaster : MonoBehaviour
 		}
 	}
 
-	void NotifyObserersIfLayerChanged(int newLayer)
+	void NotifyObserversIfLayerChanged(int newLayer)
 	{
-		if (newLayer != TopPriorityLayerLastFrame)
+		if (newLayer != topPriorityLayerLastFrame)
 		{
-			TopPriorityLayerLastFrame = newLayer;
+			topPriorityLayerLastFrame = newLayer;
 			notifyLayerChangeObservers (newLayer);
 		}
 	}
@@ -68,7 +69,7 @@ public class CameraRaycaster : MonoBehaviour
 		}
 
 		// Step through layers in order of priority looking for a gameobject with that layer
-		foreach (int layer in LayerPriorities)
+		foreach (int layer in layerPriorities)
 		{
 			foreach (RaycastHit hit in raycastHits)
 			{

@@ -2,39 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
-{
-    public float ProjectileSpeed;
+public class Projectile : MonoBehaviour {
 
-    float DamageCaused;
-    float TimeToLive = 3;
+    public float projectileSpeed; // Note other classes can set
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        TimeToLive -= Time.deltaTime;
-        if (TimeToLive <= 0)
-            Destroy(gameObject);
-	}
+    float damageCaused;
 
-    private void OnCollisionEnter(Collision collision)
+    public void SetDamage(float damage)
     {
-        Component DamageableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
-        if (DamageableComponent)
-        {
-            (DamageableComponent as IDamageable).TakeDamage(DamageCaused);
-        }
-
-        Destroy(gameObject);
+        damageCaused = damage;
     }
 
-
-    public void SetDamage(float Damage)
+    void OnCollisionEnter(Collision collision)
     {
-        DamageCaused = Damage;
+        Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
+        if (damagableComponent)
+        {
+            (damagableComponent as IDamageable).TakeDamage(damageCaused);
+        }
+        Destroy(gameObject, 0.01f);
     }
 }

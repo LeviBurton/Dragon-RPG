@@ -1,73 +1,67 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(ThirdPersonCharacter))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(AICharacterControl))]
+[RequireComponent(typeof (ThirdPersonCharacter))]
 public class PlayerMovement : MonoBehaviour
 {
-    ThirdPersonCharacter ThirdPersonCharacter= null;
-    AICharacterControl AiCharacterControl = null;
-    CameraRaycaster CameraRaycaster = null;
-    Vector3 CurrentDestination;
-    Vector3 ClickPoint;
+    ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
+    CameraRaycaster cameraRaycaster = null;
+    Vector3 currentDestination, clickPoint;
+    AICharacterControl aiCharacterControl = null;
+    GameObject walkTarget = null;
 
-    [SerializeField]
-    const int walkableLayerNumber = 8;
-    [SerializeField]
-    const int enemyLayerNumber = 9;
+    // TODO solve fight between serialize and const
+    [SerializeField] const int walkableLayerNumber = 8;
+    [SerializeField] const int enemyLayerNumber = 9;
 
-    GameObject WalkTarget = null;
+    bool isInDirectMode = false;
 
-    private void Start()
+    void Start()
     {
-        CameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-        AiCharacterControl = GetComponent<AICharacterControl>();
-        ThirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
+        cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
+        thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
+        currentDestination = transform.position;
+        aiCharacterControl = GetComponent<AICharacterControl>();
+        walkTarget = new GameObject("walkTarget");
 
-        CameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
-        CurrentDestination = transform.position;
-        WalkTarget = new GameObject("WalkTarget");
+        cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
     }
-        
+
+
     void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
     {
         switch (layerHit)
         {
             case enemyLayerNumber:
-                // Navigate to enemy
+                // navigate to the enemy
                 GameObject enemy = raycastHit.collider.gameObject;
-                AiCharacterControl.SetTarget(enemy.transform);
+                aiCharacterControl.SetTarget(enemy.transform);
                 break;
-
             case walkableLayerNumber:
-                // Navigate to point on ground
-                WalkTarget.transform.position = raycastHit.point;
-                AiCharacterControl.SetTarget(WalkTarget.transform);
+                // navigate to point on the ground
+                walkTarget.transform.position = raycastHit.point;
+                aiCharacterControl.SetTarget(walkTarget.transform);
                 break;
-
             default:
                 Debug.LogWarning("Don't know how to handle mouse click for player movement");
                 return;
-
         }
     }
 
-
-
-    // TODO make this get called again.
-    bool bIsInDirectMovementMode = false;
-    private void ProcessDirectMovement()
+    // TODO make this get called again
+    void ProcessDirectMovement()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+        
+        // calculate camera relative direction to move:
+        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 movement = v * cameraForward + h * Camera.main.transform.right;
 
-        Vector3 CamForword = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-        Vector3 Move = v * CamForword + h * Camera.main.transform.right;
-
-        ThirdPersonCharacter.Move(Move, false, false);
+        thirdPersonCharacter.Move(movement, false, false);
     }
 }
-
