@@ -13,7 +13,6 @@ public class Player : MonoBehaviour, IDamageable {
     [SerializeField] float maxAttackRange = 2f;
     [SerializeField] Weapon weaponInUse;
 
-    GameObject currentTarget;
     float currentHealthPoints;
     CameraRaycaster cameraRaycaster;
     float lastHitTime = 0f;
@@ -22,8 +21,8 @@ public class Player : MonoBehaviour, IDamageable {
 
     void Start()
     {
-        RegisterForMouseClick();
         currentHealthPoints = maxHealthPoints;
+        RegisterForMouseClick();
         PutWeaponInHand();
     }
 
@@ -64,8 +63,6 @@ public class Player : MonoBehaviour, IDamageable {
             {
                 return;
             }
-
-            currentTarget = enemy;
 
             var enemyComponent = enemy.GetComponent<Enemy>();
             if (Time.time - lastHitTime > minTimeBetweenHits)
