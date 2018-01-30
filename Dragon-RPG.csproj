@@ -288,6 +288,7 @@
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
     <Compile Include="Assets\_CameraUI\CursorAffordance.cs" />
+    <Compile Include="Assets\_Characters\AICharacterControl.cs" />
     <Compile Include="Assets\_Characters\DominantHand.cs" />
     <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyHealthBar.cs" />
@@ -295,9 +296,8 @@
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
-    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\_Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\_Characters\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\_Core\IDamageable.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
@@ -399,7 +399,6 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
-    <None Include="Assets\_Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
     <None Include="Assets\_Weapons\Ranged\Ball Gun\RollerBall\RollerBallGuidelines.txt" />
