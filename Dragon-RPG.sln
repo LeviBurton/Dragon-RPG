@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dragon-RPG", "Dragon-RPG.csproj", "{BCAC38B5-8B0A-6A5C-48D0-6ED7AC81E46C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dragon-RPG.Plugins", "Dragon-RPG.Plugins.csproj", "{13839952-4952-63B0-E196-8EF590396DA6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dragon-RPG.Editor", "Dragon-RPG.Editor.csproj", "{46B4BCC4-880B-937A-7140-DE1779590EB1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dragon-RPG.Editor.Plugins", "Dragon-RPG.Editor.Plugins.csproj", "{FEF72C37-589D-659F-B70C-2BF5B81D3156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +15,10 @@ Global
 		{BCAC38B5-8B0A-6A5C-48D0-6ED7AC81E46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCAC38B5-8B0A-6A5C-48D0-6ED7AC81E46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCAC38B5-8B0A-6A5C-48D0-6ED7AC81E46C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13839952-4952-63B0-E196-8EF590396DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13839952-4952-63B0-E196-8EF590396DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13839952-4952-63B0-E196-8EF590396DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13839952-4952-63B0-E196-8EF590396DA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46B4BCC4-880B-937A-7140-DE1779590EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46B4BCC4-880B-937A-7140-DE1779590EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46B4BCC4-880B-937A-7140-DE1779590EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46B4BCC4-880B-937A-7140-DE1779590EB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEF72C37-589D-659F-B70C-2BF5B81D3156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEF72C37-589D-659F-B70C-2BF5B81D3156}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEF72C37-589D-659F-B70C-2BF5B81D3156}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEF72C37-589D-659F-B70C-2BF5B81D3156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
