@@ -14,7 +14,6 @@ namespace RPG.Characters
 {
     public class Player : MonoBehaviour, IDamageable
     {
-        [SerializeField] int enemyLayer = 9;
         [SerializeField] float maxHealthPoints = 100f;  
         [SerializeField] float damagePerHit = 10f;
        
@@ -76,19 +75,14 @@ namespace RPG.Characters
         private void RegisterForMouseClick()
         {
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-            cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
+            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         }
 
-        void OnMouseClick(RaycastHit raycastHit, int layerHit)
+        void OnMouseOverEnemy(Enemy enemy)
         {
-            if (layerHit == enemyLayer)
+            if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
             {
-                var enemy = raycastHit.collider.gameObject;
-
-                if (IsTargetInRange(enemy))
-                {
-                    AttackTarget(enemy);
-                }
+                AttackTarget(enemy);
             }
         }
 
@@ -98,13 +92,12 @@ namespace RPG.Characters
             return distanceToTarget <= weaponInUse.GetMaxAttackRange();
         }
 
-        private void AttackTarget(GameObject target)
-        {
-            var enemyComponent = target.GetComponent<Enemy>();
+        private void AttackTarget(Enemy enemy)
+        {       
             if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
                 animator.SetTrigger("Attack");   // TODO make const
-                enemyComponent.TakeDamage(damagePerHit);
+                enemy.TakeDamage(damagePerHit);
                 lastHitTime = Time.time;
             }
         }
