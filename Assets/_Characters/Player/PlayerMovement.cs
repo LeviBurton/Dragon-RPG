@@ -24,8 +24,6 @@ namespace RPG.Characters
         [SerializeField] const int walkableLayerNumber = 8;
         [SerializeField] const int enemyLayerNumber = 9;
 
-        bool isInDirectMode = false;
-
         void Start()
         {
             cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
