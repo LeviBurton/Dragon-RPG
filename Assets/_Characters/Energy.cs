@@ -15,7 +15,18 @@ namespace RPG.Characters
 
         public float currentEnergyPoints;
 
-        // Use this for initialization
+        public bool IsEnergyAvailable(float amount)
+        {
+            return amount <= currentEnergyPoints;
+        }
+
+        public void ConsumeEnergy(float amount)
+        {
+            var newEnergyPoints = currentEnergyPoints - amount;
+            currentEnergyPoints = Mathf.Clamp(newEnergyPoints, 0, maxEnergyPoints);
+            UpdateEnergyBar();
+        }
+
         void Start()
         {
             currentEnergyPoints = maxEnergyPoints;
@@ -36,24 +47,13 @@ namespace RPG.Characters
             currentEnergyPoints = Mathf.Clamp(currentEnergyPoints + pointsToAdd, 0, maxEnergyPoints);
         }
 
-        public bool IsEnergyAvailable(float amount)
-        {
-            return amount <= currentEnergyPoints;
-        }
-
-        public void ConsumeEnergy(float amount)
-        {
-            var newEnergyPoints = currentEnergyPoints - amount;
-            currentEnergyPoints = Mathf.Clamp(newEnergyPoints, 0, maxEnergyPoints);
-            UpdateEnergyBar();
-        }
-
+      
         float EnergyAsPercent()
         {
             return currentEnergyPoints / maxEnergyPoints;
         }
 
-        private void UpdateEnergyBar()
+        void UpdateEnergyBar()
         {
             float xValue = -(EnergyAsPercent() / 2f) - 0.5f;
             energyBar.uvRect = new Rect(xValue, 0f, 0.5f, 1f);

@@ -21,7 +21,6 @@ namespace RPG.Characters
         [SerializeField] SpecialAbility[] abilities;
 
         Animator animator;
-
         float currentHealthPoints;
         CameraRaycaster cameraRaycaster;
         float lastHitTime = 0f;
@@ -42,19 +41,19 @@ namespace RPG.Characters
             abilities[0].AttachComponentTo(gameObject);
         }
 
-        private void SetCurrentMaxHealth()
+        void SetCurrentMaxHealth()
         {
             currentHealthPoints = maxHealthPoints;
         }
 
-        private void SetupRuntimeAnimator()
+        void SetupRuntimeAnimator()
         {
             animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController["DEFAULT ATTACK"] = weaponInUse.GetAttackAnimClip();
         }
 
-        private void PutWeaponInHand()
+        void PutWeaponInHand()
         {
             var weaponPrefab = weaponInUse.GetWeaponPrefab();
 
@@ -64,7 +63,7 @@ namespace RPG.Characters
             weapon.transform.localRotation = weaponInUse.gripTransform.transform.localRotation;
         }
 
-        private GameObject RequestDominantHand()
+        GameObject RequestDominantHand()
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
             int numberOfDominantHands = dominantHands.Length;
@@ -73,7 +72,7 @@ namespace RPG.Characters
             return dominantHands[0].gameObject;
         }
 
-        private void RegisterForMouseClick()
+        void RegisterForMouseClick()
         {
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
@@ -91,11 +90,10 @@ namespace RPG.Characters
             }
         }
 
-        private void AttemptSpecialAbility(int abilityIndex, Enemy enemy)
+        void AttemptSpecialAbility(int abilityIndex, Enemy enemy)
         {
             var energyComponent = GetComponent<Energy>();
             float abilityEnergyCost = abilities[abilityIndex].GetEnergyCost();
-
 
             if (energyComponent.IsEnergyAvailable(abilityEnergyCost))
             {
@@ -105,13 +103,13 @@ namespace RPG.Characters
             }
         }
 
-        private bool IsTargetInRange(GameObject target)
+        bool IsTargetInRange(GameObject target)
         {
             float distanceToTarget = (target.transform.position - transform.position).magnitude;
             return distanceToTarget <= weaponInUse.GetMaxAttackRange();
         }
 
-        private void AttackTarget(Enemy enemy)
+        void AttackTarget(Enemy enemy)
         {       
             if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
