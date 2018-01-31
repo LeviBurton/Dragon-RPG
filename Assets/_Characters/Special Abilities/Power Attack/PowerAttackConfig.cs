@@ -17,17 +17,5 @@ namespace RPG.Characters
             behaviorComponent.SetConfig(this);
             return behaviorComponent;
         }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
