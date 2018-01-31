@@ -13,14 +13,6 @@ namespace RPG.Characters
             this.config = configToSet;
         }
 
-        void Start()
-        {
-        }
-
-        void Update()
-        {
-        }
-
         void ISpecialAbility.Use(AbilityUseParams useParams)
         {
             float damageToDeal = useParams.baseDamage + config.GetExtraDamage();

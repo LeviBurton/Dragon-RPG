@@ -96,6 +96,7 @@ namespace RPG.Characters
             var energyComponent = GetComponent<Energy>();
             float abilityEnergyCost = abilities[abilityIndex].GetEnergyCost();
 
+
             if (energyComponent.IsEnergyAvailable(abilityEnergyCost))
             {
                 energyComponent.ConsumeEnergy(abilityEnergyCost);
