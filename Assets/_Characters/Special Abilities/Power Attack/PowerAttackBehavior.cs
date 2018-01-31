@@ -13,21 +13,18 @@ namespace RPG.Characters
             this.config = configToSet;
         }
 
-        // Use this for initialization
         void Start()
         {
-            print("Power Attack Behavior attached to " + gameObject.name);
         }
 
-        // Update is called once per frame
         void Update()
         {
-
         }
 
-        void ISpecialAbility.Use()
+        void ISpecialAbility.Use(AbilityUseParams useParams)
         {
-            throw new System.NotImplementedException();
+            float damageToDeal = useParams.baseDamage + config.GetExtraDamage();
+            useParams.target.TakeDamage(damageToDeal);
         }
     }
 }

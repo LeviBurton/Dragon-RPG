@@ -296,10 +296,9 @@
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\_Characters\Special Abilities\ISpecialAbility.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackConfig.cs" />
-    <Compile Include="Assets\_Characters\Special Abilities\SpecialAbilityConfig.cs" />
+    <Compile Include="Assets\_Characters\Special Abilities\SpecialAbility.cs" />
     <Compile Include="Assets\_Characters\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\_Characters\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
