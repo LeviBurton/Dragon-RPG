@@ -972,7 +972,7 @@ GameObject:
   - component: {fileID: 114878698912346170}
   - component: {fileID: 114197048676228644}
   - component: {fileID: 195503156099264632}
-  - component: {fileID: 114486535420421074}
+  - component: {fileID: 114963639339122354}
   m_Layer: 9
   m_Name: Bruiser
   m_TagString: Untagged
@@ -1344,7 +1344,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1736475906683676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.9293213, y: 0, z: 5.3655243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4037326263203274}
@@ -2571,26 +2571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1311539807392560, guid: 9a9d70d10b9331d469e57254147e0430,
     type: 2}
---- !u!114 &114486535420421074
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1736475906683676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 851631369a0c64846a0b3d2ad7b7d025, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealthPoints: 250
-  ProjectileToUse: {fileID: 1029236375062990, guid: ad845ed82dc97eb4eb4f661e39028a1e,
-    type: 2}
-  ProjectileSocket: {fileID: 1499693537813926}
-  AttackRadius: 2
-  ChaseRadius: 4
-  DamagePerShot: 40
-  SecondsBetweenShots: 1.5
-  AimOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &114878698912346170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2610,16 +2590,38 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 0.45
   m_GroundCheckDistance: 1
+--- !u!114 &114963639339122354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1736475906683676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac46da830b7bf0443b928b3e59950ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  chaseRadius: 6
+  attackRadius: 4
+  damagePerShot: 9
+  secondsBetweenShots: 0.5
+  projectileToUse: {fileID: 1029236375062990, guid: ad845ed82dc97eb4eb4f661e39028a1e,
+    type: 2}
+  projectileSocket: {fileID: 1499693537813926}
+  aimOffset: {x: 0, y: 1, z: 0}
+  chaseSphereColor: {r: 0, g: 1, b: 0, a: 0.5}
+  attackSphereColor: {r: 1, g: 1, b: 0, a: 0.5}
 --- !u!136 &136210072679636304
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1736475906683676}
-  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
@@ -2805,9 +2807,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 1736475906683676}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 4
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 50
   m_StoppingDistance: 1.3

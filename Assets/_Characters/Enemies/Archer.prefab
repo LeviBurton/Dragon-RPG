@@ -1049,22 +1049,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1742711070385526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4140578885297748}
-  - component: {fileID: 108180012905104242}
-  m_Layer: 9
-  m_Name: Spotlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1761341812471402
 GameObject:
   m_ObjectHideFlags: 1
@@ -1346,7 +1330,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357555519952072}
-  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
+  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1495,19 +1479,6 @@ Transform:
   m_Father: {fileID: 4620233800023014}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4140578885297748
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1742711070385526}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.14, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4741622737251398}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4142127122415950
 Transform:
   m_ObjectHideFlags: 1
@@ -2131,19 +2102,18 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886068730627342}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.28, y: 0, z: 12.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7687397, z: -0, w: 0.63956183}
+  m_LocalPosition: {x: -2.62, y: 0, z: 3.98}
+  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children:
   - {fileID: 4121762356551644}
   - {fileID: 4416656255399804}
   - {fileID: 4159468568275506}
   - {fileID: 4912096669958524}
   - {fileID: 4267889389069260}
-  - {fileID: 4140578885297748}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 100.482, z: 0}
 --- !u!4 &4743676795450202
 Transform:
   m_ObjectHideFlags: 1
@@ -2576,42 +2546,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!108 &108180012905104242
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1742711070385526}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 0
-  m_Color: {r: 0.11724138, g: 1, b: 0, a: 1}
-  m_Intensity: 2
-  m_Range: 4.2
-  m_SpotAngle: 115
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!114 &114125161507378118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2654,7 +2588,7 @@ MonoBehaviour:
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1.35
+  m_AnimSpeedMultiplier: 0.7
   m_GroundCheckDistance: 1
 --- !u!114 &114718000099179064
 MonoBehaviour:
@@ -2667,11 +2601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac46da830b7bf0443b928b3e59950ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
+  maxHealthPoints: 20
   chaseRadius: 12.6
-  attackRadius: 9.11
-  damagePerShot: 3
-  secondsBetweenShots: 0.5
+  attackRadius: 15.22
+  damagePerShot: 8
+  secondsBetweenShots: 1
   projectileToUse: {fileID: 1029236375062990, guid: ad845ed82dc97eb4eb4f661e39028a1e,
     type: 2}
   projectileSocket: {fileID: 1738507890137382}
@@ -2687,7 +2621,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
@@ -2873,9 +2807,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 1886068730627342}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 5.5
-  m_Acceleration: 8
+  m_Radius: 0.2
+  m_Speed: 3
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 50
   m_StoppingDistance: 2

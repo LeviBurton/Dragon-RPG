@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 
 // TODO consider rewiring.
 using RPG.CameraUI;
 using RPG.Core;
 using RPG.Weapons;
+using System;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Characters
 {
@@ -19,21 +18,55 @@ namespace RPG.Characters
         [SerializeField] Weapon weaponInUse;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
         [SerializeField] SpecialAbility[] abilities;
+        [SerializeField] AudioClip[] damageSounds;
+        [SerializeField] AudioClip[] deathSounds;
 
         Animator animator;
         float currentHealthPoints;
         CameraRaycaster cameraRaycaster;
         float lastHitTime = 0f;
+        AudioSource audioSource;
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
         public void TakeDamage(float damage)
+        {
+            ReduceHealth(damage);
+            audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
+            audioSource.Play();
+
+            bool playerDies = currentHealthPoints - damage <= 0;
+
+            if (playerDies)
+            {
+                StartCoroutine(KillPlayer());
+            }
+        }
+
+        IEnumerator KillPlayer()
+        {
+            audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+            audioSource.Play();
+
+            // trigger death animation
+            Debug.Log("death animation");
+
+            // wait for animation to finish
+            yield return new WaitForSecondsRealtime(audioSource.clip.length); // TODO use audio clip length later.
+
+            // reload scene
+            SceneManager.LoadScene(0);
+        }
+         
+        void ReduceHealth(float damage)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         }
 
         void Start()
         {
+            audioSource = GetComponent<AudioSource>();
+
             SetCurrentMaxHealth();
             RegisterForMouseClick();
             PutWeaponInHand();

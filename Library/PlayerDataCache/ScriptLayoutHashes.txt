@@ -1,8 +1,7 @@
 WindowsStandalone
 SceneListBegin?
-Assets/_Levels/Showcase.unity
+Assets/_Levels/Desert Temple.unity
 SceneListEnd?
-e069ca1a96524d050a98fef949ea9d65 Assembly-CSharp.dll:RPG.CameraUI.CursorAffordance
 f671a42aea5f34fec6a4450a3668c615 Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingProfile
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.EnemyHealthBar
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -20,7 +19,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.DominantHand
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.PlayerHealthBar
 8ea3dc59f828d80355fc948d51226188 Assembly-CSharp.dll:.AudioTrigger
-0ea7e3a1b65cd933d7a007e6774c4eaa Assembly-CSharp.dll:UnityStandardAssets.Characters.ThirdPerson.AICharacterControl
+0ea7e3a1b65cd933d7a007e6774c4eaa Assembly-CSharp.dll:RPG.Characters.AICharacterControl
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -125,15 +124,18 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-37bf4d6a6d424731cb4a9b998783e5c6 Assembly-CSharp.dll:UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter
-982f9f53f4655ebde169f543d723b9a0 Assembly-CSharp.dll:RPG.CameraUI.CameraRaycaster
-41d8d1769f40d8bf4492488ab96ede31 Assembly-CSharp.dll:RPG.Characters.Player
-e9d68ed11410e04f4d735ca0c147b38c Assembly-CSharp.dll:RPG.Characters.Energy
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl
+37bf4d6a6d424731cb4a9b998783e5c6 Assembly-CSharp.dll:RPG.Characters.ThirdPersonCharacter
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.PowerAttackBehavior
+840383d25e92658c75849f685d72a172 Assembly-CSharp.dll:RPG.CameraUI.CameraRaycaster
+a24153d2be7d307e6342072e1dc8c03e Assembly-CSharp.dll:RPG.Characters.AreaEffectConfig
+0fc69ed961758bac98a1a1901d689dd8 Assembly-CSharp.dll:RPG.Characters.Player
+46742f000ecb98acb5345f7c8bc51231 Assembly-CSharp.dll:RPG.Characters.Energy
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.ThirdPersonUserControl
 cfa93710d56cd4da2a3b2eec27bc1139 Assembly-CSharp.dll:UnityStandardAssets.Water.PlanarReflection
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.Water.Displace
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.AreaEffectBehavior
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -165,5 +167,6 @@ b02b6c39a7cace90aa2dfa3a020f6053 Assembly-CSharp.dll:RPG.Characters.EnemyUI
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 3c22fb5a52cc5c7ce835936ea9994015 Assembly-CSharp.dll:RPG.Weapons.Projectile
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.Water.GerstnerDisplace
+067d1648b25420053470681261d4eb8c Assembly-CSharp.dll:RPG.Characters.PowerAttackConfig
 6746ad828d32ad6e5c07a63950fd4be6 Assembly-CSharp.dll:UnityStandardAssets.Water.WaterTile
 ba58d7ddbe002e6b62f38c4db7f0d52c Assembly-CSharp.dll:RPG.Weapons.Weapon

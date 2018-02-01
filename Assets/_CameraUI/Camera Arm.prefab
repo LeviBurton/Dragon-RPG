@@ -157,7 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02853f5d34bd8f429969ac34c466d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LayerPriorities: 0900000008000000
+  cursorHotspot: {x: 0, y: 0}
+  walkCursor: {fileID: 0}
+  enemyCursor: {fileID: 0}
 --- !u!114 &114616932684102880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1305340906135460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c0748a37495644e9f01d5c6b4b7f62, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f38397a5b56d9b44b4c13df92053e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114990577368864418

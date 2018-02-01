@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 using RPG.Core;
 
@@ -28,8 +26,11 @@ namespace RPG.Characters
                 var damageable = hit.collider.gameObject.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    float damageToDeal = useParams.baseDamage + config.GetDamageToEachTarget();
-                    damageable.TakeDamage(damageToDeal);
+                    if (damageable as Enemy)
+                    {
+                        float damageToDeal = useParams.baseDamage + config.GetDamageToEachTarget();
+                        damageable.TakeDamage(damageToDeal);
+                    }
                 }
             }
         }
