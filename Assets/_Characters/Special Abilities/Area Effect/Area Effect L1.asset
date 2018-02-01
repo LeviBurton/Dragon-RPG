@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eda926ae0d1734286b4be6abb43af7, type: 3}
   m_Name: Area Effect L1
   m_EditorClassIdentifier: 
-  energyCost: 10
-  extraDamage: 10
+  energyCost: 50
+  damageToEachTarget: 5
   radius: 5
