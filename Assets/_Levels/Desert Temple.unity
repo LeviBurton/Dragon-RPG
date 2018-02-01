@@ -4542,6 +4542,11 @@ Prefab:
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 899932494}
+    - target: {fileID: 82819673334266528, guid: 89ebcee24ac11984eb8a0a3fac46b182,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.339
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89ebcee24ac11984eb8a0a3fac46b182, type: 2}
   m_IsPrefabParent: 0
