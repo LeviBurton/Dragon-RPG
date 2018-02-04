@@ -259,3 +259,8 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# commercial asset packs
+Assets/Asset Packs - For Students/
+Assets/PostApocalypseGunsDemo/
+Assets/RPG Character Animation Pack/

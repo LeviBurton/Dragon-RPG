@@ -60,7 +60,6 @@ namespace RPG.Characters
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
             audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
             audioSource.Play();
-
         }
 
         void Start()
@@ -71,6 +70,7 @@ namespace RPG.Characters
             RegisterForMouseClick();
             PutWeaponInHand();
             SetupRuntimeAnimator();
+
             abilities[0].AttachComponentTo(gameObject);
         }
 
