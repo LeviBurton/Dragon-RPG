@@ -22,7 +22,8 @@ namespace RPG.Characters
 
         private void PlayParticleEffect()
         {
-            var prefab = Instantiate(config.GetPartcilePrefab(), transform.position, Quaternion.identity);
+            var particlePrefab = config.GetPartcilePrefab();
+            var prefab = Instantiate(particlePrefab, transform.position, particlePrefab.transform.rotation);
             var myParticleSystem = prefab.GetComponent<ParticleSystem>();
             myParticleSystem.Play();
 
