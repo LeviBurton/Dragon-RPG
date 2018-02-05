@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 198871985094461738}
   - component: {fileID: 199036036260580844}
   m_Layer: 0
-  m_Name: AOE L1 Particles
+  m_Name: AOE_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,36 +7,19 @@ namespace RPG.Characters
 {
     public class AreaEffectBehavior : AbilityBehavior
     {
-        AreaEffectConfig config;
-
-        public void SetConfig(AreaEffectConfig configToSet)
-        {
-            this.config = configToSet;
-        }
-
         public override void Use(AbilityUseParams useParams)
         {
             DealRadialDamage(useParams);
             PlayParticleEffect();
         }
 
-        private void PlayParticleEffect()
-        {
-            var particlePrefab = config.GetParticlePrefab();
-            var prefab = Instantiate(particlePrefab, transform.position, particlePrefab.transform.rotation);
-            var myParticleSystem = prefab.GetComponent<ParticleSystem>();
-            myParticleSystem.Play();
-
-            Destroy(prefab, myParticleSystem.main.duration);
-        }
-
         private void DealRadialDamage(AbilityUseParams useParams)
         {
             RaycastHit[] hits = Physics.SphereCastAll(
                 transform.position,
-                config.GetRadius(),
+                (config as AreaEffectConfig).GetRadius(),
                 Vector3.up,
-                config.GetRadius());
+                (config as AreaEffectConfig).GetRadius());
 
             foreach (RaycastHit hit in hits)
             {
@@ -45,7 +28,7 @@ namespace RPG.Characters
 
                 if (damageable != null && !hitPlayer)
                 {
-                    float damageToDeal = useParams.baseDamage + config.GetDamageToEachTarget();
+                    float damageToDeal = useParams.baseDamage + (config as AreaEffectConfig).GetDamageToEachTarget();
                     damageable.TakeDamage(damageToDeal);
                 }
             }
