@@ -28,7 +28,7 @@ namespace RPG.Characters
         [SerializeField] GameObject particlePrefab = null;
         [SerializeField] AudioClip audioClip = null;
 
-        public GameObject GetPartcilePrefab()
+        public GameObject GetParticlePrefab()
         {
             return particlePrefab;
         }
