@@ -2,7 +2,7 @@
 
 namespace RPG.Characters
 {
-    public class PowerAttackBehavior : MonoBehaviour, ISpecialAbility
+    public class PowerAttackBehavior : AbilityBehavior
     {
         PowerAttackConfig config;
 
@@ -20,7 +20,7 @@ namespace RPG.Characters
             Destroy(prefab, myParticleSystem.main.duration);
         }
 
-        void ISpecialAbility.Use(AbilityUseParams useParams)
+        public override void Use(AbilityUseParams useParams)
         {
             DealDamage(useParams);
             PlayParticleEffect();

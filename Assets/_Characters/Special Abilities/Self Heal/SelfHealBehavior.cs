@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
-    public class SelfHealBehavior : MonoBehaviour, ISpecialAbility
+    public class SelfHealBehavior : AbilityBehavior
     {
         SelfHealConfig config = null;
         Player player = null;
@@ -21,7 +21,7 @@ namespace RPG.Characters
             this.config = configToSet;
         }
 
-        void ISpecialAbility.Use(AbilityUseParams useParams)
+        public override void Use(AbilityUseParams useParams)
         {
             player.Heal(config.GetExtraHealth());
 

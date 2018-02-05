@@ -296,13 +296,14 @@
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
+    <Compile Include="Assets\_Characters\Special Abilities\AbilityConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area Effect\AreaEffectBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area Effect\AreaEffectConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealConfig.cs" />
-    <Compile Include="Assets\_Characters\Special Abilities\SpecialAbility.cs" />
     <Compile Include="Assets\_Characters\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\_Characters\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
