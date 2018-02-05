@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Characters
@@ -14,6 +13,13 @@ namespace RPG.Characters
         public void SetConfig(AbilityConfig configToSet)
         {
             config = configToSet;
+        }
+
+        protected void PlayAbilitySound()
+        {
+            var abilitySound = config.GetRandomAbilitySound(); 
+            var audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(abilitySound);
         }
 
         protected void PlayParticleEffect()
