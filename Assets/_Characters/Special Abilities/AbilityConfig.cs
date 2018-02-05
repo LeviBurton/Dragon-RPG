@@ -35,7 +35,14 @@ namespace RPG.Characters
 
         protected AbilityBehavior behavior;
 
-        abstract public void AttachComponentTo(GameObject gameObjectToAttachTo);
+        public abstract AbilityBehavior GetBehaviorComponent(GameObject objectToAttachTo);
+
+        public void AttachAbilityTo(GameObject objectToAttachTo)
+        {
+            AbilityBehavior behaviorComponent = GetBehaviorComponent(objectToAttachTo);
+            behaviorComponent.SetConfig(this);
+            behavior = behaviorComponent;
+        }
 
         public float GetEnergyCost()
         {
