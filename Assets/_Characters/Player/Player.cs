@@ -24,18 +24,19 @@ namespace RPG.Characters
         const string DEATH_TRIGGER = "Death";
         const string ATTACK_TRIGGER = "Attack";
 
+        Enemy enemy = null;
         Animator animator;
-        float currentHealthPoints;
-        CameraRaycaster cameraRaycaster;
+        float currentHealthPoints= 0;
+        CameraRaycaster cameraRaycaster = null;
         float lastHitTime = 0f;
         AudioSource audioSource;
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
-        public void TakeDamage(float damage)
+        public void AdjustHealth(float changePoints)
         {
-            bool playerDies = currentHealthPoints - damage <= 0;
-            ReduceHealth(damage);
+            bool playerDies = currentHealthPoints - changePoints <= 0;
+            ReduceHealth(changePoints);
          
             if (playerDies)
             {
@@ -70,8 +71,36 @@ namespace RPG.Characters
             RegisterForMouseClick();
             PutWeaponInHand();
             SetupRuntimeAnimator();
+            AttachInitialAbilities();
+        }
 
-            abilities[0].AttachComponentTo(gameObject);
+        void AttachInitialAbilities()
+        {
+            for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
+            {
+                abilities[abilityIndex].AttachComponentTo(gameObject);
+            }
+        }
+
+        void Update()
+        {
+            // Is alive?
+            if (healthAsPercentage > Mathf.Epsilon)
+            {
+                ScanForAbilityKeydown();
+            }
+
+        }
+
+        void ScanForAbilityKeydown()
+        {
+            for (int keyIndex = 0; keyIndex < abilities.Length; keyIndex++)
+            {
+                if (Input.GetKeyDown(keyIndex.ToString()))
+                {
+                    AttemptSpecialAbility(keyIndex);
+                }
+            }
         }
 
         void SetCurrentMaxHealth()
@@ -111,19 +140,21 @@ namespace RPG.Characters
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         }
 
-        void OnMouseOverEnemy(Enemy enemy)
+        void OnMouseOverEnemy(Enemy enemyToSet)
         {
-            if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
+            enemy = enemyToSet;
+
+            if (Input.GetMouseButton(0) && IsTargetInRange(enemyToSet.gameObject))
             {
-                AttackTarget(enemy);
+                AttackTarget();
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                AttemptSpecialAbility(0, enemy);
+                AttemptSpecialAbility(0);
             }
         }
 
-        void AttemptSpecialAbility(int abilityIndex, Enemy enemy)
+        void AttemptSpecialAbility(int abilityIndex)
         {
             var energyComponent = GetComponent<Energy>();
             float abilityEnergyCost = abilities[abilityIndex].GetEnergyCost();
@@ -142,12 +173,12 @@ namespace RPG.Characters
             return distanceToTarget <= weaponInUse.GetMaxAttackRange();
         }
 
-        void AttackTarget(Enemy enemy)
+        void AttackTarget()
         {       
             if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
                 animator.SetTrigger(ATTACK_TRIGGER); 
-                enemy.TakeDamage(baseDamage);
+                enemy.AdjustHealth(baseDamage);
                 lastHitTime = Time.time;
             }
         }

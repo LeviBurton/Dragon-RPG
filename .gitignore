@@ -260,6 +260,10 @@ paket-files/
 __pycache__/
 *.pyc
 
+#??
+Build_Data/
+test_Data/
+
 # commercial asset packs
 Assets/Asset Packs - For Students/
 Assets/PostApocalypseGunsDemo/

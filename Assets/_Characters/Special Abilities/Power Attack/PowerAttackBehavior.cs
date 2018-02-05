@@ -11,10 +11,25 @@ namespace RPG.Characters
             this.config = configToSet;
         }
 
+        private void PlayParticleEffect()
+        {
+            var prefab = Instantiate(config.GetPartcilePrefab(), transform.position, Quaternion.identity);
+            var myParticleSystem = prefab.GetComponent<ParticleSystem>();
+            myParticleSystem.Play();
+
+            Destroy(prefab, myParticleSystem.main.duration);
+        }
+
         void ISpecialAbility.Use(AbilityUseParams useParams)
         {
+            DealDamage(useParams);
+            PlayParticleEffect();
+        }
+
+        private void DealDamage(AbilityUseParams useParams)
+        {
             float damageToDeal = useParams.baseDamage + config.GetExtraDamage();
-            useParams.target.TakeDamage(damageToDeal);
+            useParams.target.AdjustHealth(damageToDeal);
         }
     }
 }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fbcfe8de8147b149bd3bb88ce5f8a59, type: 3}
+  m_Name: SH_L1
+  m_EditorClassIdentifier: 
+  energyCost: 50
+  particlePrefab: {fileID: 1510749284090834, guid: 5324b726e29cebb439fd0b3465e9cf18,
+    type: 2}
+  extraHealth: 50
