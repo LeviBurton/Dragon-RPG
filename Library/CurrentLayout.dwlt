@@ -44,7 +44,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 1
-  controlID: 9870
+  controlID: 154
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 10252
+  controlID: 155
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 9761
+  controlID: 128
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 10127
+  controlID: 129
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 10169
+  controlID: 40
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -440,14 +440,14 @@ MonoBehaviour:
     height: 626
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 18949.4390062344
+  lastFramingTime: 141.77234208864502
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0.92, z: 0}
+    m_Target: {x: 1.284955, y: 0.91489315, z: -1.5768335}
     speed: 2
-    m_Value: {x: 0, y: 0.92, z: 0}
+    m_Value: {x: 1.284955, y: 0.91489315, z: -1.5768335}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -471,13 +471,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.057379488, y: -0.9262612, z: 0.15738463, w: -0.33760667}
+    m_Target: {x: 0.14865361, y: -0.8498118, z: 0.3289446, w: 0.3840829}
     speed: 2
-    m_Value: {x: -0.05737948, y: -0.92626107, z: 0.15738462, w: -0.33760664}
+    m_Value: {x: 0.14865345, y: -0.8498109, z: 0.32894424, w: 0.3840825}
   m_Size:
-    m_Target: 4.1077967
+    m_Target: 9.54585
     speed: 2
-    m_Value: 4.1077967
+    m_Value: 9.54585
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -518,9 +518,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 16dcf6ff
-    m_LastClickedID: -599018
-    m_ExpandedIDs: 10faf1ff3462f7ff3c62f7ff4662f7ff6262f7ff6c62f7ff7262f7ffd862f7ffea62f7ff1063f7ff1263f7ff4065f7ff5685f7ff5278faff6cb0faff70f9ffff9efbffff00000000eceb0000f8eb0000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: e8beffff22c1ffff3ee5ffff9efbffff000000009e560000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -609,19 +609,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/_Characters/Special Abilities/Power Attack
+    - Assets/_Characters/Special Abilities/Self Heal
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/_Characters/Special Abilities/Power Attack
+  - Assets/_Characters/Special Abilities/Self Heal
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Projects\Dragon-RPG
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 69.52563}
-    m_SelectedIDs: ba3a0000
-    m_LastClickedID: 15034
-    m_ExpandedIDs: 00000000f6280000a02f0000123500007635000070390000b0390000943b0000fa3c00009c3e00004c3f0000344700009e510000e6550000e8550000ea550000ec550000ee550000f0550000f2550000f4550000f6550000f8550000fa55000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 70}
+    m_SelectedIDs: 2e520000
+    m_LastClickedID: 21038
+    m_ExpandedIDs: 00000000fa280000822a0000a42f00001e350000823500007e390000a43b00000c3d0000623f0000b64600004a47000082510000b45100002a5600002c5600002e56000030560000325600003456000036560000385600003a5600003c5600003e56000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -649,7 +649,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f62800007e2a0000a02f0000123500007635000070390000b0390000943b0000fa3c00009c3e00004c3f0000a0460000344700009e510000e6550000e8550000ea550000ec550000ee550000f0550000f2550000f4550000f6550000f8550000fa55000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000fa280000a42f00001e350000823500007e390000be390000a43b00000c3d0000b23e0000623f00004a470000b45100002a5600002c5600002e56000030560000325600003456000036560000385600003a5600003c5600003e560000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

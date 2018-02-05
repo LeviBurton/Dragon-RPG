@@ -13,13 +13,19 @@ namespace RPG.Characters
 {
     public class Player : MonoBehaviour, IDamageable
     {
-        [SerializeField] float maxHealthPoints = 100f;  
+        [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float baseDamage = 10f;
+        [Range(.1f, 1f)]
+        [SerializeField] float criticalHitChance = .1f;
+        [SerializeField] float criticalHitMultiplier = 1.25f;
+        [SerializeField] ParticleSystem criticalHitParticleSystem = null;
+
         [SerializeField] Weapon weaponInUse;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
-        [SerializeField] SpecialAbility[] abilities;
+        [SerializeField] AbilityConfig[] abilities;
         [SerializeField] AudioClip[] damageSounds;
         [SerializeField] AudioClip[] deathSounds;
+
 
         const string DEATH_TRIGGER = "Death";
         const string ATTACK_TRIGGER = "Attack";
@@ -30,15 +36,22 @@ namespace RPG.Characters
         CameraRaycaster cameraRaycaster = null;
         float lastHitTime = 0f;
         AudioSource audioSource;
-
+ 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
-        public void AdjustHealth(float changePoints)
+        public void Heal(float points)
         {
-            bool playerDies = currentHealthPoints - changePoints <= 0;
-            ReduceHealth(changePoints);
-         
-            if (playerDies)
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints + points, 0f, maxHealthPoints);
+
+        }
+
+        public void TakeDamage(float damage)
+        {
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+            audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
+            audioSource.Play();
+
+            if (currentHealthPoints <= 0)
             {
                 StartCoroutine(KillPlayer());
             }
@@ -56,13 +69,6 @@ namespace RPG.Characters
             SceneManager.LoadScene(0);
         }
          
-        void ReduceHealth(float damage)
-        {
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
-            audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
-            audioSource.Play();
-        }
-
         void Start()
         {
             audioSource = GetComponent<AudioSource>();
@@ -174,12 +180,28 @@ namespace RPG.Characters
         }
 
         void AttackTarget()
-        {       
+        {
             if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
-                animator.SetTrigger(ATTACK_TRIGGER); 
-                enemy.AdjustHealth(baseDamage);
+                animator.SetTrigger(ATTACK_TRIGGER);
+                enemy.TakeDamage(CalculateDamage());
                 lastHitTime = Time.time;
+            }
+        }
+
+        float CalculateDamage()
+        {
+            var isCriticalHit = UnityEngine.Random.Range(0f, 1f) <= criticalHitChance;
+            float damageBeforeCritical = baseDamage + weaponInUse.GetAdditionalDamage();
+
+            if (isCriticalHit)
+            {
+                criticalHitParticleSystem.Play();
+                return damageBeforeCritical * criticalHitMultiplier;
+            }
+            else
+            {
+                return damageBeforeCritical;
             }
         }
     }

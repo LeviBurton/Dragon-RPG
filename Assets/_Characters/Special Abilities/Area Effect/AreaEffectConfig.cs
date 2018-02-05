@@ -3,7 +3,7 @@
 namespace RPG.Characters
 {
     [CreateAssetMenu(menuName = "RPG/Special Ability/Area Affect")]
-    public class AreaEffectConfig : SpecialAbility
+    public class AreaEffectConfig : AbilityConfig
     {
         [Header("Area Effect Attack Specific")]
         [SerializeField] float damageToEachTarget = 15f;

@@ -47,7 +47,7 @@ namespace RPG.Characters
                     if (damageable as Enemy)
                     {
                         float damageToDeal = useParams.baseDamage + config.GetDamageToEachTarget();
-                        damageable.AdjustHealth(damageToDeal);
+                        damageable.TakeDamage(damageToDeal);
                     }
                 }
             }
