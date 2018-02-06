@@ -42,7 +42,11 @@ namespace RPG.Characters
         public void Heal(float points)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints + points, 0f, maxHealthPoints);
+        }
 
+        public void PutWeaponInHand(Weapon weaponConfig)
+        {
+            
         }
 
         public void TakeDamage(float damage)

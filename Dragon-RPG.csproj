@@ -319,6 +319,7 @@
     <Compile Include="Assets\_Environment\Water\Water\Scripts\WaterTile.cs" />
     <Compile Include="Assets\_Weapons\Ranged\Projectile.cs" />
     <Compile Include="Assets\_Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Weapons\WeaponPickupPoint.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
