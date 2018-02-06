@@ -31,7 +31,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2178,7 +2178,8 @@ MonoBehaviour:
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   criticalHitParticleSystem: {fileID: 198213676726867552}
-  weaponInUse: {fileID: 11400000, guid: 7ad383f90f42b634da94e4dc54ad2018, type: 2}
+  currentWeaponConfig: {fileID: 11400000, guid: 81f6645ece9a36b438028a474fa4d54f,
+    type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 42814c44109fa294f966c58280d4bd9d,
     type: 2}
   abilities:
