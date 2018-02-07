@@ -292,8 +292,8 @@
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\_Characters\Scripts\DominantHand.cs" />
-    <Compile Include="Assets\_Characters\Scripts\Energy.cs" />
     <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
+    <Compile Include="Assets\_Characters\Scripts\SpecialAbilities.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area Effect\AreaEffectBehavior.cs" />

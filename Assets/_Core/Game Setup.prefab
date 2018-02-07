@@ -381,10 +381,10 @@ GameObject:
   - component: {fileID: 136515246975457594}
   - component: {fileID: 82197604557701214}
   - component: {fileID: 195005475932045546}
-  - component: {fileID: 114803051268824730}
   - component: {fileID: 114023463040987438}
   - component: {fileID: 114917564112136258}
   - component: {fileID: 114025921426153858}
+  - component: {fileID: 114803051268824730}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -2377,7 +2377,6 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damageSounds: []
   deathSounds: []
-  currentHealthPoints: 0
 --- !u!114 &114064733088696920
 MonoBehaviour:
   m_ObjectHideFlags: 1

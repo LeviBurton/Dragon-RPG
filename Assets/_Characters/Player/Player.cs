@@ -19,8 +19,7 @@ namespace RPG.Characters
 
         [SerializeField] Weapon currentWeaponConfig;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
-        [SerializeField] AbilityConfig[] abilities;
-     
+
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
@@ -30,14 +29,16 @@ namespace RPG.Characters
         float lastHitTime = 0f;
         AudioSource audioSource = null;
         GameObject weaponObject = null;
+        SpecialAbilities abilities;
 
         void Start()
         {
             audioSource = GetComponent<AudioSource>();
+            abilities = GetComponent<SpecialAbilities>();
+
             RegisterForMouseClick();
             PutWeaponInHand(currentWeaponConfig);
             SetAttackAnimation();
-            AttachInitialAbilities();
         }
 
         void Update()
@@ -46,6 +47,17 @@ namespace RPG.Characters
             if (healthPercentage > Mathf.Epsilon)
             {
                 ScanForAbilityKeydown();
+            }
+        }
+
+        void ScanForAbilityKeydown()
+        {
+            for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)
+            {
+                if (Input.GetKeyDown(keyIndex.ToString()))
+                {
+                    abilities.AttemptSpecialAbility(keyIndex);
+                }
             }
         }
 
@@ -60,25 +72,6 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
-        }
-
-        void AttachInitialAbilities()
-        {
-            for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
-            {
-                abilities[abilityIndex].AttachAbilityTo(gameObject);
-            }
-        }
-
-        void ScanForAbilityKeydown()
-        {
-            for (int keyIndex = 0; keyIndex < abilities.Length; keyIndex++)
-            {
-                if (Input.GetKeyDown(keyIndex.ToString()))
-                {
-                    AttemptSpecialAbility(keyIndex);
-                }
-            }
         }
 
         void SetAttackAnimation()
@@ -113,22 +106,7 @@ namespace RPG.Characters
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                AttemptSpecialAbility(0);
-            }
-        }
-
-        void AttemptSpecialAbility(int abilityIndex)
-        {
-            var energyComponent = GetComponent<Energy>();
-            float abilityEnergyCost = abilities[abilityIndex].GetEnergyCost();
-
-            if (energyComponent.IsEnergyAvailable(abilityEnergyCost))
-            {
-                energyComponent.ConsumeEnergy(abilityEnergyCost);
-
-                var abilityParams = new AbilityUseParams(enemy, baseDamage);
-
-                abilities[abilityIndex].Use(abilityParams);
+                abilities.AttemptSpecialAbility(0);
             }
         }
 
