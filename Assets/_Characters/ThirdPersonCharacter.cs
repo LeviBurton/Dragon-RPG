@@ -10,12 +10,12 @@ namespace RPG.Characters
 		[SerializeField] float movingTurnSpeed = 360;
 		[SerializeField] float stationaryTurnSpeed = 180;
 
-		Rigidbody m_Rigidbody;
-		Animator m_Animator;
+        float m_TurnAmount;
+        float m_ForwardAmount;
+        float m_CapsuleHeight;
 
-		float m_TurnAmount;
-		float m_ForwardAmount;
-		float m_CapsuleHeight;
+        Rigidbody m_Rigidbody;
+		Animator m_Animator;
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 
@@ -47,7 +47,8 @@ namespace RPG.Characters
 			UpdateAnimator(move);
 		}
 
-		void UpdateAnimator(Vector3 move)
+     
+        void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
 			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
