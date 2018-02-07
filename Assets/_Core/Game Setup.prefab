@@ -381,10 +381,10 @@ GameObject:
   - component: {fileID: 136515246975457594}
   - component: {fileID: 82197604557701214}
   - component: {fileID: 195005475932045546}
-  - component: {fileID: 114682247891828554}
-  - component: {fileID: 114023463040987438}
   - component: {fileID: 114803051268824730}
+  - component: {fileID: 114023463040987438}
   - component: {fileID: 114917564112136258}
+  - component: {fileID: 114025921426153858}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1434,7 +1434,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396702152063786}
   m_LocalRotation: {x: 0.16490544, y: -0.802061, z: 0.27804154, w: 0.5021925}
-  m_LocalPosition: {x: 5.5793056, y: 5.5577383, z: 2.6242535}
+  m_LocalPosition: {x: 7.822, y: 7.479, z: 3.695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4886004998226686}
@@ -2354,7 +2354,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb75cb33cc6f884db40fe6cec105d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeedMultiplier: 1.1
+  animationSpeedMultiplier: 1.5
+  lockMoveSpeedToAnimationSpeed: 1
+  moveThreshold: 1
   stoppingDistance: 1
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+--- !u!114 &114025921426153858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444768165733850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290e7190f865c6e46803b4dd8909ba03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  deathVanishSeconds: 2
+  healthBar: {fileID: 0}
+  damageSounds: []
+  deathSounds: []
+  currentHealthPoints: 0
 --- !u!114 &114064733088696920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2410,19 +2433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38397a5b56d9b44b4c13df92053e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114682247891828554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1444768165733850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingTurnSpeed: 360
-  stationaryTurnSpeed: 180
 --- !u!114 &114682261111371384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2474,7 +2484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9268856d129aa64a8ab4590ce181c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 200
   baseDamage: 10
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
@@ -2487,16 +2496,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7affde289ccc16a4fb8d8aaf66088a76, type: 2}
   - {fileID: 11400000, guid: 7933bc0437bcdb74f8a9493c026463fd, type: 2}
   - {fileID: 11400000, guid: 1349cd97d6bfe244cb6fc2f5d2da84b7, type: 2}
-  damageSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  deathSounds:
-  - {fileID: 8300000, guid: 54fac9689e6dc374cb978c787e438e69, type: 3}
-  - {fileID: 8300000, guid: c1ab469d7168ec74cbc935627ad35d52, type: 3}
-  - {fileID: 8300000, guid: a42f342f9c5c08849857b5b4f1a8d444, type: 3}
 --- !u!124 &124211618917081114
 Behaviour:
   m_ObjectHideFlags: 1

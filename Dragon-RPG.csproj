@@ -287,14 +287,13 @@
   <ItemGroup>
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
-    <Compile Include="Assets\_Characters\DominantHand.cs" />
     <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
-    <Compile Include="Assets\_Characters\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
-    <Compile Include="Assets\_Characters\Energy.cs" />
-    <Compile Include="Assets\_Characters\Player\CharacterMovement.cs" />
     <Compile Include="Assets\_Characters\Player\Player.cs" />
-    <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
+    <Compile Include="Assets\_Characters\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\_Characters\Scripts\DominantHand.cs" />
+    <Compile Include="Assets\_Characters\Scripts\Energy.cs" />
+    <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area Effect\AreaEffectBehavior.cs" />
@@ -303,8 +302,6 @@
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealConfig.cs" />
-    <Compile Include="Assets\_Characters\ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\_Characters\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\_Characters\Weapons\Ranged\Projectile.cs" />
     <Compile Include="Assets\_Characters\Weapons\Weapon.cs" />
     <Compile Include="Assets\_Characters\Weapons\WeaponPickupPoint.cs" />

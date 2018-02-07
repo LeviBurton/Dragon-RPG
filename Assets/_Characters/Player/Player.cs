@@ -9,9 +9,8 @@ using UnityEngine.SceneManagement;
 
 namespace RPG.Characters
 {
-    public class Player : MonoBehaviour, IDamageable
+    public class Player : MonoBehaviour
     {
-        [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float baseDamage = 10f;
         [Range(.1f, 1f)]
         [SerializeField] float criticalHitChance = .1f;
@@ -21,25 +20,33 @@ namespace RPG.Characters
         [SerializeField] Weapon currentWeaponConfig;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
         [SerializeField] AbilityConfig[] abilities;
-        [SerializeField] AudioClip[] damageSounds;
-        [SerializeField] AudioClip[] deathSounds;
-
-        const string DEATH_TRIGGER = "Death";
+     
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
+
         Enemy enemy = null;
         Animator animator = null;
-        float currentHealthPoints= 0;
         CameraRaycaster cameraRaycaster = null;
         float lastHitTime = 0f;
         AudioSource audioSource = null;
         GameObject weaponObject = null;
 
-        public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
-
-        public void Heal(float points)
+        void Start()
         {
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints + points, 0f, maxHealthPoints);
+            audioSource = GetComponent<AudioSource>();
+            RegisterForMouseClick();
+            PutWeaponInHand(currentWeaponConfig);
+            SetAttackAnimation();
+            AttachInitialAbilities();
+        }
+
+        void Update()
+        {
+            var healthPercentage = GetComponent<HealthSystem>().healthAsPercentage;
+            if (healthPercentage > Mathf.Epsilon)
+            {
+                ScanForAbilityKeydown();
+            }
         }
 
         public void PutWeaponInHand(Weapon weaponToUse)
@@ -55,55 +62,11 @@ namespace RPG.Characters
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
         }
 
-        public void TakeDamage(float damage)
-        {
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
-            audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
-            audioSource.Play();
-
-            if (currentHealthPoints <= 0)
-            {
-                StartCoroutine(KillPlayer());
-            }
-        }
-            
-        IEnumerator KillPlayer()
-        {
-            animator.SetTrigger(DEATH_TRIGGER);
-
-            audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
-            audioSource.Play();
-            yield return new WaitForSecondsRealtime(audioSource.clip.length); 
-
-            // reload scene
-            SceneManager.LoadScene(0);
-        }
-         
-        void Start()
-        {
-            audioSource = GetComponent<AudioSource>();
-
-            SetCurrentMaxHealth();
-            RegisterForMouseClick();
-            PutWeaponInHand(currentWeaponConfig);
-            SetAttackAnimation();
-            AttachInitialAbilities();
-        }
-
         void AttachInitialAbilities()
         {
             for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
             {
                 abilities[abilityIndex].AttachAbilityTo(gameObject);
-            }
-        }
-
-        void Update()
-        {
-            // Is alive?
-            if (healthAsPercentage > Mathf.Epsilon)
-            {
-                ScanForAbilityKeydown();
             }
         }
 
@@ -116,11 +79,6 @@ namespace RPG.Characters
                     AttemptSpecialAbility(keyIndex);
                 }
             }
-        }
-
-        void SetCurrentMaxHealth()
-        {
-            currentHealthPoints = maxHealthPoints;
         }
 
         void SetAttackAnimation()
@@ -167,7 +125,9 @@ namespace RPG.Characters
             if (energyComponent.IsEnergyAvailable(abilityEnergyCost))
             {
                 energyComponent.ConsumeEnergy(abilityEnergyCost);
+
                 var abilityParams = new AbilityUseParams(enemy, baseDamage);
+
                 abilities[abilityIndex].Use(abilityParams);
             }
         }
@@ -184,7 +144,6 @@ namespace RPG.Characters
             {
                 SetAttackAnimation();
                 animator.SetTrigger(ATTACK_TRIGGER);
-                enemy.TakeDamage(CalculateDamage());
                 lastHitTime = Time.time;
             }
         }
