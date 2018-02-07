@@ -20,13 +20,13 @@ namespace RPG.Characters
         float currentHealthPoints;
         Animator animator;
         AudioSource audioSource;
-        Character characterMovement;
+        Character character;
 
         void Start()
         {
             animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            characterMovement = GetComponent<Character>();
+            character = GetComponent<Character>();
             currentHealthPoints = maxHealthPoints;
         }
 
@@ -59,7 +59,7 @@ namespace RPG.Characters
         IEnumerator KillCharacter()
         {
             StopAllCoroutines();
-            characterMovement.Kill();
+            character.Kill();
             animator.SetTrigger(DEATH_TRIGGER);
 
             var playerComponent = GetComponent<Player>();
