@@ -53,14 +53,15 @@ namespace RPG.Characters
             }
         }
 
-        private void DamageIfDamageable(Collision collision)
+        void DamageIfDamageable(Collision collision)
         {
-            Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
+            // Todo reimplement this.
+            //Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
 
-            if (damagableComponent)
-            {
-                (damagableComponent as IDamageable).TakeDamage(damageCaused);
-            }
+            //if (damagableComponent)
+            //{
+            //    (damagableComponent as IDamageable).TakeDamage(damageCaused);
+            //}
 
             Destroy(gameObject, DESTROY_DELAY);
         }

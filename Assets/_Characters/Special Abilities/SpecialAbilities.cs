@@ -58,7 +58,7 @@ namespace RPG.Characters
                 print("using special ability: " + abilityName);
 
                 //var abilityParams = new AbilityUseParams(enemy, baseDamage);
-                //abilities[abilityIndex].Use(abilityParams);
+                abilities[abilityIndex].Use(null);
             }
             else
             {

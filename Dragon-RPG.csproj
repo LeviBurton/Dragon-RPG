@@ -306,7 +306,6 @@
     <Compile Include="Assets\_Characters\Weapons\Weapon.cs" />
     <Compile Include="Assets\_Characters\Weapons\WeaponPickupPoint.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
-    <Compile Include="Assets\_Core\IDamageable.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
