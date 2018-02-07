@@ -290,7 +290,7 @@
     <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
     <Compile Include="Assets\_Characters\Player\Player.cs" />
-    <Compile Include="Assets\_Characters\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\_Characters\Scripts\Character.cs" />
     <Compile Include="Assets\_Characters\Scripts\DominantHand.cs" />
     <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />

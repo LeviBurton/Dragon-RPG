@@ -2,44 +2,83 @@ using UnityEngine;
 using UnityEngine.AI;
 
 using RPG.CameraUI;
+using System;
 
 namespace RPG.Characters
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class CharacterMovement : MonoBehaviour
+    [SelectionBase]
+    public class Character : MonoBehaviour
     {
+        [Header("Audio")]
+        [SerializeField]float audioSourceSpatialBlend;
+            
+        [Header("Animator")]
+        [SerializeField] RuntimeAnimatorController animatorController;
+        [SerializeField] AnimatorOverrideController animatorOverrideController;
+        [SerializeField] Avatar characterAvatar;
+
+        [Header("Capsule Collider")]
+        [SerializeField] Vector3 colliderCenter = new Vector3(0, 1, 0);
+        [SerializeField] float colliderHeight = 2.0f;
+        [SerializeField] float colliderRadius = 0.2f;
+
+        [Header("Movement")]
+        [SerializeField] bool lockMoveSpeedToAnimationSpeed = true;
         [SerializeField] float moveSpeedMultiplier = 1.0f;
         [SerializeField] float animationSpeedMultiplier = 1.5f;
-        [SerializeField] bool lockMoveSpeedToAnimationSpeed = true;
-
-        [SerializeField] float moveThreshold = 1.0f;
-        [SerializeField] float stoppingDistance = 1.0f;
         [SerializeField] float movingTurnSpeed = 360;
         [SerializeField] float stationaryTurnSpeed = 180;
+        [SerializeField] float moveThreshold = 1.0f;
+
+        [Header("Nav Mesh Agent")]
+        [SerializeField] float navMeshAgentSteeringSpeed = 1.0f;
+        [SerializeField] float navMeshStoppingDistance = 1.3f;
 
         float turnAmount;
         float forwardAmount;
  
         Animator animator;
         Rigidbody rigidBody;
-        NavMeshAgent agent;
+        NavMeshAgent navMeshAgent;
+
+        void Awake()
+        {
+            AddRequiredComponents();     
+        }
+
+        void AddRequiredComponents()
+        {
+            animator = gameObject.AddComponent<Animator>();
+            animator.runtimeAnimatorController = animatorController;
+            animator.avatar = characterAvatar;
+
+            var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
+            capsuleCollider.center = colliderCenter;
+            capsuleCollider.radius = colliderRadius;
+            capsuleCollider.height = colliderHeight;
+            capsuleCollider.isTrigger = false;
+
+            rigidBody = gameObject.AddComponent<Rigidbody>();
+            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+
+            var audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = audioSourceSpatialBlend;
+
+            navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+            navMeshAgent.updatePosition = true;
+            navMeshAgent.updateRotation = false;
+            navMeshAgent.stoppingDistance = navMeshStoppingDistance;
+            navMeshAgent.speed = navMeshAgentSteeringSpeed;
+            navMeshAgent.autoBraking = false;
+
+
+        }
 
         void Start()
         {
             var cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
             cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-
-            agent = GetComponent<NavMeshAgent>();
-            agent.updatePosition = true;
-            agent.updateRotation = false;
-            agent.stoppingDistance = stoppingDistance;
-
-            rigidBody = GetComponent<Rigidbody>();
-            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-
-            animator = GetComponent<Animator>();
-            animator.applyRootMotion = true;
         }
 
         public void Move(Vector3 movement)
@@ -58,7 +97,7 @@ namespace RPG.Characters
         {
             if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
             {
-                agent.SetDestination(enemy.transform.position);
+                navMeshAgent.SetDestination(enemy.transform.position);
             }
         }
 
@@ -66,7 +105,7 @@ namespace RPG.Characters
         {
             if (Input.GetMouseButton(0))
             {
-                agent.SetDestination(destination);
+                navMeshAgent.SetDestination(destination);
             }
         }
 
@@ -112,9 +151,9 @@ namespace RPG.Characters
 
         void Update()
         {
-            if (agent.remainingDistance > stoppingDistance)
+            if (navMeshAgent.remainingDistance > navMeshStoppingDistance)
             {
-                Move(agent.desiredVelocity);
+                Move(navMeshAgent.desiredVelocity);
             }
             else
             {
