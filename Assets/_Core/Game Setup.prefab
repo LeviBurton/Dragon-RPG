@@ -382,9 +382,8 @@ GameObject:
   - component: {fileID: 82197604557701214}
   - component: {fileID: 195005475932045546}
   - component: {fileID: 114682247891828554}
-  - component: {fileID: 114741912162429854}
-  - component: {fileID: 114803051268824730}
   - component: {fileID: 114023463040987438}
+  - component: {fileID: 114803051268824730}
   - component: {fileID: 114917564112136258}
   m_Layer: 11
   m_Name: Player
@@ -2318,7 +2317,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.99401623, g: 1, b: 0.5661765, a: 1}
-  m_Intensity: 0.45
+  m_Intensity: 0.18
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2326,7 +2325,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.49
+    m_Strength: 0.87
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2355,6 +2354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb75cb33cc6f884db40fe6cec105d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stoppingDistance: 1
 --- !u!114 &114064733088696920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2421,14 +2421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 1000
-  m_StationaryTurnSpeed: 900
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1.25
-  m_GroundCheckDistance: 1
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
 --- !u!114 &114682261111371384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2454,18 +2448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c599c8a0c5c62cf4cae86399694eff69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114741912162429854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1444768165733850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &114803051268824730
 MonoBehaviour:
   m_ObjectHideFlags: 1
