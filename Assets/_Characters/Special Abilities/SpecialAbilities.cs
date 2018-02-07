@@ -9,6 +9,7 @@ namespace RPG.Characters
         [SerializeField] Image energyBar = null; 
         [SerializeField] float maxEnergyPoints = 100.0f;
         [SerializeField] float regenPointsPerSecond = 10.0f;
+        [SerializeField] AudioClip outOfEnergySound;
 
         float currentEnergyPoints;
         AudioSource audioSource;
@@ -45,7 +46,7 @@ namespace RPG.Characters
             return abilities.Length;
         }
 
-        public void AttemptSpecialAbility(int abilityIndex)
+        public void AttemptSpecialAbility(int abilityIndex, GameObject target = null)
         {
             var energyComponent = GetComponent<SpecialAbilities>();
             float energyCost = abilities[abilityIndex].GetEnergyCost();
@@ -54,16 +55,11 @@ namespace RPG.Characters
             if (energyCost <= currentEnergyPoints)
             {
                 energyComponent.ConsumeEnergy(energyCost);
-
-                print("using special ability: " + abilityName);
-
-                //var abilityParams = new AbilityUseParams(enemy, baseDamage);
-                abilities[abilityIndex].Use(null);
+                abilities[abilityIndex].Use(target);
             }
             else
             {
-                // todo
-                // play out of energy sound
+                audioSource.PlayOneShot(outOfEnergySound);
             }
         }
 
