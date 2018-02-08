@@ -292,6 +292,7 @@
     <Compile Include="Assets\_Characters\Scripts\Character.cs" />
     <Compile Include="Assets\_Characters\Scripts\DominantHand.cs" />
     <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
+    <Compile Include="Assets\_Characters\Scripts\WeaponSystem.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area Effect\AreaEffectBehavior.cs" />
@@ -302,7 +303,7 @@
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelfHealConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\SpecialAbilities.cs" />
     <Compile Include="Assets\_Characters\Weapons\Ranged\Projectile.cs" />
-    <Compile Include="Assets\_Characters\Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Characters\Weapons\WeaponConfig.cs" />
     <Compile Include="Assets\_Characters\Weapons\WeaponPickupPoint.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />

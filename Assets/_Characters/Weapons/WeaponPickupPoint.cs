@@ -10,14 +10,14 @@ namespace RPG.Characters
     [ExecuteInEditMode]
     public class WeaponPickupPoint : MonoBehaviour
     {
-        [SerializeField] Weapon weaponConfig = null;
+        [SerializeField] WeaponConfig weaponConfig = null;
         [SerializeField] AudioClip pickupSFX = null;
 
         AudioSource audioSource;
 
         void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<PlayerMovement>().PutWeaponInHand(weaponConfig);
+            FindObjectOfType<WeaponSystem>().PutWeaponInHand(weaponConfig);
             audioSource.PlayOneShot(pickupSFX);
         }
 

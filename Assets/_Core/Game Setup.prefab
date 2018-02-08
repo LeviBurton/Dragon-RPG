@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 114025921426153858}
   - component: {fileID: 114917564112136258}
   - component: {fileID: 114023463040987438}
+  - component: {fileID: 114094075827212034}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -2265,6 +2266,20 @@ MonoBehaviour:
   cursorHotspot: {x: 0, y: 0}
   walkCursor: {fileID: 0}
   enemyCursor: {fileID: 0}
+--- !u!114 &114094075827212034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444768165733850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a09eb8e46e9604c90a5c732b9edb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: 7ad383f90f42b634da94e4dc54ad2018,
+    type: 2}
 --- !u!114 &114348638547397472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2361,14 +2376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9268856d129aa64a8ab4590ce181c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
-  criticalHitParticleSystem: {fileID: 198039937595990278}
-  currentWeaponConfig: {fileID: 11400000, guid: 81f6645ece9a36b438028a474fa4d54f,
-    type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: 42814c44109fa294f966c58280d4bd9d,
-    type: 2}
 --- !u!124 &124211618917081114
 Behaviour:
   m_ObjectHideFlags: 1

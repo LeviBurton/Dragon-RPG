@@ -95,6 +95,10 @@ namespace RPG.Characters
             navMeshAgent.SetDestination(worldPosition);
         }
 
+        public AnimatorOverrideController GetOverrideController()
+        {
+            return animatorOverrideController;
+        }
 
         void Move(Vector3 movement)
         {
