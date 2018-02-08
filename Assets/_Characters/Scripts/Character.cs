@@ -40,6 +40,7 @@ namespace RPG.Characters
         Animator animator;
         Rigidbody rigidBody;
         NavMeshAgent navMeshAgent;
+        bool isAlive = true;
 
         void Awake()
         {
@@ -70,18 +71,32 @@ namespace RPG.Characters
             navMeshAgent.stoppingDistance = navMeshStoppingDistance;
             navMeshAgent.speed = navMeshAgentSteeringSpeed;
             navMeshAgent.autoBraking = false;
-
-
         }
 
         void Start()
-        {
-            var cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-            cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
-            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+        { 
         }
 
-        public void Move(Vector3 movement)
+        void Update()
+        {
+            if (navMeshAgent.remainingDistance > navMeshStoppingDistance && isAlive)
+            {
+                Move(navMeshAgent.desiredVelocity);
+            }
+            else
+            {
+                Move(Vector3.zero);
+            }
+        }
+
+
+        public void SetDestination(Vector3 worldPosition)
+        {
+            navMeshAgent.SetDestination(worldPosition);
+        }
+
+
+        void Move(Vector3 movement)
         {
             SetForwardAndTurn(movement);
             ApplyExtraTurnRotation();
@@ -90,25 +105,9 @@ namespace RPG.Characters
 
         public void Kill()
         {
-            // 
+            isAlive = false;
         }
       
-        void OnMouseOverEnemy(Enemy enemy)
-        {
-            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
-            {
-                navMeshAgent.SetDestination(enemy.transform.position);
-            }
-        }
-
-        void OnMouseOverPotentiallyWalkable(Vector3 destination)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                navMeshAgent.SetDestination(destination);
-            }
-        }
-
         void SetForwardAndTurn(Vector3 movement)
         {
             if (movement.magnitude > moveThreshold)
@@ -146,18 +145,6 @@ namespace RPG.Characters
                 // we preserve the existing y part of the current velocity.
                 velocity.y = rigidBody.velocity.y;
                 rigidBody.velocity = velocity;
-            }
-        }
-
-        void Update()
-        {
-            if (navMeshAgent.remainingDistance > navMeshStoppingDistance)
-            {
-                Move(navMeshAgent.desiredVelocity);
-            }
-            else
-            {
-                Move(Vector3.zero);
             }
         }
 

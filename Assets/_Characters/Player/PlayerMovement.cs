@@ -2,14 +2,10 @@
 using UnityEngine.Assertions;
 
 using RPG.CameraUI;
-using RPG.Core;
-using System;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 namespace RPG.Characters
 {
-    public class Player : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] float baseDamage = 10f;
         [Range(.1f, 1f)]
@@ -30,36 +26,23 @@ namespace RPG.Characters
         AudioSource audioSource = null;
         GameObject weaponObject = null;
         SpecialAbilities abilities;
+        Character character;
 
         void Start()
         {
-            audioSource = GetComponent<AudioSource>();
+            character = GetComponent<Character>();
             abilities = GetComponent<SpecialAbilities>();
 
-            RegisterForMouseClick();
-            PutWeaponInHand(currentWeaponConfig);
-            SetAttackAnimation();
+            RegisterForMouseEvents();
+            PutWeaponInHand(currentWeaponConfig); // move to weapon system.
+            SetAttackAnimation();                 // move to weapon system.
         }
 
         void Update()
         {
-            var healthPercentage = GetComponent<HealthSystem>().healthAsPercentage;
-            if (healthPercentage > Mathf.Epsilon)
-            {
-                ScanForAbilityKeydown();
-            }
+            ScanForAbilityKeydown();
         }
 
-        void ScanForAbilityKeydown()
-        {
-            for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)
-            {
-                if (Input.GetKeyDown(keyIndex.ToString()))
-                {
-                    abilities.AttemptSpecialAbility(keyIndex);
-                }
-            }
-        }
 
         public void PutWeaponInHand(Weapon weaponToUse)
         {
@@ -72,6 +55,25 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
+        }
+
+
+        void RegisterForMouseEvents()
+        {
+            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+            cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+        }
+
+        void ScanForAbilityKeydown()
+        {
+            for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)
+            {
+                if (Input.GetKeyDown(keyIndex.ToString()))
+                {
+                    abilities.AttemptSpecialAbility(keyIndex);
+                }
+            }
         }
 
         void SetAttackAnimation()
@@ -90,17 +92,19 @@ namespace RPG.Characters
             return dominantHands[0].gameObject;
         }
 
-        void RegisterForMouseClick()
+        void OnMouseOverPotentiallyWalkable(Vector3 destination)
         {
-            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+            if (Input.GetMouseButton(0))
+            {
+                character.SetDestination(destination);
+            }
         }
 
-        void OnMouseOverEnemy(Enemy enemyToSet)
+        void OnMouseOverEnemy(Enemy enemy)
         {
-            enemy = enemyToSet;
+            this.enemy = enemy;
 
-            if (Input.GetMouseButton(0) && IsTargetInRange(enemyToSet.gameObject))
+            if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
             {
                 AttackTarget();
             }
