@@ -34,13 +34,12 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentSteeringSpeed = 1.0f;
         [SerializeField] float navMeshStoppingDistance = 1.3f;
 
-        float turnAmount;
-        float forwardAmount;
- 
         Animator animator;
         Rigidbody rigidBody;
         NavMeshAgent navMeshAgent;
         bool isAlive = true;
+        float turnAmount;
+        float forwardAmount;
 
         void Awake()
         {

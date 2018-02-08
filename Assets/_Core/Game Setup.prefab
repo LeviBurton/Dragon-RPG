@@ -2278,7 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  currentWeaponConfig: {fileID: 11400000, guid: 7ad383f90f42b634da94e4dc54ad2018,
+  currentWeaponConfig: {fileID: 11400000, guid: 5938c5187b252a64bb4d8447a56f8bd3,
     type: 2}
 --- !u!114 &114348638547397472
 MonoBehaviour:

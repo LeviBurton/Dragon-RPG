@@ -58,6 +58,7 @@ namespace RPG.Characters
         {
             animator = GetComponent<Animator>();
             var animatorOverrideController = character.GetOverrideController();
+
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
         }
@@ -66,8 +67,10 @@ namespace RPG.Characters
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
             int numberOfDominantHands = dominantHands.Length;
+
             Assert.AreNotEqual(numberOfDominantHands, 0, "No dominant hand found on player, please add one.");
             Assert.IsFalse(numberOfDominantHands > 1, "Multiple dominant hand scripts on player.  Only 1 allowed.");
+
             return dominantHands[0].gameObject;
         }
 

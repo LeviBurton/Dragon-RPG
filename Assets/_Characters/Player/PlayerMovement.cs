@@ -9,13 +9,10 @@ namespace RPG.Characters
         [Range(.1f, 1f)]
         [SerializeField] float criticalHitChance = .1f;
         [SerializeField] float criticalHitMultiplier = 1.25f;
-       
-        Enemy enemy = null;
 
-        CameraRaycaster cameraRaycaster = null;
-     
-        AudioSource audioSource = null;
-      
+        EnemyAI enemy;
+        CameraRaycaster cameraRaycaster;
+        AudioSource audioSource;
         SpecialAbilities abilities;
         Character character;
         WeaponSystem weaponSystem;
@@ -49,7 +46,7 @@ namespace RPG.Characters
             }
         }
 
-        void OnMouseOverEnemy(Enemy enemy)
+        void OnMouseOverEnemy(EnemyAI enemy)
         {
             this.enemy = enemy;
 
@@ -71,6 +68,11 @@ namespace RPG.Characters
 
         void ScanForAbilityKeydown()
         {
+            if (abilities == null)
+            {
+                return;
+            }
+
             for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)
             {
                 if (Input.GetKeyDown(keyIndex.ToString()))
