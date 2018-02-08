@@ -68,11 +68,6 @@ namespace RPG.Characters
 
         void ScanForAbilityKeydown()
         {
-            if (abilities == null)
-            {
-                return;
-            }
-
             for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)
             {
                 if (Input.GetKeyDown(keyIndex.ToString()))

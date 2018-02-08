@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 114053757527003934}
   - component: {fileID: 114838749701127146}
   - component: {fileID: 114085199609221120}
+  - component: {fileID: 114772063016921118}
   m_Layer: 9
   m_Name: Enemy 101
   m_TagString: Untagged
@@ -1488,7 +1489,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864876660333738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.22, y: 0, z: -7.05}
+  m_LocalPosition: {x: 0.12, y: 0, z: -4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4577287015776632}
@@ -1921,9 +1922,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac46da830b7bf0443b928b3e59950ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 6
+  chaseRadius: 6.48
   chaseSphereColor: {r: 1, g: 1, b: 1, a: 0.5}
   attackSphereColor: {r: 1, g: 0, b: 0, a: 0.5}
+--- !u!114 &114772063016921118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1864876660333738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290e7190f865c6e46803b4dd8909ba03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  deathVanishSeconds: 2
+  healthBar: {fileID: 0}
+  damageSounds:
+  - {fileID: 8300000, guid: 14c823c3dc2d2d146a4b9caa3c975b2b, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: c1ab469d7168ec74cbc935627ad35d52, type: 3}
 --- !u!114 &114838749701127146
 MonoBehaviour:
   m_ObjectHideFlags: 1

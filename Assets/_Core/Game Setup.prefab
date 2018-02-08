@@ -328,8 +328,8 @@ GameObject:
   - component: {fileID: 20614565585963874}
   - component: {fileID: 124211618917081114}
   - component: {fileID: 81455300118097898}
-  - component: {fileID: 114064733088696920}
   - component: {fileID: 114348638547397472}
+  - component: {fileID: 114064733088696920}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1429,7 +1429,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396702152063786}
   m_LocalRotation: {x: 0.16490544, y: -0.802061, z: 0.27804154, w: 0.5021925}
-  m_LocalPosition: {x: 7.822, y: 7.479, z: 3.695}
+  m_LocalPosition: {x: 18.75, y: 16.84, z: 8.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4886004998226686}
@@ -1943,7 +1943,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 35
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2250,8 +2250,17 @@ MonoBehaviour:
   maxHealthPoints: 100
   deathVanishSeconds: 2
   healthBar: {fileID: 0}
-  damageSounds: []
-  deathSounds: []
+  damageSounds:
+  - {fileID: 8300000, guid: 14c823c3dc2d2d146a4b9caa3c975b2b, type: 3}
+  - {fileID: 8300000, guid: b1ee2a2190fa82b4eb044fd9473bdd01, type: 3}
+  - {fileID: 8300000, guid: 0a098d0a5d6936447b8809805e713d44, type: 3}
+  - {fileID: 8300000, guid: 646d2408f9bb45e40803b8576d6bd557, type: 3}
+  - {fileID: 8300000, guid: 7173e9ef3090eb246ac7995597d46035, type: 3}
+  - {fileID: 8300000, guid: 91a38847f796fd84e92fdc75cd8cc102, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 54fac9689e6dc374cb978c787e438e69, type: 3}
+  - {fileID: 8300000, guid: c1ab469d7168ec74cbc935627ad35d52, type: 3}
+  - {fileID: 8300000, guid: a42f342f9c5c08849857b5b4f1a8d444, type: 3}
 --- !u!114 &114064733088696920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2264,8 +2273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorHotspot: {x: 0, y: 0}
-  walkCursor: {fileID: 0}
-  enemyCursor: {fileID: 0}
+  walkCursor: {fileID: 2800000, guid: c29f141808a36b742a1c99382f65bf2c, type: 3}
+  enemyCursor: {fileID: 2800000, guid: 0de65a9176e29d346ac17f65ede10d1e, type: 3}
 --- !u!114 &114094075827212034
 MonoBehaviour:
   m_ObjectHideFlags: 1
