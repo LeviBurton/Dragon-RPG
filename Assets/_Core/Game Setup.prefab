@@ -295,7 +295,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4020934290870422}
-  - component: {fileID: 95056901672830012}
   m_Layer: 0
   m_Name: Characters_POLYGON_Knights
   m_TagString: Untagged
@@ -2173,23 +2172,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396702152063786}
   m_Enabled: 1
---- !u!95 &95056901672830012
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1373378491320900}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
-  m_Controller: {fileID: 22100000, guid: 42814c44109fa294f966c58280d4bd9d, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108522212962086606
 Light:
   m_ObjectHideFlags: 1
