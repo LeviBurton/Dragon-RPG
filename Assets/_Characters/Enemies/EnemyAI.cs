@@ -7,6 +7,7 @@ using System;
 
 namespace RPG.Characters
 {
+    [RequireComponent(typeof(HealthSystem))]
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(WeaponSystem))]
     public class EnemyAI : MonoBehaviour
@@ -17,7 +18,7 @@ namespace RPG.Characters
         [SerializeField] Color chaseSphereColor = new Color(0, 1.0f, 0, .5f);
         [SerializeField] Color attackSphereColor = new Color(1.0f, 1.0f, 0, .5f);
 
-        PlayerMovement player;
+        PlayerControl player;
         Character character;
         float currentWeaponRange;
         float distanceToPlayer;
@@ -29,7 +30,7 @@ namespace RPG.Characters
 
         void Start()
         {
-            player = FindObjectOfType<PlayerMovement>();
+            player = FindObjectOfType<PlayerControl>();
             character = GetComponent<Character>();
         }
 
@@ -62,7 +63,7 @@ namespace RPG.Characters
         {
             state = State.patrolling;
 
-            while (true)
+            while (patrolPath != null)
             {
                 Vector3 nextWayPointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
                 character.SetDestination(nextWayPointPos);

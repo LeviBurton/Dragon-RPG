@@ -62,7 +62,7 @@ namespace RPG.Characters
             character.Kill();
             animator.SetTrigger(DEATH_TRIGGER);
 
-            var playerComponent = GetComponent<PlayerMovement>();
+            var playerComponent = GetComponent<PlayerControl>();
             if (playerComponent && playerComponent.isActiveAndEnabled)
             {
                 audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
@@ -74,8 +74,6 @@ namespace RPG.Characters
                 // todo: could be an enemy
                 Destroy(gameObject, deathVanishSeconds);
             }
-      
-            SceneManager.LoadScene(0);
         }
 
         void UpdateHealthBar()

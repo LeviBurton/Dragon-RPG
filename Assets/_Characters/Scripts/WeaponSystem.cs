@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Assertions;
 
 using UnityEngine;
+using System.Collections;
 
 namespace RPG.Characters
 {
@@ -27,6 +28,35 @@ namespace RPG.Characters
             SetAttackAnimation();
         }
 
+        void Update()
+        {
+            bool targetIsDead;
+            bool targetIsOutOfRange;
+
+            if (target == null)
+            {
+                targetIsDead = false;
+                targetIsOutOfRange = false;
+            }
+            else
+            {
+                float targetHealth = target.GetComponent<HealthSystem>().healthAsPercentage;
+                targetIsDead = targetHealth <= Mathf.Epsilon;
+
+                float distanceToTarget = Vector3.Distance(transform.position, target.transform.position); 
+                targetIsOutOfRange = distanceToTarget > currentWeaponConfig.GetMaxAttackRange();
+            }
+
+            var characterHealth = GetComponent<HealthSystem>().healthAsPercentage;
+            bool characterIsDead = characterHealth <= Mathf.Epsilon;
+
+            if (characterIsDead || targetIsOutOfRange || targetIsDead)
+            {
+                StopAllCoroutines();
+            }
+
+        }
+
         public WeaponConfig GetCurrentWeapon()
         {
             return currentWeaponConfig;
@@ -35,10 +65,48 @@ namespace RPG.Characters
         public void AttackTarget(GameObject targetToAttack)
         {
             target = targetToAttack;
+            StartCoroutine(AttackTargetRepeatedly());
+        }
 
-            print("Attacking " + targetToAttack);
+        IEnumerator AttackTargetRepeatedly()
+        {
+            bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
+            bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
 
-            // todo use a repeat attack co-routine
+            while (attackerStillAlive && targetStillAlive)
+            {
+                float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+                float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
+
+                bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
+
+                if (isTimeToHitAgain)
+                {
+                    AttackTargetOnce();
+                }
+
+                yield return new WaitForSeconds(timeToWait);
+            }
+        }
+
+        void AttackTargetOnce()
+        {
+            transform.LookAt(target.transform);
+            animator.SetTrigger(ATTACK_TRIGGER);
+
+            // todo get from the weapon itself;
+            float damageDelay = 1.0f;
+
+            SetAttackAnimation();
+            StartCoroutine(DamageAfterDelay(damageDelay));
+
+            lastHitTime = Time.time;
+        }
+
+        IEnumerator DamageAfterDelay(float delay)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+            target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
         }
 
         public void PutWeaponInHand(WeaponConfig weaponToUse)
@@ -56,11 +124,18 @@ namespace RPG.Characters
 
         void SetAttackAnimation()
         {
-            animator = GetComponent<Animator>();
-            var animatorOverrideController = character.GetOverrideController();
+            if (!character.GetOverrideController())
+            {
+                Debug.Break();
+                Debug.LogAssertion("Please provide " + gameObject + " with an animator override controller ");
+            }
+            else
+            {
+                var animatorOverrideController = character.GetOverrideController();
 
-            animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+                animator.runtimeAnimatorController = animatorOverrideController;
+                animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+            }
         }
 
         GameObject RequestDominantHand()

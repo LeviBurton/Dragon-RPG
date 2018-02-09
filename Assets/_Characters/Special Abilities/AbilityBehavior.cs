@@ -8,11 +8,25 @@ namespace RPG.Characters
         protected AbilityConfig config;
         const float PARTICLE_CLEAN_UP_DELAY = 20.0f;
 
+        const string ATTACK_TRIGGER = "Attack";
+        const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
+
         public abstract void Use(GameObject target = null);
 
         public void SetConfig(AbilityConfig configToSet)
         {
             config = configToSet;
+        }
+
+        protected void PlayAbilityAnimation()
+        {
+            var abilityAnimation = config.GetAbilityAnimation();
+            var animatorOverrideController = GetComponent<Character>().GetOverrideController();
+            var animator = GetComponent<Animator>();
+
+            animator.runtimeAnimatorController = animatorOverrideController;
+            animatorOverrideController[DEFAULT_ATTACK_STATE] = config.GetAbilityAnimation();
+            animator.SetTrigger(ATTACK_TRIGGER);
         }
 
         protected void PlayAbilitySound()

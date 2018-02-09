@@ -88,6 +88,10 @@ namespace RPG.Characters
             }
         }
 
+        public float GetAnimSpeedMultiplier()
+        {
+            return animator.speed;
+        }
 
         public void SetDestination(Vector3 worldPosition)
         {
