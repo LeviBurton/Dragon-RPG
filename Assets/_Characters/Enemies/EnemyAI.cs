@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RPG.Core;
+using System;
 
 namespace RPG.Characters
 {
@@ -11,6 +12,8 @@ namespace RPG.Characters
     public class EnemyAI : MonoBehaviour
     {
         [SerializeField] float chaseRadius = 6f;
+        [SerializeField] WaypointContainer patrolPath;
+        [SerializeField] float waypointTolerance = 2.0f;
         [SerializeField] Color chaseSphereColor = new Color(0, 1.0f, 0, .5f);
         [SerializeField] Color attackSphereColor = new Color(1.0f, 1.0f, 0, .5f);
 
@@ -19,6 +22,7 @@ namespace RPG.Characters
         float currentWeaponRange;
         float distanceToPlayer;
         bool isAttacking = false;
+        int nextWaypointIndex;
 
         enum State { idle, patrolling, attacking, chasing }
         State state = State.idle;
@@ -37,8 +41,8 @@ namespace RPG.Characters
 
             if (distanceToPlayer > chaseRadius && state != State.patrolling)
             {
-                state = State.patrolling;
                 StopAllCoroutines();
+                StartCoroutine(Patrol());
             }
 
             if (distanceToPlayer <= chaseRadius && state != State.chasing)
@@ -51,6 +55,29 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 state = State.attacking;
+            }
+        }
+
+        IEnumerator Patrol()
+        {
+            state = State.patrolling;
+
+            while (true)
+            {
+                Vector3 nextWayPointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
+                character.SetDestination(nextWayPointPos);
+
+                CycleWaypointWhenClose(nextWayPointPos);
+
+                yield return new WaitForSeconds(0.5f);  
+            }
+        }
+
+        private void CycleWaypointWhenClose(Vector3 nextWaypoint)
+        {
+            if (Vector3.Distance(transform.position, nextWaypoint) <= waypointTolerance)
+            {
+                nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
             }
         }
 
