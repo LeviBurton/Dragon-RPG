@@ -20,6 +20,8 @@ namespace RPG.Characters
 
         PlayerControl player;
         Character character;
+        WeaponSystem weaponSystem;
+
         float currentWeaponRange;
         float distanceToPlayer;
         bool isAttacking = false;
@@ -36,26 +38,33 @@ namespace RPG.Characters
 
         void Update()
         {
-            WeaponSystem weaponSystem = GetComponent<WeaponSystem>();
+            weaponSystem = GetComponent<WeaponSystem>();
             currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
             distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-            if (distanceToPlayer > chaseRadius && state != State.patrolling)
+            if (player == null || player.GetComponent<HealthSystem>().healthAsPercentage <= 0)
             {
                 StopAllCoroutines();
                 StartCoroutine(Patrol());
             }
 
-            if (distanceToPlayer <= chaseRadius && state != State.chasing)
+            else if (distanceToPlayer > chaseRadius && state != State.patrolling)
+            {
+                StopAllCoroutines();
+                StartCoroutine(Patrol());
+            }
+
+            else if (distanceToPlayer <= chaseRadius && state != State.chasing)
             {
                 StopAllCoroutines();
                 StartCoroutine(ChasePlayer());
             }
 
-            if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
+            else if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
             {
                 StopAllCoroutines();
                 state = State.attacking;
+                weaponSystem.AttackTarget(player.gameObject);
             }
         }
 
@@ -94,6 +103,12 @@ namespace RPG.Characters
             }
 
             yield return null;
+        }
+
+        bool IsTargetInRange(GameObject target)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+            return distanceToTarget <= currentWeaponRange;
         }
 
         void OnDrawGizmos()

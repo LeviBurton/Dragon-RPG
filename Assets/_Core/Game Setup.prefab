@@ -2251,11 +2251,6 @@ MonoBehaviour:
   deathVanishSeconds: 2
   healthBar: {fileID: 0}
   damageSounds:
-  - {fileID: 8300000, guid: 14c823c3dc2d2d146a4b9caa3c975b2b, type: 3}
-  - {fileID: 8300000, guid: b1ee2a2190fa82b4eb044fd9473bdd01, type: 3}
-  - {fileID: 8300000, guid: 0a098d0a5d6936447b8809805e713d44, type: 3}
-  - {fileID: 8300000, guid: 646d2408f9bb45e40803b8576d6bd557, type: 3}
-  - {fileID: 8300000, guid: 7173e9ef3090eb246ac7995597d46035, type: 3}
   - {fileID: 8300000, guid: 91a38847f796fd84e92fdc75cd8cc102, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 54fac9689e6dc374cb978c787e438e69, type: 3}
@@ -2385,8 +2380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9268856d129aa64a8ab4590ce181c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticalHitChance: 0.1
-  criticalHitMultiplier: 1.25
 --- !u!124 &124211618917081114
 Behaviour:
   m_ObjectHideFlags: 1

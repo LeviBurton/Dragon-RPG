@@ -54,7 +54,19 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
             }
+        }
 
+        public void PutWeaponInHand(WeaponConfig weaponToUse)
+        {
+            currentWeaponConfig = weaponToUse;
+            var weaponPrefab = weaponToUse.GetWeaponPrefab();
+            GameObject dominantHand = RequestDominantHand();
+
+            Destroy(weaponObject);
+
+            weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
+            weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
+            weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
         }
 
         public WeaponConfig GetCurrentWeapon()
@@ -72,7 +84,7 @@ namespace RPG.Characters
         {
             bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
             bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
-
+   
             while (attackerStillAlive && targetStillAlive)
             {
                 float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
@@ -95,33 +107,20 @@ namespace RPG.Characters
             animator.SetTrigger(ATTACK_TRIGGER);
 
             // todo get from the weapon itself;
-            float damageDelay = 1.0f;
+            float damageDelay = .25f;
+            lastHitTime = Time.time;
 
             SetAttackAnimation();
             StartCoroutine(DamageAfterDelay(damageDelay));
-
-            lastHitTime = Time.time;
         }
 
         IEnumerator DamageAfterDelay(float delay)
         {
-            yield return new WaitForSecondsRealtime(delay);
+            yield return new WaitForSeconds(delay);
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
         }
 
-        public void PutWeaponInHand(WeaponConfig weaponToUse)
-        {
-            currentWeaponConfig = weaponToUse;
-            var weaponPrefab = weaponToUse.GetWeaponPrefab();
-            GameObject dominantHand = RequestDominantHand();
-
-            Destroy(weaponObject);
-
-            weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
-            weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
-            weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
-        }
-
+     
         void SetAttackAnimation()
         {
             if (!character.GetOverrideController())
@@ -147,16 +146,6 @@ namespace RPG.Characters
             Assert.IsFalse(numberOfDominantHands > 1, "Multiple dominant hand scripts on player.  Only 1 allowed.");
 
             return dominantHands[0].gameObject;
-        }
-
-        void AttackTarget()
-        {
-            if (Time.time - lastHitTime > currentWeaponConfig.GetMinTimeBetweenHits())
-            {
-                SetAttackAnimation();
-                animator.SetTrigger(ATTACK_TRIGGER);
-                lastHitTime = Time.time;
-            }
         }
 
         float CalculateDamage()
