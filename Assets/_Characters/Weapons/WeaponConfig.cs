@@ -14,6 +14,12 @@ namespace RPG.Characters
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
         [SerializeField] float additionalDamage = 0.0f;
+        [SerializeField] float damageDelay = 0.25f;
+
+        public float GetDamageDelay()
+        {
+            return damageDelay;
+        }
 
         public float GetAdditionalDamage()
         {

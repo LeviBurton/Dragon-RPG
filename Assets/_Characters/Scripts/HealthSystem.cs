@@ -58,7 +58,7 @@ namespace RPG.Characters
 
         IEnumerator KillCharacter()
         {
-            StopAllCoroutines();
+           
             character.Kill();
             animator.SetTrigger(DEATH_TRIGGER);
 
@@ -68,6 +68,9 @@ namespace RPG.Characters
                 audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
                 audioSource.Play();
                 yield return new WaitForSecondsRealtime(audioSource.clip.length);
+
+                // todo -- this is flakey.  replace with something better.
+               // SceneManager.LoadScene(0);
             }
             else
             {

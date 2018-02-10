@@ -56,6 +56,11 @@ namespace RPG.Characters
             }
         }
 
+        public GameObject GetWeaponObject()
+        {
+            return weaponObject;
+        }
+
         public void PutWeaponInHand(WeaponConfig weaponToUse)
         {
             currentWeaponConfig = weaponToUse;
@@ -104,10 +109,11 @@ namespace RPG.Characters
         void AttackTargetOnce()
         {
             transform.LookAt(target.transform);
+
             animator.SetTrigger(ATTACK_TRIGGER);
 
             // todo get from the weapon itself;
-            float damageDelay = .25f;
+            float damageDelay = currentWeaponConfig.GetDamageDelay();
             lastHitTime = Time.time;
 
             SetAttackAnimation();
@@ -118,9 +124,11 @@ namespace RPG.Characters
         {
             yield return new WaitForSeconds(delay);
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+          
+            Debug.DrawLine(GetWeaponObject().transform.position, target.transform.position, Color.red, 2.0f);
         }
 
-     
+
         void SetAttackAnimation()
         {
             if (!character.GetOverrideController())

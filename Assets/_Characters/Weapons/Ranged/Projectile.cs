@@ -49,21 +49,9 @@ namespace RPG.Characters
 
             if (shooter && layerCollidedWith != shooter.layer)
             {
-                DamageIfDamageable(collision);
+               // DamageIfDamageable(collision);
             }
         }
 
-        void DamageIfDamageable(Collision collision)
-        {
-            // Todo reimplement this.
-            //Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
-
-            //if (damagableComponent)
-            //{
-            //    (damagableComponent as IDamageable).TakeDamage(damageCaused);
-            //}
-
-            Destroy(gameObject, DESTROY_DELAY);
-        }
     }
 }

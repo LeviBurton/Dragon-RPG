@@ -24,7 +24,6 @@ namespace RPG.Characters
 
         float currentWeaponRange;
         float distanceToPlayer;
-        bool isAttacking = false;
         int nextWaypointIndex;
 
         enum State { idle, patrolling, attacking, chasing }
@@ -95,7 +94,7 @@ namespace RPG.Characters
         {
             state = State.chasing;
 
-            while (distanceToPlayer >= currentWeaponRange)
+            while (distanceToPlayer >= chaseRadius)
             {
                 character.SetDestination(player.transform.position);
 
