@@ -16,7 +16,6 @@ namespace RPG.Characters
         [SerializeField] RuntimeAnimatorController animatorController;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
         [SerializeField] Avatar characterAvatar;
-
         [SerializeField] [Range(0.1f, 1)] float animatorForwardCap = 1.0f;
 
         [Header("Capsule Collider")]
@@ -35,6 +34,8 @@ namespace RPG.Characters
         [Header("Nav Mesh Agent")]
         [SerializeField] float navMeshAgentSteeringSpeed = 1.0f;
         [SerializeField] float navMeshStoppingDistance = 1.3f;
+        [SerializeField] bool updateNavPosition = true;
+        [SerializeField] bool updateNavRotation = false;
 
         Animator animator;
         Rigidbody rigidBody;
@@ -67,8 +68,8 @@ namespace RPG.Characters
             audioSource.spatialBlend = audioSourceSpatialBlend;
 
             navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
-            navMeshAgent.updatePosition = true;
-            navMeshAgent.updateRotation = false;
+            navMeshAgent.updatePosition = updateNavPosition;
+            navMeshAgent.updateRotation = updateNavRotation;
             navMeshAgent.stoppingDistance = navMeshStoppingDistance;
             navMeshAgent.speed = navMeshAgentSteeringSpeed;
             navMeshAgent.autoBraking = false;
@@ -80,19 +81,27 @@ namespace RPG.Characters
 
         void Update()
         {
-            if (navMeshAgent.remainingDistance > navMeshStoppingDistance && isAlive)
+            if (updateNavPosition == true)
             {
-                Move(navMeshAgent.desiredVelocity);
-            }
-            else
-            {
-                Move(Vector3.zero);
+                if (navMeshAgent.remainingDistance > navMeshStoppingDistance && isAlive)
+                {
+                    Move(navMeshAgent.desiredVelocity);
+                }
+                else
+                {
+                    Move(Vector3.zero);
+                }
             }
         }
 
         public float GetAnimSpeedMultiplier()
         {
             return animator.speed;
+        }
+
+        public void ControllerMove(Vector3 moveDirection)
+        {
+            Move(moveDirection * moveSpeedMultiplier);
         }
 
         public void SetDestination(Vector3 worldPosition)
@@ -157,17 +166,6 @@ namespace RPG.Characters
             }
         }
 
-        // TODO make this get called again
-        void ProcessDirectMovement()
-        {
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-
-            // calculate camera relative direction to move:
-            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-            Vector3 movement = v * cameraForward + h * Camera.main.transform.right;
-
-            Move(movement);
-        }
+      
     }
 }

@@ -22,6 +22,7 @@ namespace RPG.Characters
 
         void Update()
         {
+            ProcessDirectMovement();
             ScanForAbilityKeydown();
         }
 
@@ -31,6 +32,18 @@ namespace RPG.Characters
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
             cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
             cameraRaycaster.onMouseOverNPC += OnMouseOverNPC;
+        }
+
+        void ProcessDirectMovement()
+        {
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+
+            // calculate camera relative direction to move:
+            var cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+            var movement = v * cameraForward + h * Camera.main.transform.right;
+
+            character.ControllerMove(movement);
         }
 
         void OnMouseOverPotentiallyWalkable(Vector3 destination)
