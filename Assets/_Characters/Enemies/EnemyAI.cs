@@ -17,6 +17,9 @@ namespace RPG.Characters
         [SerializeField] float waypointTolerance = 2.0f;
         [SerializeField] Color chaseSphereColor = new Color(0, 1.0f, 0, .5f);
         [SerializeField] Color attackSphereColor = new Color(1.0f, 1.0f, 0, .5f);
+        [SerializeField] bool preferRangedAttack = false;
+        [SerializeField] float threatRange = 10.0f;
+        [SerializeField] float waypointWaitTime = 2.0f;
 
         PlayerControl player;
         Character character;
@@ -41,27 +44,45 @@ namespace RPG.Characters
             currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
             distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-            if (player == null || player.GetComponent<HealthSystem>().healthAsPercentage <= 0)
+            bool inWeaponCircle = distanceToPlayer <= currentWeaponRange;
+            bool inPlayerThreatCircle = distanceToPlayer <= threatRange;
+            bool inChaseRing = distanceToPlayer >= currentWeaponRange && 
+                                 distanceToPlayer <= chaseRadius;
+            bool outsideChaseRing = distanceToPlayer > chaseRadius;
+
+            //if (inPlayerThreatCircle && preferRangedAttack)
+            //{
+            //    StopAllCoroutines();
+            //    weaponSystem.StopAttacking();
+
+            //    var Direction = transform.TransformDirection(transform.forward);
+            //    var targetPosition = Vector3.Reflect(Direction, Vector3.up) * 100.0f;
+            //    character.SetDestination(targetPosition);
+            //}
+
+            if (outsideChaseRing)
             {
                 StopAllCoroutines();
+                weaponSystem.StopAttacking();
                 StartCoroutine(Patrol());
             }
 
-            else if (distanceToPlayer > chaseRadius && state != State.patrolling)
+            if (inChaseRing)
             {
                 StopAllCoroutines();
-                StartCoroutine(Patrol());
-            }
-
-            else if (distanceToPlayer <= chaseRadius && state != State.chasing)
-            {
-                StopAllCoroutines();
+                weaponSystem.StopAttacking();
                 StartCoroutine(ChasePlayer());
             }
 
-            else if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
+            if (inWeaponCircle)
             {
                 StopAllCoroutines();
+
+                if (preferRangedAttack)
+                {
+                    character.SetDestination(transform.position);
+                }
+
                 state = State.attacking;
                 weaponSystem.AttackTarget(player.gameObject);
             }
@@ -78,7 +99,7 @@ namespace RPG.Characters
 
                 CycleWaypointWhenClose(nextWayPointPos);
 
-                yield return new WaitForSeconds(0.5f);  
+                yield return new WaitForSecondsRealtime(waypointWaitTime);  
             }
         }
 
@@ -94,12 +115,14 @@ namespace RPG.Characters
         {
             state = State.chasing;
 
-            while (distanceToPlayer >= chaseRadius)
+            while (distanceToPlayer >= currentWeaponRange)
             {
                 character.SetDestination(player.transform.position);
 
                 yield return new WaitForEndOfFrame();
             }
+
+            character.SetDestination(transform.position);
 
             yield return null;
         }

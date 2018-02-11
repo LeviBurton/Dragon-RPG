@@ -17,6 +17,8 @@ namespace RPG.Characters
         [SerializeField] AnimatorOverrideController animatorOverrideController;
         [SerializeField] Avatar characterAvatar;
 
+        [SerializeField] [Range(0.1f, 1)] float animatorForwardCap = 1.0f;
+
         [Header("Capsule Collider")]
         [SerializeField] Vector3 colliderCenter = new Vector3(0, 1, 0);
         [SerializeField] float colliderHeight = 2.0f;
@@ -40,7 +42,7 @@ namespace RPG.Characters
         bool isAlive = true;
         float turnAmount;
         float forwardAmount;
-
+        
         void Awake()
         {
             AddRequiredComponents();     
@@ -137,7 +139,7 @@ namespace RPG.Characters
         void UpdateAnimator()
         {
             animator.speed = lockMoveSpeedToAnimationSpeed ? moveSpeedMultiplier : animationSpeedMultiplier;
-            animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
+            animator.SetFloat("Forward", forwardAmount * animatorForwardCap, 0.1f, Time.deltaTime);
             animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
         }
 

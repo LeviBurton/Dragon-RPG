@@ -79,6 +79,12 @@ namespace RPG.Characters
             return currentWeaponConfig;
         }
 
+        public void StopAttacking()
+        {
+            animator.StopPlayback();
+            StopAllCoroutines();
+        }
+
         public void AttackTarget(GameObject targetToAttack)
         {
             target = targetToAttack;

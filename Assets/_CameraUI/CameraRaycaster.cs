@@ -10,11 +10,17 @@ namespace RPG.CameraUI
     {
         [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
         [SerializeField] Texture2D walkCursor = null;
+        [SerializeField] Texture2D npcCursor = null;
         [SerializeField] Texture2D enemyCursor = null;
+        [SerializeField] LayerMask enemyLayerMask = (1 << 9);
+        [SerializeField] LayerMask walkableLayerMask = (1 << 8);
+        [SerializeField] LayerMask npcLayerMask = (1 << 10);
 
-        const int POTENTIALLY_WALKABLE_LAYER = 8;
         float maxRaycastDepth = 100f; // Hard coded value
         Rect currentScreenRect;
+
+        public delegate void OnMouseOverNPC(GameObject NPC);
+        public event OnMouseOverNPC onMouseOverNPC;
 
         public delegate void OnMouseOverPotentiallyWalkable(Vector3 destination);
         public event OnMouseOverPotentiallyWalkable onMouseOverPotentiallyWalkable;
@@ -46,6 +52,11 @@ namespace RPG.CameraUI
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            if (RaycastForNPC(ray))
+            {
+                return;
+            }
+
             if (RaycastForEnemy(ray))
             {
                 return;
@@ -57,17 +68,31 @@ namespace RPG.CameraUI
             }
         }
 
+        private bool RaycastForNPC(Ray ray)
+        {
+            RaycastHit hitInfo;
+            bool enemyHit = Physics.Raycast(ray, out hitInfo, maxRaycastDepth, npcLayerMask);
+            if (enemyHit)
+            {
+                var gameObjectHit = hitInfo.collider.gameObject;
+                Cursor.SetCursor(npcCursor, cursorHotspot, CursorMode.Auto);
+                onMouseOverNPC(gameObjectHit);
+                return true;
+            }
+
+            return false;
+        }
+
         private bool RaycastForEnemy(Ray ray)
         {
             RaycastHit hitInfo;
-            Physics.Raycast(ray, out hitInfo, maxRaycastDepth);
-            var gameObjectHit = hitInfo.collider.gameObject;
-            var enemyHit = gameObjectHit.GetComponent<EnemyAI>();
-
+            bool enemyHit = Physics.Raycast(ray, out hitInfo, maxRaycastDepth, enemyLayerMask);
             if (enemyHit)
             {
+                var gameObjectHit = hitInfo.collider.gameObject;
+                var enemy = gameObjectHit.GetComponent<EnemyAI>();
                 Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
-                onMouseOverEnemy(enemyHit);
+                onMouseOverEnemy(enemy);
                 return true;
             }
 
@@ -77,8 +102,8 @@ namespace RPG.CameraUI
         private bool RaycastForPotentiallyWalkable(Ray ray)
         {
             RaycastHit hitInfo;
-            LayerMask potentiallyWalkableLayer = 1 << POTENTIALLY_WALKABLE_LAYER;
-            bool potentiallyWalkableHit = Physics.Raycast(ray, out hitInfo, potentiallyWalkableLayer);
+        
+            bool potentiallyWalkableHit = Physics.Raycast(ray, out hitInfo, walkableLayerMask);
 
             if (potentiallyWalkableHit)
             {

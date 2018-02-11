@@ -1901,7 +1901,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1444768165733850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.3, y: 0, z: 3.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4020934290870422}
@@ -2269,7 +2269,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorHotspot: {x: 0, y: 0}
   walkCursor: {fileID: 2800000, guid: c29f141808a36b742a1c99382f65bf2c, type: 3}
+  npcCursor: {fileID: 2800000, guid: 46302abf86078a5419f45fa6e42a637b, type: 3}
   enemyCursor: {fileID: 2800000, guid: 0de65a9176e29d346ac17f65ede10d1e, type: 3}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  walkableLayerMask:
+    serializedVersion: 2
+    m_Bits: 273
+  npcLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &114094075827212034
 MonoBehaviour:
   m_ObjectHideFlags: 1

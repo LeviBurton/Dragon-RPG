@@ -6,18 +6,6 @@ namespace RPG.Characters
 {
     public class WaypointContainer : MonoBehaviour
     {
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         void OnDrawGizmos()
         {
             Vector3 fistPosition = transform.GetChild(0).position;

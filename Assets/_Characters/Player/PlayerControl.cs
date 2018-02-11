@@ -30,13 +30,24 @@ namespace RPG.Characters
             var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
             cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+            cameraRaycaster.onMouseOverNPC += OnMouseOverNPC;
         }
 
         void OnMouseOverPotentiallyWalkable(Vector3 destination)
         {
             if (Input.GetMouseButton(0))
             {
+                weaponSystem.StopAttacking();
                 character.SetDestination(destination);
+            }
+        }
+
+        void OnMouseOverNPC(GameObject NPC)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                StartCoroutine(MoveToTarget(NPC));
+                transform.LookAt(NPC.transform);
             }
         }
 
@@ -70,7 +81,7 @@ namespace RPG.Characters
             {
                 yield return new WaitForEndOfFrame();
             }
-
+            transform.LookAt(target.transform);
             yield return new WaitForEndOfFrame();
         }
 

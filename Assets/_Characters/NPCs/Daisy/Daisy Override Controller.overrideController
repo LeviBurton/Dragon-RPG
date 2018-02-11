@@ -5,8 +5,8 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Enemy 101 Override
+  m_Name: Daisy Override Controller
   m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 919982494e466d147b8f1f2cb2c8a9be, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: d82669b37833c5f4db716b82428a5ad6, type: 3}
+    m_OverrideClip: {fileID: 0}
