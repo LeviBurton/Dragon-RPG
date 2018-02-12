@@ -43,7 +43,9 @@ namespace RPG.Characters
         bool isAlive = true;
         float turnAmount;
         float forwardAmount;
-        
+        GameObject currentTarget;
+        SelectableUnitComponent selectableUnit;
+
         void Awake()
         {
             AddRequiredComponents();     
@@ -76,7 +78,8 @@ namespace RPG.Characters
         }
 
         void Start()
-        { 
+        {
+            selectableUnit = GetComponent<SelectableUnitComponent>();
         }
 
         void Update()

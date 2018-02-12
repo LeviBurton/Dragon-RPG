@@ -2,20 +2,28 @@
 
 using RPG.CameraUI;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace RPG.Characters
 {
     public class PlayerControl : MonoBehaviour
     {
+        [SerializeField] LayerMask enemyLayer;
+
+
+        List<Selectable> selectedEnemies;
+        Selectable selectedEnemy;
         SpecialAbilities abilities;
         Character character;
         WeaponSystem weaponSystem;
-
+        Selectable selectable;
+    
         void Start()
         {
             character = GetComponent<Character>();
             abilities = GetComponent<SpecialAbilities>();
             weaponSystem = GetComponent<WeaponSystem>();
+            selectable = GetComponent<Selectable>();
 
             RegisterForMouseEvents();
         }
@@ -23,6 +31,7 @@ namespace RPG.Characters
         void Update()
         {
             ProcessDirectMovement();
+            ScanControllerForInput();
             ScanForAbilityKeydown();
         }
 
@@ -116,6 +125,44 @@ namespace RPG.Characters
             return distanceToTarget <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
         }
 
+        void ScanControllerForInput()
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                weaponSystem.Attack();
+            }
+
+            // Input mappings
+            // joystick button 0: A
+            // joystick button 1: B
+            // joystick button 2: X
+            // joystick button 3: Y
+            // joystick button 4: Left Bumper
+            // joystick button 5: Right Bumper
+            // joystick button 6: Start
+            // joystick button 7: Options
+            // joystick button 8: Left Stick 
+            // joystick button 9: Right Stick 
+
+            if (Input.GetKeyDown("joystick button 4"))
+            {
+                // if no selected enemy, select closest enemy within a sphere.
+                if (selectedEnemy == null)
+                {
+                    RaycastHit[] hits = Physics.SphereCastAll(transform.position, 15.0f, Vector3.up, enemyLayer);
+                    foreach (var hit in hits)
+                    {
+                        print("found: " + hit.transform.gameObject.name);
+                    }
+                }
+            }
+            else if (Input.GetKeyDown("joystick button 5"))
+            {
+                Debug.Log("select forward");
+            }
+        }
+
+   
         void ScanForAbilityKeydown()
         {
             for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)
@@ -128,3 +175,5 @@ namespace RPG.Characters
         }
     }
 }
+
+

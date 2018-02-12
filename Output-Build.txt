@@ -1,0 +1,25 @@
+﻿1>------ Build started: Project: Dragon-RPG, Configuration: Debug Any CPU ------
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Enemies\EnemyAI.cs(16,44,16,54): warning CS0649: Field 'EnemyAI.patrolPath' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Core\AudioTrigger.cs(5,32,5,36): warning CS0649: Field 'AudioTrigger.clip' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Special Abilities\SpecialAbilities.cs(12,36,12,52): warning CS0649: Field 'SpecialAbilities.outOfEnergySound' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\Character.cs(13,31,13,54): warning CS0649: Field 'Character.audioSourceSpatialBlend' is never assigned to, and will always have its default value 0
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\HealthSystem.cs(16,38,16,49): warning CS0169: The field 'HealthSystem.deathSounds' is never used
+1>C:\Projects\Dragon-RPG\Assets\RtsStyleSelection\Script\UnitSelectionComponent.cs(11,13,11,27): warning CS0649: Field 'UnitSelectionComponent.mousePosition1' is never assigned to, and will always have its default value
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\HealthSystem.cs(15,38,15,50): warning CS0649: Field 'HealthSystem.damageSounds' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\Character.cs(17,53,17,79): warning CS0649: Field 'Character.animatorOverrideController' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Special Abilities\AbilityConfig.cs(11,37,11,51): warning CS0649: Field 'AbilityConfig.particlePrefab' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\Character.cs(16,52,16,70): warning CS0649: Field 'Character.animatorController' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Weapons\Ranged\Projectile.cs(12,15,12,30): warning CS0649: Field 'Projectile.projectileSpeed' is never assigned to, and will always have its default value 0
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Special Abilities\SpecialAbilities.cs(8,42,8,51): warning CS0649: Field 'SpecialAbilities.abilities' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Special Abilities\AbilityConfig.cs(12,38,12,48): warning CS0649: Field 'AbilityConfig.audioClips' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\HealthSystem.cs(14,32,14,41): warning CS0649: Field 'HealthSystem.healthBar' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Weapons\WeaponConfig.cs(14,37,14,49): warning CS0649: Field 'WeaponConfig.weaponPrefab' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\Character.cs(18,33,18,48): warning CS0649: Field 'Character.characterAvatar' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Weapons\WeaponConfig.cs(15,40,15,55): warning CS0649: Field 'WeaponConfig.attackAnimation' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Scripts\Character.cs(46,20,46,33): warning CS0169: The field 'Character.currentTarget' is never used
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Special Abilities\AbilityConfig.cs(13,40,13,56): warning CS0649: Field 'AbilityConfig.abilityAnimation' is never assigned to, and will always have its default value null
+1>C:\Projects\Dragon-RPG\Assets\_Characters\Enemies\EnemyAI.cs(34,15,34,20): warning CS0414: The field 'EnemyAI.state' is assigned but its value is never used
+1>  Dragon-RPG -> C:\Projects\Dragon-RPG\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+2>------ Build started: Project: Dragon-RPG.Editor, Configuration: Debug Any CPU ------
+2>  Dragon-RPG.Editor -> C:\Projects\Dragon-RPG\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll
+========== Build: 2 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

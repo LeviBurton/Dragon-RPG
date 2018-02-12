@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 114450640627418414}
   - component: {fileID: 114654169000709180}
   - component: {fileID: 114713092817734212}
+  - component: {fileID: 114670045207438766}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Untagged
@@ -2001,6 +2002,8 @@ MonoBehaviour:
   moveThreshold: 1
   navMeshAgentSteeringSpeed: 1
   navMeshStoppingDistance: 1.3
+  updateNavPosition: 1
+  updateNavRotation: 0
 --- !u!114 &114591598113313392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2036,6 +2039,20 @@ MonoBehaviour:
   preferRangedAttack: 0
   threatRange: 2
   waypointWaitTime: 2
+--- !u!114 &114670045207438766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466486414105918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e0f3709a89c8049bc819849e0d711d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionCirclePrefab: {fileID: 166266, guid: dc884a6ec589ce249acc9b5326859165,
+    type: 2}
+  selectionCircle: {fileID: 0}
 --- !u!114 &114713092817734212
 MonoBehaviour:
   m_ObjectHideFlags: 1

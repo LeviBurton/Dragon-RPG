@@ -292,6 +292,7 @@
     <Compile Include="Assets\_Characters\Scripts\Character.cs" />
     <Compile Include="Assets\_Characters\Scripts\DominantHand.cs" />
     <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
+    <Compile Include="Assets\_Characters\Scripts\Selectable.cs" />
     <Compile Include="Assets\_Characters\Scripts\WaypointContainer.cs" />
     <Compile Include="Assets\_Characters\Scripts\WeaponSystem.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
@@ -362,6 +363,10 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\RtsStyleSelection\Other\CameraControls.cs" />
+    <Compile Include="Assets\RtsStyleSelection\Script\SelectableUnitComponent.cs" />
+    <Compile Include="Assets\RtsStyleSelection\Script\UnitSelectionComponent.cs" />
+    <Compile Include="Assets\RtsStyleSelection\Script\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
@@ -405,6 +410,8 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
+    <None Include="Assets\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
+    <None Include="Assets\RtsStyleSelection\ProjectorAdditiveTint.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\_Characters\Weapons\Ranged\Ball Gun\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />

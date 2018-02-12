@@ -46,6 +46,7 @@ namespace RPG.Characters
         public void TakeDamage(float damage)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+           // Debug.LogFormat("{0} taking {1} damage", this.transform.name, damage);
             var clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
             audioSource.PlayOneShot(clip);
             bool characterDies = currentHealthPoints <= 0;
@@ -58,7 +59,6 @@ namespace RPG.Characters
 
         IEnumerator KillCharacter()
         {
-           
             character.Kill();
             animator.SetTrigger(DEATH_TRIGGER);
 

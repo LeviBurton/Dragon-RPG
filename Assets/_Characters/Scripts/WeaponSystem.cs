@@ -15,6 +15,7 @@ namespace RPG.Characters
         GameObject weaponObject;
         Animator animator;
         Character character;
+        bool isAttacking = false;
 
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
         const string ATTACK_TRIGGER = "Attack";
@@ -25,6 +26,7 @@ namespace RPG.Characters
             character = GetComponent<Character>();
 
             PutWeaponInHand(currentWeaponConfig);
+
             SetAttackAnimation();
         }
 
@@ -56,6 +58,21 @@ namespace RPG.Characters
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!isAttacking)
+                return;
+
+            var healthSystem = other.GetComponent<HealthSystem>();
+
+            // todo -- not sure i need to check the transforms
+            if (healthSystem && this.transform != other.transform)
+            {
+                // Need to make sure this only causes damage when we are attacking.
+                other.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+            }
+        }
+
         public GameObject GetWeaponObject()
         {
             return weaponObject;
@@ -72,6 +89,8 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
+
+            
         }
 
         public WeaponConfig GetCurrentWeapon()
@@ -85,10 +104,29 @@ namespace RPG.Characters
             StopAllCoroutines();
         }
 
+        public void Attack()
+        {
+            StartCoroutine(AttackRepeatedly());
+        }
+
         public void AttackTarget(GameObject targetToAttack)
         {
             target = targetToAttack;
             StartCoroutine(AttackTargetRepeatedly());
+        }
+
+        IEnumerator AttackRepeatedly()
+        {
+            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+            float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
+            bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
+
+            if (isTimeToHitAgain)
+            {
+                AttackOnce();
+            }
+
+            yield return new WaitForSeconds(timeToWait);
         }
 
         IEnumerator AttackTargetRepeatedly()
@@ -112,11 +150,27 @@ namespace RPG.Characters
             }
         }
 
+        void AttackOnce()
+        {
+            isAttacking = true;
+
+            animator.SetTrigger(ATTACK_TRIGGER);
+
+            // todo get from the weapon itself;
+            float damageDelay = currentWeaponConfig.GetDamageDelay();
+            lastHitTime = Time.time;
+
+            SetAttackAnimation();
+            StartCoroutine(DamageAfterDelay(damageDelay));
+        }
+
         void AttackTargetOnce()
         {
             transform.LookAt(target.transform);
 
             animator.SetTrigger(ATTACK_TRIGGER);
+
+            isAttacking = true;
 
             // todo get from the weapon itself;
             float damageDelay = currentWeaponConfig.GetDamageDelay();
@@ -130,7 +184,7 @@ namespace RPG.Characters
         {
             yield return new WaitForSeconds(delay);
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
-          
+            isAttacking = false;
             Debug.DrawLine(GetWeaponObject().transform.position, target.transform.position, Color.red, 2.0f);
         }
 
@@ -165,6 +219,11 @@ namespace RPG.Characters
         float CalculateDamage()
         {
             return baseDamage + currentWeaponConfig.GetAdditionalDamage();
+        }
+
+        void OnWeaponHit()
+        {
+
         }
     }
 }

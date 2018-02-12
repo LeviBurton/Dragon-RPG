@@ -368,6 +368,8 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
+    <None Include="Assets\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
+    <None Include="Assets\RtsStyleSelection\ProjectorAdditiveTint.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\_Characters\Weapons\Ranged\Ball Gun\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />

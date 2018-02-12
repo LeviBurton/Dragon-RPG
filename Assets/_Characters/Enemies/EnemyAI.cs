@@ -20,10 +20,11 @@ namespace RPG.Characters
         [SerializeField] bool preferRangedAttack = false;
         [SerializeField] float threatRange = 10.0f;
         [SerializeField] float waypointWaitTime = 2.0f;
-
+        
         PlayerControl player;
         Character character;
         WeaponSystem weaponSystem;
+        Selectable selectable;
 
         float currentWeaponRange;
         float distanceToPlayer;
@@ -36,6 +37,7 @@ namespace RPG.Characters
         {
             player = FindObjectOfType<PlayerControl>();
             character = GetComponent<Character>();
+            selectable = GetComponent<Selectable>();
         }
 
         void Update()
@@ -64,6 +66,7 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 weaponSystem.StopAttacking();
+            
                 StartCoroutine(Patrol());
             }
 
@@ -71,6 +74,8 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 weaponSystem.StopAttacking();
+
+     
                 StartCoroutine(ChasePlayer());
             }
 
@@ -84,6 +89,7 @@ namespace RPG.Characters
                 }
 
                 state = State.attacking;
+                player.GetComponent<Selectable>().Select();
                 weaponSystem.AttackTarget(player.gameObject);
             }
         }
@@ -91,7 +97,7 @@ namespace RPG.Characters
         IEnumerator Patrol()
         {
             state = State.patrolling;
-
+            player.GetComponent<Selectable>().Deselect();
             while (patrolPath != null)
             {
                 Vector3 nextWayPointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
@@ -121,7 +127,7 @@ namespace RPG.Characters
 
                 yield return new WaitForEndOfFrame();
             }
-
+ 
             character.SetDestination(transform.position);
 
             yield return null;
