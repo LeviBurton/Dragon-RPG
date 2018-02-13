@@ -30,6 +30,8 @@ namespace RPG.Characters
         float distanceToPlayer;
         int nextWaypointIndex;
 
+        // todo this style of state machine gets unweildy quick.
+        // consider changing to FSM.
         enum State { idle, patrolling, attacking, chasing }
         State state = State.idle;
 
@@ -38,11 +40,16 @@ namespace RPG.Characters
             player = FindObjectOfType<PlayerControl>();
             character = GetComponent<Character>();
             selectable = GetComponent<Selectable>();
+            weaponSystem = GetComponent<WeaponSystem>();
+
+            weaponSystem.onWeaponHit += OnWeaponHit;
         }
 
         void Update()
         {
-            weaponSystem = GetComponent<WeaponSystem>();
+            // todo think about what to do about the code below and whether we should do that every frame.
+            // weaponSystem = GetComponent<WeaponSystem>();
+
             currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
             distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
@@ -89,7 +96,6 @@ namespace RPG.Characters
                 }
 
                 state = State.attacking;
-                player.GetComponent<Selectable>().Select();
                 weaponSystem.AttackTarget(player.gameObject);
             }
         }
@@ -137,6 +143,11 @@ namespace RPG.Characters
         {
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
             return distanceToTarget <= currentWeaponRange;
+        }
+
+        void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
+        {
+            Debug.LogFormat("{0} hit {1} with {2} for {3} damage", weaponSystem.name, hitObject.name, weaponSystem.GetCurrentWeapon().name, damage);
         }
 
         void OnDrawGizmos()

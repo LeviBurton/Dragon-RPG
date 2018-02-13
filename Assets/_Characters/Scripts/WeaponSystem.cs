@@ -10,6 +10,11 @@ namespace RPG.Characters
         [SerializeField] float baseDamage = 10f;
         [SerializeField] WeaponConfig currentWeaponConfig;
 
+        // todo consider the arguments here.  do we need more details about the hit?
+        // todo consider just removing this -- its confusing.
+        public delegate void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage);
+        public event OnWeaponHit onWeaponHit;
+
         float lastHitTime = 0f;
         GameObject target;
         GameObject weaponObject;
@@ -58,21 +63,6 @@ namespace RPG.Characters
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!isAttacking)
-                return;
-
-            var healthSystem = other.GetComponent<HealthSystem>();
-
-            // todo -- not sure i need to check the transforms
-            if (healthSystem && this.transform != other.transform)
-            {
-                // Need to make sure this only causes damage when we are attacking.
-                other.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
-            }
-        }
-
         public GameObject GetWeaponObject()
         {
             return weaponObject;
@@ -89,8 +79,6 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
-
-            
         }
 
         public WeaponConfig GetCurrentWeapon()
@@ -109,12 +97,6 @@ namespace RPG.Characters
             StartCoroutine(AttackRepeatedly());
         }
 
-        public void AttackTarget(GameObject targetToAttack)
-        {
-            target = targetToAttack;
-            StartCoroutine(AttackTargetRepeatedly());
-        }
-
         IEnumerator AttackRepeatedly()
         {
             float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
@@ -129,11 +111,32 @@ namespace RPG.Characters
             yield return new WaitForSeconds(timeToWait);
         }
 
+        void AttackOnce()
+        {
+            isAttacking = true;
+
+            animator.SetTrigger(ATTACK_TRIGGER);
+
+            // todo get from the weapon itself;
+            float damageDelay = currentWeaponConfig.GetDamageDelay();
+            lastHitTime = Time.time;
+
+            SetAttackAnimation();
+            StartCoroutine(DamageAfterDelay(damageDelay));
+        }
+
+
+        public void AttackTarget(GameObject targetToAttack)
+        {
+            target = targetToAttack;
+            StartCoroutine(AttackTargetRepeatedly());
+        }
+
         IEnumerator AttackTargetRepeatedly()
         {
             bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
             bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
-   
+
             while (attackerStillAlive && targetStillAlive)
             {
                 float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
@@ -148,20 +151,6 @@ namespace RPG.Characters
 
                 yield return new WaitForSeconds(timeToWait);
             }
-        }
-
-        void AttackOnce()
-        {
-            isAttacking = true;
-
-            animator.SetTrigger(ATTACK_TRIGGER);
-
-            // todo get from the weapon itself;
-            float damageDelay = currentWeaponConfig.GetDamageDelay();
-            lastHitTime = Time.time;
-
-            SetAttackAnimation();
-            StartCoroutine(DamageAfterDelay(damageDelay));
         }
 
         void AttackTargetOnce()
@@ -184,10 +173,9 @@ namespace RPG.Characters
         {
             yield return new WaitForSeconds(delay);
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+            Debug.DrawLine(GetWeaponObject().transform.position + Vector3.up, target.transform.position, Color.green, 2.0f);
             isAttacking = false;
-            Debug.DrawLine(GetWeaponObject().transform.position, target.transform.position, Color.red, 2.0f);
         }
-
 
         void SetAttackAnimation()
         {
@@ -221,9 +209,25 @@ namespace RPG.Characters
             return baseDamage + currentWeaponConfig.GetAdditionalDamage();
         }
 
-        void OnWeaponHit()
+        private void OnTriggerEnter(Collider other)
         {
+            var healthSystem = other.GetComponent<HealthSystem>();
 
+            if (healthSystem && this.transform != other.transform)
+            {
+                if (!isAttacking)
+                    return;
+
+                var damage = CalculateDamage();
+            
+                healthSystem.TakeDamage(damage);
+
+                if (onWeaponHit != null)
+                {
+                    onWeaponHit(this, healthSystem.gameObject, damage);
+                }
+            }
         }
+
     }
 }

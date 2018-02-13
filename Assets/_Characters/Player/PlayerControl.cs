@@ -25,13 +25,23 @@ namespace RPG.Characters
             weaponSystem = GetComponent<WeaponSystem>();
             selectable = GetComponent<Selectable>();
 
+            weaponSystem.onWeaponHit += OnWeaponHit;
+
             RegisterForMouseEvents();
+        }
+
+        void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
+        {
+            Debug.LogFormat("{0} hit {1} with {2} for {3} damage", weaponSystem.name, hitObject.name, weaponSystem.GetCurrentWeapon().name, damage);
         }
 
         void Update()
         {
-            ProcessDirectMovement();
-            ScanControllerForInput();
+            // todo handle controllers with these methods.
+            // ProcessDirectMovement();
+            // ScanControllerForInput();
+
+            // handle keyboard.
             ScanForAbilityKeydown();
         }
 
