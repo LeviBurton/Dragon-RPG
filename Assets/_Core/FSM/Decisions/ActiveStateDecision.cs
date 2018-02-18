@@ -10,7 +10,8 @@ namespace RPG.Core.FSM
     {
         public override bool Decide(StateController controller)
         {
-            bool chaseTargetIsActive = controller.chaseTarget.gameObject.activeSelf;
+            bool chaseTargetIsActive = controller.chaseTarget && controller.chaseTarget.gameObject.activeSelf;
+
             return chaseTargetIsActive;
         }
     }

@@ -13,10 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 4655176356610554, guid: 24df5f3f652d95f4f82e1ec98c13329a,
     type: 2}
+  animatorOverrideController: {fileID: 22100000, guid: 42814c44109fa294f966c58280d4bd9d,
+    type: 2}
   minTimeBetweenHits: 0
   maxAttackRange: 0
   weaponPrefab: {fileID: 1597447782051634, guid: e0adcfd2aa3ca4f459292535d18f5257,
     type: 2}
   attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}
+  useOtherHand: 0
   additionalDamage: 0
   damageDelay: 0.25

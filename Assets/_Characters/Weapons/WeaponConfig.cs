@@ -8,13 +8,26 @@ namespace RPG.Characters
     public class WeaponConfig : ScriptableObject
     {
         public Transform gripTransform;
-
+        [SerializeField] AnimatorOverrideController animatorOverrideController;
         [SerializeField] float minTimeBetweenHits = .5f;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
+        [SerializeField] AnimationClip idleAnimation;
+        [SerializeField] bool useOtherHand;
+
         [SerializeField] float additionalDamage = 0.0f;
         [SerializeField] float damageDelay = 0.25f;
+
+        public AnimatorOverrideController GetAnimatorOverrideController()
+        {
+            return animatorOverrideController;
+        }
+
+        public bool GetUseOtherHand()
+        {
+            return useOtherHand;
+        }
 
         public float GetDamageDelay()
         {
@@ -40,6 +53,11 @@ namespace RPG.Characters
         public GameObject GetWeaponPrefab()
         {
             return weaponPrefab;
+        }
+
+        public AnimationClip GetIdleAnimationClip()
+        {
+            return idleAnimation;
         }
 
         public AnimationClip GetAttackAnimClip()

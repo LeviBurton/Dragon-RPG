@@ -9,7 +9,7 @@ namespace RPG.Characters
     {
         [SerializeField] float baseDamage = 10f;
         [SerializeField] WeaponConfig currentWeaponConfig;
-
+ 
         // todo consider the arguments here.  do we need more details about the hit?
         // todo consider just removing this -- its confusing.
         public delegate void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage);
@@ -21,7 +21,7 @@ namespace RPG.Characters
         Animator animator;
         Character character;
         bool isAttacking = false;
-
+     
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
         const string ATTACK_TRIGGER = "Attack";
 
@@ -30,9 +30,9 @@ namespace RPG.Characters
             animator = GetComponent<Animator>();
             character = GetComponent<Character>();
 
-            PutWeaponInHand(currentWeaponConfig);
+            PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
 
-            SetAttackAnimation();
+            SetAnimatorOverrideController();
         }
 
         void Update()
@@ -50,7 +50,7 @@ namespace RPG.Characters
                 float targetHealth = target.GetComponent<HealthSystem>().healthAsPercentage;
                 targetIsDead = targetHealth <= Mathf.Epsilon;
 
-                float distanceToTarget = Vector3.Distance(transform.position, target.transform.position); 
+                float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
                 targetIsOutOfRange = distanceToTarget > currentWeaponConfig.GetMaxAttackRange();
             }
 
@@ -63,20 +63,38 @@ namespace RPG.Characters
             }
         }
 
+        public void SetAnimatorOverrideController()
+        {
+            var animatorOverrideController = currentWeaponConfig.GetAnimatorOverrideController();
+            
+            animator.runtimeAnimatorController = animatorOverrideController;
+        }
+
         public GameObject GetWeaponObject()
         {
             return weaponObject;
         }
 
-        public void PutWeaponInHand(WeaponConfig weaponToUse)
+        public void PutWeaponInHand(WeaponConfig weaponToUse, bool useOtherHand = false)
         {
             currentWeaponConfig = weaponToUse;
             var weaponPrefab = weaponToUse.GetWeaponPrefab();
-            GameObject dominantHand = RequestDominantHand();
+
+            GameObject handToPutIn;
+
+            if (useOtherHand)
+            {
+                handToPutIn = RequestOtherHand();
+            }
+            else
+            {
+                handToPutIn = RequestDominantHand();
+            }
+
 
             Destroy(weaponObject);
 
-            weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
+            weaponObject = Instantiate(weaponPrefab, handToPutIn.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
         }
@@ -157,6 +175,7 @@ namespace RPG.Characters
         {
             transform.LookAt(target.transform);
 
+
             animator.SetTrigger(ATTACK_TRIGGER);
 
             isAttacking = true;
@@ -177,6 +196,7 @@ namespace RPG.Characters
             isAttacking = false;
         }
 
+        // todo: the WeaponSystem should just return an override controller that the character will then use.
         void SetAttackAnimation()
         {
             if (!character.GetOverrideController())
@@ -189,8 +209,21 @@ namespace RPG.Characters
                 var animatorOverrideController = character.GetOverrideController();
 
                 animator.runtimeAnimatorController = animatorOverrideController;
-                animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+                //animator.applyRootMotion = false;   
+
+                animatorOverrideController["Attack"] = currentWeaponConfig.GetAttackAnimClip();
+
             }
+        }
+
+        GameObject RequestOtherHand()
+        {
+            var otherHands = GetComponentsInChildren<OtherHand>();
+            int numberOfOtherHands = otherHands.Length;
+
+            Assert.IsFalse(numberOfOtherHands > 1, "Multiple dominant hand scripts on player.  Only 1 allowed.");
+
+            return otherHands[0].gameObject;
         }
 
         GameObject RequestDominantHand()
@@ -219,7 +252,7 @@ namespace RPG.Characters
                     return;
 
                 var damage = CalculateDamage();
-            
+
                 healthSystem.TakeDamage(damage);
 
                 if (onWeaponHit != null)

@@ -56,7 +56,7 @@ namespace RPG.Characters
             animator = gameObject.AddComponent<Animator>();
             animator.runtimeAnimatorController = animatorController;
             animator.avatar = characterAvatar;
-
+       
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
             capsuleCollider.center = colliderCenter;
             capsuleCollider.radius = colliderRadius;
@@ -153,6 +153,14 @@ namespace RPG.Characters
             animator.speed = lockMoveSpeedToAnimationSpeed ? moveSpeedMultiplier : animationSpeedMultiplier;
             animator.SetFloat("Forward", forwardAmount * animatorForwardCap, 0.1f, Time.deltaTime);
             animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+
+
+            // Set appropriate idle animation here.  
+            // For example, rifles will have different idle animations than swords, etc.
+            if (forwardAmount <= Mathf.Epsilon && turnAmount <= Mathf.Epsilon)
+            {
+           
+            }
         }
 
         void OnAnimatorMove()

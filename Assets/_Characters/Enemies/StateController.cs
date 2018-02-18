@@ -16,7 +16,7 @@ namespace RPG.Characters
         [HideInInspector] public NavMeshAgent navMeshAgent;
         [HideInInspector] public List<Transform> wayPointList;
         [HideInInspector] public int nextWayPoint;
-        [HideInInspector] public Transform chaseTarget;
+        public Transform chaseTarget;
         [HideInInspector] public float stateTimeElapsed;
 
         private bool aiActive = true;

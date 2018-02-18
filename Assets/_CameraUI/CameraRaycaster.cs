@@ -108,7 +108,11 @@ namespace RPG.CameraUI
             if (potentiallyWalkableHit)
             {
                 Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
-                onMouseOverPotentiallyWalkable(hitInfo.point);
+                if (onMouseOverPotentiallyWalkable != null)
+                {
+                    onMouseOverPotentiallyWalkable(hitInfo.point);
+                }
+
                 return true;
             }
 

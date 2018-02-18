@@ -23,11 +23,13 @@ namespace RPG.Characters
         
         PlayerControl player;
         Character character;
+        Character currentTarget;
+
         WeaponSystem weaponSystem;
         Selectable selectable;
 
         float currentWeaponRange;
-        float distanceToPlayer;
+        float distanceToTarget;
         int nextWaypointIndex;
 
         // todo this style of state machine gets unweildy quick.
@@ -38,6 +40,12 @@ namespace RPG.Characters
         void Start()
         {
             player = FindObjectOfType<PlayerControl>();
+
+            if (player != null)
+            {
+                currentTarget = player.GetComponent<Character>();
+            }
+
             character = GetComponent<Character>();
             selectable = GetComponent<Selectable>();
             weaponSystem = GetComponent<WeaponSystem>();
@@ -51,59 +59,53 @@ namespace RPG.Characters
             // weaponSystem = GetComponent<WeaponSystem>();
 
             currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
-            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-            bool inWeaponCircle = distanceToPlayer <= currentWeaponRange;
-            bool inPlayerThreatCircle = distanceToPlayer <= threatRange;
-            bool inChaseRing = distanceToPlayer >= currentWeaponRange && 
-                                 distanceToPlayer <= chaseRadius;
-            bool outsideChaseRing = distanceToPlayer > chaseRadius;
-
-            //if (inPlayerThreatCircle && preferRangedAttack)
-            //{
-            //    StopAllCoroutines();
-            //    weaponSystem.StopAttacking();
-
-            //    var Direction = transform.TransformDirection(transform.forward);
-            //    var targetPosition = Vector3.Reflect(Direction, Vector3.up) * 100.0f;
-            //    character.SetDestination(targetPosition);
-            //}
-
-            if (outsideChaseRing)
+            if (currentTarget != null)
             {
-                StopAllCoroutines();
-                weaponSystem.StopAttacking();
-            
-                StartCoroutine(Patrol());
-            }
+                distanceToTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
 
-            if (inChaseRing)
-            {
-                StopAllCoroutines();
-                weaponSystem.StopAttacking();
+                bool inWeaponCircle = distanceToTarget <= currentWeaponRange;
+                bool inPlayerThreatCircle = distanceToTarget <= threatRange;
+                bool inChaseRing = distanceToTarget >= currentWeaponRange &&
+                                     distanceToTarget <= chaseRadius;
+                bool outsideChaseRing = distanceToTarget > chaseRadius;
 
-     
-                StartCoroutine(ChasePlayer());
-            }
-
-            if (inWeaponCircle)
-            {
-                StopAllCoroutines();
-
-                if (preferRangedAttack)
+                if (outsideChaseRing)
                 {
-                    character.SetDestination(transform.position);
+                    StopAllCoroutines();
+                    weaponSystem.StopAttacking();
+
+                    StartCoroutine(ChasePlayer());
                 }
 
-                state = State.attacking;
-                weaponSystem.AttackTarget(player.gameObject);
+                else if (inChaseRing)
+                {
+                    StopAllCoroutines();
+                    weaponSystem.StopAttacking();
+
+
+                    StartCoroutine(ChasePlayer());
+                }
+
+                else if (inWeaponCircle)
+                {
+                    StopAllCoroutines();
+
+                    if (preferRangedAttack)
+                    {
+                        character.SetDestination(transform.position);
+                    }
+
+                    state = State.attacking;
+                    weaponSystem.AttackTarget(currentTarget.gameObject);
+                }
             }
         }
 
         IEnumerator Patrol()
         {
             state = State.patrolling;
-            player.GetComponent<Selectable>().Deselect();
+
             while (patrolPath != null)
             {
                 Vector3 nextWayPointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
@@ -127,9 +129,9 @@ namespace RPG.Characters
         {
             state = State.chasing;
 
-            while (distanceToPlayer >= currentWeaponRange)
+            while (distanceToTarget >= currentWeaponRange)
             {
-                character.SetDestination(player.transform.position);
+                character.SetDestination(currentTarget.transform.position);
 
                 yield return new WaitForEndOfFrame();
             }

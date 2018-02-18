@@ -15,8 +15,11 @@ namespace RPG.Core.FSM
 
         private void Chase(StateController controller)
         {
-            controller.navMeshAgent.destination = controller.chaseTarget.position;
-            controller.navMeshAgent.isStopped = false;
+            if (controller.chaseTarget != null)
+            {
+                controller.navMeshAgent.destination = controller.chaseTarget.position;
+                controller.navMeshAgent.isStopped = false;
+            }
         }
     }
 }
