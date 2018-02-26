@@ -15,10 +15,13 @@ MonoBehaviour:
     type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 86683e2ad8bc4ea4a93755c79f3d01db,
     type: 2}
-  minTimeBetweenHits: 2
+  minTimeBetweenHits: 3
   maxAttackRange: 2
   weaponPrefab: {fileID: 181534, guid: 13af847dfa6dbe844ba4b7c902f98f67, type: 2}
   attackAnimation: {fileID: 7400000, guid: d82669b37833c5f4db716b82428a5ad6, type: 3}
   idleAnimation: {fileID: 0}
+  useOtherHand: 0
+  weaponAttackType: 0
   additionalDamage: 5
   damageDelay: 0.25
+  aimWeapon: 0

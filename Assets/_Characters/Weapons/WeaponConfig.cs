@@ -4,24 +4,43 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
+    public enum EWeaponType
+    {
+        Melee,
+        Ranged
+    }
+
     [CreateAssetMenu(menuName = "RPG/Weapon")]
     public class WeaponConfig : ScriptableObject
     {
         public Transform gripTransform;
+        public Transform muzzleTipTransform;
+
         [SerializeField] AnimatorOverrideController animatorOverrideController;
         [SerializeField] float minTimeBetweenHits = .5f;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] GameObject weaponPrefab;
-        [SerializeField] AnimationClip attackAnimation;
-        [SerializeField] AnimationClip idleAnimation;
         [SerializeField] bool useOtherHand;
-
+        [SerializeField] EWeaponType weaponType;
         [SerializeField] float additionalDamage = 0.0f;
         [SerializeField] float damageDelay = 0.25f;
+        [SerializeField] bool aimWeapon;
+        [SerializeField] GameObject particlePrefab;
+        [SerializeField] float baseReloadSpeed;
 
         public AnimatorOverrideController GetAnimatorOverrideController()
         {
             return animatorOverrideController;
+        }
+
+        public GameObject GetParticlePrefab()
+        {
+            return particlePrefab;
+        }
+
+        public bool GetAimWeapon()
+        {
+            return aimWeapon;
         }
 
         public bool GetUseOtherHand()
@@ -55,25 +74,9 @@ namespace RPG.Characters
             return weaponPrefab;
         }
 
-        public AnimationClip GetIdleAnimationClip()
+        public EWeaponType GetWeaponType()
         {
-            return idleAnimation;
-        }
-
-        public AnimationClip GetAttackAnimClip()
-        {
-            RemoveAnimationEvents();
-
-            return attackAnimation;
-        }
-
-        // So that asset packs cannot cause crashes/bugs.
-        private void RemoveAnimationEvents()
-        {
-            if (attackAnimation == null)
-                return;
-
-            attackAnimation.events = new AnimationEvent[0];
+            return weaponType;
         }
     }
 }

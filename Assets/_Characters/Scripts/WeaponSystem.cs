@@ -3,6 +3,9 @@
 using UnityEngine;
 using System.Collections;
 
+// todo: need to re-architect weapon firing/attacking mechanics.
+// the current system isn't really built around the concept of weapons
+// such as semi-automatic, burst fire or fully automatic.
 namespace RPG.Characters
 {
     public class WeaponSystem : MonoBehaviour
@@ -16,14 +19,12 @@ namespace RPG.Characters
         public event OnWeaponHit onWeaponHit;
 
         float lastHitTime = 0f;
-        GameObject target;
+        GameObject target = null;
         GameObject weaponObject;
         Animator animator;
         Character character;
-        bool isAttacking = false;
-     
-        const string DEFAULT_ATTACK = "DEFAULT ATTACK";
-        const string ATTACK_TRIGGER = "Attack";
+        public bool isAttacking = false;
+        float animStartTime;
 
         void Start()
         {
@@ -36,6 +37,11 @@ namespace RPG.Characters
         }
 
         void Update()
+        {
+            CheckIfShouldStopAttacking();
+        }
+
+        private void CheckIfShouldStopAttacking()
         {
             bool targetIsDead;
             bool targetIsOutOfRange;
@@ -75,6 +81,11 @@ namespace RPG.Characters
             return weaponObject;
         }
 
+        public WeaponConfig GetCurrentWeapon()
+        {
+            return currentWeaponConfig;
+        }
+
         public void PutWeaponInHand(WeaponConfig weaponToUse, bool useOtherHand = false)
         {
             currentWeaponConfig = weaponToUse;
@@ -97,50 +108,84 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, handToPutIn.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
+
         }
 
-        public WeaponConfig GetCurrentWeapon()
+        public void SetAiming(bool Aim)
         {
-            return currentWeaponConfig;
+            animator.SetBool("Aim", Aim);
+        }
+
+        public void Reload()
+        {
+            StopAttacking();
+            SetAiming(false);
+            animator.SetTrigger("Reload");
         }
 
         public void StopAttacking()
         {
-            animator.StopPlayback();
             StopAllCoroutines();
+        }
+
+        public void AutoAttack()
+        {
+            StartCoroutine(AttackLoop());
         }
 
         public void Attack()
         {
-            StartCoroutine(AttackRepeatedly());
+            // todo: weapon rearchitecture starts here..
+            // it really ooils down to: is this a looping animation, or not?
+            AttackLoop();
         }
 
-        IEnumerator AttackRepeatedly()
+        IEnumerator AttackLoop()
         {
             float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+            isAttacking = true;
             float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
-            bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
 
-            if (isTimeToHitAgain)
+            while (isAttacking)
             {
-                AttackOnce();
+                bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
+
+                if (isTimeToHitAgain)
+                {
+                    AttackOnce();
+                    lastHitTime = Time.time;
+                }
+
+                yield return new WaitForSeconds(timeToWait);
+                animator.ResetTrigger("Attack");
             }
 
-            yield return new WaitForSeconds(timeToWait);
+            yield return null;
         }
 
         void AttackOnce()
         {
-            isAttacking = true;
-
-            animator.SetTrigger(ATTACK_TRIGGER);
-
             // todo get from the weapon itself;
             float damageDelay = currentWeaponConfig.GetDamageDelay();
-            lastHitTime = Time.time;
 
-            SetAttackAnimation();
-            StartCoroutine(DamageAfterDelay(damageDelay));
+            animator.SetTrigger("Attack");
+
+            var particlePrefab = currentWeaponConfig.GetParticlePrefab();
+
+            // todo -- consider renaming this stuff since its specific to things with muzzles
+            if (particlePrefab != null)
+            {
+                var muzzleTip = weaponObject.transform.Find("MuzzleTip");
+
+                var particleObject = Instantiate(particlePrefab, muzzleTip.transform);
+                particleObject.transform.localPosition = muzzleTip.transform.localPosition;
+                particleObject.transform.localRotation = muzzleTip.transform.localRotation;
+             
+                particleObject.GetComponent<ParticleSystem>().Play();
+
+                StartCoroutine(DestroyParticleWhenFinished(particleObject));
+            }
+           //StartCoroutine(DamageAfterDelay(damageDelay));
         }
 
 
@@ -155,6 +200,7 @@ namespace RPG.Characters
             bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
             bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
 
+    
             while (attackerStillAlive && targetStillAlive)
             {
                 float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
@@ -169,52 +215,36 @@ namespace RPG.Characters
 
                 yield return new WaitForSeconds(timeToWait);
             }
+
         }
 
         void AttackTargetOnce()
         {
             transform.LookAt(target.transform);
 
-
-            animator.SetTrigger(ATTACK_TRIGGER);
+            animator.SetTrigger("Attack");
 
             isAttacking = true;
-
-            // todo get from the weapon itself;
             float damageDelay = currentWeaponConfig.GetDamageDelay();
             lastHitTime = Time.time;
 
-            SetAttackAnimation();
             StartCoroutine(DamageAfterDelay(damageDelay));
         }
 
         IEnumerator DamageAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
-            Debug.DrawLine(GetWeaponObject().transform.position + Vector3.up, target.transform.position, Color.green, 2.0f);
-            isAttacking = false;
-        }
+            if (target == null)
+                yield return null;
 
-        // todo: the WeaponSystem should just return an override controller that the character will then use.
-        void SetAttackAnimation()
-        {
-            if (!character.GetOverrideController())
+            var targetHealthComponent = target.GetComponent<HealthSystem>();
+            if (targetHealthComponent != null)
             {
-                Debug.Break();
-                Debug.LogAssertion("Please provide " + gameObject + " with an animator override controller ");
-            }
-            else
-            {
-                var animatorOverrideController = character.GetOverrideController();
-
-                animator.runtimeAnimatorController = animatorOverrideController;
-                //animator.applyRootMotion = false;   
-
-                animatorOverrideController["Attack"] = currentWeaponConfig.GetAttackAnimClip();
-
+                targetHealthComponent.TakeDamage(CalculateDamage());
+                Debug.DrawLine(GetWeaponObject().transform.position + Vector3.up, target.transform.position, Color.green, 2.0f);
             }
         }
+
 
         GameObject RequestOtherHand()
         {
@@ -262,5 +292,16 @@ namespace RPG.Characters
             }
         }
 
+        IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
+        {
+            while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
+            {
+                yield return new WaitForSeconds(20f);
+            }
+
+            Destroy(particlePrefab);
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

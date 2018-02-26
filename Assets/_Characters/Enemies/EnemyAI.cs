@@ -32,6 +32,9 @@ namespace RPG.Characters
         float distanceToTarget;
         int nextWaypointIndex;
 
+        bool isAttacking = false;
+        bool isAiming = false;
+
         // todo this style of state machine gets unweildy quick.
         // consider changing to FSM.
         enum State { idle, patrolling, attacking, chasing }
@@ -57,8 +60,27 @@ namespace RPG.Characters
         {
             // todo think about what to do about the code below and whether we should do that every frame.
             // weaponSystem = GetComponent<WeaponSystem>();
+            
+            // todo this is just test code here.  we don't do any input normally here.
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                weaponSystem.SetAiming(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+
+                weaponSystem.Reload();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                weaponSystem.SetAiming(weaponSystem.GetCurrentWeapon().GetAimWeapon());
+                weaponSystem.AutoAttack();
+            }
 
             currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
+
+            return;
 
             if (currentTarget != null)
             {
@@ -73,17 +95,12 @@ namespace RPG.Characters
                 if (outsideChaseRing)
                 {
                     StopAllCoroutines();
-                    weaponSystem.StopAttacking();
-
                     StartCoroutine(ChasePlayer());
                 }
 
                 else if (inChaseRing)
                 {
                     StopAllCoroutines();
-                    weaponSystem.StopAttacking();
-
-
                     StartCoroutine(ChasePlayer());
                 }
 
@@ -98,6 +115,7 @@ namespace RPG.Characters
 
                     state = State.attacking;
                     weaponSystem.AttackTarget(currentTarget.gameObject);
+          
                 }
             }
         }
