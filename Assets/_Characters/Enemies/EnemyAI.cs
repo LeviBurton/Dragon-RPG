@@ -23,7 +23,7 @@ namespace RPG.Characters
         
         PlayerControl player;
         Character character;
-        Character currentTarget;
+        public GameObject currentTarget;
 
         WeaponSystem weaponSystem;
         Selectable selectable;
@@ -44,16 +44,12 @@ namespace RPG.Characters
         {
             player = FindObjectOfType<PlayerControl>();
 
-            if (player != null)
-            {
-                currentTarget = player.GetComponent<Character>();
-            }
-
             character = GetComponent<Character>();
             selectable = GetComponent<Selectable>();
             weaponSystem = GetComponent<WeaponSystem>();
 
             weaponSystem.onWeaponHit += OnWeaponHit;
+            weaponSystem.target = currentTarget;
         }
 
         void Update()
@@ -69,9 +65,9 @@ namespace RPG.Characters
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-
                 weaponSystem.Reload();
             }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 weaponSystem.SetAiming(weaponSystem.GetCurrentWeapon().GetAimWeapon());
@@ -79,6 +75,13 @@ namespace RPG.Characters
             }
 
             currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
+
+            if (!character.IsAlive())
+            {
+                weaponSystem.StopAttacking();
+            }
+
+            transform.LookAt(currentTarget.transform);
 
             return;
 
@@ -114,7 +117,7 @@ namespace RPG.Characters
                     }
 
                     state = State.attacking;
-                    weaponSystem.AttackTarget(currentTarget.gameObject);
+                    //weaponSystem.AttackTarget(currentTarget.gameObject);
           
                 }
             }

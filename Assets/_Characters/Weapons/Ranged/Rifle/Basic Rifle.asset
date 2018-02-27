@@ -17,13 +17,13 @@ MonoBehaviour:
     type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 7e61736a917e47d42a5b46488f562a72,
     type: 2}
-  minTimeBetweenHits: 0.1
-  maxAttackRange: 2
+  minTimeBetweenHits: 0.2
+  maxAttackRange: 10
   weaponPrefab: {fileID: 118234, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
   useOtherHand: 0
   weaponType: 1
   additionalDamage: 0
-  damageDelay: 0.25
+  damageDelay: 0.1
   aimWeapon: 1
   particlePrefab: {fileID: 1132613797719676, guid: 46af5cb4413bf2042b5d85da775b9843,
     type: 2}

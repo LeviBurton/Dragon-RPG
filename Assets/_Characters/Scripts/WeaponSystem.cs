@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 
 // todo: need to re-architect weapon firing/attacking mechanics.
+// we also need to handle blocking!
 // the current system isn't really built around the concept of weapons
 // such as semi-automatic, burst fire or fully automatic.
 namespace RPG.Characters
@@ -18,8 +19,8 @@ namespace RPG.Characters
         public delegate void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage);
         public event OnWeaponHit onWeaponHit;
 
-        float lastHitTime = 0f;
-        GameObject target = null;
+        float lastAttackTime = 0f;
+        public GameObject target = null;
         GameObject weaponObject;
         Animator animator;
         Character character;
@@ -38,35 +39,6 @@ namespace RPG.Characters
 
         void Update()
         {
-            CheckIfShouldStopAttacking();
-        }
-
-        private void CheckIfShouldStopAttacking()
-        {
-            bool targetIsDead;
-            bool targetIsOutOfRange;
-
-            if (target == null)
-            {
-                targetIsDead = false;
-                targetIsOutOfRange = false;
-            }
-            else
-            {
-                float targetHealth = target.GetComponent<HealthSystem>().healthAsPercentage;
-                targetIsDead = targetHealth <= Mathf.Epsilon;
-
-                float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-                targetIsOutOfRange = distanceToTarget > currentWeaponConfig.GetMaxAttackRange();
-            }
-
-            var characterHealth = GetComponent<HealthSystem>().healthAsPercentage;
-            bool characterIsDead = characterHealth <= Mathf.Epsilon;
-
-            if (characterIsDead || targetIsOutOfRange || targetIsDead)
-            {
-                StopAllCoroutines();
-            }
         }
 
         public void SetAnimatorOverrideController()
@@ -111,6 +83,11 @@ namespace RPG.Characters
 
         }
 
+        public void SetTarget(GameObject target)
+        {
+            this.target = target;
+        }
+
         public void SetAiming(bool Aim)
         {
             animator.SetBool("Aim", Aim);
@@ -125,39 +102,33 @@ namespace RPG.Characters
 
         public void StopAttacking()
         {
+            isAttacking = false;
             StopAllCoroutines();
         }
 
         public void AutoAttack()
         {
+            if (isAttacking)
+            {
+                return;
+            }
+
+            isAttacking = true;
             StartCoroutine(AttackLoop());
         }
 
         public void Attack()
         {
-            // todo: weapon rearchitecture starts here..
-            // it really ooils down to: is this a looping animation, or not?
-            AttackLoop();
+            AttackOnce();
         }
 
         IEnumerator AttackLoop()
         {
-            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
-            isAttacking = true;
-            float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
-
             while (isAttacking)
             {
-                bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
+                AttackOnce();
 
-                if (isTimeToHitAgain)
-                {
-                    AttackOnce();
-                    lastHitTime = Time.time;
-                }
-
-                yield return new WaitForSeconds(timeToWait);
-                animator.ResetTrigger("Attack");
+                yield return new WaitForEndOfFrame();
             }
 
             yield return null;
@@ -165,86 +136,76 @@ namespace RPG.Characters
 
         void AttackOnce()
         {
-            // todo get from the weapon itself;
-            float damageDelay = currentWeaponConfig.GetDamageDelay();
+            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+            float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
+            bool canAttackAgain = false;
 
-            animator.SetTrigger("Attack");
-
-            var particlePrefab = currentWeaponConfig.GetParticlePrefab();
-
-            // todo -- consider renaming this stuff since its specific to things with muzzles
-            if (particlePrefab != null)
+            // special case for never having attacked.  seems smelly.
+            if (lastAttackTime == 0)
             {
-                var muzzleTip = weaponObject.transform.Find("MuzzleTip");
-
-                var particleObject = Instantiate(particlePrefab, muzzleTip.transform);
-                particleObject.transform.localPosition = muzzleTip.transform.localPosition;
-                particleObject.transform.localRotation = muzzleTip.transform.localRotation;
-             
-                particleObject.GetComponent<ParticleSystem>().Play();
-
-                StartCoroutine(DestroyParticleWhenFinished(particleObject));
+                canAttackAgain = true;
             }
-           //StartCoroutine(DamageAfterDelay(damageDelay));
-        }
-
-
-        public void AttackTarget(GameObject targetToAttack)
-        {
-            target = targetToAttack;
-            StartCoroutine(AttackTargetRepeatedly());
-        }
-
-        IEnumerator AttackTargetRepeatedly()
-        {
-            bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
-            bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
-
-    
-            while (attackerStillAlive && targetStillAlive)
+            else
             {
-                float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
-                float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
+                canAttackAgain = Time.time - lastAttackTime > timeToWait;
+            }
 
-                bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
+            if (canAttackAgain)
+            {
+                lastAttackTime = Time.time;
+                var particlePrefab = currentWeaponConfig.GetParticlePrefab();
+                
+                // todo: how to support multiple attack types?
+                animator.SetTrigger("Attack");
 
-                if (isTimeToHitAgain)
+                if (particlePrefab != null)
                 {
-                    AttackTargetOnce();
+                    var muzzleTip = weaponObject.transform.Find("MuzzleTip");
+
+                    var particleObject = Instantiate(particlePrefab, muzzleTip.transform);
+                    particleObject.transform.localPosition = muzzleTip.transform.localPosition;
+                    particleObject.transform.localRotation = muzzleTip.transform.localRotation;
+                    particleObject.GetComponent<ParticleSystem>().Play();
+
+                    StartCoroutine(DestroyParticleWhenFinished(particleObject));
                 }
 
-                yield return new WaitForSeconds(timeToWait);
+                if (target != null)
+                {
+                    float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
+                    if (distanceToTarget <= currentWeaponConfig.GetMaxAttackRange())
+                    {
+                        // todo: check to make sure we hit by rolling a to-hit roll, etc.
+                        StartCoroutine(DamageAfterDelay(currentWeaponConfig.GetDamageDelay()));
+                    }
+                }
             }
-
-        }
-
-        void AttackTargetOnce()
-        {
-            transform.LookAt(target.transform);
-
-            animator.SetTrigger("Attack");
-
-            isAttacking = true;
-            float damageDelay = currentWeaponConfig.GetDamageDelay();
-            lastHitTime = Time.time;
-
-            StartCoroutine(DamageAfterDelay(damageDelay));
         }
 
         IEnumerator DamageAfterDelay(float delay)
         {
+            // Pause for delay time to better simulate when a weapon attack actually hits the target
+            // think of a sword swing for example -- we dont want to damage on the wind up, etc.
             yield return new WaitForSeconds(delay);
+
             if (target == null)
-                yield return null;
+            {
+                yield return new WaitForEndOfFrame();
+            }
 
             var targetHealthComponent = target.GetComponent<HealthSystem>();
             if (targetHealthComponent != null)
             {
-                targetHealthComponent.TakeDamage(CalculateDamage());
-                Debug.DrawLine(GetWeaponObject().transform.position + Vector3.up, target.transform.position, Color.green, 2.0f);
+                var damage = CalculateDamage();
+
+                targetHealthComponent.TakeDamage(damage);
+
+                // notify anyone that we have a hit.
+                onWeaponHit(this, target, damage);
+
+                // Debug.DrawLine(GetWeaponObject().transform.position + Vector3.up, target.transform.position, Color.green, 2.0f);
             }
         }
-
 
         GameObject RequestOtherHand()
         {
@@ -272,36 +233,39 @@ namespace RPG.Characters
             return baseDamage + currentWeaponConfig.GetAdditionalDamage();
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            var healthSystem = other.GetComponent<HealthSystem>();
-
-            if (healthSystem && this.transform != other.transform)
-            {
-                if (!isAttacking)
-                    return;
-
-                var damage = CalculateDamage();
-
-                healthSystem.TakeDamage(damage);
-
-                if (onWeaponHit != null)
-                {
-                    onWeaponHit(this, healthSystem.gameObject, damage);
-                }
-            }
-        }
-
         IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
         {
             while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
             {
-                yield return new WaitForSeconds(20f);
+                yield return new WaitForSeconds(3f);
             }
 
             Destroy(particlePrefab);
 
             yield return new WaitForEndOfFrame();
         }
+
+        // todo: this was for more precise weapon collision detection.
+        // for now we are just going to simply check an attack score vs the target.
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    var healthSystem = other.GetComponent<HealthSystem>();
+
+        //    if (healthSystem && this.transform != other.transform)
+        //    {
+        //        if (!isAttacking)
+        //            return;
+
+        //        var damage = CalculateDamage();
+
+        //        healthSystem.TakeDamage(damage);
+
+        //        if (onWeaponHit != null)
+        //        {
+        //            onWeaponHit(this, healthSystem.gameObject, damage);
+        //        }
+        //    }
+        //}
+
     }
 }

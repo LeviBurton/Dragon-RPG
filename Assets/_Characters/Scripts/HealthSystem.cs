@@ -46,9 +46,9 @@ namespace RPG.Characters
         public void TakeDamage(float damage)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
-           // Debug.LogFormat("{0} taking {1} damage", this.transform.name, damage);
-            var clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
-            audioSource.PlayOneShot(clip);
+         
+           // var clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
+          //  audioSource.PlayOneShot(clip);
             bool characterDies = currentHealthPoints <= 0;
 
             if (characterDies)
@@ -69,8 +69,6 @@ namespace RPG.Characters
                 audioSource.Play();
                 yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
-                // todo -- this is flakey.  replace with something better.
-               // SceneManager.LoadScene(0);
             }
             else
             {
