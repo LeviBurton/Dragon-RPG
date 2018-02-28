@@ -35,6 +35,10 @@ namespace RPG.Characters
             UpdateHealthBar();
         }
 
+        public bool IsAlive()
+        {
+            return healthAsPercentage > 0;
+        }
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 

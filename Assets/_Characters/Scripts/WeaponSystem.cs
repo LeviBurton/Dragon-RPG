@@ -27,11 +27,14 @@ namespace RPG.Characters
         public bool isAttacking = false;
         float animStartTime;
 
-        void Start()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
             character = GetComponent<Character>();
+        }
 
+        void Start()
+        {
             PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
 
             SetAnimatorOverrideController();
@@ -81,6 +84,13 @@ namespace RPG.Characters
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
 
+        }
+
+        // todo: should we use the instance target?
+        public bool IsTargetInRange(GameObject target)
+        {
+            float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
+            return distanceToTarget <= GetCurrentWeapon().GetMaxAttackRange();
         }
 
         public void SetTarget(GameObject target)

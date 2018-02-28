@@ -4,6 +4,7 @@ using UnityEngine;
 
 using RPG.Core;
 using System;
+using RPG.StateMachine;
 
 namespace RPG.Characters
 {
@@ -25,6 +26,11 @@ namespace RPG.Characters
         Character character;
         public GameObject currentTarget;
 
+        public WeaponSystem GetWeaponSystem()
+        {
+            return weaponSystem;
+        }
+
         WeaponSystem weaponSystem;
         Selectable selectable;
 
@@ -40,6 +46,12 @@ namespace RPG.Characters
         enum State { idle, patrolling, attacking, chasing }
         State state = State.idle;
 
+        StateMachine<EnemyAI> stateMachine;
+        public StateMachine<EnemyAI> GetStateMachine()
+        {
+            return stateMachine;
+        }
+
         void Start()
         {
             player = FindObjectOfType<PlayerControl>();
@@ -50,10 +62,16 @@ namespace RPG.Characters
 
             weaponSystem.onWeaponHit += OnWeaponHit;
             weaponSystem.target = currentTarget;
+
+            stateMachine = new StateMachine<EnemyAI>(this);
+            stateMachine.ChangeState(Enemy_StartState.Instance);
         }
 
         void Update()
         {
+            // tick the state machine. 
+            stateMachine.Update();
+
             // todo think about what to do about the code below and whether we should do that every frame.
             // weaponSystem = GetComponent<WeaponSystem>();
             
@@ -81,7 +99,7 @@ namespace RPG.Characters
                 weaponSystem.StopAttacking();
             }
 
-            transform.LookAt(currentTarget.transform);
+          //  transform.LookAt(currentTarget.transform);
 
             return;
 

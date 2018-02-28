@@ -288,7 +288,7 @@
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyAI.cs" />
-    <Compile Include="Assets\_Characters\Enemies\StateController.cs" />
+    <Compile Include="Assets\_Characters\Enemies\States\EnemyStates.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerControl.cs" />
     <Compile Include="Assets\_Characters\Scripts\Character.cs" />
     <Compile Include="Assets\_Characters\Scripts\DominantHand.cs" />
@@ -311,14 +311,8 @@
     <Compile Include="Assets\_Characters\Weapons\WeaponPickupPoint.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
     <Compile Include="Assets\_Core\FaceCamera.cs" />
-    <Compile Include="Assets\_Core\FSM\Action.cs" />
-    <Compile Include="Assets\_Core\FSM\Actions\ChaseAction.cs" />
-    <Compile Include="Assets\_Core\FSM\Actions\PatrolAction.cs" />
-    <Compile Include="Assets\_Core\FSM\Decision.cs" />
-    <Compile Include="Assets\_Core\FSM\Decisions\ActiveStateDecision.cs" />
-    <Compile Include="Assets\_Core\FSM\Decisions\LookDecision.cs" />
-    <Compile Include="Assets\_Core\FSM\State.cs" />
-    <Compile Include="Assets\_Core\FSM\Transition.cs" />
+    <Compile Include="Assets\_Core\FSM\StateMachine.cs" />
+    <Compile Include="Assets\_Core\SingletonBase.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />

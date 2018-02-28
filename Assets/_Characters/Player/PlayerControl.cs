@@ -128,6 +128,7 @@ namespace RPG.Characters
             abilities.AttemptSpecialAbility(0, enemy.gameObject);
         }
 
+        // todo: move to WeaponSystem
         bool IsTargetInRange(GameObject target)
         {
             float distanceToTarget = Vector3.Distance(character.transform.position, target.transform.position);
