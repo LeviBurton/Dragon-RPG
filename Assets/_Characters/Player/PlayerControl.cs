@@ -17,7 +17,7 @@ namespace RPG.Characters
         Character character;
         WeaponSystem weaponSystem;
         Selectable selectable;
-    
+
         void Start()
         {
             character = GetComponent<Character>();
@@ -25,7 +25,10 @@ namespace RPG.Characters
             weaponSystem = GetComponent<WeaponSystem>();
             selectable = GetComponent<Selectable>();
 
-            weaponSystem.onWeaponHit += OnWeaponHit;
+            if (weaponSystem != null)
+            {
+                weaponSystem.onWeaponHit += OnWeaponHit;
+            }
 
             RegisterForMouseEvents();
         }
@@ -88,7 +91,7 @@ namespace RPG.Characters
 
             if (Input.GetMouseButton(0) && isTargetInRange)
             {
-               // weaponSystem.AttackTarget(enemy.gameObject);
+                weaponSystem.Attack();
             }
             else if (Input.GetMouseButton(0) && !isTargetInRange)
             {

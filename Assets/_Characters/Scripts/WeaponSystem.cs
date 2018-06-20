@@ -29,12 +29,13 @@ namespace RPG.Characters
 
         private void Awake()
         {
-            animator = GetComponent<Animator>();
+           
             character = GetComponent<Character>();
         }
 
         void Start()
         {
+            animator = GetComponent<Animator>();
             PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
 
             SetAnimatorOverrideController();

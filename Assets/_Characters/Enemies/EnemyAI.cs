@@ -6,6 +6,8 @@ using RPG.Core;
 using System;
 using RPG.StateMachine;
 
+using Panda;
+
 namespace RPG.Characters
 {
     [RequireComponent(typeof(HealthSystem))]
@@ -46,12 +48,36 @@ namespace RPG.Characters
         enum State { idle, patrolling, attacking, chasing }
         State state = State.idle;
 
+
+        #region Tasks
+        [Task]
+        void Enemy_ToggleAttacking()
+        {
+            isAttacking = !isAttacking;
+
+            if (isAttacking)
+            {
+                weaponSystem.SetAiming(weaponSystem.GetCurrentWeapon().GetAimWeapon());
+                weaponSystem.AutoAttack();
+            }
+            else
+            {
+                weaponSystem.StopAttacking();
+            }
+
+            Task.current.Succeed();
+        }
+        #endregion
+
+
+
         StateMachine<EnemyAI> stateMachine;
         public StateMachine<EnemyAI> GetStateMachine()
         {
             return stateMachine;
         }
 
+    
         void Start()
         {
             player = FindObjectOfType<PlayerControl>();
@@ -63,17 +89,22 @@ namespace RPG.Characters
             weaponSystem.onWeaponHit += OnWeaponHit;
             weaponSystem.target = currentTarget;
 
-            stateMachine = new StateMachine<EnemyAI>(this);
-            stateMachine.ChangeState(Enemy_StartState.Instance);
+            //stateMachine = new StateMachine<EnemyAI>(this);
+            //stateMachine.ChangeState(Enemy_OnSpawnState.Instance);
+
+            // try to add ourselves to the debug view.  should be as easy as getting some
+            // kind of layout container and adding ourselves to it.
+
         }
 
         void Update()
         {
             // tick the state machine. 
-            stateMachine.Update();
+           // stateMachine.Update();
+
 
             // todo think about what to do about the code below and whether we should do that every frame.
-            // weaponSystem = GetComponent<WeaponSystem>();
+            weaponSystem = GetComponent<WeaponSystem>();
             
             // todo this is just test code here.  we don't do any input normally here.
             if (Input.GetKeyDown(KeyCode.A))
@@ -99,7 +130,7 @@ namespace RPG.Characters
                 weaponSystem.StopAttacking();
             }
 
-          //  transform.LookAt(currentTarget.transform);
+            //transform.LookAt(currentTarget.transform);
 
             return;
 
@@ -136,7 +167,6 @@ namespace RPG.Characters
 
                     state = State.attacking;
                     //weaponSystem.AttackTarget(currentTarget.gameObject);
-          
                 }
             }
         }

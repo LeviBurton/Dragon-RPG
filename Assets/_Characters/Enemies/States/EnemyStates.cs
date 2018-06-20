@@ -6,7 +6,7 @@ using RPG.Core;
 
 namespace RPG.Characters
 {
-    public class Enemy_StartState : SingletonBase<Enemy_StartState>, IState<EnemyAI>
+    public class Enemy_OnSpawnState : SingletonBase<Enemy_OnSpawnState>, IState<EnemyAI>
     {
         public void OnEnter(EnemyAI Entity)
         {
@@ -30,6 +30,7 @@ namespace RPG.Characters
 
         public void OnExecute(EnemyAI Entity)
         {
+
         }
 
         public void OnExit(EnemyAI Entity)
@@ -89,7 +90,8 @@ namespace RPG.Characters
                 {
                     if (targetHealthSystem.IsAlive())
                     {
-                        Debug.LogFormat("AutoAttacking: {0} with {1}", Entity.currentTarget.name, Entity.GetWeaponSystem().name);
+                        Debug.LogFormat("AutoAttacking: {0} with {1}", Entity.currentTarget.name, Entity.GetWeaponSystem().name);   
+                        Entity.GetWeaponSystem().SetAiming(Entity.GetWeaponSystem().GetCurrentWeapon().GetAimWeapon());
                         Entity.GetWeaponSystem().AutoAttack();
                     }
                     else
@@ -134,6 +136,7 @@ namespace RPG.Characters
         public void OnExit(EnemyAI Entity)
         {
             Entity.GetWeaponSystem().StopAttacking();
+            Entity.GetWeaponSystem().SetAiming(false);
             Debug.LogFormat("Stopped Attacking {0}", Entity.currentTarget.name);
         }
     }

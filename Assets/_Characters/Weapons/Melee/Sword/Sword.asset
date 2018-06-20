@@ -17,7 +17,7 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: 86683e2ad8bc4ea4a93755c79f3d01db,
     type: 2}
   minTimeBetweenHits: 3
-  maxAttackRange: 3
+  maxAttackRange: 2
   weaponPrefab: {fileID: 181534, guid: 13af847dfa6dbe844ba4b7c902f98f67, type: 2}
   useOtherHand: 0
   weaponType: 0

@@ -8,12 +8,6 @@ namespace RPG.CameraUI
     {
         [SerializeField] GameObject gameObjectToFollow;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         void LateUpdate()
         {
