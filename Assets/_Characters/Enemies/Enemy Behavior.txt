@@ -1,0 +1,4 @@
+tree("Root")
+	while 
+		IsKeyDown("A")
+		Enemy_ToggleAttacking	

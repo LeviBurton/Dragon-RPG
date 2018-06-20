@@ -91,7 +91,7 @@ namespace RPG.Characters
 
             if (Input.GetMouseButton(0) && isTargetInRange)
             {
-                weaponSystem.Attack();
+                //weaponSystem.AttackTarget(enemy.gameObject);
             }
             else if (Input.GetMouseButton(0) && !isTargetInRange)
             {

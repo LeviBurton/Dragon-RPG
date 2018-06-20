@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e06118bfb1fe1584793348b3d9869154, type: 3}
+  m_Name: Staff
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4094414382120820, guid: 00c82e0fc62e1f64f81355e77ed9a209,
+    type: 2}
+  muzzleTipTransform: {fileID: 0}
+  animatorOverrideController: {fileID: 22100000, guid: 47651ef3d700ba549b5a2fe40f241396,
+    type: 2}
+  minTimeBetweenHits: 1
+  maxAttackRange: 10
+  weaponPrefab: {fileID: 1215254867453402, guid: d98fd87d7e650984a9921928d9ad4759,
+    type: 2}
+  useOtherHand: 0
+  weaponType: 0
+  additionalDamage: 0
+  damageDelay: 0.25
+  aimWeapon: 0
+  particlePrefab: {fileID: 0}
+  baseReloadSpeed: 0
