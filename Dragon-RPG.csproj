@@ -291,7 +291,7 @@
   <ItemGroup>
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
-    <Compile Include="Assets\_Characters\Enemies\EnemyAI.cs" />
+    <Compile Include="Assets\_Characters\Enemies\AI\EnemyAI.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerControl.cs" />
     <Compile Include="Assets\_Characters\Scripts\AIControl.cs" />
     <Compile Include="Assets\_Characters\Scripts\Character.cs" />
@@ -463,7 +463,6 @@
     <None Include="Assets\_Characters\Enemies\AI\Enemy_Group.BT.txt" />
     <None Include="Assets\_Characters\Enemies\AI\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Characters\Enemies\AI\Enemy_Ranged.BT.txt" />
-    <None Include="Assets\_Characters\Enemies\Enemy Behavior.txt" />
     <None Include="Assets\_Characters\Materials\CircleProjectcionShader.shader" />
     <None Include="Assets\_Characters\Weapons\Ranged\Ball Gun\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />

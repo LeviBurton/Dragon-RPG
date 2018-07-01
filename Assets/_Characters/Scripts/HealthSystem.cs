@@ -9,9 +9,11 @@ namespace RPG.Characters
 {
     public class HealthSystem : MonoBehaviour
     {
-        [SerializeField] float maxHealthPoints = 100f;
+        [SerializeField] float maxHealthPoints = 100f;      // TODO: get from owner config (such as Enemy Config, Player Config)
         [SerializeField] float deathVanishSeconds = 2.0f;
         [SerializeField] Image healthBar;
+        [SerializeField] Slider healthBarSlider;
+
         [SerializeField] AudioClip[] damageSounds;
         [SerializeField] AudioClip[] deathSounds;
 
@@ -83,9 +85,11 @@ namespace RPG.Characters
 
         void UpdateHealthBar()
         {
-            if (healthBar != null)
+            if (healthBarSlider != null)
             {
-                healthBar.fillAmount = healthAsPercentage;
+                healthBarSlider.value = healthAsPercentage;
+
+                //healthBar.fillAmount = healthAsPercentage;
             }
         }
 

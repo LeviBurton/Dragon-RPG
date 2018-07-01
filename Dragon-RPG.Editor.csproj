@@ -396,7 +396,6 @@
     <None Include="Assets\_Characters\Enemies\AI\Enemy_Group.BT.txt" />
     <None Include="Assets\_Characters\Enemies\AI\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Characters\Enemies\AI\Enemy_Ranged.BT.txt" />
-    <None Include="Assets\_Characters\Enemies\Enemy Behavior.txt" />
     <None Include="Assets\_Characters\Materials\CircleProjectcionShader.shader" />
     <None Include="Assets\_Characters\Weapons\Ranged\Ball Gun\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
