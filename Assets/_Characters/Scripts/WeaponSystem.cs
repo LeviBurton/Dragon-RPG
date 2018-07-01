@@ -29,16 +29,19 @@ namespace RPG.Characters
 
         private void Awake()
         {
-           
             character = GetComponent<Character>();
         }
 
         void Start()
         {
-            animator = GetComponent<Animator>();
-            PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
+            if (currentWeaponConfig != null)
+            {
+                animator = GetComponent<Animator>();
 
-            SetAnimatorOverrideController();
+                PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
+
+                SetAnimatorOverrideController();
+            }
         }
 
         void Update()
@@ -78,13 +81,11 @@ namespace RPG.Characters
                 handToPutIn = RequestDominantHand();
             }
 
-
             Destroy(weaponObject);
 
             weaponObject = Instantiate(weaponPrefab, handToPutIn.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
-
         }
 
         // todo: should we use the instance target?
@@ -147,50 +148,27 @@ namespace RPG.Characters
 
         void AttackOnce()
         {
-            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
-            float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
-            bool canAttackAgain = false;
+            animator.SetTrigger("Attack");
+  
+            var particlePrefab = currentWeaponConfig.GetParticlePrefab();
 
-            // special case for never having attacked.  seems smelly.
-            if (lastAttackTime == 0)
+            if (particlePrefab != null)
             {
-                canAttackAgain = true;
+                var muzzleTip = weaponObject.transform.Find("MuzzleTip");
+
+                var particleObject = Instantiate(particlePrefab, muzzleTip.transform);
+                particleObject.transform.localPosition = muzzleTip.transform.localPosition;
+                particleObject.transform.localRotation = muzzleTip.transform.localRotation;
+                particleObject.GetComponent<ParticleSystem>().Play();
+
+                StartCoroutine(DestroyParticleWhenFinished(particleObject));
             }
-            else
+
+            if (target != null)
             {
-                canAttackAgain = Time.time - lastAttackTime > timeToWait;
+                StartCoroutine(DamageAfterDelay(currentWeaponConfig.GetAttackSpeedSeconds()));
             }
 
-            if (canAttackAgain)
-            {
-                lastAttackTime = Time.time;
-                var particlePrefab = currentWeaponConfig.GetParticlePrefab();
-                
-                // todo: how to support multiple attack types?
-                animator.SetTrigger("Attack");
-
-                if (particlePrefab != null)
-                {
-                    var muzzleTip = weaponObject.transform.Find("MuzzleTip");
-
-                    var particleObject = Instantiate(particlePrefab, muzzleTip.transform);
-                    particleObject.transform.localPosition = muzzleTip.transform.localPosition;
-                    particleObject.transform.localRotation = muzzleTip.transform.localRotation;
-                    particleObject.GetComponent<ParticleSystem>().Play();
-
-                    StartCoroutine(DestroyParticleWhenFinished(particleObject));
-                }
-
-                if (target != null)
-                {
-                    float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
-                    if (distanceToTarget <= currentWeaponConfig.GetMaxAttackRange())
-                    {
-                        // todo: check to make sure we hit by rolling a to-hit roll, etc.
-                        StartCoroutine(DamageAfterDelay(currentWeaponConfig.GetDamageDelay()));
-                    }
-                }
-            }
         }
 
         IEnumerator DamageAfterDelay(float delay)
@@ -213,9 +191,9 @@ namespace RPG.Characters
 
                 // notify anyone that we have a hit.
                 onWeaponHit(this, target, damage);
-
-                // Debug.DrawLine(GetWeaponObject().transform.position + Vector3.up, target.transform.position, Color.green, 2.0f);
             }
+
+            isAttacking = false;
         }
 
         GameObject RequestOtherHand()

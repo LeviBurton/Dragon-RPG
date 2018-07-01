@@ -1,1 +1,12 @@
-﻿
+﻿To do list:
+	* Implement pandaBT stuff for enemy AI.
+
+	* DONE: Implement real time with pause feature
+		* Consider input mapping with this, for example 
+		  we may not always want the spacebar to pause.
+
+	* Look into decal system for projecting things onto the level terrain, floors, etc.
+	* Implement selection of characters.  Support max 4 characters to start.
+		* implement screen space rectangle selection box.
+		* highlight characters when selected.
+	* Implement actions that can be queued.

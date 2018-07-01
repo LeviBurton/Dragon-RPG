@@ -4,9 +4,10 @@ using UnityEngine;
 
 using RPG.Core;
 using System;
-using RPG.StateMachine;
 
 using Panda;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace RPG.Characters
 {
@@ -15,206 +16,236 @@ namespace RPG.Characters
     [RequireComponent(typeof(WeaponSystem))]
     public class EnemyAI : MonoBehaviour
     {
-        [SerializeField] float chaseRadius = 6f;
-        [SerializeField] WaypointContainer patrolPath;
-        [SerializeField] float waypointTolerance = 2.0f;
+        [SerializeField] EnemyConfig enemyConfig;
         [SerializeField] Color chaseSphereColor = new Color(0, 1.0f, 0, .5f);
         [SerializeField] Color attackSphereColor = new Color(1.0f, 1.0f, 0, .5f);
-        [SerializeField] bool preferRangedAttack = false;
-        [SerializeField] float threatRange = 10.0f;
-        [SerializeField] float waypointWaitTime = 2.0f;
-        
-        PlayerControl player;
+        [SerializeField] Image recoveryCircleImage;
+        [SerializeField] Sprite moveActionImage;
+        [SerializeField] Sprite attackActionImage;
+        [SerializeField] Image actionImage;
+
+        private float minRecoveryTimeSeconds;
+        private float maxRecoveryTimeSeconds;
+        private float currentRecoveryTimeSeconds;
+
         Character character;
-        public GameObject currentTarget;
+        public GameObject target;
+        WeaponSystem weaponSystem;
+        Selectable selectable;
+
+        bool isAttacking = false;
+
+        public float recoveryAsPercentage { get { return currentRecoveryTimeSeconds / maxRecoveryTimeSeconds; } }
+
+        void Start()
+        {
+            character = GetComponent<Character>();
+            selectable = GetComponent<Selectable>();
+
+            weaponSystem = GetComponent<WeaponSystem>();
+            weaponSystem.onWeaponHit += OnWeaponHit;
+            weaponSystem.target = null;
+
+            if (enemyConfig == null)
+                throw new Exception("enemyConfig can't be null!");
+
+            character.SetMovementSpeed(enemyConfig.GetMovementSpeed());
+            minRecoveryTimeSeconds = enemyConfig.GetRecoveryTime();
+            currentRecoveryTimeSeconds = 0.0f;
+        }
+
+        void Update()
+        {
+           
+        }
+
+        private void LateUpdate()
+        {
+            UpdateRecoveryBar();
+        }
+
+        void UpdateRecoveryBar()
+        {
+            recoveryCircleImage.fillAmount = recoveryAsPercentage;
+        }
 
         public WeaponSystem GetWeaponSystem()
         {
             return weaponSystem;
         }
 
-        WeaponSystem weaponSystem;
-        Selectable selectable;
-
-        float currentWeaponRange;
-        float distanceToTarget;
-        int nextWaypointIndex;
-
-        bool isAttacking = false;
-        bool isAiming = false;
-
-        // todo this style of state machine gets unweildy quick.
-        // consider changing to FSM.
-        enum State { idle, patrolling, attacking, chasing }
-        State state = State.idle;
-
-
         #region Tasks
         [Task]
-        void Enemy_ToggleAttacking()
+        bool Enemy_HasTarget()
         {
-            isAttacking = !isAttacking;
+            return target != null;
+        }
+        [Task]
+        bool Enemy_SetRecoveryTimeSeconds(float seconds)
+        {
+            currentRecoveryTimeSeconds = seconds;
+            return true;
+        }
 
-            if (isAttacking)
+        [Task]
+        void Enemy_WaitForRecovery()
+        {
+            // Recovery time is added to as actions are performed.  
+            // This makes things really simple.
+            currentRecoveryTimeSeconds -= Time.deltaTime;
+
+            if (Task.isInspected)
             {
-                weaponSystem.SetAiming(weaponSystem.GetCurrentWeapon().GetAimWeapon());
-                weaponSystem.AutoAttack();
+                float tta = Mathf.Clamp(currentRecoveryTimeSeconds, 0.0f, float.PositiveInfinity);
+                Task.current.debugInfo = string.Format("t-{0:0.000}", tta);
+            }
+
+            if (currentRecoveryTimeSeconds <= 0)
+            {
+                currentRecoveryTimeSeconds = 0;
+                Task.current.Succeed();
+            }
+        }
+
+        [Task]
+        bool Enemy_StopMoving()
+        {
+            character.SetStopped(true);
+    
+            return true;
+        }
+
+        [Task]
+        bool StopRotating()
+        {
+            return true;
+        }
+
+        [Task]
+        bool Enemy_TargetIsAlive()
+        {
+            if (target == null)
+                return false;
+
+            var targetHealthsysytem = target.GetComponent<HealthSystem>();
+
+            if (targetHealthsysytem == null)
+                return false;
+
+            return targetHealthsysytem.IsAlive();
+        }
+
+        [Task]
+        bool Target_InAttackRange()
+        {
+            if (target == null)
+                return false;
+
+            bool isInRange = false;
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+
+            if (weaponSystem != null)
+            {
+                var currentWeapon = weaponSystem.GetCurrentWeapon();
+                if (currentWeapon != null)
+                {
+                    isInRange = distance <= currentWeapon.GetMaxAttackRange();
+                }
+            }
+
+            return isInRange;
+        }
+
+        [Task]
+        void Target_Acquire()
+        {
+            // Just aquire the single player game object.
+            target = GameObject.FindGameObjectWithTag("Player");
+            Task.current.Complete(target != null);
+        }
+
+        [Task]
+        bool Enemy_SetSpeed(float speed)
+        {
+            character.SetMovementSpeed(speed);
+            return true;
+        }
+
+        // Note that this is identical to MoveToRanged.  We will update them separately later on.
+        [Task]
+        void Target_MoveToMelee()
+        {
+            actionImage.sprite = moveActionImage;
+
+            var dist = Vector3.Distance(transform.position, target.transform.position);
+       
+            weaponSystem.StopAttacking();
+
+            if (dist <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange() ||
+                dist <= character.StoppingDistance())
+            {
+                Task.current.Succeed();
             }
             else
             {
-                weaponSystem.StopAttacking();
+                character.SetDestination(target.transform.position);
             }
+        }
+
+        [Task]
+        void Target_MoveToRanged()
+        {
+            actionImage.sprite = moveActionImage;
+
+            weaponSystem.StopAttacking();
+
+            var dist = Vector3.Distance(transform.position, target.transform.position);
+            if (dist <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange() ||
+                dist <= character.StoppingDistance())
+            {
+                Task.current.Succeed();
+            }
+            else
+            {
+                character.SetDestination(target.transform.position);
+            }
+        }
+
+        [Task]
+        void Target_MoveTo()
+        {
+            var dist = Vector3.Distance(transform.position, target.transform.position);
+
+            if (dist <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange() ||
+                dist <= character.StoppingDistance())
+            {
+                Task.current.Succeed();
+                character.SetStopped(true);
+            }
+            else
+            {
+                character.SetDestination(target.transform.position);
+            }
+        }
+
+        [Task]
+        void Enemy_Attack()
+        {
+            actionImage.sprite = attackActionImage;
+
+            weaponSystem.SetTarget(target);
+            weaponSystem.Attack();
+
+            Debug.DrawLine(transform.position + (Vector3.up ) , target.transform.position + (Vector3.up), Color.green, 1.0f);
+
+            // Reset recovery time.
+            maxRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds();
+            currentRecoveryTimeSeconds = maxRecoveryTimeSeconds;
 
             Task.current.Succeed();
         }
+
         #endregion
-
-
-
-        StateMachine<EnemyAI> stateMachine;
-        public StateMachine<EnemyAI> GetStateMachine()
-        {
-            return stateMachine;
-        }
-
-    
-        void Start()
-        {
-            player = FindObjectOfType<PlayerControl>();
-
-            character = GetComponent<Character>();
-            selectable = GetComponent<Selectable>();
-            weaponSystem = GetComponent<WeaponSystem>();
-
-            weaponSystem.onWeaponHit += OnWeaponHit;
-            weaponSystem.target = currentTarget;
-
-            //stateMachine = new StateMachine<EnemyAI>(this);
-            //stateMachine.ChangeState(Enemy_OnSpawnState.Instance);
-
-            // try to add ourselves to the debug view.  should be as easy as getting some
-            // kind of layout container and adding ourselves to it.
-
-        }
-
-        void Update()
-        {
-            // tick the state machine. 
-           // stateMachine.Update();
-
-
-            // todo think about what to do about the code below and whether we should do that every frame.
-            weaponSystem = GetComponent<WeaponSystem>();
-            
-            // todo this is just test code here.  we don't do any input normally here.
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                weaponSystem.SetAiming(true);
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                weaponSystem.Reload();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                weaponSystem.SetAiming(weaponSystem.GetCurrentWeapon().GetAimWeapon());
-                weaponSystem.AutoAttack();
-            }
-
-            currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
-
-            if (!character.IsAlive())
-            {
-                weaponSystem.StopAttacking();
-            }
-
-            //transform.LookAt(currentTarget.transform);
-
-            return;
-
-            if (currentTarget != null)
-            {
-                distanceToTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
-
-                bool inWeaponCircle = distanceToTarget <= currentWeaponRange;
-                bool inPlayerThreatCircle = distanceToTarget <= threatRange;
-                bool inChaseRing = distanceToTarget >= currentWeaponRange &&
-                                     distanceToTarget <= chaseRadius;
-                bool outsideChaseRing = distanceToTarget > chaseRadius;
-
-                if (outsideChaseRing)
-                {
-                    StopAllCoroutines();
-                    StartCoroutine(ChasePlayer());
-                }
-
-                else if (inChaseRing)
-                {
-                    StopAllCoroutines();
-                    StartCoroutine(ChasePlayer());
-                }
-
-                else if (inWeaponCircle)
-                {
-                    StopAllCoroutines();
-
-                    if (preferRangedAttack)
-                    {
-                        character.SetDestination(transform.position);
-                    }
-
-                    state = State.attacking;
-                    //weaponSystem.AttackTarget(currentTarget.gameObject);
-                }
-            }
-        }
-
-        IEnumerator Patrol()
-        {
-            state = State.patrolling;
-
-            while (patrolPath != null)
-            {
-                Vector3 nextWayPointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
-                character.SetDestination(nextWayPointPos);
-
-                CycleWaypointWhenClose(nextWayPointPos);
-
-                yield return new WaitForSecondsRealtime(waypointWaitTime);  
-            }
-        }
-
-        private void CycleWaypointWhenClose(Vector3 nextWaypoint)
-        {
-            if (Vector3.Distance(transform.position, nextWaypoint) <= waypointTolerance)
-            {
-                nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
-            }
-        }
-
-        IEnumerator ChasePlayer()
-        {
-            state = State.chasing;
-
-            while (distanceToTarget >= currentWeaponRange)
-            {
-                character.SetDestination(currentTarget.transform.position);
-
-                yield return new WaitForEndOfFrame();
-            }
- 
-            character.SetDestination(transform.position);
-
-            yield return null;
-        }
-
-        bool IsTargetInRange(GameObject target)
-        {
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-            return distanceToTarget <= currentWeaponRange;
-        }
 
         void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
         {
@@ -223,13 +254,7 @@ namespace RPG.Characters
 
         void OnDrawGizmos()
         {
-            // Draw attack sphere 
-            Gizmos.color = attackSphereColor;
-            Gizmos.DrawWireSphere(transform.position, currentWeaponRange);
-
-            // Draw chase sphere 
-            Gizmos.color = chaseSphereColor;
-            Gizmos.DrawWireSphere(transform.position, chaseRadius);
+         
         }
     }
 }

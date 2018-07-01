@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 using RPG.CameraUI;
+using RPG.ActionSystem;
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,9 +19,11 @@ namespace RPG.Characters
         Character character;
         WeaponSystem weaponSystem;
         Selectable selectable;
+        bool actionPaused;
 
         void Start()
         {
+            actionPaused = false;
             character = GetComponent<Character>();
             abilities = GetComponent<SpecialAbilities>();
             weaponSystem = GetComponent<WeaponSystem>();
@@ -45,7 +49,12 @@ namespace RPG.Characters
             // ScanControllerForInput();
 
             // handle keyboard.
-            ScanForAbilityKeydown();
+            ScanKeyboardForPause();
+
+            if (!actionPaused)
+            {
+                ScanForAbilityKeydown();
+            }
         }
 
         void RegisterForMouseEvents()
@@ -70,7 +79,8 @@ namespace RPG.Characters
 
         void OnMouseOverPotentiallyWalkable(Vector3 destination)
         {
-            if (Input.GetMouseButton(0))
+            // if left click, add move to destination command
+            if (Input.GetMouseButtonDown(0))
             {
                 character.SetDestination(destination);
             }
@@ -134,8 +144,15 @@ namespace RPG.Characters
         // todo: move to WeaponSystem
         bool IsTargetInRange(GameObject target)
         {
-            float distanceToTarget = Vector3.Distance(character.transform.position, target.transform.position);
-            return distanceToTarget <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
+            if (weaponSystem != null && weaponSystem.GetCurrentWeapon() != null)
+            {
+                float distanceToTarget = Vector3.Distance(character.transform.position, target.transform.position);
+                return distanceToTarget <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         void ScanControllerForInput()
@@ -175,7 +192,22 @@ namespace RPG.Characters
             }
         }
 
-   
+        void ScanKeyboardForPause()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                actionPaused = !actionPaused;
+                if (actionPaused)
+                {
+                    Time.timeScale = 0.00001f;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
+            }
+        }
+
         void ScanForAbilityKeydown()
         {
             for (int keyIndex = 1; keyIndex < abilities.GetNumberOfAbilitie(); keyIndex++)

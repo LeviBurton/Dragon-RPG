@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 using RPG.CameraUI;
 using System;
+using System.Collections;
+using Panda;
+using RPG.ActionSystem;
 
 namespace RPG.Characters
 {
@@ -36,6 +39,7 @@ namespace RPG.Characters
         [SerializeField] float navMeshStoppingDistance = 1.3f;
         [SerializeField] bool updateNavPosition = true;
         [SerializeField] bool updateNavRotation = false;
+
 
         Animator animator;
         Rigidbody rigidBody;
@@ -98,6 +102,19 @@ namespace RPG.Characters
             }
         }
 
+   
+        public void SetMovementSpeed(float newSpeed)
+        {
+            // TODO rename navmeshsteering speed to simply movementSpeed.
+            navMeshAgentSteeringSpeed = newSpeed;
+            navMeshAgent.speed = navMeshAgentSteeringSpeed;
+        }
+
+        public float StoppingDistance()
+        {
+            return navMeshStoppingDistance;
+        }
+
         public bool IsAlive()
         {
             return isAlive;
@@ -113,8 +130,16 @@ namespace RPG.Characters
             Move(moveDirection * moveSpeedMultiplier);
         }
 
+        public void SetStopped(bool stopped)
+        {
+            navMeshAgent.isStopped = stopped;
+            if (stopped == true)
+                navMeshAgent.velocity = Vector3.zero;
+        }
+
         public void SetDestination(Vector3 worldPosition)
         {
+            SetStopped(false);
             navMeshAgent.SetDestination(worldPosition);
         }
 
@@ -178,11 +203,16 @@ namespace RPG.Characters
                 Vector3 velocity = (animator.deltaPosition * moveSpeedMultiplier) / Time.deltaTime;
 
                 // we preserve the existing y part of the current velocity.
-                velocity.y = rigidBody.velocity.y;
+                //velocity.y = rigidBody.velocity.y;
                 rigidBody.velocity = velocity;
             }
         }
 
-      
+     
+        [Task]
+        void MoveTo(Vector3 position)
+        {
+            navMeshAgent.SetDestination(position);
+        }
     }
 }
