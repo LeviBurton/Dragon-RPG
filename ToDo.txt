@@ -1,12 +1,33 @@
 ﻿To do list:
-	* Implement pandaBT stuff for enemy AI.
 
-	* DONE: Implement real time with pause feature
-		* Consider input mapping with this, for example 
-		  we may not always want the spacebar to pause.
+implement
+	camera pan & zoom
+		consider rotation as well
+	camera follow character/group
+	selection rectangle
+	selection
+		- group vs individual character
+	move to projector (where you click)
+	projectiles
+	path distance vs distanceRemaining distance checks
+	group behavior
+	group characters
+		group events such as 
+			member added
+			member died
+		group things
+			add member
+			remove member
+			set leader
+			set formation
+			move to target
+			move to location
+			attack
+			attack & move
+			flee
+			defend
+			patrol
+			idle
+			set tactic
 
-	* Look into decal system for projecting things onto the level terrain, floors, etc.
-	* Implement selection of characters.  Support max 4 characters to start.
-		* implement screen space rectangle selection box.
-		* highlight characters when selected.
-	* Implement actions that can be queued.
+

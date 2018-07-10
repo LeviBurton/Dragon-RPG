@@ -1,0 +1,40 @@
+tree "Root"
+	fallback
+		tree "Attack"
+		not tree "TargetAquire"
+		tree "Chase"
+		tree "Idle"
+
+tree "Attack"
+	while 
+		sequence
+			Enemy_HasTarget
+			Enemy_TargetIsAlive
+			Target_InAttackRange 
+		
+		sequence 
+			Enemy_StopMoving
+			Enemy_WaitForRecovery
+			Enemy_Attack
+
+tree "TargetAquire"
+	Target_Acquire
+
+tree "Chase"
+	while 
+		sequence
+			Enemy_HasTarget
+			Enemy_TargetIsAlive
+			not Target_InAttackRange
+		
+		sequence
+			Target_MoveTo
+			Enemy_StopMoving
+tree "Idle"
+	sequence
+		fallback
+			Target_Acquire
+
+
+
+

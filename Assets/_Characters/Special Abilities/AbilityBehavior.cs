@@ -20,13 +20,13 @@ namespace RPG.Characters
 
         protected void PlayAbilityAnimation()
         {
-            var abilityAnimation = config.GetAbilityAnimation();
-            var animatorOverrideController = GetComponent<Character>().GetOverrideController();
-            var animator = GetComponent<Animator>();
+            //var abilityAnimation = config.GetAbilityAnimation();
+            //var animatorOverrideController = GetComponent<Character>().GetOverrideController();
+            //var animator = GetComponent<Animator>();
 
-            animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK_STATE] = config.GetAbilityAnimation();
-            animator.SetTrigger(ATTACK_TRIGGER);
+            //animator.runtimeAnimatorController = animatorOverrideController;
+            //animatorOverrideController[DEFAULT_ATTACK_STATE] = config.GetAbilityAnimation();
+            //animator.SetTrigger(ATTACK_TRIGGER);
         }
 
         protected void PlayAbilitySound()

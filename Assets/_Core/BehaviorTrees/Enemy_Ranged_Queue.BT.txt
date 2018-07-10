@@ -1,0 +1,48 @@
+tree "Root"
+	fallback
+		tree "CheckCommandQueue"
+		tree "Attack"
+		//not tree "TargetAquire" 
+		tree "Chase"
+		tree "Idle"
+
+tree "CheckCommandQueue"
+	sequence
+		IsCurrentCommandDone
+		PopCommand
+
+tree "Attack"
+	while 
+		sequence
+			IsCurrentCommand_Attack
+			Enemy_HasTarget
+			Enemy_TargetIsAlive
+			Target_InAttackRange 
+		
+		sequence 
+			Enemy_StopMoving
+			Enemy_WaitForRecovery
+			Enemy_Attack
+			CommandDone
+
+tree "TargetAquire"
+	Target_Acquire
+
+tree "Chase"
+	while 
+		sequence
+			IsCurrentCommand_Move
+			Enemy_HasTarget
+			Enemy_TargetIsAlive
+			not Target_InAttackRange
+
+		sequence
+			Target_MoveToRanged
+			CommandDone
+
+tree "Idle"
+	Succeed
+
+
+
+

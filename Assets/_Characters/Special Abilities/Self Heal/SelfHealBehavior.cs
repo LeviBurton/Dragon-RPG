@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RPG.Controllers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,11 @@ namespace RPG.Characters
 {
     public class SelfHealBehavior : AbilityBehavior
     {
-        PlayerControl player = null;
+        PlayerController player = null;
       
         private void Start()
         {
-            player = GetComponent<PlayerControl>();
+            player = GetComponent<PlayerController>();
         }
 
         public override void Use(GameObject target)

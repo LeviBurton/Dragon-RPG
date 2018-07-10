@@ -8,10 +8,9 @@
 using UnityEngine;
 using System.Collections;
 
-
+[ExecuteInEditMode]
 public class CameraFacingBillboard : MonoBehaviour
 {
-
     public Camera m_Camera;
     public bool amActive = false;
     public bool autoInit = false;
@@ -24,9 +23,7 @@ public class CameraFacingBillboard : MonoBehaviour
             m_Camera = Camera.main;
             amActive = true;
         }
-
     }
-
 
     void LateUpdate()
     {
