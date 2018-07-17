@@ -26,7 +26,7 @@ namespace RPG.Controllers
 
             foreach (var c in playerCharacters)
             {
-                c.onSpawn += OnCharacterSpawn;
+              //  c.onSpawn += OnCharacterSpawn;
             }
         }
 

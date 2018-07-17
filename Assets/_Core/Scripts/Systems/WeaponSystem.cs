@@ -16,8 +16,13 @@ namespace RPG.Characters
  
         // todo consider the arguments here.  do we need more details about the hit?
         // todo consider just removing this -- its confusing.
-        public delegate void OnWeaponHit(WeaponSystem weaponSystem, GameObject hitObject, float damage);
-        public event OnWeaponHit onWeaponHit;
+        public delegate void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage);
+        public event OnHit onHit;
+
+        public delegate void OnAttackComplete(WeaponSystem weaponSystem);
+        public event OnAttackComplete onAttackComplete;
+
+
 
         float lastAttackTime = 0f;
         public GameObject target = null;
@@ -50,6 +55,7 @@ namespace RPG.Characters
 
         void Update()
         {
+
         }
 
         public GameObject GetWeaponObject()
@@ -81,6 +87,7 @@ namespace RPG.Characters
             Destroy(weaponObject);
 
             weaponObject = Instantiate(weaponPrefab, handToPutIn.transform);
+            weaponObject.transform.localScale = new Vector3(1, 1, 1);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
         }
@@ -106,7 +113,8 @@ namespace RPG.Characters
 
         public void Attack()
         {
-            
+            isAttacking = true;
+
             // Note this stuff is just to deal with the complete 
             // hack of a state machine 
             animator.applyRootMotion = false;
@@ -123,11 +131,15 @@ namespace RPG.Characters
             {
                 if (armedWeapon == EArmedWeapon.RIGHT_SWORD)
                 {
-                    attackNumber = Mathf.RoundToInt(Random.Range(8, 14));
+                    attackNumber = Random.Range(8, 14);
                 }
                 else if (armedWeapon == EArmedWeapon.RIGHT_MACE)
                 {
-                    attackNumber = attackNumber = Random.Range(4, 3 + 4);
+                    attackNumber = Random.Range(4, 7);
+                }
+                else if (armedWeapon == EArmedWeapon.RIGHT_PISTOL)
+                {
+                    attackNumber = Random.Range(4, 7);
                 }
             }
 
@@ -171,13 +183,15 @@ namespace RPG.Characters
             {
                 var damage = CalculateDamage();
 
-                targetHealthComponent.TakeDamage(damage);
+                targetHealthComponent.Damage(damage);
 
                 // notify anyone that we have a hit.
-                onWeaponHit(this, target, damage);
+                onHit(this, target, damage);
             }
 
             isAttacking = false;
+
+            onAttackComplete(this);
         }
 
         GameObject RequestOtherHand()

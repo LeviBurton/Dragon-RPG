@@ -315,6 +315,38 @@
   <ItemGroup>
     <Compile Include="Assets\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
     <Compile Include="Assets\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ActionCell.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\LabelCell.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ObjectCell.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\PropertyCell.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\TableCell.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\SelectFromCellTypeColumn.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\SelectFromFunctionColumn.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\SelectFromPropertyNameColumn.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\SelectObjectReferenceColumn.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\SelectorColumn.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\TableColumn.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\TableColumnEntry.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Columns\TableColumnOption.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Drawers\ReorderableTableDrawer.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Drawers\TableDrawer.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Tables\GUITable.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Tables\GUITableEntry.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Tables\GUITableLayout.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Tables\GUITableOption.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Tables\GUITableState.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Utils\GUIHelpers.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Utils\ReflectionHelpers.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Utils\SerializationHelpers.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\ActionExampleEditor.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\AdvancedExampleEditor.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\AdvancedExampleWindow.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\CustomCellsWindow.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\CustomColumnsWindow.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\CustomPropertiesWindow.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\CustomSelectorsWindow.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\LogoTableEditor.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Editor\SimpleExampleEditor.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Core\Editor\CreatePandaScriptMenu.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Core\Editor\PandaBehaviourEditor.cs" />
     <Compile Include="Assets\ThirdParty\PostProcessing\Editor\Attributes\PostProcessingModelEditorAttribute.cs" />
@@ -401,6 +433,12 @@
     <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\Editor\pb_MissingScriptEditor.cs" />
     <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\Editor\pb_Preferences.cs" />
     <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\Editor\pb_ScenePostProcessor.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\About\Editor\pg_AboutWindow.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_Editor.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_GridRenderer.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_ParameterWindow.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_Preferences.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_ToggleContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\OutlineEffect\Resources\OutlineBufferShader.shader" />
@@ -409,6 +447,8 @@
     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorLight.shader" />
     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
+    <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\SkyGradient.shader" />
+    <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\ChangeLog.txt" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Core\PandaBehaviour.xml" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\00_ChangeColor\Assets\ChangeColor.BT.txt" />
@@ -488,6 +528,9 @@
     <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_VertexPicker.shader" />
     <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
     <None Include="Assets\ThirdParty\ProCore\ProBuilder\readme.txt" />
+    <None Include="Assets\ThirdParty\ProCore\ProGrids\About\changelog.txt" />
+    <None Include="Assets\ThirdParty\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
+    <None Include="Assets\ThirdParty\ProCore\ProGrids\Shader\pg_GridShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\CameraMotionBlur.shader" />
@@ -553,10 +596,12 @@
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
     <None Include="Assets\_Characters\Materials\CircleProjectcionShader.shader" />
+    <None Include="Assets\_Characters\Materials\GridProjectionShader.shader" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Group.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>

@@ -321,6 +321,7 @@
     <Compile Include="Assets\_Core\FaceCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraRaycaster.cs" />
+    <Compile Include="Assets\_Core\Scripts\Camera\RTS_Camera.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\CharacterConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\EnemyConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\GameConfig.cs" />
@@ -333,6 +334,7 @@
     <Compile Include="Assets\_Core\Scripts\Misc\CircleProjector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Command.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\DominantHand.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\ObjectSelector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\OtherHand.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Selectable.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\WaypointContainer.cs" />
@@ -357,7 +359,14 @@
     <Compile Include="Assets\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\RTS_Camera\Demo\DemoScene.cs" />
     <Compile Include="Assets\RTS_Camera\Demo\TargetSelector.cs" />
-    <Compile Include="Assets\RTS_Camera\Scripts\RTS_Camera.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Attributes\ReorderableTableAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Code\Attributes\TableAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\ActionExample.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\AdvancedExample.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\Enemy.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\LogoTable.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\PropertyAttributeExample.cs" />
+    <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\SimpleExample.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Core\PandaBehaviour.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Examples\00_ChangeColor\Assets\MyCube.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Examples\01_Move\Assets\Move.cs" />
@@ -427,6 +436,13 @@
     <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Procedural Mesh\ExtrudeRandomEdges.cs" />
     <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
     <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_Constant.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_Enum.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_IconUtility.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_IgnoreSnapAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_Util.cs" />
+    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\MonoBehaviour\pg_IgnoreSnap.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Code\CameraController.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Code\GUIControls.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Code\IKHands.cs" />
@@ -444,8 +460,6 @@
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Triangles.cs" />
     <Compile Include="Assets\ThirdParty\RtsStyleSelection\Other\CameraControls.cs" />
-    <Compile Include="Assets\ThirdParty\RtsStyleSelection\Script\SelectableUnitComponent.cs" />
-    <Compile Include="Assets\ThirdParty\RtsStyleSelection\Script\UnitSelectionComponent.cs" />
     <Compile Include="Assets\ThirdParty\RtsStyleSelection\Script\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +469,8 @@
     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorLight.shader" />
     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
+    <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\SkyGradient.shader" />
+    <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\ChangeLog.txt" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Core\PandaBehaviour.xml" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\00_ChangeColor\Assets\ChangeColor.BT.txt" />
@@ -534,6 +550,9 @@
     <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_VertexPicker.shader" />
     <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
     <None Include="Assets\ThirdParty\ProCore\ProBuilder\readme.txt" />
+    <None Include="Assets\ThirdParty\ProCore\ProGrids\About\changelog.txt" />
+    <None Include="Assets\ThirdParty\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
+    <None Include="Assets\ThirdParty\ProCore\ProGrids\Shader\pg_GridShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\CameraMotionBlur.shader" />
@@ -599,10 +618,12 @@
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
     <None Include="Assets\_Characters\Materials\CircleProjectcionShader.shader" />
+    <None Include="Assets\_Characters\Materials\GridProjectionShader.shader" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Group.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>

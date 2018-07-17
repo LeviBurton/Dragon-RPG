@@ -70,11 +70,11 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Hardness: 1
-    - _InnerRadius: 0.33
+    - _InnerRadius: 0.45
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OuterRadius: 0.38
+    - _OuterRadius: 0.55
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -83,7 +83,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BgColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.434}
+    - _Color: {r: 1, g: 0, b: 0, a: 0.88235295}
     - _Distort: {r: 0.5, g: 0.5, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 0.9632353, b: 0.9632353, a: 1}

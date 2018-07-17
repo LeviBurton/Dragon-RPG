@@ -50,9 +50,6 @@ namespace RPG.Controllers
                 // TODO: queue command to selected characters
                 // character.SetDestination(destination);
             }
-
-
-
         }
 
         void OnMouseOverNPC(GameObject NPC)

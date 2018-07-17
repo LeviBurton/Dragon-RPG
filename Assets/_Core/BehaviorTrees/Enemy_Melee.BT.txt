@@ -8,14 +8,14 @@ tree "Root"
 tree "Attack"
 	while 
 		sequence
-			Enemy_HasTarget
-			Enemy_TargetIsAlive
-			Target_InAttackRange 
+			HasTarget
+			TargetIsAlive
+			InAttackRange 
 		
 		sequence 
-			Enemy_StopMoving
-			Enemy_WaitForRecovery
-			Enemy_Attack
+			StopMoving
+			WaitForRecovery
+			Attack
 
 tree "TargetAquire"
 	Target_Acquire
@@ -23,13 +23,13 @@ tree "TargetAquire"
 tree "Chase"
 	while 
 		sequence
-			Enemy_HasTarget
-			Enemy_TargetIsAlive
-			not Target_InAttackRange
+			MoveToMelee
+			TargetIsAlive
+			not InAttackRange
 		
 		sequence
-			Target_MoveTo
-			Enemy_StopMoving
+			MoveToTargetPosition
+			StopMoving
 tree "Idle"
 	sequence
 		fallback

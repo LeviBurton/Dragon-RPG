@@ -32,7 +32,7 @@ namespace RPG.Characters
                 if (damageable != null && !hitPlayer)
                 {
                     float damageToDeal = (config as AreaEffectConfig).GetDamageToEachTarget();
-                    damageable.TakeDamage(damageToDeal);
+                    damageable.Damage(damageToDeal);
                 }
             }
         }
