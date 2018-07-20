@@ -283,16 +283,19 @@ namespace RPG.Controllers
 
         #region WeaponSystem Events
 
-        public void OnAttackComplete(WeaponSystem weaponSystem)
+        public void OnAttackComplete(WeaponSystem weaponSystem, GameObject hitObject)
         {
+            // This is called AFTER DamageAfterDelay!!!
             Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
-
             currentRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds(); ;
+            // TODO: fixme -- wrong place to do this.
+            hitObject.GetComponent<Animator>().applyRootMotion = true;
         }
 
         public void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
         {
-            Debug.LogFormat("{0} OnHit {1} with {2} for {3} damage", name, hitObject.name, weaponSystem.name, damage);
+            Debug.LogFormat("{0} OnHit {1} with {2} for {3} damage", name, hitObject.name, weaponSystem.GetCurrentWeapon().name, damage);
+            hitObject.GetComponent<Animator>().applyRootMotion = false;
         }
         #endregion
 
@@ -300,7 +303,6 @@ namespace RPG.Controllers
 
         void OnDamage(float damageAmount)
         {
-
             bool characterDies = healthSystem.HealthAsPercentage <= Mathf.Epsilon;
 
             if (characterDies)
@@ -602,6 +604,7 @@ namespace RPG.Controllers
 
             return true;
         }
+
         [Task]
         void Attack()
         {

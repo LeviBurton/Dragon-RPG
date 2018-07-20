@@ -266,6 +266,9 @@
     <Reference Include="PandaBehaviourEditor">
       <HintPath>Assets/ThirdParty/PandaBehaviour/Core/Editor/PandaBehaviourEditor.dll</HintPath>
     </Reference>
+    <Reference Include="ConsoleE">
+      <HintPath>Assets/ThirdParty/Plugins/ConsoleE/Editor/ConsoleE.dll</HintPath>
+    </Reference>
     <Reference Include="ProBuilderCore-Unity5">
       <HintPath>Assets/ThirdParty/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
     </Reference>

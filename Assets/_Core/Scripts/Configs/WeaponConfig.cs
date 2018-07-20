@@ -6,15 +6,31 @@ namespace RPG.Characters
 {
     public enum EHand
     {
-        TWO = 0,
+        Two = 0,    // Two handed weapons
         Left = 1,
         Right = 2,
-        Dual = 3,
-        RightStartingIndex = 4, // This is a total hack
-        LeftStartingIndex = 1
+        Dual = 3,   // dual-wield wepaons
     }
 
     public enum EWeaponType
+    {
+        Unarmed,
+        Two_Hand_Sword,
+        Two_Hand_Spear,
+        Two_Hand_Axe,
+        Two_Hand_Bow,
+        Two_Hand_Crossbow,
+        Two_Hand_Club,
+        Staff,
+        Sword,
+        Mace,
+        Dagger,
+        Item,
+        Pistol,
+        Rifle,
+    }
+
+    public enum EWeaponAnimationType
     {
         UNARMED = 0,
         TWOHANDSWORD = 1,
@@ -23,10 +39,10 @@ namespace RPG.Characters
         TWOHANDBOW = 4,
         TWOHANDCROSSBOW = 5,
         STAFF = 6,
-        ARMED = 7,
+        ONEHANDED = 7,
         RELAX = 8,
      //   RIFLE = 9,
-        TWOHANDCLUB = 10,
+        TWOHANDCLUB = 20,
         SHIELD = 11,
         ARMEDSHIELD = 12,
         RIFLE = 18
@@ -35,7 +51,7 @@ namespace RPG.Characters
     // This is from the animation state machine -- which is a
     // complete fucking mess.  Great animations, but the setup and state machines
     // are fucking awful.
-    public enum EArmedWeapon
+    public enum EWeaponAnimationArmedType
     {
         UNARMED = 0,
         TWOHANDSWORD = 1,
@@ -63,6 +79,8 @@ namespace RPG.Characters
     [CreateAssetMenu(menuName = "RPG/Weapon")]
     public class WeaponConfig : ScriptableObject
     {
+        [SerializeField] string Name;
+
         // Transform applied to the weapon when attached to a game object
         public Transform gripTransform;
 
@@ -71,7 +89,6 @@ namespace RPG.Characters
 
         // The character will use this to play the correct weapon animations associated with this weapon.
         [SerializeField] EWeaponType weaponType;
-        [SerializeField] EArmedWeapon armedWeapon;
 
         // This will get added to the weapon holders recovery time in seconds
         [SerializeField] float recoveryTimeSeconds = 1.0f;
@@ -85,19 +102,14 @@ namespace RPG.Characters
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] bool useOtherHand;
-        [SerializeField] float additionalDamage = 0.0f;
+        [SerializeField] float baseDamage = 0.0f;
 
         [SerializeField] bool aimWeapon;
         [SerializeField] GameObject particlePrefab;
-        [SerializeField] float baseReloadSpeed;
-
-        public EWeaponType GetWeaponAnimatorType()
+ 
+        public EWeaponType GetWeaponType()
         {
             return weaponType;
-        }
-        public EArmedWeapon GetArmedWeapon()
-        {
-            return armedWeapon;
         }
 
         public float GetRecoveryTimeSeconds()
@@ -125,9 +137,9 @@ namespace RPG.Characters
             return useOtherHand;
         }
 
-        public float GetAdditionalDamage()
+        public float GetBaseDamage()
         {
-            return additionalDamage;
+            return baseDamage;
         }
 
         public float GetMaxAttackRange()

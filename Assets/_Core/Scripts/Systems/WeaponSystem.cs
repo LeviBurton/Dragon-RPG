@@ -2,16 +2,43 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
-// todo: need to re-architect weapon firing/attacking mechanics.
-// we also need to handle blocking!
-// the current system isn't really built around the concept of weapons
-// such as semi-automatic, burst fire or fully automatic.
 namespace RPG.Characters
 {
+    public class AttackAnimationRanges
+    {
+        public EWeaponType weaponType;
+        public EHand hand;
+
+        public int min;
+        public int max;
+
+        public AttackAnimationRanges(EWeaponType weaponType, EHand hand, int min, int max)
+        {
+            this.weaponType = weaponType;
+            this.hand = hand;
+            this.min = min;
+            this.max = max;
+        }
+
+        public int GetRandomAttack()
+        {
+            return UnityEngine.Random.Range(min, max + 1);
+        }
+    }
+
     public class WeaponSystem : MonoBehaviour
     {
+        private static List<AttackAnimationRanges> attackAnimationRanges = new List<AttackAnimationRanges>();
+
         [SerializeField] float baseDamage = 10f;
+
+        [SerializeField] WeaponConfig leftHandWeaponConfig;
+        [SerializeField] WeaponConfig rightHandWeaponConfig;
+
         [SerializeField] WeaponConfig currentWeaponConfig;
  
         // todo consider the arguments here.  do we need more details about the hit?
@@ -19,10 +46,8 @@ namespace RPG.Characters
         public delegate void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage);
         public event OnHit onHit;
 
-        public delegate void OnAttackComplete(WeaponSystem weaponSystem);
+        public delegate void OnAttackComplete(WeaponSystem weaponSystem, GameObject hitObject);
         public event OnAttackComplete onAttackComplete;
-
-
 
         float lastAttackTime = 0f;
         public GameObject target = null;
@@ -34,28 +59,173 @@ namespace RPG.Characters
 
         private void Awake()
         {
+            if (attackAnimationRanges.Count == 0)
+            {
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Sword, EHand.Two, 1, 11));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Club, EHand.Two, 1, 11));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Spear, EHand.Two, 1, 11));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Axe, EHand.Two, 1, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Bow, EHand.Two, 1, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Crossbow, EHand.Two, 1, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Staff, EHand.Two, 1, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Sword, EHand.Left, 1, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Sword, EHand.Right, 7, 13));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Pistol, EHand.Left, 1, 3));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Pistol, EHand.Right, 4, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Mace, EHand.Left, 1, 3));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Mace, EHand.Right, 4, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Dagger, EHand.Left, 1, 3));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Dagger, EHand.Right, 4, 6));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Item, EHand.Left, 1, 4));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Item, EHand.Right, 5, 9));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Unarmed, EHand.Left, 1, 3));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Unarmed, EHand.Right, 4, 6));
+            }
+
             character = GetComponent<CharacterController>();
         }
 
         void Start()
         {
+            animator = GetComponent<Animator>();
+
             if (currentWeaponConfig != null)
             {
-                animator = GetComponent<Animator>();
-                animator.SetInteger("Weapon", -2);
+                EquipWeapon(currentWeaponConfig);
 
-                animator.SetTrigger("InstantSwitchTrigger");
-                animator.SetInteger("LeftRight", (int)EHand.Right);
-                animator.SetInteger("Weapon", (int) currentWeaponConfig.GetWeaponAnimatorType());
-                animator.SetInteger("RightWeapon", (int)currentWeaponConfig.GetArmedWeapon());
-                animator.SetInteger("LeftWeapon", 0);
+                // TODO: replace this with our left and right weaponConfig
                 PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
             }
         }
 
-        void Update()
+        public void EquipWeapon(WeaponConfig config, EHand hand = EHand.Right)
         {
+            if (currentWeaponConfig != config)
+                currentWeaponConfig = config;
 
+            EWeaponType weaponType = currentWeaponConfig.GetWeaponType();
+
+            animator.SetInteger("LeftRight", 0);
+            animator.SetInteger("LeftWeapon", 0);
+            animator.SetInteger("RightWeapon", 0);
+
+            switch (weaponType)
+            {
+                case EWeaponType.Two_Hand_Sword:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.TWOHANDSWORD);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.TWOHANDSWORD);
+                    break;
+
+                case EWeaponType.Two_Hand_Club:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.TWOHANDCLUB);  
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.TWOHANDCLUB);
+                    break;
+
+                case EWeaponType.Two_Hand_Spear:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.TWOHANDSPEAR);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.TWOHANDSPEAR);
+                    break;
+
+                case EWeaponType.Two_Hand_Axe:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.TWOHANDAXE);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.TWOHANDAXE);
+                    break;
+
+                case EWeaponType.Two_Hand_Bow:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.TWOHANDBOW);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.TWOHANDBOW);
+                    break;
+
+                case EWeaponType.Two_Hand_Crossbow:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.TWOHANDCROSSBOW);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.TWOHANDCROSSBOW);
+                    break;
+
+                case EWeaponType.Staff:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.STAFF);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationType.STAFF);
+                    break;
+
+                case EWeaponType.Dagger:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.ONEHANDED);
+                    animator.SetInteger("LeftRight", (int)hand);
+                    if (hand == EHand.Left)
+                    {
+                        animator.SetInteger("LeftWeapon", (int)EWeaponAnimationArmedType.LEFT_DAGGER);
+                    }
+                    else if (hand == EHand.Right)
+                    {
+                        animator.SetInteger("RightWeapon", (int)EWeaponAnimationArmedType.RIGHT_DAGGER);
+
+                    }
+                    break;
+
+                case EWeaponType.Sword:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.ONEHANDED);
+                    animator.SetInteger("LeftRight", (int)hand);
+                    if (hand == EHand.Left)
+                    {
+                        animator.SetInteger("LeftWeapon", (int)EWeaponAnimationArmedType.LEFT_SWORD);
+                    }
+                    else if (hand == EHand.Right)
+                    {
+                        animator.SetInteger("RightWeapon", (int)EWeaponAnimationArmedType.RIGHT_SWORD);
+    
+                    }
+                    break;
+
+                case EWeaponType.Mace:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.ONEHANDED);
+                    animator.SetInteger("LeftRight", (int)hand);
+                    if (hand == EHand.Left)
+                    {
+                        animator.SetInteger("LeftWeapon", (int)EWeaponAnimationArmedType.LEFT_MACE);
+                    }
+                    else if (hand == EHand.Right)
+                    {
+                        animator.SetInteger("RightWeapon", (int)EWeaponAnimationArmedType.RIGHT_MACE);
+
+                    }
+                    break;
+
+                case EWeaponType.Pistol:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.ONEHANDED);
+                    animator.SetInteger("LeftRight", (int)hand);
+                    if (hand == EHand.Left)
+                    {
+                        animator.SetInteger("LeftWeapon", (int)EWeaponAnimationArmedType.LEFT_PISTOL);
+                    }
+                    else if (hand == EHand.Right)
+                    {
+                        animator.SetInteger("RightWeapon", (int)EWeaponAnimationArmedType.RIGHT_PISTOL);
+
+                    }
+                    break;
+
+                case EWeaponType.Unarmed:
+                    animator.SetInteger("Weapon", (int)EWeaponAnimationType.UNARMED);
+                    animator.SetInteger("LeftRight", (int)hand);
+                    animator.SetInteger("AttackSide", (int)hand);
+                    animator.SetInteger("LeftWeapon", (int)EWeaponAnimationArmedType.UNARMED);
+                    animator.SetInteger("RightWeapon", (int)EWeaponAnimationArmedType.UNARMED);
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            animator.SetTrigger("InstantSwitchTrigger");
+
+
+            Debug.LogFormat("Weapon: {0}", animator.GetInteger("Weapon"));
+            Debug.LogFormat("LeftRight: {0}", animator.GetInteger("LeftRight"));
+            Debug.LogFormat("RightWeapon: {0}", animator.GetInteger("RightWeapon"));
+            Debug.LogFormat("LeftWeapon: {0}", animator.GetInteger("LeftWeapon"));
+        }
+
+        public void UnequipWeapon(EHand hand)
+        {
         }
 
         public GameObject GetWeaponObject()
@@ -111,6 +281,7 @@ namespace RPG.Characters
             StopAllCoroutines();
         }
 
+        // TODO: Add which hand parameter
         public void Attack()
         {
             isAttacking = true;
@@ -118,32 +289,18 @@ namespace RPG.Characters
             // Note this stuff is just to deal with the complete 
             // hack of a state machine 
             animator.applyRootMotion = false;
+
+            // TODO: Fix this for left and right weaponConfigs
             animator.SetInteger("AttackSide", (int)EHand.Right);
-            int attackNumber = 0;
-            EArmedWeapon armedWeapon = GetCurrentWeapon().GetArmedWeapon();
-            EWeaponType weaponType = GetCurrentWeapon().GetWeaponAnimatorType();
 
-            if (weaponType == EWeaponType.TWOHANDSWORD)
-            {
-                attackNumber = Mathf.RoundToInt(Random.Range(1, 11));
-            }
-            else
-            {
-                if (armedWeapon == EArmedWeapon.RIGHT_SWORD)
-                {
-                    attackNumber = Random.Range(8, 14);
-                }
-                else if (armedWeapon == EArmedWeapon.RIGHT_MACE)
-                {
-                    attackNumber = Random.Range(4, 7);
-                }
-                else if (armedWeapon == EArmedWeapon.RIGHT_PISTOL)
-                {
-                    attackNumber = Random.Range(4, 7);
-                }
-            }
+            EWeaponType weaponType = GetCurrentWeapon().GetWeaponType();
 
-            animator.SetInteger("Action", attackNumber);
+            var query = attackAnimationRanges.Where(x => x.weaponType == weaponType && (x.hand == EHand.Right || x.hand == EHand.Two));
+            var ranges = query.SingleOrDefault();
+            int attackNumber = ranges.GetRandomAttack();
+            Debug.LogFormat("{0} {1}: ", Enum.GetName(typeof(EWeaponType), weaponType), attackNumber);
+
+            animator.SetInteger("Action", ranges.GetRandomAttack());
             animator.SetTrigger("AttackTrigger");
 
             var particlePrefab = currentWeaponConfig.GetParticlePrefab();
@@ -169,10 +326,15 @@ namespace RPG.Characters
 
         IEnumerator DamageAfterDelay(float delay)
         {
+            var damage = CalculateDamage();
+            onHit(this, target, damage);
+
             // Pause for delay time to better simulate when a weapon attack actually hits the target
             // think of a sword swing for example -- we dont want to damage on the wind up, etc.
             yield return new WaitForSeconds(delay);
+
             animator.applyRootMotion = true;
+
             if (target == null)
             {
                 yield return new WaitForEndOfFrame();
@@ -181,17 +343,12 @@ namespace RPG.Characters
             var targetHealthComponent = target.GetComponent<HealthSystem>();
             if (targetHealthComponent != null)
             {
-                var damage = CalculateDamage();
-
                 targetHealthComponent.Damage(damage);
-
-                // notify anyone that we have a hit.
-                onHit(this, target, damage);
             }
 
             isAttacking = false;
 
-            onAttackComplete(this);
+            onAttackComplete(this, target);
         }
 
         GameObject RequestOtherHand()
@@ -217,7 +374,7 @@ namespace RPG.Characters
 
         float CalculateDamage()
         {
-            return baseDamage + currentWeaponConfig.GetAdditionalDamage();
+            return currentWeaponConfig.GetBaseDamage();
         }
 
         IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
