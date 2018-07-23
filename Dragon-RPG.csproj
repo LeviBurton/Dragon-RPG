@@ -326,14 +326,18 @@
     <Compile Include="Assets\_Core\Scripts\Camera\CameraRaycaster.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\RTS_Camera.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\CharacterConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\DamageTypeConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\EnemyConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\FriendlyConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\GameConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\WeaponConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterGroupController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Controllers\FriendlyController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\AssetHelpers.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\CircleProjector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Command.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\DominantHand.cs" />
@@ -620,13 +624,13 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\frag_ao.cginc" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
-    <None Include="Assets\_Characters\Materials\CircleProjectcionShader.shader" />
-    <None Include="Assets\_Characters\Materials\GridProjectionShader.shader" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Group.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
+    <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>

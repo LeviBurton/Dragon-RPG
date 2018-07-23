@@ -10,7 +10,9 @@ public class Selectable : MonoBehaviour
     [HideInInspector] public GameObject selectionCircle;
     [SerializeField] public GameObject selectionCirclePrefab;
 
-    private bool isSelected = false;
+    // TODO: consider removing this internal state.  
+    // we don't really do anything with it, so why have it.
+    public bool isSelected = false;
 
     public delegate void OnSelected();
     public event OnSelected onSelected;
@@ -26,23 +28,34 @@ public class Selectable : MonoBehaviour
 
     public void Select()
     {
+        if (isSelected)
+            return;
+
         isSelected = true;
-        onSelected();
+
+        if (onSelected != null)
+            onSelected();
     }
 
     public void Deselect()
     {
+        if (!isSelected)
+            return;
+
         isSelected = false;
-        onDeselected();
+        if (onDeselected != null)
+            onDeselected();
     }
 
     public void Highlight()
     {
-        onHighlight();
+        if (onHighlight != null)
+            onHighlight();
     }
 
     public void Dehighlight()
     {
-        onDeHighlight();
+        if (onDeHighlight != null)
+            onDeHighlight();
     }
 }

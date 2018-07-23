@@ -6,7 +6,7 @@ using Panda;
 using RPG.Characters;
 using System.Collections.Generic;
 
-namespace RPG.Controllers
+namespace RPG.Character
 {
     public enum ECharacterType
     {
@@ -15,6 +15,16 @@ namespace RPG.Controllers
         NPC
     }
 
+    public enum ECharacterSize
+    {
+        Small,
+        Medium,
+        Large,
+        Huge,
+        Gargantuan
+    }
+
+    [ExecuteInEditMode]
     public class CharacterController : MonoBehaviour
     {
         [Header("RPG Character")]
@@ -33,12 +43,14 @@ namespace RPG.Controllers
         [SerializeField] Sprite moveActionImage;
         [SerializeField] Sprite attackActionImage;
         [SerializeField] Image actionImage;
-
+        [SerializeField] ECharacterSize characterSize = ECharacterSize.Medium;
+        
         private HealthSystem healthSystem;
         private WeaponSystem weaponSystem;
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
+        private bool isSelected;
 
         [Header("Animation Pack Stuff")]
         public bool crouch;
@@ -142,7 +154,8 @@ namespace RPG.Controllers
 
         Selectable selectable;
 
-        List<cakeslice.Outline> outliners = new List<cakeslice.Outline>();
+        [Header("Gizmos")]
+        [SerializeField] Color boundingBoxColor = Color.white;
 
         #region MonoBehavior
         void Awake()
@@ -156,12 +169,24 @@ namespace RPG.Controllers
             runSpeed = characterConfig.GetRunSpeed();
             sprintSpeed = characterConfig.GetSprintSpeed();
             rotationSpeed = characterConfig.GetRotationSpeed();
+
+            characterSize = characterConfig.GetSize();
+            var collider = GetComponent<BoxCollider>();
+            collider.center = characterConfig.GetCharacterCenter();
+            collider.size = characterConfig.GetCharacterSize();
+
             //navMeshAgent.updatePosition = manualPosition;
             //navMeshAgent.updateRotation = manualRotation;
         }
 
         void Start()
         {
+            //if (!Application.isPlaying)
+            //    return;
+
+            AddOutlinesToMeshes();
+            SetOutlinesEnabled(false);
+
             healthSystem = GetComponent<HealthSystem>();
             if (healthSystem)
             {
@@ -180,12 +205,13 @@ namespace RPG.Controllers
             currentRecoveryTimeSeconds = 0.0f;
 
             RegisterSelectableEventHandlers();
-
-            AddOutlinesToMeshes();
         }
 
         void Update()
         {
+            if (!Application.isPlaying)
+                return;
+
             navMeshAgent.speed = runSpeed;
             navMeshAgent.angularSpeed = rotationSpeed;
 
@@ -217,6 +243,9 @@ namespace RPG.Controllers
 
         void LateUpdate()
         {
+            if (!Application.isPlaying)
+                return;
+
             UpdateRecoveryBar();
         }
 
@@ -225,34 +254,27 @@ namespace RPG.Controllers
         #region Selectable Events
         void OnSelected()
         {
-            foreach (var outliner in outliners)
-            {
-                outliner.enabled = true;
-            }
+            isSelected = true;
+            SetOutlinesEnabled(true);
         }
 
         void OnDeselected()
         {
-            foreach (var outliner in outliners)
-            {
-                outliner.enabled = false;
-            }
+            isSelected = false;
+            SetOutlinesEnabled(false);
         }
 
         void OnDeHighlight()
         {
-            foreach (var outliner in outliners)
+            if (!isSelected)
             {
-                outliner.enabled = false;
+                SetOutlinesEnabled(false);
             }
         }
 
         void OnHighlight()
         {
-            foreach (var outliner in outliners)
-            {
-                outliner.enabled = true;
-            }
+            SetOutlinesEnabled(true);
         }
         #endregion
 
@@ -279,6 +301,15 @@ namespace RPG.Controllers
             HandleHitAndShootAnimationEvents();
         }
 
+        public void FootL()
+        {
+
+        }
+
+        public void FootR()
+        {
+
+        }
         #endregion
 
         #region WeaponSystem Events
@@ -286,7 +317,7 @@ namespace RPG.Controllers
         public void OnAttackComplete(WeaponSystem weaponSystem, GameObject hitObject)
         {
             // This is called AFTER DamageAfterDelay!!!
-            Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
+           // Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
             currentRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds(); ;
             // TODO: fixme -- wrong place to do this.
             hitObject.GetComponent<Animator>().applyRootMotion = true;
@@ -294,7 +325,7 @@ namespace RPG.Controllers
 
         public void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
         {
-            Debug.LogFormat("{0} OnHit {1} with {2} for {3} damage", name, hitObject.name, weaponSystem.GetCurrentWeapon().name, damage);
+            Debug.LogFormat("{0} hit {1} with {2} for {3} damage", name, hitObject.name, weaponSystem.GetCurrentWeapon().GetWeaponName(), damage);
             hitObject.GetComponent<Animator>().applyRootMotion = false;
         }
         #endregion
@@ -387,6 +418,50 @@ namespace RPG.Controllers
         }
         #endregion
 
+        #region Size
+        public ECharacterSize GetCharacterSize()
+        {
+            return characterSize;
+        }
+
+        public float GetCharacterRadius()
+        {
+            float radius = 0.0f;
+
+            if (characterSize == ECharacterSize.Small)
+            {
+                radius = 0.5f;
+            }
+            else if (characterSize == ECharacterSize.Medium)
+            {
+                radius = 1.0f;
+            }
+            else if (characterSize == ECharacterSize.Large)
+            {
+                return 3.0f;
+            }
+            else if (characterSize == ECharacterSize.Gargantuan)
+            {
+                return 10.0f;
+            }
+
+            return radius;
+        }
+        #endregion
+
+        #region Collider
+        private void OnTriggerEnter(Collider other)
+        {
+            var collisionCharacter = other.GetComponent<CharacterController>();
+
+            if (collisionCharacter != null)
+            {
+                Debug.LogFormat("{0} collided with {1}", name, other.gameObject.name);
+            }
+        }
+       
+        #endregion
+
         // CharacterConfig
         public CharacterConfig GetCharacterConfig()
         {
@@ -405,6 +480,17 @@ namespace RPG.Controllers
                 selectable.onHighlight += OnHighlight;
                 selectable.onDeHighlight += OnDeHighlight;
             }
+
+            OnDeselected();
+            OnDeHighlight();
+        }
+
+        void SetOutlinesEnabled(bool enabled)
+        {
+            foreach (var outliner in GetComponentsInChildren<cakeslice.Outline>())
+            {
+                outliner.enabled = enabled;
+            }
         }
 
         void AddOutlinesToMeshes()
@@ -417,7 +503,6 @@ namespace RPG.Controllers
                 {
                     var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
                     outline.color = 0;
-                    outliners.Add(outline);
                 }
             }
             var meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -427,7 +512,6 @@ namespace RPG.Controllers
                 {
                     var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
                     outline.color = 0;
-                    outliners.Add(outline);
                 }
             }
         }
@@ -527,6 +611,12 @@ namespace RPG.Controllers
         }
 
         [Task]
+        bool Idle()
+        {
+            return true;
+        }
+
+        [Task]
         bool InAttackRange()
         {
             bool isInRange = false;
@@ -590,19 +680,27 @@ namespace RPG.Controllers
         }
 
         [Task]
-        bool Target_Acquire()
+        bool FindCombatTarget()
         {
-            // Just aquire the single player game object.
-            var target = GameObject.FindGameObjectWithTag("Player");
-            if (target == null)
+            SetObjectTarget(null);
+
+            var friendlies = FindObjectsOfType<FriendlyController>();
+
+            foreach (var friendly in friendlies)
             {
-                return false;
+                var healthSystem = friendly.GetComponent<HealthSystem>();
+                if (healthSystem == null)
+                    continue;
+
+                if (healthSystem.IsAlive())
+                {
+                    SetObjectTarget(healthSystem.gameObject);
+                    SetMovementTarget(healthSystem.gameObject.transform.position);
+                    return true;
+                }
             }
 
-            SetObjectTarget(target);
-            SetMovementTarget(target.transform.position);
-
-            return true;
+            return false;
         }
 
         [Task]
@@ -628,6 +726,21 @@ namespace RPG.Controllers
             return true;
         }
 
+        #endregion
+
+        #region Gizmos
+        
+        void OnDrawGizmos()
+        {
+            var previousColor = Gizmos.color;
+            Gizmos.color = boundingBoxColor;
+            var boxCollider = GetComponent<BoxCollider>();
+            Matrix4x4 oldGizmosMatrix = Gizmos.matrix;
+            Gizmos.matrix = Matrix4x4.TRS(boxCollider.transform.TransformPoint(boxCollider.center), boxCollider.transform.rotation, boxCollider.transform.lossyScale);
+            Gizmos.DrawWireCube(Vector3.zero, boxCollider.size);
+            Gizmos.matrix = oldGizmosMatrix;    
+            Gizmos.color = previousColor;
+        }
         #endregion
 
     }

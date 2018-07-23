@@ -10,7 +10,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using RPG.Characters;
 
-namespace RPG.Controllers
+namespace RPG.Character
 {
     [RequireComponent(typeof(HealthSystem))]
     [RequireComponent(typeof(CharacterController))]

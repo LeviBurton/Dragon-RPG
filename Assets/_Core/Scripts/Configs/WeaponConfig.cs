@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RPG.Config;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,7 +80,7 @@ namespace RPG.Characters
     [CreateAssetMenu(menuName = "RPG/Weapon")]
     public class WeaponConfig : ScriptableObject
     {
-        [SerializeField] string Name;
+        [SerializeField] string weaponName;
 
         // Transform applied to the weapon when attached to a game object
         public Transform gripTransform;
@@ -92,6 +93,9 @@ namespace RPG.Characters
 
         // This will get added to the weapon holders recovery time in seconds
         [SerializeField] float recoveryTimeSeconds = 1.0f;
+
+        // List of damage types this weapon uses.
+        [SerializeField] List<DamageTypeConfig> damageTypes;
 
         // How long an attack takes before the recovery period begins.
         // Right now, this is going to get hard coded to the weapon animation length,
@@ -107,6 +111,11 @@ namespace RPG.Characters
         [SerializeField] bool aimWeapon;
         [SerializeField] GameObject particlePrefab;
  
+        public string GetWeaponName()
+        {
+            return weaponName;
+        }
+
         public EWeaponType GetWeaponType()
         {
             return weaponType;

@@ -65,7 +65,7 @@ Material:
     - _GridInnerSpacing: 1
     - _GridInnerThickness: 0.1
     - _GridSpacing: 5
-    - _GridThickness: 0.05
+    - _GridThickness: 0.04
     - _InnerRadius: 2
     - _Metallic: 0
     - _Mode: 0
@@ -81,6 +81,6 @@ Material:
     - _BaseColour: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 0.441}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GridColour: {r: 0, g: 0, b: 0, a: 0.484}
-    - _GridInnerColour: {r: 0, g: 0, b: 0, a: 0.334}
+    - _GridColour: {r: 0, g: 0, b: 0, a: 0.3137255}
+    - _GridInnerColour: {r: 0, g: 0, b: 0, a: 0.15686275}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}

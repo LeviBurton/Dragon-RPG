@@ -1,8 +1,8 @@
 tree "Root"
 	fallback
-		tree "Attack"
-		not tree "TargetAquire"
 		tree "Chase"
+		tree "Attack"
+		tree "FindCombatTarget"
 		tree "Idle"
 
 tree "Attack"
@@ -17,23 +17,27 @@ tree "Attack"
 			WaitForRecovery
 			Attack
 
-tree "TargetAquire"
-	Target_Acquire
+tree "FindCombatTarget"
+	FindCombatTarget
 
 tree "Chase"
 	while 
 		sequence
-			MoveToMelee
+			HasTarget
 			TargetIsAlive
 			not InAttackRange
-		
+
 		sequence
 			MoveToTargetPosition
 			StopMoving
+
 tree "Idle"
-	sequence
-		fallback
-			Target_Acquire
+	while 
+		sequence
+			not FindCombatTarget
+
+		sequence
+			Idle
 
 
 

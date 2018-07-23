@@ -11,17 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06118bfb1fe1584793348b3d9869154, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  Name: Pistol
+  weaponName: Pistol - Basic
   gripTransform: {fileID: 4157477511442614, guid: 3c4280098da208a41842184361da571c,
     type: 2}
   muzzleTipTransform: {fileID: 4157477511442614, guid: 76f0e3c528bc528458df0bc6e26dbfb1,
     type: 2}
-  weaponType: 0
+  weaponType: 12
   recoveryTimeSeconds: 3
-  attackSpeedSeconds: 1
+  attackSpeedSeconds: 1.1
   maxAttackRange: 10
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 100050, guid: 040ffa37ce9c91e4e843c922c36d1540, type: 3}
   useOtherHand: 0
-  baseDamage: 5
+  baseDamage: 10
   aimWeapon: 0
   particlePrefab: {fileID: 0}

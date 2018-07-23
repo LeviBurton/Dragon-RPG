@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
-    [CreateAssetMenu(menuName = "RPG/Enemy/Config")]
+    [CreateAssetMenu(menuName = "RPG/Enemy")]
     public class EnemyConfig : ScriptableObject
     {
     }

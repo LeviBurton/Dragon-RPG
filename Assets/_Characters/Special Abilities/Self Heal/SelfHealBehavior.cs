@@ -1,4 +1,4 @@
-﻿using RPG.Controllers;
+﻿using RPG.Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

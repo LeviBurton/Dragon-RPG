@@ -1,4 +1,4 @@
-﻿using RPG.Controllers;
+﻿using RPG.Character;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +13,12 @@ namespace RPG.Characters
     {
         // Note that we may not need this -- since we need a parent owner of this component anyway, 
         // we might as well just use the children of that as the list of enemies.
-        public List<Controllers.CharacterController> characters;
+        public List<Character.CharacterController> characters;
 
         // Use this for initialization
         void Start()
         {
-            characters = GetComponentsInChildren<Controllers.CharacterController>().ToList();
+            characters = GetComponentsInChildren<Character.CharacterController>().ToList();
         }
 
         // Update is called once per frame
@@ -26,13 +26,13 @@ namespace RPG.Characters
         {
         }
 
-        public void AddCharacter(Controllers.CharacterController character)
+        public void AddCharacter(Character.CharacterController character)
         {
             // OnAddEnemy event
             characters.Add(character);
         }
 
-        public void RemoveEnemy(Controllers.CharacterController character)
+        public void RemoveEnemy(Character.CharacterController character)
         {
             // OnRemoveEnemy event
             characters.Remove(character);

@@ -2,7 +2,7 @@
 
 using RPG.Core;
 using System;
-using RPG.Controllers;
+using RPG.Character;
 
 namespace RPG.Characters
 {

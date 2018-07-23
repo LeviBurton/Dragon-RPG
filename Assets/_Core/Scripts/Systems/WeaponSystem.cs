@@ -61,6 +61,7 @@ namespace RPG.Characters
         {
             if (attackAnimationRanges.Count == 0)
             {
+                // This maps weapon animations to a range of possible animations (there are multiple per hand, per weapon)
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Sword, EHand.Two, 1, 11));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Club, EHand.Two, 1, 11));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Spear, EHand.Two, 1, 11));
@@ -68,8 +69,8 @@ namespace RPG.Characters
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Bow, EHand.Two, 1, 6));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Two_Hand_Crossbow, EHand.Two, 1, 6));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Staff, EHand.Two, 1, 6));
-                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Sword, EHand.Left, 1, 6));
-                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Sword, EHand.Right, 7, 13));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Sword, EHand.Left, 1, 7));
+                attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Sword, EHand.Right, 8, 14));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Pistol, EHand.Left, 1, 3));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Pistol, EHand.Right, 4, 6));
                 attackAnimationRanges.Add(new AttackAnimationRanges(EWeaponType.Mace, EHand.Left, 1, 3));
@@ -218,16 +219,18 @@ namespace RPG.Characters
             animator.SetTrigger("InstantSwitchTrigger");
 
 
-            Debug.LogFormat("Weapon: {0}", animator.GetInteger("Weapon"));
-            Debug.LogFormat("LeftRight: {0}", animator.GetInteger("LeftRight"));
-            Debug.LogFormat("RightWeapon: {0}", animator.GetInteger("RightWeapon"));
-            Debug.LogFormat("LeftWeapon: {0}", animator.GetInteger("LeftWeapon"));
         }
 
         public void UnequipWeapon(EHand hand)
         {
+            animator.SetInteger("Weapon", 0);
+            animator.SetInteger("LeftRight", 0);
+            animator.SetInteger("LeftWeapon", 0);
+            animator.SetInteger("RightWeapon", 0);
+            animator.SetTrigger("InstantSwitchTrigger");
         }
 
+   
         public GameObject GetWeaponObject()
         {
             return weaponObject;
@@ -256,10 +259,13 @@ namespace RPG.Characters
 
             Destroy(weaponObject);
 
-            weaponObject = Instantiate(weaponPrefab, handToPutIn.transform);
-            weaponObject.transform.localScale = new Vector3(1, 1, 1);
-            weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
-            weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
+            if (weaponPrefab != null)
+            {
+                weaponObject = Instantiate(weaponPrefab, handToPutIn.transform);
+                weaponObject.transform.localScale = new Vector3(1, 1, 1);
+                weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.transform.localPosition;
+                weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.transform.localRotation;
+            }
         }
 
         // todo: should we use the instance target?
@@ -290,16 +296,21 @@ namespace RPG.Characters
             // hack of a state machine 
             animator.applyRootMotion = false;
 
-            // TODO: Fix this for left and right weaponConfigs
+            // TODO: Fix this for left and right weaponConfigs.  Right now default to right-handed characters.
+            // Note that AttackSide is not used for two-handed weapons.
             animator.SetInteger("AttackSide", (int)EHand.Right);
 
             EWeaponType weaponType = GetCurrentWeapon().GetWeaponType();
+            var ranges = attackAnimationRanges.Where(x => x.weaponType == weaponType && (x.hand == EHand.Right || x.hand == EHand.Two)).SingleOrDefault();
 
-            var query = attackAnimationRanges.Where(x => x.weaponType == weaponType && (x.hand == EHand.Right || x.hand == EHand.Two));
-            var ranges = query.SingleOrDefault();
+            if (ranges == null)
+            {
+                Debug.LogErrorFormat("weaponType {0} has no attack ranges!", Enum.GetName(typeof(EWeaponType), weaponType));
+                throw new Exception(string.Format("weaponType {0} has no attack ranges!", Enum.GetName(typeof(EWeaponType), weaponType)));
+            }
+
             int attackNumber = ranges.GetRandomAttack();
-            Debug.LogFormat("{0} {1}: ", Enum.GetName(typeof(EWeaponType), weaponType), attackNumber);
-
+      
             animator.SetInteger("Action", ranges.GetRandomAttack());
             animator.SetTrigger("AttackTrigger");
 
@@ -321,7 +332,6 @@ namespace RPG.Characters
             {
                 StartCoroutine(DamageAfterDelay(currentWeaponConfig.GetAttackSpeedSeconds()));
             }
-
         }
 
         IEnumerator DamageAfterDelay(float delay)
@@ -397,19 +407,5 @@ namespace RPG.Characters
         public void Shoot()
         {
         }
-
-        public void FootR()
-        {
-        }
-
-        public void FootL()
-        {
-        }
-
-        public void Land()
-        {
-        }
-
-
     }
 }

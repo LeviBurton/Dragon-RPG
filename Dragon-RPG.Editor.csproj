@@ -599,13 +599,13 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\frag_ao.cginc" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
-    <None Include="Assets\_Characters\Materials\CircleProjectcionShader.shader" />
-    <None Include="Assets\_Characters\Materials\GridProjectionShader.shader" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Group.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
+    <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>

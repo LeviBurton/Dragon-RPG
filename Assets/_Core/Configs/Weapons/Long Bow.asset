@@ -11,17 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06118bfb1fe1584793348b3d9869154, type: 3}
   m_Name: Long Bow
   m_EditorClassIdentifier: 
-  Name: 2Hand-Bow
-  gripTransform: {fileID: 4999588877192646, guid: e08b4a8fc483ea74d916f2e27c421dfe,
+  weaponName: 2Hand-Bow Basic
+  gripTransform: {fileID: 4012722514763844, guid: 8da9e3c996bb1334cbd90e8305caa61f,
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 4
-  armedWeapon: 4
-  recoveryTimeSeconds: 5
-  attackSpeedSeconds: 0.8
+  recoveryTimeSeconds: 1.5
+  damageTypes: []
+  attackSpeedSeconds: 1.1
   maxAttackRange: 25
   weaponPrefab: {fileID: 100050, guid: e9ebfd61d4a1b494faf4927176030477, type: 3}
-  useOtherHand: 0
-  baseDamage: 0
+  useOtherHand: 1
+  baseDamage: 12
   aimWeapon: 0
   particlePrefab: {fileID: 0}
