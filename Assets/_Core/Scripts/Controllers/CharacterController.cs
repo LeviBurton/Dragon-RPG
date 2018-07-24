@@ -151,6 +151,8 @@ namespace RPG.Character
 
         GameObject objectTarget;
         Vector3 movementTarget;
+        Vector3 homePosition;
+        bool isAtObjectTarget;
 
         Selectable selectable;
 
@@ -164,9 +166,10 @@ namespace RPG.Character
             navMeshAgent = GetComponent<NavMeshAgent>();     
             rigidBody = GetComponent<Rigidbody>();
             animator.speed = animationSpeed;
-            animator.applyRootMotion = true;
+            animator.applyRootMotion = false;
             walkSpeed = characterConfig.GetWalkSpeed();
             runSpeed = characterConfig.GetRunSpeed();
+            navMeshAgent.speed = runSpeed;
             sprintSpeed = characterConfig.GetSprintSpeed();
             rotationSpeed = characterConfig.GetRotationSpeed();
 
@@ -184,6 +187,8 @@ namespace RPG.Character
             //if (!Application.isPlaying)
             //    return;
 
+            homePosition = transform.position;
+       
             AddOutlinesToMeshes();
             SetOutlinesEnabled(false);
 
@@ -320,7 +325,7 @@ namespace RPG.Character
            // Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
             currentRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds(); ;
             // TODO: fixme -- wrong place to do this.
-            hitObject.GetComponent<Animator>().applyRootMotion = true;
+           // hitObject.GetComponent<Animator>().applyRootMotion = true;
         }
 
         public void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
@@ -357,6 +362,16 @@ namespace RPG.Character
                 worldUI.enabled = false;
             }
 
+            navMeshAgent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+     
+            var circleProjector = GetComponentInChildren<Projector>();
+            if (circleProjector)
+            {
+                circleProjector.enabled = false;
+            }
+
             // Trigger the death animation
             animator.SetTrigger("Death1Trigger");
 
@@ -384,7 +399,7 @@ namespace RPG.Character
 
         public void SetDestination(Vector3 worldPosition)
         {
-            animator.applyRootMotion = true;
+       //     animator.applyRootMotion = true;
 
             navMeshAgent.isStopped = false;
             navMeshAgent.destination = worldPosition;
@@ -409,11 +424,13 @@ namespace RPG.Character
         #region Targets
         public void SetObjectTarget(GameObject target)
         {
+            isAtObjectTarget = false;
             objectTarget = target;
         }
 
         public void SetMovementTarget(Vector3 position)
         {
+            isAtObjectTarget = false;
             movementTarget = position;
         }
         #endregion
@@ -452,14 +469,17 @@ namespace RPG.Character
         #region Collider
         private void OnTriggerEnter(Collider other)
         {
-            var collisionCharacter = other.GetComponent<CharacterController>();
-
-            if (collisionCharacter != null)
+            if (other.gameObject == objectTarget)
             {
-                Debug.LogFormat("{0} collided with {1}", name, other.gameObject.name);
+                isAtObjectTarget = true;
+                StopMoving();
             }
         }
-       
+
+        private void OnTriggerExit(Collider other)
+        {
+        
+        }
         #endregion
 
         // CharacterConfig
@@ -546,7 +566,7 @@ namespace RPG.Character
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.velocity = Vector3.zero;
-
+            animator.applyRootMotion = false;
             return true;
         }
 
@@ -561,7 +581,7 @@ namespace RPG.Character
                 weaponSystem.StopAttacking();
             }
 
-            if (InAttackRange())
+            if (IsWithinWeaponRange())
             {
                 StopMoving();
                 Task.current.Succeed();
@@ -583,7 +603,7 @@ namespace RPG.Character
                 weaponSystem.StopAttacking();
             }
 
-            if (InAttackRange())
+            if (IsWithinWeaponRange())
             {
                 StopMoving();
                 Task.current.Succeed();
@@ -598,16 +618,25 @@ namespace RPG.Character
         void MoveToTargetPosition()
         {
             actionImage.sprite = moveActionImage;
-            var distance = Vector3.Distance(transform.position, movementTarget);
-            if (distance <= GetStoppingDistance())
+
+            if (isAtObjectTarget)
             {
                 Task.current.Succeed();
             }
             else
             {
-
-               SetDestination(movementTarget);
+                SetDestination(movementTarget);
             }
+
+            //var distance = Vector3.Distance(transform.position, movementTarget);
+            //if (distance <= GetStoppingDistance())
+            //{
+            //    Task.current.Succeed();
+            //}
+            //else
+            //{
+            //   SetDestination(movementTarget);
+            //}
         }
 
         [Task]
@@ -617,19 +646,23 @@ namespace RPG.Character
         }
 
         [Task]
-        bool InAttackRange()
+        bool IsWithinWeaponRange()
         {
             bool isInRange = false;
 
             if (weaponSystem != null)
             {
+                var currentWeapon = weaponSystem.GetCurrentWeapon();
+
+                if (isAtObjectTarget && currentWeapon.GetWeaponRange() == 0)
+                    return true;
+
                 float distance = Vector3.Distance(transform.position, movementTarget);
 
-                var currentWeapon = weaponSystem.GetCurrentWeapon();
                 if (currentWeapon != null)
                 {
-                    isInRange = distance <= currentWeapon.GetMaxAttackRange() ||
-                                            Mathf.Approximately(distance, currentWeapon.GetMaxAttackRange());
+                    isInRange = distance <= currentWeapon.GetWeaponRange() ||
+                                            Mathf.Approximately(distance, currentWeapon.GetWeaponRange());
 
                 }
             }
@@ -653,6 +686,11 @@ namespace RPG.Character
             if (targetHealthsysytem)
             {
                 isAlive = targetHealthsysytem.IsAlive();
+                if (!isAlive)
+                {
+                    SetObjectTarget(null);
+     
+                }
             }
 
             return isAlive;
@@ -684,7 +722,10 @@ namespace RPG.Character
         {
             SetObjectTarget(null);
 
-            var friendlies = FindObjectsOfType<FriendlyController>();
+            var friendlies = FindObjectsOfType<HeroController>();
+
+            float shortestDistanceToFriendly = Mathf.Infinity;
+            GameObject closestFriendly = null;
 
             foreach (var friendly in friendlies)
             {
@@ -694,13 +735,26 @@ namespace RPG.Character
 
                 if (healthSystem.IsAlive())
                 {
-                    SetObjectTarget(healthSystem.gameObject);
-                    SetMovementTarget(healthSystem.gameObject.transform.position);
-                    return true;
+                    var dist = Vector3.Distance(transform.position, healthSystem.transform.position);
+
+                    if (dist < shortestDistanceToFriendly)
+                    {
+                        shortestDistanceToFriendly = dist;
+                        closestFriendly = friendly.gameObject;
+                    }
                 }
             }
 
-            return false;
+            if (closestFriendly != null)
+            {
+                SetObjectTarget(closestFriendly.gameObject);
+                SetMovementTarget(closestFriendly.gameObject.transform.position);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         [Task]
@@ -726,6 +780,12 @@ namespace RPG.Character
             return true;
         }
 
+        [Task]
+        void SetTargetToHome()
+        {
+            SetMovementTarget(homePosition);
+            Task.current.Succeed();
+        }
         #endregion
 
         #region Gizmos

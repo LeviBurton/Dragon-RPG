@@ -328,14 +328,14 @@
     <Compile Include="Assets\_Core\Scripts\Configs\CharacterConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\DamageTypeConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\EnemyConfig.cs" />
-    <Compile Include="Assets\_Core\Scripts\Configs\FriendlyConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\GameConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\HeroConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\WeaponConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterGroupController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\EnemyController.cs" />
-    <Compile Include="Assets\_Core\Scripts\Controllers\FriendlyController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\GameController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Controllers\HeroController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\AssetHelpers.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\CircleProjector.cs" />
@@ -347,7 +347,6 @@
     <Compile Include="Assets\_Core\Scripts\Misc\WaypointContainer.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\HealthSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\WeaponSystem.cs" />
-    <Compile Include="Assets\_Core\Scripts\Weapons\WeaponPickupPoint.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />

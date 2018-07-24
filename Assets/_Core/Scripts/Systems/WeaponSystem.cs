@@ -272,7 +272,7 @@ namespace RPG.Characters
         public bool IsTargetInRange(GameObject target)
         {
             float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
-            return distanceToTarget <= GetCurrentWeapon().GetMaxAttackRange();
+            return distanceToTarget <= GetCurrentWeapon().GetWeaponRange();
         }
 
         public void SetTarget(GameObject target)
@@ -309,9 +309,13 @@ namespace RPG.Characters
                 throw new Exception(string.Format("weaponType {0} has no attack ranges!", Enum.GetName(typeof(EWeaponType), weaponType)));
             }
 
+            // Get a random attack animation for the weapon.
             int attackNumber = ranges.GetRandomAttack();
-      
-            animator.SetInteger("Action", ranges.GetRandomAttack());
+
+            // Tell the animator which attack animation we want to use.
+            animator.SetInteger("Action", attackNumber);
+
+            // Tell the animator to run the attack animation.
             animator.SetTrigger("AttackTrigger");
 
             var particlePrefab = currentWeaponConfig.GetParticlePrefab();
@@ -343,7 +347,7 @@ namespace RPG.Characters
             // think of a sword swing for example -- we dont want to damage on the wind up, etc.
             yield return new WaitForSeconds(delay);
 
-            animator.applyRootMotion = true;
+            //animator.applyRootMotion = true;
 
             if (target == null)
             {

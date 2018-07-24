@@ -17,10 +17,11 @@ MonoBehaviour:
   muzzleTipTransform: {fileID: 0}
   weaponType: 0
   recoveryTimeSeconds: 1.5
+  damageTypes: []
   attackSpeedSeconds: 1.1
-  maxAttackRange: 2
+  maxAttackRange: 3
   weaponPrefab: {fileID: 0}
   useOtherHand: 0
-  baseDamage: 2.5
+  baseDamage: 3
   aimWeapon: 0
   particlePrefab: {fileID: 0}

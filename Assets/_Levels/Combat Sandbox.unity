@@ -1166,6 +1166,37 @@ Transform:
   m_Father: {fileID: 964641592}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &95640732
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 812
+  m_Height: 457
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &96406680
 Prefab:
   m_ObjectHideFlags: 0
@@ -6692,7 +6723,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh26368
+  m_Name: pb_Mesh26668
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7777,37 +7808,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 56d2f45c2d790274089e541ea88edc07, type: 3}
   m_PrefabInternal: {fileID: 481919504}
---- !u!84 &489355784
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 860
-  m_Height: 484
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &490053785
 GameObject:
   m_ObjectHideFlags: 0
@@ -18933,37 +18933,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 0f9711582842315479d7d31e6739eae2, type: 3}
   m_PrefabInternal: {fileID: 1285618149}
---- !u!84 &1286389069
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 860
-  m_Height: 484
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1292093190
 Prefab:
   m_ObjectHideFlags: 0
@@ -19999,7 +19968,7 @@ MonoBehaviour:
   baseDamage: 10
   leftHandWeaponConfig: {fileID: 0}
   rightHandWeaponConfig: {fileID: 0}
-  currentWeaponConfig: {fileID: 11400000, guid: 5938c5187b252a64bb4d8447a56f8bd3,
+  currentWeaponConfig: {fileID: 11400000, guid: 4d394371a0fd9714c826f943288e2b15,
     type: 2}
   target: {fileID: 0}
   isAttacking: 0
@@ -23045,7 +23014,6 @@ GameObject:
   - component: {fileID: 1532349260}
   - component: {fileID: 1532349258}
   - component: {fileID: 1532349259}
-  - component: {fileID: 1532349269}
   m_Layer: 11
   m_Name: Hero 1
   m_TagString: Player
@@ -23283,19 +23251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
---- !u!114 &1532349269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1532349256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
+  friendlyConfig: {fileID: 11400000, guid: a9375d3544becdc45830940860c7d6ad, type: 2}
 --- !u!1001 &1537183007
 Prefab:
   m_ObjectHideFlags: 0
@@ -23907,6 +23863,37 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1577292441}
+--- !u!84 &1579910501
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 812
+  m_Height: 457
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1580169002
 GameObject:
   m_ObjectHideFlags: 0
@@ -28144,7 +28131,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 489355784}
+      objectReference: {fileID: 95640732}
     - target: {fileID: 114414286279495412, guid: 23c70b6df3ce2004b90e6a0cd233ee01,
         type: 2}
       propertyPath: outlineShaderMaterial
@@ -28396,6 +28383,16 @@ Prefab:
     - target: {fileID: 114579357858425618, guid: 23c70b6df3ce2004b90e6a0cd233ee01,
         type: 2}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20228103625240040, guid: 23c70b6df3ce2004b90e6a0cd233ee01,
+        type: 2}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20669001992846150, guid: 23c70b6df3ce2004b90e6a0cd233ee01,
+        type: 2}
+      propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -29378,7 +29375,6 @@ GameObject:
   - component: {fileID: 1878579038}
   - component: {fileID: 1878579037}
   - component: {fileID: 1878579036}
-  - component: {fileID: 1878579035}
   m_Layer: 11
   m_Name: Hero 3
   m_TagString: Player
@@ -29402,18 +29398,6 @@ Transform:
   m_Father: {fileID: 462384895}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1878579035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1878579033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
 --- !u!114 &1878579036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29491,7 +29475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
+  friendlyConfig: {fileID: 11400000, guid: 7c8d37d69f261584d87391360b604242, type: 2}
 --- !u!114 &1878579041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29828,7 +29812,6 @@ GameObject:
   - component: {fileID: 1884885164}
   - component: {fileID: 1884885163}
   - component: {fileID: 1884885162}
-  - component: {fileID: 1884885173}
   m_Layer: 11
   m_Name: Hero 2
   m_TagString: Player
@@ -30067,18 +30050,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1884885173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1884885160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
 --- !u!1 &1904000294
 GameObject:
   m_ObjectHideFlags: 0
@@ -30805,7 +30776,6 @@ GameObject:
   - component: {fileID: 1955824235}
   - component: {fileID: 1955824234}
   - component: {fileID: 1955824233}
-  - component: {fileID: 1955824232}
   m_Layer: 11
   m_Name: Hero 4
   m_TagString: Player
@@ -30829,18 +30799,6 @@ Transform:
   m_Father: {fileID: 462384895}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1955824232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1955824230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
 --- !u!114 &1955824233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30918,7 +30876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendlyConfig: {fileID: 11400000, guid: d6b77f1e2dd22d646983dc5c6118838f, type: 2}
+  friendlyConfig: {fileID: 11400000, guid: 9d6cc66b79b0cca47acda438c3c180a4, type: 2}
 --- !u!114 &1955824238
 MonoBehaviour:
   m_ObjectHideFlags: 0

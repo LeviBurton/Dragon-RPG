@@ -154,7 +154,7 @@ public class WeaponEditor : EditorWindow
 
         columns.Add(new SelectFromPropertyNameColumn("baseDamage", "DMG", TableColumn.Width(numberFieldWidth), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
         columns.Add(new SelectFromPropertyNameColumn("recoveryTimeSeconds", "RT", TableColumn.Width(numberFieldWidth), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
-        columns.Add(new SelectFromPropertyNameColumn("maxAttackRange", "R", TableColumn.Width(numberFieldWidth), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
+        columns.Add(new SelectFromPropertyNameColumn("weaponRange", "R", TableColumn.Width(numberFieldWidth), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
         columns.Add(new SelectFromPropertyNameColumn("attackSpeedSeconds", "AS", TableColumn.Width(numberFieldWidth), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
         columns.Add(new SelectFromPropertyNameColumn("useOtherHand", "SwitchHand", TableColumn.Width(80), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
 

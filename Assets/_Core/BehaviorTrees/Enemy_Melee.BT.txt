@@ -10,7 +10,7 @@ tree "Attack"
 		sequence
 			HasTarget
 			TargetIsAlive
-			InAttackRange 
+			IsWithinWeaponRange 
 		
 		sequence 
 			StopMoving
@@ -25,7 +25,7 @@ tree "Chase"
 		sequence
 			HasTarget
 			TargetIsAlive
-			not InAttackRange
+			not IsWithinWeaponRange
 
 		sequence
 			MoveToTargetPosition
@@ -37,6 +37,10 @@ tree "Idle"
 			not FindCombatTarget
 
 		sequence
+			SetTargetToHome
+			MoveToTargetPosition
+			SetSpeed 1.0
+			StopMoving
 			Idle
 
 

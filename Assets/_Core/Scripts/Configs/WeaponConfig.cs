@@ -82,6 +82,10 @@ namespace RPG.Characters
     {
         [SerializeField] string weaponName;
 
+        // For melee weapons, this will be 0.  
+        // All other is measured in meters.
+        [SerializeField] float weaponRange = 0.0f;
+
         // Transform applied to the weapon when attached to a game object
         public Transform gripTransform;
 
@@ -102,8 +106,6 @@ namespace RPG.Characters
         // since I can't figure out a way to get this reliably at runtime.
         [SerializeField] float attackSpeedSeconds = 1.0f;
 
-        // Attack range in units (meters)
-        [SerializeField] float maxAttackRange = 2f;
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] bool useOtherHand;
         [SerializeField] float baseDamage = 0.0f;
@@ -151,9 +153,9 @@ namespace RPG.Characters
             return baseDamage;
         }
 
-        public float GetMaxAttackRange()
+        public float GetWeaponRange()
         {
-            return maxAttackRange;
+            return weaponRange;
         }
 
         public GameObject GetWeaponPrefab()
