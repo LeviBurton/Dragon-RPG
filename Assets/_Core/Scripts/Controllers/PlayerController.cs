@@ -21,7 +21,9 @@ namespace RPG.Character
         [SerializeField] Texture2D enemyCursor = null;
 
         public List<HeroController> selectedHeroes;
-        public List<CharacterController> selectedEnemies;
+        public List<EnemyController> selectedEnemies;
+        public EnemyController selectedEnemy;
+
         public CharacterController selectedCharacter;
         public Transform mouseWorldTransform;
 
@@ -41,7 +43,7 @@ namespace RPG.Character
         void Start()
         {
            // mouseWorldTransform = Instantiate(mouseWorldTransform, Vector3.zero, Quaternion.identity);
-         //   NavMesh.avoidancePredictionTime = 0.5F;
+            NavMesh.avoidancePredictionTime = 5.0F;
         }
 
         // TODO: this is ready for some refactoring.  
@@ -58,7 +60,14 @@ namespace RPG.Character
 
                     if (isMouseOverEnemy)
                     {
-                        Debug.LogFormat("Clicked on Enemy {0}", objectUnderMouseCursor.name);
+                        if (selectedEnemy)
+                        {
+                            selectedEnemy.GetComponent<Selectable>().Deselect();
+                        }
+
+                        var selectable = objectUnderMouseCursor.GetComponent<Selectable>();
+                        selectedEnemy = selectable.GetComponent<EnemyController>();
+                        selectable.Select();
                     }
 
                     else if (isMouseOverFriendly)
@@ -93,6 +102,11 @@ namespace RPG.Character
                             character.GetComponent<Selectable>().Deselect();
                         }
 
+                        if (selectedEnemy)
+                        {
+                            selectedEnemy.GetComponent<Selectable>().Deselect();
+                            selectedEnemy = null;
+                        }
                         selectedHeroes.Clear();
                     }
                     

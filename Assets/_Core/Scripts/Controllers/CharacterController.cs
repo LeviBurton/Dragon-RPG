@@ -179,7 +179,7 @@ namespace RPG.Character
             collider.size = characterConfig.GetCharacterSize();
 
             //navMeshAgent.updatePosition = manualPosition;
-            //navMeshAgent.updateRotation = manualRotation;
+            navMeshAgent.updateRotation = manualRotation;
         }
 
         void Start()
@@ -188,8 +188,6 @@ namespace RPG.Character
             //    return;
 
             homePosition = transform.position;
-
-            AddOutlinesToMeshes();
             SetOutlinesEnabled(false);
 
             healthSystem = GetComponent<HealthSystem>();
@@ -429,8 +427,11 @@ namespace RPG.Character
             if (manualRotation)
             {
                 Vector3 targetDir = (position - transform.position).normalized;
-                var lookRotation = Quaternion.LookRotation(new Vector3(targetDir.x, 0, targetDir.z));
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+                if (targetDir != Vector3.zero)
+                {
+                    var lookRotation = Quaternion.LookRotation(new Vector3(targetDir.x, 0, targetDir.z));
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+                }
             }
         }
 
@@ -532,28 +533,7 @@ namespace RPG.Character
             }
         }
 
-        void AddOutlinesToMeshes()
-        {
-            // Outline stuff.
-            var skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-            foreach (var mesh in skinnedMeshRenderers)
-            {
-                if (!mesh.gameObject.GetComponent<cakeslice.Outline>())
-                {
-                    var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
-                    outline.color = 0;
-                }
-            }
-            var meshRenderers = GetComponentsInChildren<MeshRenderer>();
-            foreach (var mesh in meshRenderers)
-            {
-                if (!mesh.gameObject.GetComponent<cakeslice.Outline>())
-                {
-                    var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
-                    outline.color = 0;
-                }
-            }
-        }
+       
 
         void UpdateAnimator()
         {
@@ -690,7 +670,7 @@ namespace RPG.Character
                 if (isAtObjectTarget && currentWeapon.GetWeaponRange() == 0)
                     return true;
 
-                float distance = Vector3.Distance(transform.position, movementTarget);
+                float distance = Vector3.Distance(transform.position, objectTarget.transform.position);
 
                 if (currentWeapon != null)
                 {
@@ -796,6 +776,7 @@ namespace RPG.Character
             actionImage.sprite = attackActionImage;
 
             weaponSystem.SetTarget(objectTarget);
+            RotateTowardsTarget(objectTarget);
             weaponSystem.Attack();
 
             Debug.DrawLine(transform.position + (Vector3.up), objectTarget.transform.position + (Vector3.up), Color.green, 1.0f);

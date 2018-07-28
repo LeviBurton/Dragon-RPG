@@ -28,7 +28,30 @@ namespace RPG.Character
                 throw new Exception("friendlyConfig can't be null!");
             }
 
+         //   AddOutlinesToMeshes();
+        }
 
+        void AddOutlinesToMeshes()
+        {
+            // Outline stuff.
+            var skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var mesh in skinnedMeshRenderers)
+            {
+                if (!mesh.gameObject.GetComponent<cakeslice.Outline>())
+                {
+                    var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
+                    outline.color = 0;
+                }
+            }
+            var meshRenderers = GetComponentsInChildren<MeshRenderer>();
+            foreach (var mesh in meshRenderers)
+            {
+                if (!mesh.gameObject.GetComponent<cakeslice.Outline>())
+                {
+                    var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
+                    outline.color = 0;
+                }
+            }
         }
     }
 }

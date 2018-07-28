@@ -40,6 +40,8 @@ namespace RPG.Character
         void Start()
         {
             character = GetComponent<CharacterController>();
+            AddOutlinesToMeshes();
+
             if (enemyConfig == null)
                 throw new Exception("enemyConfig can't be null!");
 
@@ -47,6 +49,28 @@ namespace RPG.Character
             currentRecoveryTimeSeconds = 0.0f;
         }
 
+        void AddOutlinesToMeshes()
+        {
+            // Outline stuff.
+            var skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var mesh in skinnedMeshRenderers)
+            {
+                if (!mesh.gameObject.GetComponent<cakeslice.Outline>())
+                {
+                    var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
+                    outline.color = 1;
+                }
+            }
+            var meshRenderers = GetComponentsInChildren<MeshRenderer>();
+            foreach (var mesh in meshRenderers)
+            {
+                if (!mesh.gameObject.GetComponent<cakeslice.Outline>())
+                {
+                    var outline = mesh.gameObject.AddComponent<cakeslice.Outline>();
+                    outline.color = 1;
+                }
+            }
+        }
         void QueueCommand(Command command)
         {
             commandQueue.Enqueue(command);
