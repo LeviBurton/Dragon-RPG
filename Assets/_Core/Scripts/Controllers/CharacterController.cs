@@ -210,6 +210,7 @@ namespace RPG.Character
             currentRecoveryTimeSeconds = 0.0f;
 
             RegisterSelectableEventHandlers();
+            StopMoving();
         }
 
         void Update()
@@ -219,6 +220,19 @@ namespace RPG.Character
 
             navMeshAgent.speed = runSpeed;
             navMeshAgent.angularSpeed = rotationSpeed;
+
+            if (isAtObjectTarget && IsAlive())
+            {
+                GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<NavMeshObstacle>().enabled = true;
+            }
+
+            if (!IsAlive())
+            {
+                GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<NavMeshObstacle>().enabled = false;
+            }
+          
 
             if (manualRotation)
             {
@@ -362,7 +376,12 @@ namespace RPG.Character
                 worldUI.enabled = false;
             }
 
+            movementTarget = Vector3.zero;
+
+            SetObjectTarget(null);
+            isAtObjectTarget = true;
             navMeshAgent.enabled = false;
+            GetComponent<NavMeshObstacle>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
 
@@ -623,13 +642,22 @@ namespace RPG.Character
             GetComponent<NavMeshObstacle>().enabled = false;
             GetComponent<NavMeshAgent>().enabled = true;
 
-            if (isAtObjectTarget)
+            if (isAtObjectTarget || Vector3.Distance(transform.position, movementTarget) <= navMeshAgent.stoppingDistance)
             {
                 Task.current.Succeed();
             }
             else
             {
-                SetDestination(movementTarget);
+                if (objectTarget != null)
+                {
+                    SetDestination(objectTarget.transform.position);
+
+                }
+                else
+                {
+
+                    SetDestination(movementTarget);
+                }
             }
 
             //var distance = Vector3.Distance(transform.position, movementTarget);
@@ -646,6 +674,7 @@ namespace RPG.Character
         [Task]
         bool Idle()
         {
+
             return true;
         }
 

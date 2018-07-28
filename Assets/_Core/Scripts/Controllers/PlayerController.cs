@@ -40,10 +40,8 @@ namespace RPG.Character
 
         void Start()
         {
-            mouseWorldTransform = Instantiate(mouseWorldTransform, Vector3.zero, Quaternion.identity);
-            NavMesh.avoidancePredictionTime = 2.0F;
-
-
+           // mouseWorldTransform = Instantiate(mouseWorldTransform, Vector3.zero, Quaternion.identity);
+         //   NavMesh.avoidancePredictionTime = 0.5F;
         }
 
         // TODO: this is ready for some refactoring.  

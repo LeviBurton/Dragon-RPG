@@ -18,11 +18,11 @@ MonoBehaviour:
   muzzleTipTransform: {fileID: 4157477511442614, guid: 76f0e3c528bc528458df0bc6e26dbfb1,
     type: 2}
   weaponType: 12
-  recoveryTimeSeconds: 1.5
+  recoveryTimeSeconds: 0.75
   damageTypes: []
   attackSpeedSeconds: 1.1
   weaponPrefab: {fileID: 100050, guid: 040ffa37ce9c91e4e843c922c36d1540, type: 3}
   useOtherHand: 0
-  baseDamage: 10
+  baseDamage: 18
   aimWeapon: 0
   particlePrefab: {fileID: 0}
