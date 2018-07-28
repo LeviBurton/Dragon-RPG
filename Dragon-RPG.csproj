@@ -334,6 +334,7 @@
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterGroupController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Controllers\FormationController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\HeroController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\PlayerController.cs" />
@@ -627,6 +628,7 @@
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Melee.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\_Core\BehaviorTrees\Hero.txt" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />

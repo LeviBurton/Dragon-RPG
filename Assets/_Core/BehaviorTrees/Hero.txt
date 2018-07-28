@@ -1,0 +1,12 @@
+tree("Root")
+	fallback
+		tree "MoveTo"
+
+tree "MoveTo"
+	while 
+		sequence
+			HasTarget
+
+		sequence
+			MoveToTargetPosition
+			StopMoving

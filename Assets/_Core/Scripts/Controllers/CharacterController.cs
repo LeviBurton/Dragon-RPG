@@ -44,7 +44,7 @@ namespace RPG.Character
         [SerializeField] Sprite attackActionImage;
         [SerializeField] Image actionImage;
         [SerializeField] ECharacterSize characterSize = ECharacterSize.Medium;
-        
+
         private HealthSystem healthSystem;
         private WeaponSystem weaponSystem;
         private float minRecoveryTimeSeconds;
@@ -163,7 +163,7 @@ namespace RPG.Character
         void Awake()
         {
             animator = GetComponent<Animator>();
-            navMeshAgent = GetComponent<NavMeshAgent>();     
+            navMeshAgent = GetComponent<NavMeshAgent>();
             rigidBody = GetComponent<Rigidbody>();
             animator.speed = animationSpeed;
             animator.applyRootMotion = false;
@@ -188,7 +188,7 @@ namespace RPG.Character
             //    return;
 
             homePosition = transform.position;
-       
+
             AddOutlinesToMeshes();
             SetOutlinesEnabled(false);
 
@@ -322,10 +322,10 @@ namespace RPG.Character
         public void OnAttackComplete(WeaponSystem weaponSystem, GameObject hitObject)
         {
             // This is called AFTER DamageAfterDelay!!!
-           // Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
+            // Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
             currentRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds(); ;
             // TODO: fixme -- wrong place to do this.
-           // hitObject.GetComponent<Animator>().applyRootMotion = true;
+            // hitObject.GetComponent<Animator>().applyRootMotion = true;
         }
 
         public void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
@@ -365,7 +365,7 @@ namespace RPG.Character
             navMeshAgent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
-     
+
             var circleProjector = GetComponentInChildren<Projector>();
             if (circleProjector)
             {
@@ -399,7 +399,7 @@ namespace RPG.Character
 
         public void SetDestination(Vector3 worldPosition)
         {
-       //     animator.applyRootMotion = true;
+            //     animator.applyRootMotion = true;
 
             navMeshAgent.isStopped = false;
             navMeshAgent.destination = worldPosition;
@@ -478,7 +478,7 @@ namespace RPG.Character
 
         private void OnTriggerExit(Collider other)
         {
-        
+
         }
         #endregion
 
@@ -560,13 +560,15 @@ namespace RPG.Character
             return true;
         }
 
-      
+
         [Task]
         public bool StopMoving()
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.velocity = Vector3.zero;
             animator.applyRootMotion = false;
+            navMeshAgent.enabled = false;
+            GetComponent<NavMeshObstacle>().enabled = true;
             return true;
         }
 
@@ -618,6 +620,8 @@ namespace RPG.Character
         void MoveToTargetPosition()
         {
             actionImage.sprite = moveActionImage;
+            GetComponent<NavMeshObstacle>().enabled = false;
+            GetComponent<NavMeshAgent>().enabled = true;
 
             if (isAtObjectTarget)
             {
@@ -689,7 +693,7 @@ namespace RPG.Character
                 if (!isAlive)
                 {
                     SetObjectTarget(null);
-     
+
                 }
             }
 
@@ -789,7 +793,7 @@ namespace RPG.Character
         #endregion
 
         #region Gizmos
-        
+
         void OnDrawGizmos()
         {
             var previousColor = Gizmos.color;
@@ -798,7 +802,7 @@ namespace RPG.Character
             Matrix4x4 oldGizmosMatrix = Gizmos.matrix;
             Gizmos.matrix = Matrix4x4.TRS(boxCollider.transform.TransformPoint(boxCollider.center), boxCollider.transform.rotation, boxCollider.transform.lossyScale);
             Gizmos.DrawWireCube(Vector3.zero, boxCollider.size);
-            Gizmos.matrix = oldGizmosMatrix;    
+            Gizmos.matrix = oldGizmosMatrix;
             Gizmos.color = previousColor;
         }
         #endregion

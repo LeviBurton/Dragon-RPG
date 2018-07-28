@@ -39,7 +39,6 @@ tree "Idle"
 		sequence
 			SetTargetToHome
 			MoveToTargetPosition
-			SetSpeed 1.0
 			StopMoving
 			Idle
 

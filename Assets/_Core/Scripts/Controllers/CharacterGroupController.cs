@@ -15,10 +15,23 @@ namespace RPG.Characters
         // we might as well just use the children of that as the list of enemies.
         public List<Character.CharacterController> characters;
 
+        FormationController formationController;
+
         // Use this for initialization
         void Start()
         {
+            formationController = GetComponentInChildren<FormationController>();
             characters = GetComponentsInChildren<Character.CharacterController>().ToList();
+
+            for (int i = 0; i < characters.Count; i++)
+            {
+                var character = characters[i];
+                if (formationController)
+                {
+                    var transform = formationController.formationTransforms[i];
+                    character.transform.position = transform.position;
+                }
+            }
         }
 
         // Update is called once per frame
