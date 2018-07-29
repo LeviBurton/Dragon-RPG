@@ -492,13 +492,16 @@ namespace RPG.Character
             if (other.gameObject == objectTarget)
             {
                 isAtObjectTarget = true;
-                StopMoving();
+              //  StopMoving();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-
+            if (other.gameObject == objectTarget)
+            {
+                isAtObjectTarget = false;
+            }
         }
         #endregion
 
@@ -563,10 +566,15 @@ namespace RPG.Character
         [Task]
         public bool StopMoving()
         {
-            navMeshAgent.isStopped = true;
-            navMeshAgent.velocity = Vector3.zero;
+            if (navMeshAgent.enabled)
+            {
+                navMeshAgent.isStopped = true;
+                navMeshAgent.velocity = Vector3.zero;
+                navMeshAgent.enabled = false;
+            }
+
             animator.applyRootMotion = false;
-            navMeshAgent.enabled = false;
+            
             GetComponent<NavMeshObstacle>().enabled = true;
             return true;
         }
@@ -776,7 +784,7 @@ namespace RPG.Character
             actionImage.sprite = attackActionImage;
 
             weaponSystem.SetTarget(objectTarget);
-            RotateTowardsTarget(objectTarget);
+
             weaponSystem.Attack();
 
             Debug.DrawLine(transform.position + (Vector3.up), objectTarget.transform.position + (Vector3.up), Color.green, 1.0f);
@@ -800,6 +808,24 @@ namespace RPG.Character
             SetMovementTarget(homePosition);
             Task.current.Succeed();
         }
+
+        [Task]
+        void ChooseRandomPosition()
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * 50;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            Vector3 finalPosition = Vector3.zero;
+            if (NavMesh.SamplePosition(randomDirection, out hit, 50, 1))
+            {
+                finalPosition = hit.position;
+            }
+
+            SetMovementTarget(finalPosition);
+
+            Task.current.Succeed();
+        }
+
         #endregion
 
         #region Gizmos

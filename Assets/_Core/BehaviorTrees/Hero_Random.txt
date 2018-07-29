@@ -1,0 +1,13 @@
+tree("Root")
+	fallback
+		not tree "MoveTo"
+		tree "ChooseRandomPosition"
+
+tree "MoveTo"
+	sequence
+		MoveToTargetPosition
+		StopMoving
+
+tree "ChooseRandomPosition"
+	sequence
+		ChooseRandomPosition

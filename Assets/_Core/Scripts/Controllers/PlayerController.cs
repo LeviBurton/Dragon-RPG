@@ -10,6 +10,13 @@ using UnityEngine.AI;
 
 namespace RPG.Character
 {
+    public enum EMouseButton
+    {
+        Left = 0,
+        Right = 1,
+        Middle = 2
+    }
+
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] LayerMask enemyLayerMask = (1 << 9);
@@ -53,7 +60,7 @@ namespace RPG.Character
             {
                 FindWhatsUnderMouse();
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown((int)EMouseButton.Left))
                 {
                     isSelecting = true;
                     mousePosition = Input.mousePosition;
@@ -112,11 +119,15 @@ namespace RPG.Character
                     
                 }
 
-                else if (Input.GetMouseButtonDown(1))
+                else if (Input.GetMouseButton((int)EMouseButton.Right))
                 {
+
+                    Debug.LogFormat("Find Movement Targets");
+
+
                     if (isMouseOverPotentiallyWalkable)
                     {
-                        Debug.LogFormat("clicked on {0}", walkablePosition);
+                    //    Debug.LogFormat("clicked on {0}", walkablePosition);
 
                         // Here we find all the selected heros, foreach hero we find their formation position,
                         // then off set our click point by that position.  This then becomes the 
@@ -139,6 +150,8 @@ namespace RPG.Character
                         }
                     }
                 }
+
+
 
                 if (Input.GetMouseButtonUp(0))
                 {
