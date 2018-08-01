@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   weaponName: Pistol - Basic
-  weaponRange: 5
+  weaponRange: 10
   gripTransform: {fileID: 4157477511442614, guid: 3c4280098da208a41842184361da571c,
     type: 2}
   muzzleTipTransform: {fileID: 4157477511442614, guid: 76f0e3c528bc528458df0bc6e26dbfb1,

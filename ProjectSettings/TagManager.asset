@@ -16,8 +16,8 @@ TagManager:
   - Potentially Walkable
   - Enemy
   - NPC
-  - Friendly
-  - 
+  - Hero
+  - StaticMesh
   - 
   - 
   - 

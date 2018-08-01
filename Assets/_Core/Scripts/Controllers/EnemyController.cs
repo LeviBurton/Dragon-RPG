@@ -41,6 +41,7 @@ namespace RPG.Character
         {
             character = GetComponent<CharacterController>();
             AddOutlinesToMeshes();
+            character.SetOutlinesEnabled(false);
 
             if (enemyConfig == null)
                 throw new Exception("enemyConfig can't be null!");
@@ -82,6 +83,23 @@ namespace RPG.Character
         }
 
         #region Tasks
+        [Task]
+        bool AllHeroesDead()
+        {
+            var heroes = FindObjectsOfType<HeroController>();
+
+            var allDead = true;
+
+            foreach (var hero in heroes)
+            {
+                if (hero.GetComponent<HealthSystem>().IsAlive())
+                {
+                    allDead = false;
+                }
+            }
+
+            return allDead;
+        }
         [Task]
         bool IsCurrentCommandDone()
         {

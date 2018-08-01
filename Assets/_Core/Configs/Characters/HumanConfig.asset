@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 1
   characterCenter: {x: 0, y: 1.35, z: 0}
-  characterSize: {x: 2, y: 2.5, z: 2}
+  characterSize: {x: 3, y: 2.5, z: 3}
   recoveryTimeSeconds: 1
   health: 300
   walkSpeed: 1
   runSpeed: 6
   sprintSpeed: 1.5
-  rotationSpeed: 360
+  rotationSpeed: 1000

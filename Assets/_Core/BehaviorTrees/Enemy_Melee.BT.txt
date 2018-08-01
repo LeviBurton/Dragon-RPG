@@ -1,19 +1,29 @@
 tree "Root"
 	fallback
+		tree "ReturnHome"
 		tree "Chase"
 		tree "Attack"
 		tree "FindCombatTarget"
 		tree "Idle"
+
+tree "ReturnHome"
+	sequence
+		AllHeroesDead
+		SetTargetToHome
+		MoveToTargetCursor		
+		StopMoving
 
 tree "Attack"
 	while 
 		sequence
 			HasTarget
 			TargetIsAlive
-			IsWithinWeaponRange 
-		
-		sequence 
+			IsWithinWeaponRange
 			StopMoving
+			LookAtTarget
+
+		sequence 
+		
 			WaitForRecovery
 			Attack
 
@@ -28,7 +38,7 @@ tree "Chase"
 			not IsWithinWeaponRange
 
 		sequence
-			MoveToTargetPosition
+			MoveToTarget
 			StopMoving
 
 tree "Idle"
@@ -37,9 +47,6 @@ tree "Idle"
 			not FindCombatTarget
 
 		sequence
-			SetTargetToHome
-			MoveToTargetPosition
-			StopMoving
 			Idle
 
 

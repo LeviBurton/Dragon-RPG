@@ -48,7 +48,7 @@ namespace RPG.Characters
 
         public bool IsAlive()
         {
-            return HealthAsPercentage > 0;
+            return currentHealthPoints > 0;
         }
 
         public float HealthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }

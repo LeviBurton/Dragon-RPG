@@ -260,6 +260,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>Assets/ThirdParty/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="PandaBehaviour">
       <HintPath>Assets/ThirdParty/PandaBehaviour/Core/PandaBehaviour.dll</HintPath>
     </Reference>
@@ -319,6 +322,26 @@
     <Compile Include="Assets\_Core\Editor\WeaponEditor.cs" />
     <Compile Include="Assets\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
     <Compile Include="Assets\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AIBaseEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AILerpEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AnimationLinkEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AstarPathEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AstarUpdateChecker.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AstarUpdateWindow.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\CustomGraphEditorAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\GraphEditors\GraphEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\GraphEditors\GridGeneratorEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\GraphEditors\NavMeshGeneratorEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\GraphEditors\PointGeneratorEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\GraphUpdateSceneEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\ModifierEditors\RaycastModifierEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\ModifierEditors\SmoothModifierEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\SeekerEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Legacy\Editor\LegacyAIPathEditor.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Legacy\Editor\LegacyEditorHelper.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\PackageTools\Editor\EditorBase.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\PackageTools\Editor\EditorGUIx.cs" />
+    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\PackageTools\Editor\EnumFlagDrawer.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ActionCell.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\LabelCell.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ObjectCell.cs" />
@@ -417,6 +440,17 @@
     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorLight.shader" />
     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.cginc" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\NavmeshOutline.shader" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Plugins\dependencies.txt" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Readme.txt" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\Readme_upgrading.txt" />
+    <None Include="Assets\ThirdParty\AstarPathfindingProject\link.xml" />
     <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\SkyGradient.shader" />
     <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\ChangeLog.txt" />

@@ -291,6 +291,7 @@ namespace RPG.Characters
         public void Attack()
         {
             isAttacking = true;
+            Debug.DrawLine(transform.position + (Vector3.up), target.transform.position + (Vector3.up), Color.red, 0.5f);
 
             // Note this stuff is just to deal with the complete 
             // hack of a state machine 

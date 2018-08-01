@@ -60,21 +60,26 @@ namespace RPG.Character
             {
                 FindWhatsUnderMouse();
 
-                if (Input.GetMouseButtonDown((int)EMouseButton.Left))
+                if (Input.GetMouseButtonDown(0))
                 {
+                    Debug.Log("GetMouseButtonDown 0");
                     isSelecting = true;
                     mousePosition = Input.mousePosition;
 
                     if (isMouseOverEnemy)
                     {
+                        Debug.Log("GetMouseButtonDown 0 - Over Enemy");
                         if (selectedEnemy)
                         {
                             selectedEnemy.GetComponent<Selectable>().Deselect();
                         }
 
                         var selectable = objectUnderMouseCursor.GetComponent<Selectable>();
-                        selectedEnemy = selectable.GetComponent<EnemyController>();
-                        selectable.Select();
+                        if (selectable)
+                        {
+                            selectedEnemy = selectable.GetComponent<EnemyController>();
+                            selectable.Select();
+                        }
                     }
 
                     else if (isMouseOverFriendly)
@@ -119,12 +124,8 @@ namespace RPG.Character
                     
                 }
 
-                else if (Input.GetMouseButton((int)EMouseButton.Right))
+                else if (Input.GetMouseButton(1))
                 {
-
-                    Debug.LogFormat("Find Movement Targets");
-
-
                     if (isMouseOverPotentiallyWalkable)
                     {
                     //    Debug.LogFormat("clicked on {0}", walkablePosition);
@@ -145,7 +146,6 @@ namespace RPG.Character
                         foreach (var hero in selectedHeroes)
                         {
                             var character = hero.GetComponent<CharacterController>();
-                            character.SetMovementTarget(walkablePosition);
                           
                         }
                     }

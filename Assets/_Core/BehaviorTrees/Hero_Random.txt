@@ -1,13 +1,14 @@
 tree("Root")
-	fallback
-		not tree "MoveTo"
+	sequence
 		tree "ChooseRandomPosition"
+		tree "MoveTo"
 
 tree "MoveTo"
 	sequence
-		MoveToTargetPosition
+		MoveToTarget
 		StopMoving
-
+		WaitForRandomTime
+	
 tree "ChooseRandomPosition"
 	sequence
 		ChooseRandomPosition
