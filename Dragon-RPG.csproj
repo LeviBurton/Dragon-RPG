@@ -668,6 +668,7 @@
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero_Random.txt" />
+    <None Include="Assets\_Core\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />

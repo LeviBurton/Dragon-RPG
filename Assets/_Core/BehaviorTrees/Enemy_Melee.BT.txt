@@ -1,9 +1,10 @@
 tree "Root"
 	fallback
+		not IsAlive
 		tree "ReturnHome"
 		tree "Chase"
 		tree "Attack"
-		tree "FindCombatTarget"
+		tree "FindClosestHero"
 		tree "Idle"
 
 tree "ReturnHome"
@@ -16,6 +17,7 @@ tree "ReturnHome"
 tree "Attack"
 	while 
 		sequence
+			IsAlive
 			HasTarget
 			TargetIsAlive
 			IsWithinWeaponRange
@@ -23,16 +25,16 @@ tree "Attack"
 			LookAtTarget
 
 		sequence 
-		
 			WaitForRecovery
 			Attack
 
-tree "FindCombatTarget"
-	FindCombatTarget
+tree "FindClosestHero"
+	FindClosestHero
 
 tree "Chase"
 	while 
 		sequence
+			IsAlive
 			HasTarget
 			TargetIsAlive
 			not IsWithinWeaponRange
@@ -44,7 +46,8 @@ tree "Chase"
 tree "Idle"
 	while 
 		sequence
-			not FindCombatTarget
+			IsAlive
+			not FindClosestHero
 
 		sequence
 			Idle

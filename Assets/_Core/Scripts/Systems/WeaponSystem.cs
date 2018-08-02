@@ -291,10 +291,7 @@ namespace RPG.Characters
         public void Attack()
         {
             isAttacking = true;
-            Debug.DrawLine(transform.position + (Vector3.up), target.transform.position + (Vector3.up), Color.red, 0.5f);
-
-            // Note this stuff is just to deal with the complete 
-            // hack of a state machine 
+          
             animator.applyRootMotion = false;
 
             // TODO: Fix this for left and right weaponConfigs.  Right now default to right-handed characters.
@@ -411,6 +408,17 @@ namespace RPG.Characters
 
         public void Shoot()
         {
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (isAttacking)
+            {
+                var prevColor = Gizmos.color;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(transform.position + (Vector3.up), target.transform.position + (Vector3.up));
+                Gizmos.color = prevColor;
+            }
         }
     }
 }

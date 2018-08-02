@@ -51,6 +51,11 @@ namespace RPG.Characters
             return currentHealthPoints > 0;
         }
 
+        public float GetCurrentHealth()
+        {
+            return currentHealthPoints;
+        }
+
         public float HealthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
         public void Heal(float healAmount)

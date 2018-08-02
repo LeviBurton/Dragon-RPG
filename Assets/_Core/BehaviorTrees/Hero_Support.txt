@@ -1,0 +1,58 @@
+tree "Root"
+	fallback
+		not IsAlive
+		tree "ReturnHome"
+		tree "Chase"
+		tree "Attack"
+		tree "FindClosestEnemy"
+		tree "Idle"
+
+tree "ReturnHome"
+	sequence
+		IsAlive
+		AllEnemiesDead
+		SetTargetToHome
+		MoveToTargetCursor		
+		StopMoving
+
+tree "Attack"
+	while 
+		sequence
+			IsAlive
+			HasTarget
+			TargetIsAlive
+			IsWithinWeaponRange
+			StopMoving
+			LookAtTarget
+
+		sequence 
+			WaitForRecovery
+			Attack
+
+tree "FindClosestEnemy"
+	FindClosestEnemy
+
+tree "Chase"
+	while 
+		sequence
+			IsAlive
+			HasTarget
+			TargetIsAlive
+			not IsWithinWeaponRange
+
+		sequence
+			MoveToTarget
+			StopMoving
+
+tree "Idle"
+	while 
+		sequence
+			IsAlive
+			not FindClosestEnemy
+
+		sequence
+			Idle
+
+
+
+

@@ -8,7 +8,6 @@ using System.Text;
 
 // Purpose -- add this component to enable selection of objects
 
-// TODO: I dont like this dependency.  Think about using some kind of event system
 using RPG.Character;
 
 public class ObjectSelector : MonoBehaviour

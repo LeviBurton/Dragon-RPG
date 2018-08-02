@@ -83,23 +83,7 @@ namespace RPG.Character
         }
 
         #region Tasks
-        [Task]
-        bool AllHeroesDead()
-        {
-            var heroes = FindObjectsOfType<HeroController>();
-
-            var allDead = true;
-
-            foreach (var hero in heroes)
-            {
-                if (hero.GetComponent<HealthSystem>().IsAlive())
-                {
-                    allDead = false;
-                }
-            }
-
-            return allDead;
-        }
+      
         [Task]
         bool IsCurrentCommandDone()
         {

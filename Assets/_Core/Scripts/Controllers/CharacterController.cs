@@ -172,6 +172,10 @@ namespace RPG.Character
 
             aiAgent = GetComponent<AIPath>();
             aiAgent.maxSpeed = characterConfig.GetRunSpeed();
+            aiAgent.rotationSpeed = characterConfig.GetRotationSpeed();
+
+            // TODO: do we really need this here?
+            rotationSpeed = characterConfig.GetRotationSpeed();
 
             rigidBody = GetComponent<Rigidbody>();
 
@@ -182,7 +186,7 @@ namespace RPG.Character
             walkSpeed = characterConfig.GetWalkSpeed();
         
             sprintSpeed = characterConfig.GetSprintSpeed();
-            rotationSpeed = characterConfig.GetRotationSpeed();
+       
             characterSize = characterConfig.GetSize();
             //navMeshAgent.updatePosition = manualPosition;
             //navMeshAgent.updateRotation = manualRotation;
@@ -297,10 +301,7 @@ namespace RPG.Character
         public void OnAttackComplete(WeaponSystem weaponSystem, GameObject hitObject)
         {
             // This is called AFTER DamageAfterDelay!!!
-            // Debug.LogFormat("{0} OnAttackComplete {1}", name, weaponSystem.name);
             currentRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds(); ;
-            // TODO: fixme -- wrong place to do this.
-            // hitObject.GetComponent<Animator>().applyRootMotion = true;
         }
 
         public void OnHit(WeaponSystem weaponSystem, GameObject hitObject, float damage)
@@ -339,6 +340,7 @@ namespace RPG.Character
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             aiAgent.enabled = false;
+            GetComponent<Seeker>().enabled = false;
 
             var circleProjector = GetComponentInChildren<Projector>();
             if (circleProjector)
@@ -349,8 +351,8 @@ namespace RPG.Character
             // Trigger the death animation
             animator.SetTrigger("Death1Trigger");
 
-            // Destroy us for good 2 minutes later.
-            Destroy(gameObject, 120);
+            // Destroy us for good 1 minutes later.
+            Destroy(gameObject, 60);
         }
 
         #endregion
@@ -366,9 +368,10 @@ namespace RPG.Character
             return 0;
         }
 
+        [Task]
         public bool IsAlive()
         {
-            return healthSystem != null && healthSystem.HealthAsPercentage > 0;
+            return healthSystem != null && healthSystem.IsAlive();
         }
 
         public void SetDestination(Vector3 worldPosition)
@@ -397,6 +400,11 @@ namespace RPG.Character
         #endregion
 
         #region Targets
+        public GameObject GetTarget()
+        {
+            return target;
+        }
+
         public void SetTargetCursorWorldPosition(Vector3 worldPosition)
         {
             targetCursor.transform.parent = null;
@@ -461,28 +469,6 @@ namespace RPG.Character
         }
         #endregion
 
-        #region Collider
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.gameObject == target)
-        //    {
-        //        // TODO: astar
-        //        // collidedWithTarget = true;
-        //     //   aiAgent.isStopped = true;
-        //    }
-        //}
-
-        //private void OnTriggerExit(Collider other)
-        //{
-        //    if (other.gameObject == target)
-        //    {
-        //        // TODO: astar
-        //        //collidedWithTarget = false;
-        //     //   aiAgent.isStopped = false;
-        //    }
-        //}
-        #endregion
-
         // CharacterConfig
         public CharacterConfig GetCharacterConfig()
         {
@@ -533,6 +519,8 @@ namespace RPG.Character
         }
 
         #region Tasks
+
+      
         [Task]
         bool SetRecoveryTimeSeconds(float seconds)
         {
@@ -544,18 +532,6 @@ namespace RPG.Character
         public bool StopMoving()
         {
             aiAgent.isStopped = true;
-
-             // TODO: astar
-            //if (navMeshAgent.enabled)
-            //{
-            //    navMeshAgent.isStopped = true;
-            //    navMeshAgent.velocity = Vector3.zero;
-            //    navMeshAgent.enabled = false;
-            //    animator.applyRootMotion = false;
-
-
-            //    GetComponent<NavMeshObstacle>().enabled = true;
-            //}
 
             return true;
         }
@@ -647,8 +623,7 @@ namespace RPG.Character
 
                 if (currentWeapon != null)
                 {
-                    isInRange = distance <= currentWeapon.GetWeaponRange() ||
-                                            Mathf.Approximately(distance, currentWeapon.GetWeaponRange());
+                    isInRange = distance <= currentWeapon.GetWeaponRange();
 
                 }
             }
@@ -680,7 +655,7 @@ namespace RPG.Character
             if (target)
             {
                 Quaternion lookAtRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, Time.deltaTime * aiAgent.rotationSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, aiAgent.rotationSpeed * Time.deltaTime);
             }
 
             return true;
@@ -744,14 +719,173 @@ namespace RPG.Character
         }
 
         [Task]
-        bool FindCombatTarget()
+        bool AllEnemiesDead()
         {
-            var friendlies = FindObjectsOfType<HeroController>();
+            var heroes = FindObjectsOfType<EnemyController>();
+
+            var allDead = true;
+
+            foreach (var hero in heroes)
+            {
+                if (hero.GetComponent<HealthSystem>().IsAlive())
+                {
+                    allDead = false;
+                }
+            }
+
+            return allDead;
+        }
+
+        [Task]
+        bool AllHeroesDead()
+        {
+            var heroes = FindObjectsOfType<HeroController>();
+
+            var allDead = true;
+
+            foreach (var hero in heroes)
+            {
+                if (hero.GetComponent<HealthSystem>().IsAlive())
+                {
+                    allDead = false;
+                }
+            }
+
+            return allDead;
+        }
+
+        [Task]
+        bool FindThreatenedHeroes()
+        {
+            var heroes = FindObjectsOfType<HeroController>();
+            var enemies = FindObjectsOfType<EnemyController>();
+
+            HealthSystem lowestHealthHero = null;
+
+            foreach (var hero in heroes)
+            {
+                var healthSystem = hero.GetComponent<HealthSystem>();
+                if (healthSystem)
+                {
+                    if (lowestHealthHero == null)
+                    {
+                        lowestHealthHero = healthSystem;
+                        continue;
+                    }
+
+                    if (healthSystem.GetCurrentHealth() <= lowestHealthHero.GetCurrentHealth())
+                    {
+                        lowestHealthHero = healthSystem;
+                    }
+                }
+            }
+
+            if (lowestHealthHero != null)
+            {
+                HealthSystem lowestHealthEnemy = null;
+
+                foreach (var enemy in enemies)
+                {
+                    var enemyHealthSystem = enemy.GetComponent<HealthSystem>();
+
+                    if (enemy.GetComponent<CharacterController>().GetTarget() != lowestHealthHero.gameObject)
+                        continue;
+
+                    if (lowestHealthEnemy == null)
+                    {
+                        lowestHealthEnemy = enemyHealthSystem;
+                        continue;
+                    }
+               
+                    if (enemyHealthSystem.GetCurrentHealth() <= lowestHealthEnemy.GetCurrentHealth())
+                    {
+                        lowestHealthEnemy = enemyHealthSystem;
+                    }
+                }
+
+                if (lowestHealthEnemy)
+                {
+                    SetTarget(lowestHealthEnemy.gameObject);
+                    weaponSystem.SetTarget(lowestHealthEnemy.gameObject);
+                    SetTargetCursorWorldPosition(lowestHealthEnemy.transform.position);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private float chooseRandomTime = 5.0f;
+
+        [Task]
+        bool ChooseRandomEnemy()
+        {
+            chooseRandomTime -= Time.deltaTime;
+
+            if (chooseRandomTime <= 0)
+            {
+                chooseRandomTime = 5.0f;
+                return true;
+            }
+
+
+            return false;
+        }
+
+        bool ChooseRandomHero()
+        {
+            return true;
+        }
+
+        [Task]
+        bool FindClosestEnemy()
+        {
+            var enemies = FindObjectsOfType<EnemyController>();
+
+            float shortestDistance = Mathf.Infinity;
+            GameObject closest = null;
+
+            foreach (var enemy in enemies)
+            {
+                var healthSystem = enemy.GetComponent<HealthSystem>();
+                if (healthSystem == null)
+                    continue;
+
+                if (healthSystem.IsAlive())
+                {
+                    var dist = Vector3.Distance(transform.position, healthSystem.transform.position);
+
+                    if (dist < shortestDistance)
+                    {
+                        shortestDistance = dist;
+                        closest = enemy.gameObject;
+                    }
+                }
+            }
+
+            if (closest != null)
+            {
+                SetTarget(closest);
+                SetTargetCursorWorldPosition(closest.transform.position);
+                weaponSystem.SetTarget(closest);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [Task]
+        bool FindClosestHero()
+        {
+            var heroes = FindObjectsOfType<HeroController>();
 
             float shortestDistanceToFriendly = Mathf.Infinity;
-            GameObject closestFriendly = null;
+            GameObject closestHero = null;
 
-            foreach (var friendly in friendlies)
+            foreach (var friendly in heroes)
             {
                 var healthSystem = friendly.GetComponent<HealthSystem>();
                 if (healthSystem == null)
@@ -764,17 +898,18 @@ namespace RPG.Character
                     if (dist < shortestDistanceToFriendly)
                     {
                         shortestDistanceToFriendly = dist;
-                        closestFriendly = friendly.gameObject;
+                        closestHero = friendly.gameObject;
                     }
                 }
             }
 
-            if (closestFriendly != null)
+            if (closestHero != null)
             {
-                SetTarget(closestFriendly);
-                SetTargetCursorWorldPosition(closestFriendly.transform.position);
+                SetTarget(closestHero);
+         
+                SetTargetCursorWorldPosition(closestHero.transform.position);
 
-                weaponSystem.SetTarget(closestFriendly);
+                weaponSystem.SetTarget(closestHero);
                 return true;
             }
             else
@@ -788,7 +923,7 @@ namespace RPG.Character
         {
             actionImage.sprite = attackActionImage;
 
-            weaponSystem.SetTarget(target);
+            //weaponSystem.SetTarget(target);
             SetTargetCursorWorldPosition(target.transform.position);
 
             maxRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds();
@@ -822,17 +957,20 @@ namespace RPG.Character
 
         void OnDrawGizmos()
         {
-            var previousColor = Gizmos.color;
-        
-            var boxCollider = GetComponent<BoxCollider>();
-            if (boxCollider)
+            if (IsAlive())
             {
-                Gizmos.color = boundingBoxColor;
-                Matrix4x4 oldGizmosMatrix = Gizmos.matrix;
-                Gizmos.matrix = Matrix4x4.TRS(boxCollider.transform.TransformPoint(boxCollider.center), boxCollider.transform.rotation, boxCollider.transform.lossyScale);
-                Gizmos.DrawWireCube(Vector3.zero, boxCollider.size);
-                Gizmos.matrix = oldGizmosMatrix;
-                Gizmos.color = previousColor;
+                var previousColor = Gizmos.color;
+
+                var boxCollider = GetComponent<BoxCollider>();
+                if (boxCollider)
+                {
+                    Gizmos.color = boundingBoxColor;
+                    Matrix4x4 oldGizmosMatrix = Gizmos.matrix;
+                    Gizmos.matrix = Matrix4x4.TRS(boxCollider.transform.TransformPoint(boxCollider.center), boxCollider.transform.rotation, boxCollider.transform.lossyScale);
+                    Gizmos.DrawWireCube(Vector3.zero, boxCollider.size);
+                    Gizmos.matrix = oldGizmosMatrix;
+                    Gizmos.color = previousColor;
+                }
             }
         }
         #endregion

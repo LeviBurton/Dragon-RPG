@@ -1968,7 +1968,7 @@ BoxCollider:
   m_GameObject: {fileID: 1487590312361834}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 2.5, z: 3}
   m_Center: {x: 0, y: 1.35, z: 0}
@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scripts:
-  - {fileID: 4900000, guid: d02986e1e44d5f34e8d0924d575fb451, type: 3}
+  - {fileID: 4900000, guid: b337f75340ef5374caad0523666c02e6, type: 3}
   autoReset: 1
   tickOn: 0
   sourceInfos:
@@ -2153,7 +2153,7 @@ MonoBehaviour:
   repathRate: 1
   canSearch: 1
   canMove: 1
-  maxSpeed: 6
+  maxSpeed: 7
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -2163,9 +2163,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 2.5
+  slowdownDistance: 5
   pickNextWaypointDist: 2
-  endReachedDistance: 0.2
+  endReachedDistance: 3
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -2353,7 +2353,7 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 10
   sprintSpeed: 1.5
-  rotationSpeed: 1000
+  rotationSpeed: 360
   manualRotation: 1
   manualPosition: 0
   recoveryCircleImage: {fileID: 114680894811877894}
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   baseDamage: 10
   leftHandWeaponConfig: {fileID: 0}
   rightHandWeaponConfig: {fileID: 0}
-  currentWeaponConfig: {fileID: 11400000, guid: fbc04a4f047e79d469388a1902300b31,
+  currentWeaponConfig: {fileID: 11400000, guid: c1b3a2292045dd540bedb80e8650aa38,
     type: 2}
   target: {fileID: 0}
   isAttacking: 0
