@@ -188,8 +188,41 @@ namespace RPG.Character
             sprintSpeed = characterConfig.GetSprintSpeed();
        
             characterSize = characterConfig.GetSize();
+
+
+            healthSystem = GetComponent<HealthSystem>();
+            weaponSystem = GetComponent<WeaponSystem>();
+
             //navMeshAgent.updatePosition = manualPosition;
             //navMeshAgent.updateRotation = manualRotation;
+        }
+
+        private void OnEnable()
+        {
+            if (healthSystem)
+            {
+                healthSystem.onDamage += OnDamage;
+                healthSystem.onHeal += OnHeal;
+            }
+            if (weaponSystem)
+            {
+                weaponSystem.onAttackComplete += OnAttackComplete;
+                weaponSystem.onHit += OnHit;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (healthSystem)
+            {
+                healthSystem.onDamage -= OnDamage;
+                healthSystem.onHeal -= OnHeal;
+            }
+            if (weaponSystem)
+            {
+                weaponSystem.onAttackComplete -= OnAttackComplete;
+                weaponSystem.onHit -= OnHit;
+            }
         }
 
         void Start()
@@ -197,19 +230,6 @@ namespace RPG.Character
             homePosition = transform.position;
             SetOutlinesEnabled(false);
 
-            healthSystem = GetComponent<HealthSystem>();
-            if (healthSystem)
-            {
-                healthSystem.onDamage += OnDamage;
-                healthSystem.onHeal += OnHeal;
-            }
-
-            weaponSystem = GetComponent<WeaponSystem>();
-            if (weaponSystem)
-            {
-                weaponSystem.onAttackComplete += OnAttackComplete;
-                weaponSystem.onHit += OnHit;
-            }
 
             minRecoveryTimeSeconds = characterConfig.GetRecoveryTime();
             currentRecoveryTimeSeconds = 0.0f;
@@ -222,16 +242,7 @@ namespace RPG.Character
             if (!Application.isPlaying)
                 return;
 
-
             UpdateAnimator();
-        }
-
-        void LateUpdate()
-        {
-            if (!Application.isPlaying)
-                return;
-
-            UpdateRecoveryBar();
         }
 
         #endregion
@@ -474,6 +485,7 @@ namespace RPG.Character
         {
             return characterConfig;
         }
+
         public float RecoveryAsPercentage { get { return currentRecoveryTimeSeconds / maxRecoveryTimeSeconds; } }
 
         void RegisterSelectableEventHandlers()
@@ -513,14 +525,8 @@ namespace RPG.Character
             animator.SetBool("Moving", aiAgent.velocity.sqrMagnitude > 0);
         }
 
-        void UpdateRecoveryBar()
-        {
-            recoveryCircleImage.fillAmount = RecoveryAsPercentage;
-        }
-
         #region Tasks
 
-      
         [Task]
         bool SetRecoveryTimeSeconds(float seconds)
         {
