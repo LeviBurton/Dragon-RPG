@@ -6,7 +6,6 @@ tree("Root")
 tree "MoveTo"
 	sequence
 		MoveToTarget
-		StopMoving
 		WaitForRandomTime
 	
 tree "ChooseRandomPosition"

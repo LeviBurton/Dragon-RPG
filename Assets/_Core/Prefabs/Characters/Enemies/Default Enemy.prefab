@@ -2529,7 +2529,7 @@ MonoBehaviour:
   repathRate: 1
   canSearch: 1
   canMove: 1
-  maxSpeed: 10
+  maxSpeed: 5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -2538,13 +2538,13 @@ MonoBehaviour:
   rotationIn2D: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
-  rotationSpeed: 180
-  slowdownDistance: 5
-  pickNextWaypointDist: 2
-  endReachedDistance: 3
+  rotationSpeed: 270
+  slowdownDistance: 3
+  pickNextWaypointDist: 1
+  endReachedDistance: 2
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
+  whenCloseToDestination: 1
   constrainInsideGraph: 0
 --- !u!114 &114895236142564970
 MonoBehaviour:
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 10
   sprintSpeed: 1.5
-  rotationSpeed: 180
+  rotationSpeed: 270
   manualRotation: 0
   manualPosition: 0
   recoveryCircleImage: {fileID: 114371656045497262}

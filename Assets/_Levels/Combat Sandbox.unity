@@ -374,7 +374,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4531820429678816, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.898058
+      value: 13.42
       objectReference: {fileID: 0}
     - target: {fileID: 4531820429678816, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -382,7 +382,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4531820429678816, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -26.743584
+      value: -26.38
       objectReference: {fileID: 0}
     - target: {fileID: 4531820429678816, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -407,7 +407,7 @@ Prefab:
     - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: maxSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
@@ -453,12 +453,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
@@ -483,6 +483,21 @@ Prefab:
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -539,12 +554,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1617351745679496, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_Name
@@ -614,6 +629,31 @@ Prefab:
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1650,6 +1690,37 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1c16738f7e514c546888ad4d6a42d795, type: 3}
   m_PrefabInternal: {fileID: 165182423}
+--- !u!84 &180612714
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &195568921
 Prefab:
   m_ObjectHideFlags: 0
@@ -2752,37 +2823,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 964e2721afd4f244da5c39085c3bcef8, type: 3}
   m_PrefabInternal: {fileID: 299925459}
---- !u!84 &301990898
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &304843824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,12 +4151,12 @@ Prefab:
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1487590312361834, guid: 5211af388dd68d7429150e776f3ca356, type: 2}
       propertyPath: m_Name
@@ -4151,6 +4191,31 @@ Prefab:
     - target: {fileID: 114235269288151458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4693,12 +4758,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1617351745679496, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_Name
@@ -4768,6 +4833,31 @@ Prefab:
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5026,12 +5116,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1617351745679496, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_Name
@@ -5086,6 +5176,31 @@ Prefab:
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6425,12 +6540,12 @@ Prefab:
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1487590312361834, guid: 5211af388dd68d7429150e776f3ca356, type: 2}
       propertyPath: m_Name
@@ -6461,6 +6576,36 @@ Prefab:
         type: 2}
       propertyPath: strength
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114235269288151458, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: pickNextWaypointDist
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5211af388dd68d7429150e776f3ca356, type: 2}
@@ -7160,37 +7305,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
-        type: 2}
-      propertyPath: drawGizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
-        type: 2}
-      propertyPath: detailedGizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114761537297716346, guid: 1de268a8fec4b58468cb774b1de7eed0,
-        type: 2}
-      propertyPath: smoothType
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114761537297716346, guid: 1de268a8fec4b58468cb774b1de7eed0,
-        type: 2}
-      propertyPath: strength
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
@@ -7327,8 +7447,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1618860361}
   outlineCamera: {fileID: 1193059399}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1327204496}
-  extraRenderTexture: {fileID: 301990898}
+  renderTexture: {fileID: 1871972434}
+  extraRenderTexture: {fileID: 180612714}
 --- !u!114 &669078797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10298,12 +10418,12 @@ Prefab:
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1487590312361834, guid: 5211af388dd68d7429150e776f3ca356, type: 2}
       propertyPath: m_Name
@@ -10354,6 +10474,36 @@ Prefab:
         type: 2}
       propertyPath: strength
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114235269288151458, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269734664110000, guid: 5211af388dd68d7429150e776f3ca356,
+        type: 2}
+      propertyPath: pickNextWaypointDist
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5211af388dd68d7429150e776f3ca356, type: 2}
@@ -11458,7 +11608,7 @@ Prefab:
     - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: maxSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
@@ -11503,12 +11653,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
@@ -11533,6 +11683,21 @@ Prefab:
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12364,7 +12529,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1327204496}
+  m_TargetTexture: {fileID: 1871972434}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -14363,37 +14528,6 @@ MonoBehaviour:
   formationOffsets: []
   currentTransforms: []
   potentialTransformPositions: []
---- !u!84 &1327204496
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1339393886
 Prefab:
   m_ObjectHideFlags: 0
@@ -19863,6 +19997,37 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2d7bf058345e07f488af293ec7dec066, type: 3}
   m_PrefabInternal: {fileID: 1863281110}
+--- !u!84 &1871972434
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1878294851
 Prefab:
   m_ObjectHideFlags: 0
@@ -21640,32 +21805,12 @@ Prefab:
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224335941801133458, guid: 5211af388dd68d7429150e776f3ca356,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114564134508303692, guid: 5211af388dd68d7429150e776f3ca356,
-        type: 2}
-      propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114043368529611826, guid: 5211af388dd68d7429150e776f3ca356,
-        type: 2}
-      propertyPath: smoothType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114043368529611826, guid: 5211af388dd68d7429150e776f3ca356,
-        type: 2}
-      propertyPath: strength
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114235269288151458, guid: 5211af388dd68d7429150e776f3ca356,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5211af388dd68d7429150e776f3ca356, type: 2}
@@ -21794,7 +21939,7 @@ Prefab:
     - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: maxSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
@@ -21840,12 +21985,12 @@ Prefab:
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224862336970757286, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1617351745679496, guid: 1de268a8fec4b58468cb774b1de7eed0, type: 2}
       propertyPath: m_Name
@@ -21874,6 +22019,21 @@ Prefab:
     - target: {fileID: 114545502393838110, guid: 1de268a8fec4b58468cb774b1de7eed0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: whenCloseToDestination
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885960820261916, guid: 1de268a8fec4b58468cb774b1de7eed0,
+        type: 2}
+      propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
