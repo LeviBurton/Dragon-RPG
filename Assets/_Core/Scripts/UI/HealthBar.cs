@@ -12,19 +12,12 @@ public class HealthBar : MonoBehaviour {
    
     void OnDamage(float damageAmount)
     {
-        Debug.LogFormat("{0} OnDamage {1}", name, damageAmount);
         healthBar.fillAmount = healthSystem.HealthAsPercentage;
     }
 
     void OnHeal(float healAmount)
     {
-
     }
-
-	// Use this for initialization
-	void Start () {
-
-	}
 
     private void OnEnable()
     {
@@ -37,9 +30,4 @@ public class HealthBar : MonoBehaviour {
         healthSystem.onDamage -= OnDamage;
         healthSystem.onHeal -= OnHeal;
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

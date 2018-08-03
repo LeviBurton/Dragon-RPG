@@ -10,23 +10,10 @@ public class RecoveryBar : MonoBehaviour {
     [SerializeField] RPG.Character.CharacterController character;
     [SerializeField] Image recoveryImage;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
-    private void OnEnable()
+    // TODO: I don't like polling the character for their recovery.  Consider having a 
+    // CharacterController event -- onRecoveryChanged()
+    void Update ()
     {
-       
-    }
-
-    private void OnDisable()
-    {
-     
-    }
-
-    // Update is called once per frame
-    void Update () {
         recoveryImage.fillAmount = character.RecoveryAsPercentage;
     }
 }

@@ -341,6 +341,9 @@ namespace RPG.Character
         // Note that we just call this internally -- it is not an event handler.
         void OnDeath()
         {
+            currentRecoveryTimeSeconds = 0.0f;
+            maxRecoveryTimeSeconds = 0.0f;
+
             // Disable the world UI
             var worldUI = GetComponentInChildren<Canvas>();
             if (worldUI)

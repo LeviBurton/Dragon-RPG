@@ -39,11 +39,13 @@ namespace RPG.Character
         bool isMouseOverPotentiallyWalkable = false;
         bool isSelecting = false;
         bool actionPaused = false;
+        bool slowMotion = false;
 
         Vector3 mousePosition;
         float maxRaycastDepth = 100f; // Hard coded value
         GameObject objectUnderMouseCursor;
         Vector3 walkablePosition;
+
 
         [SerializeField] CharacterGroupController heroGroupController;
 
@@ -56,6 +58,18 @@ namespace RPG.Character
         // TODO: this is ready for some refactoring.  
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                slowMotion = !slowMotion;
+                if (slowMotion)
+                {
+                    Time.timeScale = 0.1f;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
+            }
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 FindWhatsUnderMouse();
