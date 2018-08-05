@@ -52,18 +52,31 @@ namespace RPG.Character
         void Start()
         {
            // mouseWorldTransform = Instantiate(mouseWorldTransform, Vector3.zero, Quaternion.identity);
-            NavMesh.avoidancePredictionTime = 5.0F;
+            //NavMesh.avoidancePredictionTime = 5.0F;
         }
 
         // TODO: this is ready for some refactoring.  
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                actionPaused = !actionPaused;
+                if (actionPaused)
+                {
+                    Time.timeScale = 0.0f;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 slowMotion = !slowMotion;
                 if (slowMotion)
                 {
-                    Time.timeScale = 0.1f;
+                    Time.timeScale = 0.35f;
                 }
                 else
                 {

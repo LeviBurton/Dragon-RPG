@@ -9,20 +9,69 @@ public class PlayerUI_Hero : MonoBehaviour
 {
     [SerializeField] HeroController heroController;
     [SerializeField] PlayerController playerController;
+    [SerializeField] Color hoveredBorderColor;
+    [SerializeField] Color selectedBorderColor;
+    [SerializeField] Color normalBorderColor;
 
+    Selectable selectable;
+
+    [SerializeField] Image backgroundImage;
+
+    void OnEnable()
+    {
+        selectable.onSelected += OnSelected;
+        selectable.onDeselected += OnDeselected;
+        selectable.onHighlight += OnHighlight;
+        selectable.onDeHighlight += OnDehighlight;
+        backgroundImage.color = normalBorderColor;
+    }
+
+    void OnDisable()
+    {
+        
+    }
+
+    void Awake()
+    {
+        selectable = heroController.GetComponent<Selectable>();
+    }
+
+    void Start()
+    {
+        
+    }
+
+    void OnSelected()
+    {
+        backgroundImage.color = selectedBorderColor;
+    }
+
+    void OnDeselected()
+    {
+        backgroundImage.color = normalBorderColor;
+    }
+
+    void OnHighlight()
+    {
+
+    }
+
+    void OnDehighlight()
+    {
+
+    }
     public void Update()
     {
-        GetComponent<Outline>().enabled = heroController && heroController.GetComponent<Selectable>().isSelected;
     }
 
     public void OnPointerEnter()
     {
-        Debug.Log("OnPointerEnter");
+        backgroundImage.color = hoveredBorderColor;
     }
 
     public void OnPointerExit()
     {
-        Debug.Log("OnPointerExit");
+        backgroundImage.color = normalBorderColor;
     }
 
     public void OnClick()

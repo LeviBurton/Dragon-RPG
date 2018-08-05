@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 0
-  recoveryTimeSeconds: 1
+  recoveryTimeSeconds: 3
   damageTypes: []
   attackSpeedSeconds: 1.1
   weaponPrefab: {fileID: 0}

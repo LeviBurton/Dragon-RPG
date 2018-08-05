@@ -290,6 +290,12 @@
     <Reference Include="ProBuilderEditor-Unity5">
       <HintPath>Assets/ThirdParty/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
     </Reference>
+    <Reference Include="TextMeshPro-2017.3-Editor">
+      <HintPath>Assets/ThirdParty/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="TextMeshPro-2017.3-Runtime">
+      <HintPath>Assets/ThirdParty/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/levib/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -320,8 +326,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Core\Editor\WeaponEditor.cs" />
-    <Compile Include="Assets\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
-    <Compile Include="Assets\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
     <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AIBaseEditor.cs" />
     <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AILerpEditor.cs" />
     <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Editor\AnimationLinkEditor.cs" />
@@ -432,13 +436,10 @@
     <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_ParameterWindow.cs" />
     <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_Preferences.cs" />
     <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Editor\pg_ToggleContent.cs" />
+    <Compile Include="Assets\ThirdParty\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
+    <Compile Include="Assets\ThirdParty\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\OutlineEffect\Resources\OutlineBufferShader.shader" />
-    <None Include="Assets\OutlineEffect\Resources\OutlineShader.shader" />
-    <None Include="Assets\RTS_Camera\Demo\Projectors\Guidelines.txt" />
-    <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorLight.shader" />
-    <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.cginc" />
     <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
@@ -451,6 +452,8 @@
     <None Include="Assets\ThirdParty\AstarPathfindingProject\Readme.txt" />
     <None Include="Assets\ThirdParty\AstarPathfindingProject\Readme_upgrading.txt" />
     <None Include="Assets\ThirdParty\AstarPathfindingProject\link.xml" />
+    <None Include="Assets\ThirdParty\OutlineEffect\Resources\OutlineBufferShader.shader" />
+    <None Include="Assets\ThirdParty\OutlineEffect\Resources\OutlineShader.shader" />
     <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\SkyGradient.shader" />
     <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\ChangeLog.txt" />
@@ -556,8 +559,32 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\frag_ao.cginc" />
+    <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Guidelines.txt" />
+    <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Examples &amp; Extras\Fonts\NotoSans - License.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald Bold - OFL.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\ThirdParty\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Do_Nothing.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Group.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Melee.BT.txt" />

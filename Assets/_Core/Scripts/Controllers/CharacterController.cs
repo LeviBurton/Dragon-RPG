@@ -47,6 +47,8 @@ namespace RPG.Character
         [SerializeField] Image actionImage;
         [SerializeField] ECharacterSize characterSize = ECharacterSize.Medium;
 
+        public RenderTexture portraitTexture;
+
         public GameObject targetCursor = null;
         public GameObject target = null;
         public Vector3 homePosition;
@@ -192,6 +194,16 @@ namespace RPG.Character
 
             healthSystem = GetComponent<HealthSystem>();
             weaponSystem = GetComponent<WeaponSystem>();
+
+            portraitTexture = new RenderTexture(128, 128, 16, RenderTextureFormat.ARGB32);
+            portraitTexture.Create();
+            portraitTexture.name = string.Format("{0} Portrait Texture", this.name);
+
+            var foo = GetComponentInChildren<Camera>();
+            if (foo)
+            {
+                foo.targetTexture = portraitTexture;
+            }
 
             //navMeshAgent.updatePosition = manualPosition;
             //navMeshAgent.updateRotation = manualRotation;
@@ -489,6 +501,15 @@ namespace RPG.Character
             return characterConfig;
         }
 
+        public float GetCurrentRecoveryTime()
+        {
+            return currentRecoveryTimeSeconds;
+        }
+
+        public float GetMaxRecoveryTime()
+        {
+            return maxRecoveryTimeSeconds;
+        }
         public float RecoveryAsPercentage { get { return currentRecoveryTimeSeconds / maxRecoveryTimeSeconds; } }
 
         void RegisterSelectableEventHandlers()

@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 8
-  recoveryTimeSeconds: 1.25
+  recoveryTimeSeconds: 3
   damageTypes:
   - {fileID: 11400000, guid: fdbfc96105c4af846b9736b812faa07f, type: 2}
   - {fileID: 11400000, guid: 3711357437805e7428954d9e393f4f98, type: 2}

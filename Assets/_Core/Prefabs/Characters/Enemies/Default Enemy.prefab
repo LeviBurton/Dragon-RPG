@@ -2335,6 +2335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 114988870045082484}
   healthBar: {fileID: 114548402584572230}
+  healthValues: {fileID: 0}
 --- !u!114 &114249245628134568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2388,7 +2389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.862069, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.591616, g: 0.6862745, b: 0, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2593,6 +2594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 114895236142564970}
   recoveryImage: {fileID: 114283033918610562}
+  textValues: {fileID: 0}
 --- !u!114 &114613324699348764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2733,7 +2735,7 @@ MonoBehaviour:
   repathRate: 1
   canSearch: 1
   canMove: 1
-  maxSpeed: 5
+  maxSpeed: 4
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

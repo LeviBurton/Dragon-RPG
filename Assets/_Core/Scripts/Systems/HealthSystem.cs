@@ -36,6 +36,11 @@ namespace RPG.Characters
             }
         }
 
+        public float GetMaxHealth()
+        {
+            return maxHealthPoints;
+        }
+
         public void SetMaxHealth(float maxHealth)
         {
             maxHealthPoints = maxHealth;
