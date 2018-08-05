@@ -18,8 +18,8 @@ TagManager:
   - NPC
   - Hero
   - StaticMesh
-  - PortraitLayer
-  - 
+  - Portrait
+  - Character
   - 
   - 
   - 

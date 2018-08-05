@@ -2,44 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: figure out how to only render the character stored in characterController.
+// Responsible for rendering just our character into the portrait layer.
+// The attached camera uses a culling mask set to the portrait layer to only render objects in it.
+// This sets our mesh and skinned renderers to the portrait layer on pre cull
+// Then restores their previous layers on post render..
 public class PortraitCamera : MonoBehaviour
 {
     [SerializeField] RPG.Character.CharacterController characterController;
     int previousLayer;
 
-    // callback to be called before any camera starts rendering
-    public void MyPreRender(Camera cam)
+    private Camera cam;
+
+    void Start()
     {
-        if (cam.name == "PortraitCamera")
-        {
-            foreach (var renderer in characterController.GetComponentsInChildren<MeshRenderer>())
-            {
-                renderer.gameObject.layer = 13;
-            }
-        }
-      
+        cam = GetComponent<Camera>();    
     }
 
-    public void MyPostRender(Camera cam)
+    void OnPreCull()
     {
+        previousLayer = characterController.gameObject.layer;
+
+        // Move our subject to the "portrait" layer.
+        characterController.gameObject.layer = LayerMask.NameToLayer("Portrait");
         foreach (var renderer in characterController.GetComponentsInChildren<MeshRenderer>())
         {
-            renderer.gameObject.layer = 11;
+            renderer.gameObject.layer = LayerMask.NameToLayer("Portrait");
+        }
+        foreach (var renderer in characterController.GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            renderer.gameObject.layer = LayerMask.NameToLayer("Portrait");
         }
     }
 
-    public void OnEnable()
+    void OnPostRender()
     {
-        // register the callback when enabling object
-        Camera.onPreRender += MyPreRender;
-        Camera.onPostRender += MyPostRender;
-    }
-
-    public void OnDisable()
-    {
-        // remove the callback when disabling object
-        Camera.onPreRender -= MyPreRender;
-        Camera.onPostRender -= MyPostRender;
+        // Move our subject back to its original layer.
+        characterController.gameObject.layer = previousLayer;
+        foreach (var renderer in characterController.GetComponentsInChildren<MeshRenderer>())
+        {
+            renderer.gameObject.layer = previousLayer;
+        }
+        foreach (var renderer in characterController.GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            renderer.gameObject.layer = previousLayer;
+        }
     }
 }
