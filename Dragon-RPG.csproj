@@ -364,6 +364,7 @@
     <Compile Include="Assets\_Core\Scripts\UI\HeroPanel.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\PlayerUI_Hero.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\RecoveryBar.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\SpawnCharacter.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />

@@ -1654,7 +1654,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280822011741170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6700001, z: 3.7299995}
+  m_LocalPosition: {x: 0, y: 1.6700001, z: 6.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4378243792324560}
@@ -2053,10 +2053,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 30
   orthographic: 0
-  orthographic size: 0.36
+  orthographic size: 1.35
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2769,7 +2769,7 @@ MonoBehaviour:
   baseDamage: 10
   leftHandWeaponConfig: {fileID: 0}
   rightHandWeaponConfig: {fileID: 0}
-  currentWeaponConfig: {fileID: 11400000, guid: fbc04a4f047e79d469388a1902300b31,
+  currentWeaponConfig: {fileID: 11400000, guid: c1b3a2292045dd540bedb80e8650aa38,
     type: 2}
   target: {fileID: 0}
   isAttacking: 0
