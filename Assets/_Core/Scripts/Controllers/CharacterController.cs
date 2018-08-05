@@ -46,11 +46,16 @@ namespace RPG.Character
         [SerializeField] Sprite attackActionImage;
         [SerializeField] Image actionImage;
         [SerializeField] ECharacterSize characterSize = ECharacterSize.Medium;
+        [SerializeField] float animationSpeed;
 
+        // Render Texture for portrait camera
         public RenderTexture portraitTexture;
 
+        // Targeting
         public GameObject targetCursor = null;
         public GameObject target = null;
+
+        // Testing
         public Vector3 homePosition;
 
         private Selectable selectable;
@@ -59,108 +64,8 @@ namespace RPG.Character
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
-        private bool isSelected;
-
         private float idleWaitTime = 0.0f;
-
-        #region Animation Pack
-        [Header("Animation Pack Stuff")]
-        public bool crouch;
-        public bool useMeshNav;
-        public bool isMoving = false;
-        public bool canMove = true;
-        Vector3 inputVec;
-        Vector3 newVelocity;
-        public bool onAllowableSlope;
-        public bool isSprinting;
-
-        //Rolling.
-        public float rollSpeed = 8;
-        bool isRolling = false;
-        public float rollduration;
-
-        //Weapon and Shield.
-        //public Weapon weapon = Weapon.RELAX;
-
-        [HideInInspector]
-        bool isSwitchingFinished = true;
-
-        //Weapon Parameters.
-        [HideInInspector]
-        public int rightWeapon = 0;
-        [HideInInspector]
-        public int leftWeapon = 0;
-        bool weaponSwitch;
-        public bool instantWeaponSwitch;
-        public bool dualSwitch;
-
-        //Strafing/action.
-        public bool hipShooting = false;
-        [HideInInspector]
-        public bool canAction = true;
-        bool isStrafing = false;
-        [HideInInspector]
-        public bool isDead = false;
-
-        [HideInInspector]
-        public bool isBlocking = false;
-        public float knockbackMultiplier = 1f;
-        bool isKnockback;
-        [HideInInspector]
-        public bool isSitting = false;
-        bool isAiming = false;
-        [HideInInspector]
-        public bool
-        isClimbing = false;
-        [HideInInspector]
-        public bool
-        isNearLadder = false;
-        [HideInInspector]
-        public bool isNearCliff = false;
-        [HideInInspector]
-        public GameObject ladder;
-        [HideInInspector]
-        public GameObject cliff;
-        [HideInInspector]
-        public bool isCasting;
-        public int specialAttack = 0;
-        public float aimHorizontal;
-        public float aimVertical;
-        public float bowPull;
-        bool injured;
-        public bool headLook = false;
-        bool isHeadlook = false;
-        public int numberOfConversationClips;
-        int currentConversation;
-        float idleTimer;
-        float idleTrigger = 0f;
-
-        // Input
-        bool inputJump;
-        bool inputLightHit;
-        bool inputDeath;
-        bool inputUnarmed;
-        bool inputShield;
-        bool inputAttackL;
-        bool inputAttackR;
-        bool inputCastL;
-        bool inputCastR;
-        float inputSwitchUpDown;
-        float inputSwitchLeftRight;
-        bool inputStrafe;
-        float inputTargetBlock = 0;
-        float inputDashVertical = 0;
-        float inputDashHorizontal = 0;
-        float inputHorizontal = 0;
-        float inputVertical = 0;
-        bool inputAiming;
-        public float animationSpeed = 1;
-
-        bool isAlive = true;
-        float turnAmount;
-        float forwardAmount;
-        #endregion
-
+        private bool isSelected;
 
         [Header("Gizmos")]
         [SerializeField] Color boundingBoxColor = Color.white;
@@ -499,7 +404,6 @@ namespace RPG.Character
         {
             return currentRecoveryTimeSeconds;
         }
-
         public float GetMaxRecoveryTime()
         {
             return maxRecoveryTimeSeconds;
@@ -529,8 +433,6 @@ namespace RPG.Character
                 outliner.enabled = enabled;
             }
         }
-
-       
 
         void UpdateAnimator()
         {
@@ -610,18 +512,11 @@ namespace RPG.Character
             {
                 Task.current.Succeed();
             }
-
-            //if (Vector3.Distance(transform.position, targetCursor.transform.position) <= 3.5f)
-            //{
-            //    Task.current.Succeed();
-            //}
         }
-
 
         [Task]
         bool Idle()
         {
-
             return true;
         }
 
@@ -745,19 +640,17 @@ namespace RPG.Character
         [Task]
         bool AllEnemiesDead()
         {
-            var heroes = FindObjectsOfType<EnemyController>();
+            var enemies = FindObjectsOfType<EnemyController>();
 
-            var allDead = true;
-
-            foreach (var hero in heroes)
+            foreach (var enemy in enemies)
             {
-                if (hero.GetComponent<HealthSystem>().IsAlive())
+                if (enemy.GetComponent<HealthSystem>().IsAlive())
                 {
-                    allDead = false;
+                    return false;
                 }
             }
 
-            return allDead;
+            return true;
         }
 
         [Task]
@@ -765,17 +658,15 @@ namespace RPG.Character
         {
             var heroes = FindObjectsOfType<HeroController>();
 
-            var allDead = true;
-
             foreach (var hero in heroes)
             {
                 if (hero.GetComponent<HealthSystem>().IsAlive())
                 {
-                    allDead = false;
+                    return false;
                 }
             }
 
-            return allDead;
+            return true;
         }
 
         [Task]
