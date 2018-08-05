@@ -168,6 +168,10 @@ namespace RPG.Character
         #region MonoBehavior
         void Awake()
         {
+            walkSpeed = characterConfig.GetWalkSpeed();
+            sprintSpeed = characterConfig.GetSprintSpeed();
+            characterSize = characterConfig.GetSize();
+
             var collider = GetComponent<BoxCollider>();
             collider.center = characterConfig.GetCharacterCenter();
             collider.size = characterConfig.GetCharacterSize();
@@ -183,30 +187,20 @@ namespace RPG.Character
 
             animator = GetComponent<Animator>();
             animator.speed = animationSpeed;
-
             animator.applyRootMotion = false;
-            walkSpeed = characterConfig.GetWalkSpeed();
-        
-            sprintSpeed = characterConfig.GetSprintSpeed();
-       
-            characterSize = characterConfig.GetSize();
-
-
+           
             healthSystem = GetComponent<HealthSystem>();
             weaponSystem = GetComponent<WeaponSystem>();
 
-            portraitTexture = new RenderTexture(128, 128, 16, RenderTextureFormat.ARGB32);
-            portraitTexture.Create();
-            portraitTexture.name = string.Format("{0} Portrait Texture", this.name);
-
-            var foo = GetComponentInChildren<Camera>();
-            if (foo)
+            var portraitCamera = GetComponentInChildren<Camera>();
+            if (portraitCamera)
             {
-                foo.targetTexture = portraitTexture;
-            }
 
-            //navMeshAgent.updatePosition = manualPosition;
-            //navMeshAgent.updateRotation = manualRotation;
+                portraitTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                portraitTexture.Create();
+                portraitTexture.name = string.Format("{0} Portrait Texture", this.name);
+                portraitCamera.targetTexture = portraitTexture;
+            }
         }
 
         private void OnEnable()

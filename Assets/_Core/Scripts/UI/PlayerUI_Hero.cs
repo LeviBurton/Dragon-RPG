@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//TODO: no longer used?  Replaced with HeroPanel
 public class PlayerUI_Hero : MonoBehaviour
 {
     [SerializeField] HeroController heroController;

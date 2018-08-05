@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortraitCamera : MonoBehaviour {
+// TODO: figure out how to only render the character stored in characterController.
+public class PortraitCamera : MonoBehaviour
+{
     [SerializeField] RPG.Character.CharacterController characterController;
-
     int previousLayer;
 
     // callback to be called before any camera starts rendering
@@ -16,7 +17,6 @@ public class PortraitCamera : MonoBehaviour {
             {
                 renderer.gameObject.layer = 13;
             }
-
         }
       
     }
