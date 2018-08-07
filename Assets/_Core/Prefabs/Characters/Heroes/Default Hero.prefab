@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 114269734664110000}
   - component: {fileID: 114911804025524754}
   - component: {fileID: 114594499381784926}
+  - component: {fileID: 114718390010970208}
   - component: {fileID: 114201253728892108}
   m_Layer: 11
   m_Name: Default Hero
@@ -866,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1738137807408942
 GameObject:
   m_ObjectHideFlags: 1
@@ -1333,7 +1334,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487590312361834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.7, y: 1, z: -34.1}
+  m_LocalPosition: {x: 4.84, y: 1, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4785466958343734}
@@ -1654,7 +1655,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280822011741170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6700001, z: 6.44}
+  m_LocalPosition: {x: 0, y: 1.28, z: 6.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4378243792324560}
@@ -2045,7 +2046,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2053,7 +2054,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10
+  far clip plane: 8
   field of view: 30
   orthographic: 0
   orthographic size: 1.35
@@ -2250,7 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scripts:
-  - {fileID: 4900000, guid: b337f75340ef5374caad0523666c02e6, type: 3}
+  - {fileID: 4900000, guid: 1bf2dbe4864d45c4191480a862c8ee83, type: 3}
   autoReset: 1
   tickOn: 0
   sourceInfos:
@@ -2661,7 +2662,7 @@ MonoBehaviour:
   portraitTexture: {fileID: 0}
   targetCursor: {fileID: 1280587599618290}
   target: {fileID: 0}
-  homePosition: {x: 16.7, y: 1, z: -34.1}
+  homePosition: {x: 4.84, y: 1, z: -10.49}
   boundingBoxColor: {r: 0, g: 1, b: 0, a: 0.172}
 --- !u!114 &114587348606422992
 MonoBehaviour:
@@ -2717,6 +2718,17 @@ MonoBehaviour:
   m_FillAmount: NaN
   m_FillClockwise: 1
   m_FillOrigin: 2
+--- !u!114 &114718390010970208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487590312361834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb9e3d4a98b07c4f9c30a2aed41ce86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114776284083226956
 MonoBehaviour:
   m_ObjectHideFlags: 1

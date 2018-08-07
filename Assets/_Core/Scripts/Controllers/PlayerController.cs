@@ -83,6 +83,8 @@ namespace RPG.Character
                     Time.timeScale = 1.0f;
                 }
             }
+
+
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 FindWhatsUnderMouse();
@@ -95,7 +97,6 @@ namespace RPG.Character
 
                     if (isMouseOverEnemy)
                     {
-                        Debug.Log("GetMouseButtonDown 0 - Over Enemy");
                         if (selectedEnemy)
                         {
                             selectedEnemy.GetComponent<Selectable>().Deselect();
@@ -108,7 +109,6 @@ namespace RPG.Character
                             selectable.Select();
                         }
                     }
-
                     else if (isMouseOverFriendly)
                     {
                         Debug.LogFormat("Clicked on Player {0}", objectUnderMouseCursor.name);
@@ -151,12 +151,34 @@ namespace RPG.Character
                     
                 }
 
-                else if (Input.GetMouseButton(1))
+                else if (Input.GetMouseButtonDown(1))
                 {
+                    if (isMouseOverEnemy)
+                    {
+                        foreach (var hero in selectedHeroes)
+                        {
+                            var character = hero.GetComponent<CharacterController>();
+                            character.SetTarget(objectUnderMouseCursor);
+                            character.SetTargetCursorWorldPosition(objectUnderMouseCursor.transform.position);
+                            character.GetComponent<CommandSystem>().QueueCommand(new Command(ECommandType.MoveAttack), true);
+                        }
+
+        
+                        if (selectedEnemy)
+                        {
+                            selectedEnemy.GetComponent<Selectable>().Deselect();
+                        }
+
+                        var selectable = objectUnderMouseCursor.GetComponent<Selectable>();
+                        if (selectable)
+                        {
+                            selectable.Select();
+                            selectedEnemy = selectable.GetComponent<EnemyController>();
+                        }
+                    }
+
                     if (isMouseOverPotentiallyWalkable)
                     {
-                    //    Debug.LogFormat("clicked on {0}", walkablePosition);
-
                         // Here we find all the selected heros, foreach hero we find their formation position,
                         // then off set our click point by that position.  This then becomes the 
                         // heros target.  Note that this requires putting game objects out there --
@@ -173,12 +195,13 @@ namespace RPG.Character
                         foreach (var hero in selectedHeroes)
                         {
                             var character = hero.GetComponent<CharacterController>();
-                          
+                            character.SetTargetCursorWorldPosition(walkablePosition);
+                            //character.GetComponent<CommandSystem>().SetCurrentCommand(new Command(ECommandType.MoveToTargetCursor));
+
+                            character.GetComponent<CommandSystem>().QueueCommand(new Command(ECommandType.MoveToTargetCursor), true);
                         }
                     }
                 }
-
-
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -222,6 +245,17 @@ namespace RPG.Character
                     }
                 }
             }
+            else
+            {
+                if (isSelecting)
+                {
+                    foreach (var selectableObject in FindObjectsOfType<Selectable>())
+                    {
+                        selectableObject.Dehighlight();
+                    }
+                }
+                isSelecting = false;
+            }
         }
 
         void OnGUI()
@@ -258,27 +292,28 @@ namespace RPG.Character
                 return;
             }
 
-            var formationController = heroGroupController.GetComponentInChildren<FormationController>();
-            if (formationController)
-            {
-                for (int i = 0; i < formationController.formationOffsets.Count; i++)
-                {
-                    var offset = formationController.formationOffsets[i];
-                    var position = offset + worldMousePosition;
-                    var screenPoint = Camera.main.WorldToScreenPoint(position);
 
-                    RaycastHit hitInfo;
-                    Ray offsetRay = Camera.main.ScreenPointToRay(screenPoint);
-                    bool potentiallyWalkableHit = Physics.Raycast(offsetRay, out hitInfo, maxRaycastDepth, walkableLayerMask);
-                    Vector3 walkablePositon = hitInfo.point;
-                    formationController.formationTransforms[i].position = walkablePositon;
-                }
-            }
-
-            //if (RaycastForPotentiallyWalkable(ray))
+            //var formationController = heroGroupController.GetComponentInChildren<FormationController>();
+            //if (formationController)
             //{
-            //    return;
+            //    for (int i = 0; i < formationController.formationOffsets.Count; i++)
+            //    {
+            //        var offset = formationController.formationOffsets[i];
+            //        var position = offset + worldMousePosition;
+            //        var screenPoint = Camera.main.WorldToScreenPoint(position);
+
+            //        RaycastHit hitInfo;
+            //        Ray offsetRay = Camera.main.ScreenPointToRay(screenPoint);
+            //        bool potentiallyWalkableHit = Physics.Raycast(offsetRay, out hitInfo, maxRaycastDepth, walkableLayerMask);
+            //        Vector3 walkablePositon = hitInfo.point;
+            //        formationController.formationTransforms[i].position = walkablePositon;
+            //    }
             //}
+
+            if (RaycastForPotentiallyWalkable(ray))
+            {
+                return;
+            }
         }
 
         private bool RaycastForFriendly(Ray ray)

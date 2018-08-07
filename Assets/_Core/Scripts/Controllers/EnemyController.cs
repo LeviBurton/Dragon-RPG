@@ -25,10 +25,6 @@ namespace RPG.Character
         [SerializeField] Sprite attackActionImage;
         [SerializeField] Image actionImage;
 
-        public ECommandType command = ECommandType.Attack;
-
-        public Queue<Command> commandQueue = new Queue<Command>();
-
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
@@ -72,82 +68,6 @@ namespace RPG.Character
                 }
             }
         }
-        void QueueCommand(Command command)
-        {
-            commandQueue.Enqueue(command);
-        }
-
-        public WeaponSystem GetWeaponSystem()
-        {
-            return weaponSystem;
-        }
-
-        #region Tasks
-      
-        [Task]
-        bool IsCurrentCommandDone()
-        {
-            if (commandQueue.Count == 0)
-                return true;
-
-            return commandQueue.Peek().CommandStatus == ECommandStatus.Done;
-        }
-
-        [Task]
-        bool PopCommand()
-        {
-            if (commandQueue.Count == 0)
-                return true;
-
-            commandQueue.Dequeue();
-
-            return true;
-        }
-        
-        [Task]
-        bool CommandDone()
-        {
-            if (commandQueue.Count == 0)
-                return true;
-
-            var command = commandQueue.Peek();
-            command.CommandStatus = ECommandStatus.Done;
-
-            return true;
-
-        }
-
-        [Task]
-        bool IsCurrentCommand_Move()
-        {
-            if (commandQueue.Count == 0)
-                return false;
-
-            return commandQueue.Peek().CommandType == ECommandType.Move;
-        }
-
-        [Task]
-        bool IsCurrentCommand_Attack()
-        {
-            if (commandQueue.Count == 0)
-                return false;
-
-            return commandQueue.Peek().CommandType == ECommandType.Attack;
-        }
-        [Task]
-        bool Enemy_MoveCommand()
-        {
-            return command == ECommandType.Move;
-
-        }
-
-        [Task]
-        bool Enemy_AttackCommand()
-        {
-            return command == ECommandType.Attack;
-        }
-
-        #endregion
 
         void OnDrawGizmos()
         {

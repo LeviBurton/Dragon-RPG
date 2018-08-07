@@ -17,6 +17,6 @@ MonoBehaviour:
   recoveryTimeSeconds: 1
   health: 500
   walkSpeed: 1
-  runSpeed: 4
+  runSpeed: 6
   sprintSpeed: 1.5
   rotationSpeed: 270

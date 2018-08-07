@@ -47,7 +47,7 @@ namespace RPG.Character
         [SerializeField] Image actionImage;
         [SerializeField] ECharacterSize characterSize = ECharacterSize.Medium;
         [SerializeField] float animationSpeed;
-
+        
         // Render Texture for portrait camera
         public RenderTexture portraitTexture;
 
@@ -61,11 +61,12 @@ namespace RPG.Character
         private Selectable selectable;
         private HealthSystem healthSystem;
         private WeaponSystem weaponSystem;
+        private CommandSystem commandSystem;
+
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
         private float idleWaitTime = 0.0f;
-        private bool isSelected;
 
         [Header("Gizmos")]
         [SerializeField] Color boundingBoxColor = Color.white;
@@ -101,11 +102,13 @@ namespace RPG.Character
             if (portraitCamera)
             {
 
-                portraitTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                portraitTexture = new RenderTexture(512, 512, 32, RenderTextureFormat.ARGB32);
                 portraitTexture.Create();
                 portraitTexture.name = string.Format("{0} Portrait Texture", this.name);
                 portraitCamera.targetTexture = portraitTexture;
             }
+
+            commandSystem = GetComponent<CommandSystem>();
         }
 
         private void OnEnable()
@@ -161,19 +164,17 @@ namespace RPG.Character
         #region Selectable Events
         void OnSelected()
         {
-            isSelected = true;
             SetOutlinesEnabled(true);
         }
 
         void OnDeselected()
         {
-            isSelected = false;
             SetOutlinesEnabled(false);
         }
 
         void OnDeHighlight()
         {
-            if (!isSelected)
+            if (!selectable.isSelected)
             {
                 SetOutlinesEnabled(false);
             }
@@ -462,62 +463,17 @@ namespace RPG.Character
             return true;
         }
 
-        // TODO: no longer used.
+        // TODO: i feel having a separate one of these for target vs target cursor is bad design, but whatever...
+        [Task]
+        bool IsAtTargetCursor()
+        {
+            return Vector3.Distance(transform.position, targetCursor.transform.position) <= aiAgent.endReachedDistance;
+        }
+
+        [Task]
         bool IsAtTarget()
         {
-            float distance = 0.0f;
-
-            if (target != null)
-            {
-                distance = Vector3.Distance(transform.position, target.transform.position);
-            }
-            else
-            {
-                distance = Vector3.Distance(transform.position, targetCursor.transform.position);
-            }
-
-            return distance <= 2.5f;
-        }
-
-        [Task]
-        void MoveToTargetCursor()
-        {
-            actionImage.sprite = moveActionImage;
-
-            SetDestination(targetCursor.transform.position);
-            aiAgent.isStopped = false;
-
-            if (IsAtTarget())
-            {
-                Task.current.Succeed();
-            }
-        }
-
-        [Task]
-        void MoveToTarget()
-        {
-            actionImage.sprite = moveActionImage;
-            aiAgent.isStopped = false;
-
-            Vector3 worldPosition = Vector3.zero;
-
-            if (target != null)
-            {
-                SetTargetCursorWorldPosition(target.transform.position);
-            }
- 
-            SetDestination(targetCursor.transform.position);
-            
-            if (aiAgent.reachedEndOfPath)
-            {
-                Task.current.Succeed();
-            }
-        }
-
-        [Task]
-        bool Idle()
-        {
-            return true;
+            return Vector3.Distance(transform.position, target.transform.position) <= aiAgent.endReachedDistance;
         }
 
         [Task]
@@ -549,6 +505,64 @@ namespace RPG.Character
 
             return isInRange;
         }
+
+        [Task]
+        void MoveToTargetCursor()
+        {
+            actionImage.sprite = moveActionImage;
+            SetDestination(targetCursor.transform.position);
+        }
+
+        // TODO: so this works, but it is not pretty, at all.
+        // I think I need to re-implement a stop moving task.
+        [Task]
+        bool MoveAttack()
+        {
+            if (IsWithinWeaponRange())
+            {
+                aiAgent.isStopped = true;
+                return true;
+            }
+
+            actionImage.sprite = moveActionImage;
+            aiAgent.isStopped = false;
+
+            Vector3 worldPosition = Vector3.zero;
+
+            if (target != null)
+            {
+                SetTargetCursorWorldPosition(target.transform.position);
+            }
+
+            SetDestination(targetCursor.transform.position);
+
+            return IsWithinWeaponRange();
+        }
+
+        [Task]
+        bool MoveToTarget()
+        {
+            actionImage.sprite = moveActionImage;
+            aiAgent.isStopped = false;
+
+            Vector3 worldPosition = Vector3.zero;
+
+            if (target != null)
+            {
+                SetTargetCursorWorldPosition(target.transform.position);
+            }
+ 
+            SetDestination(targetCursor.transform.position);
+
+            return IsAtTarget();
+        }
+
+        [Task]
+        bool Idle()
+        {
+            return true;
+        }
+
 
         [Task]
         bool HasTarget()
@@ -838,7 +852,7 @@ namespace RPG.Character
         {
             actionImage.sprite = attackActionImage;
 
-            //weaponSystem.SetTarget(target);
+            weaponSystem.SetTarget(target);
             SetTargetCursorWorldPosition(target.transform.position);
 
             maxRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds();

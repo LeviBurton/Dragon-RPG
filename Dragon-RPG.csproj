@@ -357,6 +357,7 @@
     <Compile Include="Assets\_Core\Scripts\Misc\OtherHand.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Selectable.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\WaypointContainer.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\CommandSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\HealthSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\WeaponSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\GameTimeStats.cs" />
@@ -734,6 +735,7 @@
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero.txt" />
+    <None Include="Assets\_Core\BehaviorTrees\Hero_CommandTest.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero_Random.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
