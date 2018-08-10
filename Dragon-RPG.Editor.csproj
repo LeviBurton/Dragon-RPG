@@ -597,6 +597,7 @@
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />
+    <None Include="Assets\_Core\Shaders\UnlitAlphaBlendedTextureProjector.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>

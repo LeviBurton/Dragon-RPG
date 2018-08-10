@@ -44,7 +44,6 @@ namespace RPG.Character
         [SerializeField] Image recoveryCircleImage;
         [SerializeField] Sprite moveActionImage;
         [SerializeField] Sprite attackActionImage;
-        [SerializeField] Image actionImage;
         [SerializeField] ECharacterSize characterSize = ECharacterSize.Medium;
         [SerializeField] float animationSpeed;
         
@@ -509,7 +508,6 @@ namespace RPG.Character
         [Task]
         void MoveToTargetCursor()
         {
-            actionImage.sprite = moveActionImage;
             SetDestination(targetCursor.transform.position);
         }
 
@@ -524,7 +522,6 @@ namespace RPG.Character
                 return true;
             }
 
-            actionImage.sprite = moveActionImage;
             aiAgent.isStopped = false;
 
             Vector3 worldPosition = Vector3.zero;
@@ -542,7 +539,6 @@ namespace RPG.Character
         [Task]
         bool MoveToTarget()
         {
-            actionImage.sprite = moveActionImage;
             aiAgent.isStopped = false;
 
             Vector3 worldPosition = Vector3.zero;
@@ -850,8 +846,6 @@ namespace RPG.Character
         [Task]
         void Attack()
         {
-            actionImage.sprite = attackActionImage;
-
             weaponSystem.SetTarget(target);
             SetTargetCursorWorldPosition(target.transform.position);
 
