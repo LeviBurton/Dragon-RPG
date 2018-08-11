@@ -1202,8 +1202,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487590312361834}
-  m_LocalRotation: {x: -0, y: 0.0014901776, z: -0, w: 0.9999989}
-  m_LocalPosition: {x: 3.3500004, y: 1, z: -41.23}
+  m_LocalRotation: {x: -0, y: 0.3237066, z: -0, w: 0.9461575}
+  m_LocalPosition: {x: 11.515, y: 1, z: -42.532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4785466958343734}
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487590312361834}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
   m_Name: 
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   repathRate: 0.1
   canSearch: 1
   canMove: 1
-  maxSpeed: 6
+  maxSpeed: 4.8
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   rotationIn2D: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
-  rotationSpeed: 270
+  rotationSpeed: 360
   slowdownDistance: 3
   pickNextWaypointDist: 1
   endReachedDistance: 2
@@ -2360,16 +2360,14 @@ MonoBehaviour:
   animator: {fileID: 95022782000975998}
   rigidBody: {fileID: 54911038244489930}
   aiAgent: {fileID: 114269734664110000}
-  walkSpeed: 1
-  runSpeed: 10
-  sprintSpeed: 1.5
-  rotationSpeed: 270
+  maxForwardSpeed: 6
+  maxSideSpeed: 5
+  maxRotationSpeed: 360
   manualRotation: 1
   manualPosition: 0
   recoveryCircleImage: {fileID: 0}
   moveActionImage: {fileID: 21300000, guid: 8834906b0f94bb44fbe52ce2624e2fc9, type: 3}
   attackActionImage: {fileID: 21300000, guid: 58a72c3810517654890a185ab78c0700, type: 3}
-  actionImage: {fileID: 0}
   characterSize: 1
   animationSpeed: 1
   portraitTexture: {fileID: 0}
@@ -2780,7 +2778,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266824774372862}
-  m_LocalRotation: {x: -0.29928118, y: 0.63990074, z: 0.29839057, w: 0.64181066}
+  m_LocalRotation: {x: -0.37948135, y: 0.3989017, z: 0.18601087, w: 0.8138006}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.025000034, y: 0.025000008, z: 0.025000034}
   m_Children:

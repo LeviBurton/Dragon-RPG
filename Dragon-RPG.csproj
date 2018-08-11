@@ -350,6 +350,7 @@
     <Compile Include="Assets\_Core\Scripts\Controllers\HeroController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\AssetHelpers.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\Bouncer.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\CircleProjector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Command.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\DominantHand.cs" />
@@ -366,6 +367,8 @@
     <Compile Include="Assets\_Core\Scripts\UI\PlayerUI_Hero.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\RecoveryBar.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\SpawnCharacter.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\TargetPanel.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\TargetTargetPanel.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />

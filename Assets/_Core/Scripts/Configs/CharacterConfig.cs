@@ -18,11 +18,10 @@ namespace RPG.Characters
         [SerializeField] float recoveryTimeSeconds = 1.0f;
         [SerializeField] float health = 10;
 
-        // Units per Second?
-        [SerializeField] float walkSpeed = 1.35f;
-        [SerializeField] float runSpeed = 6.0f;
-        [SerializeField] float sprintSpeed = 6.0f;
-        [SerializeField] float rotationSpeed = 40f;
+        // Units per second.  Can be changed in the owner component instance.
+        [SerializeField] float maxForwardMoveSpeed = 10.0f;
+        [SerializeField] float maxSideMoveSpeed = 5.0f;
+        [SerializeField] float maxRotationSpeed;
 
         public Vector3 GetCharacterCenter()
         {
@@ -44,31 +43,24 @@ namespace RPG.Characters
             return health;
         }
 
-        public float GetWalkSpeed()
+        public float GetMaxForwardSpeed()
         {
-            return walkSpeed;
+            return maxForwardMoveSpeed;
         }
 
-        public float GetRunSpeed()
+        public float GetMaxSideSpeed()
         {
-            return runSpeed;
+            return maxSideMoveSpeed;
         }
 
-        public float GetSprintSpeed()
+        public float GetMaxRotationSpeed()
         {
-            return sprintSpeed;
+            return maxRotationSpeed;
         }
-
-        public float GetRotationSpeed()
-        {
-            return rotationSpeed;
-        }
-
       
         public float GetRecoveryTime()
         {
             return recoveryTimeSeconds;
         }
-
     }
 }

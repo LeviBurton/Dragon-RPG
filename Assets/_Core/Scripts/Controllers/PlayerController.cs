@@ -51,39 +51,12 @@ namespace RPG.Character
 
         void Start()
         {
-           // mouseWorldTransform = Instantiate(mouseWorldTransform, Vector3.zero, Quaternion.identity);
-            //NavMesh.avoidancePredictionTime = 5.0F;
         }
 
         // TODO: this is ready for some refactoring.  
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                actionPaused = !actionPaused;
-                if (actionPaused)
-                {
-                    Time.timeScale = 0.0f;
-                }
-                else
-                {
-                    Time.timeScale = 1.0f;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                slowMotion = !slowMotion;
-                if (slowMotion)
-                {
-                    Time.timeScale = 0.35f;
-                }
-                else
-                {
-                    Time.timeScale = 1.0f;
-                }
-            }
-
+            HandlePause();
 
             if (!EventSystem.current.IsPointerOverGameObject())
             {
@@ -148,7 +121,7 @@ namespace RPG.Character
                         }
                         selectedHeroes.Clear();
                     }
-                    
+
                 }
 
                 else if (Input.GetMouseButtonDown(1))
@@ -163,7 +136,6 @@ namespace RPG.Character
                             character.GetComponent<CommandSystem>().QueueCommand(new Command(ECommandType.MoveAttack), true);
                         }
 
-        
                         if (selectedEnemy)
                         {
                             selectedEnemy.GetComponent<Selectable>().Deselect();
@@ -258,6 +230,35 @@ namespace RPG.Character
             }
         }
 
+        private void HandlePause()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                actionPaused = !actionPaused;
+                if (actionPaused)
+                {
+                    Time.timeScale = 0.0f;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                slowMotion = !slowMotion;
+                if (slowMotion)
+                {
+                    Time.timeScale = 0.35f;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
+            }
+        }
+
         void OnGUI()
         {
             if (isSelecting)
@@ -273,6 +274,8 @@ namespace RPG.Character
       
         void FindWhatsUnderMouse()
         {
+            // TODO: not sure about these booleans.  
+            // Consider a generic "interactable" component.
             isMouseOverEnemy = false;
             isMouseOverFriendly = false;
             isMouseOverPotentiallyWalkable = false;
@@ -282,7 +285,7 @@ namespace RPG.Character
             var worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             // Prioritized list of things to look for.  As soon as one is found, stop looking.
-            if (RaycastForFriendly(ray))
+            if (RaycaseForHero(ray))
             {
                 return;
             }
@@ -291,7 +294,6 @@ namespace RPG.Character
             {
                 return;
             }
-
 
             //var formationController = heroGroupController.GetComponentInChildren<FormationController>();
             //if (formationController)
@@ -316,7 +318,7 @@ namespace RPG.Character
             }
         }
 
-        private bool RaycastForFriendly(Ray ray)
+        private bool RaycaseForHero(Ray ray)
         {
             RaycastHit hitInfo;
             bool friendlyHit = Physics.Raycast(ray, out hitInfo, maxRaycastDepth, friendlyMask);

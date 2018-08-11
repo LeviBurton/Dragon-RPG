@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroController: {fileID: 0}
   playerController: {fileID: 0}
-  hoveredBorderColor: {r: 0.63470393, g: 1, b: 0.422, a: 1}
+  hoveredBorderColor: {r: 0.5808823, g: 0.5808823, b: 0.5808823, a: 1}
   selectedBorderColor: {r: 0.3679999, g: 1, b: 0, a: 1}
   normalBorderColor: {r: 0.32352942, g: 0.32352942, b: 0.32352942, a: 1}
   backgroundImage: {fileID: 114903024988653396}

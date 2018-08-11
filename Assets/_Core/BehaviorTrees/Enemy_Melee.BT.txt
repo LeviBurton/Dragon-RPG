@@ -11,7 +11,8 @@ tree "ReturnHome"
 	sequence
 		AllHeroesDead
 		SetTargetToHome
-		MoveToTargetCursor		
+		SetWalking
+		MoveToTargetCursor
 		StopMoving
 
 tree "Attack"

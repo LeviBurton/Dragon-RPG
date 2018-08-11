@@ -6,6 +6,7 @@ using Panda;
 using RPG.Characters;
 using System.Collections.Generic;
 using Pathfinding;
+using System;
 
 namespace RPG.Character
 {
@@ -33,12 +34,106 @@ namespace RPG.Character
         [SerializeField] CharacterConfig characterConfig;
         [SerializeField] Animator animator;
         [SerializeField] Rigidbody rigidBody;
-        //[SerializeField] NavMeshAgent navMeshAgent;
         [SerializeField] AIPath aiAgent;
-        [SerializeField] float walkSpeed = 1.35f;
-        [SerializeField] float runSpeed = 6.0f;
-        [SerializeField] float sprintSpeed = 6.0f;
-        [SerializeField] float rotationSpeed = 40f;
+
+        float[] animatorForwardSmoothing = new float[10];
+
+        float currentForwardSpeed;
+        public float CurrentForwardSpeed
+        {
+            get
+            {
+                return currentForwardSpeed;
+            }
+            set
+            {
+                currentForwardSpeed = value;
+                aiAgent.maxSpeed = currentForwardSpeed;
+            }
+        }
+
+        float currentSideSpeed;
+        public float CurrentSideSpeed
+        {
+            get
+            {
+                return currentSideSpeed;
+            }
+            set
+            {
+                currentSideSpeed = value;
+            }
+        }
+
+        [Task]
+        public bool SetWalking()
+        {
+            CurrentForwardSpeed = MaxForwardSpeed * 0.2f;
+            CurrentSideSpeed = MaxSideSpeed * 0.2f;
+            return true;
+        }
+
+        [Task]
+        public bool SetRunning()
+        {
+            CurrentForwardSpeed = MaxForwardSpeed * 0.8f;
+            CurrentSideSpeed = MaxSideSpeed * 0.8f;
+            return true;
+        }
+
+        [Task]
+        public bool SetSprinting()
+        {
+            CurrentForwardSpeed = MaxForwardSpeed;
+            CurrentSideSpeed = MaxForwardSpeed;
+            return true;
+        }
+
+        [SerializeField] float maxForwardSpeed;
+        public float MaxForwardSpeed
+        {
+            get
+            {
+                return maxForwardSpeed;
+            }
+            set
+            {
+                maxForwardSpeed = value;
+                aiAgent.maxSpeed = maxForwardSpeed;
+            }
+        }
+
+        [SerializeField] float maxSideSpeed;
+        public float MaxSideSpeed
+        {
+            get
+            {
+                return maxSideSpeed;
+            }
+            set
+            {
+                maxSideSpeed = value;
+                // TODO: what to do about this for an aiAgent?
+                // Probably don't need to worry about it since side movement will not be done with the AI.
+                // aiAgent.maxSpeed = maxForwardSpeed;
+            }
+        }
+
+
+        [SerializeField] float maxRotationSpeed;
+        public float MaxRotationSpeed
+        {
+            get
+            {
+                return maxRotationSpeed;
+            }
+            set
+            {
+                maxRotationSpeed = value;
+                aiAgent.rotationSpeed = maxRotationSpeed;
+            }
+        }
+
         [SerializeField] bool manualRotation = false;
         [SerializeField] bool manualPosition = true;
         [SerializeField] Image recoveryCircleImage;
@@ -73,8 +168,9 @@ namespace RPG.Character
         #region MonoBehavior
         void Awake()
         {
-            walkSpeed = characterConfig.GetWalkSpeed();
-            sprintSpeed = characterConfig.GetSprintSpeed();
+            maxForwardSpeed = characterConfig.GetMaxForwardSpeed();
+            maxSideSpeed = characterConfig.GetMaxSideSpeed();
+            maxRotationSpeed = characterConfig.GetMaxRotationSpeed();
             characterSize = characterConfig.GetSize();
 
             var collider = GetComponent<BoxCollider>();
@@ -82,11 +178,8 @@ namespace RPG.Character
             collider.size = characterConfig.GetCharacterSize();
 
             aiAgent = GetComponent<AIPath>();
-            aiAgent.maxSpeed = characterConfig.GetRunSpeed();
-            aiAgent.rotationSpeed = characterConfig.GetRotationSpeed();
-
-            // TODO: do we really need this here?
-            rotationSpeed = characterConfig.GetRotationSpeed();
+            aiAgent.maxSpeed = maxForwardSpeed;
+            aiAgent.rotationSpeed = maxRotationSpeed;
 
             rigidBody = GetComponent<Rigidbody>();
 
@@ -100,7 +193,6 @@ namespace RPG.Character
             var portraitCamera = GetComponentInChildren<Camera>();
             if (portraitCamera)
             {
-
                 portraitTexture = new RenderTexture(512, 512, 32, RenderTextureFormat.ARGB32);
                 portraitTexture.Create();
                 portraitTexture.name = string.Format("{0} Portrait Texture", this.name);
@@ -142,11 +234,9 @@ namespace RPG.Character
         {
             homePosition = transform.position;
             SetOutlinesEnabled(false);
-
-
             minRecoveryTimeSeconds = characterConfig.GetRecoveryTime();
             currentRecoveryTimeSeconds = 0.0f;
-
+            SetSprinting();
             RegisterSelectableEventHandlers();
         }
 
@@ -193,7 +283,7 @@ namespace RPG.Character
             // it directly to their animator here seems brittle (but it works.)
             int numPossibleHits = 5;
             var targetAnimator = target.GetComponent<Animator>();
-            int hitNumber = Random.Range(1, numPossibleHits + 1);
+            int hitNumber = UnityEngine.Random.Range(1, numPossibleHits + 1);
             targetAnimator.SetInteger("Action", hitNumber);
             targetAnimator.SetTrigger("GetHitTrigger");
         }
@@ -283,11 +373,6 @@ namespace RPG.Character
         #endregion
 
         #region Movement
-        public void SetMovementSpeed(float newSpeed)
-        {
-            aiAgent.maxSpeed = newSpeed;
-        }
-
         public float GetStoppingDistance()
         {
             return 0;
@@ -313,7 +398,7 @@ namespace RPG.Character
                 if (targetDir != Vector3.zero)
                 {
                     var lookRotation = Quaternion.LookRotation(new Vector3(targetDir.x, 0, targetDir.z));
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * maxRotationSpeed);
                 }
             }
         }
@@ -438,10 +523,12 @@ namespace RPG.Character
         {
             animator.SetFloat("AnimationSpeed", animationSpeed);
 
-            float velocityXel = transform.InverseTransformDirection(aiAgent.velocity).x;
-            float velocityZel = transform.InverseTransformDirection(aiAgent.velocity).z;
+            float velocityXel = transform.InverseTransformDirection(aiAgent.velocity).x / maxSideSpeed;
+            float velocityZel = transform.InverseTransformDirection(aiAgent.velocity).z / maxForwardSpeed;
 
-            animator.SetFloat("Velocity Z", velocityZel);
+            animator.SetFloat("Velocity Z", velocityZel, 0.1f, Time.deltaTime);
+            animator.SetFloat("Velocity X", velocityXel, 0.1f, Time.deltaTime);
+
             animator.SetBool("Moving", aiAgent.velocity.sqrMagnitude > 0);
         }
 
@@ -595,7 +682,7 @@ namespace RPG.Character
         {
             if (Task.current.isStarting)
             {
-                idleWaitTime = Random.Range(1.0f, 2.5f);
+                idleWaitTime = UnityEngine.Random.Range(1.0f, 2.5f);
             }
 
             if (Task.isInspected)
@@ -637,7 +724,7 @@ namespace RPG.Character
         [Task]
         void ChooseRandomPosition()
         {
-            var point = Random.insideUnitSphere * 25f;
+            var point = UnityEngine.Random.insideUnitSphere * 25f;
             point.y = 0;
             point += aiAgent.position;
 
@@ -857,14 +944,7 @@ namespace RPG.Character
             Task.current.Succeed();
         }
 
-        [Task]
-        bool SetSpeed(float speed)
-        {
-            runSpeed = speed;
-            SetMovementSpeed(runSpeed);
-            return true;
-        }
-
+     
         [Task]
         void SetTargetToHome()
         {

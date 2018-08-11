@@ -16,7 +16,6 @@ MonoBehaviour:
   characterSize: {x: 2, y: 2, z: 2}
   recoveryTimeSeconds: 1
   health: 500
-  walkSpeed: 1
-  runSpeed: 6
-  sprintSpeed: 1.5
-  rotationSpeed: 270
+  maxForwardMoveSpeed: 7
+  maxSideMoveSpeed: 5
+  maxRotationSpeed: 720
