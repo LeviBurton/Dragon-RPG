@@ -11,7 +11,6 @@ tree "ReturnHome"
 	sequence
 		AllHeroesDead
 		SetTargetToHome
-		SetWalking
 		MoveToTargetCursor
 		StopMoving
 
@@ -52,7 +51,4 @@ tree "Idle"
 
 		sequence
 			Idle
-
-
-
 

@@ -36,8 +36,6 @@ namespace RPG.Character
         [SerializeField] Rigidbody rigidBody;
         [SerializeField] AIPath aiAgent;
 
-        float[] animatorForwardSmoothing = new float[10];
-
         float currentForwardSpeed;
         public float CurrentForwardSpeed
         {
@@ -236,7 +234,7 @@ namespace RPG.Character
             SetOutlinesEnabled(false);
             minRecoveryTimeSeconds = characterConfig.GetRecoveryTime();
             currentRecoveryTimeSeconds = 0.0f;
-            SetSprinting();
+            SetRunning();
             RegisterSelectableEventHandlers();
         }
 
@@ -281,9 +279,13 @@ namespace RPG.Character
             // TODO: we are telling the target to run their GetHitTrigger animation.
             // We may need to use a component here, or something, since telling
             // it directly to their animator here seems brittle (but it works.)
-            int numPossibleHits = 5;
             var targetAnimator = target.GetComponent<Animator>();
+            if (targetAnimator == null)
+                return;
+
+            int numPossibleHits = 5;
             int hitNumber = UnityEngine.Random.Range(1, numPossibleHits + 1);
+
             targetAnimator.SetInteger("Action", hitNumber);
             targetAnimator.SetTrigger("GetHitTrigger");
         }
@@ -526,11 +528,19 @@ namespace RPG.Character
             float velocityXel = transform.InverseTransformDirection(aiAgent.velocity).x / maxSideSpeed;
             float velocityZel = transform.InverseTransformDirection(aiAgent.velocity).z / maxForwardSpeed;
 
-            animator.SetFloat("Velocity Z", velocityZel, 0.1f, Time.deltaTime);
-            animator.SetFloat("Velocity X", velocityXel, 0.1f, Time.deltaTime);
-
-            animator.SetBool("Moving", aiAgent.velocity.sqrMagnitude > 0);
-        }
+            if (velocityZel >= 0.01f)
+            {
+                animator.SetBool("Moving", true);
+                animator.SetFloat("Velocity Z", velocityZel, 0.1f, Time.deltaTime);
+                animator.SetFloat("Velocity X", velocityXel, 0.1f, Time.deltaTime);
+            }
+            else
+            {
+                animator.SetBool("Moving", false);
+                animator.SetFloat("Velocity Z", 0);
+                animator.SetFloat("Velocity X", 0);
+            }
+         }
 
         #region Tasks
 
@@ -934,6 +944,7 @@ namespace RPG.Character
         void Attack()
         {
             weaponSystem.SetTarget(target);
+      
             SetTargetCursorWorldPosition(target.transform.position);
 
             maxRecoveryTimeSeconds = weaponSystem.GetCurrentWeapon().GetRecoveryTimeSeconds();

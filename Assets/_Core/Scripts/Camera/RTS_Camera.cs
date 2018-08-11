@@ -109,6 +109,8 @@ namespace RTS_Cam
         public bool useMouseRotation = true;
         public KeyCode mouseRotationKey = KeyCode.Mouse1;
 
+        // TODO: consider changing the input settings to return 1,-1 and not use sensitivity.
+        // TODO: the reason is that the sensitivity gives us a value over time, which we would like to control ourselves.
         private Vector2 KeyboardInput
         {
             get { return useKeyboardInput ? new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis)) : Vector2.zero; }
@@ -216,6 +218,7 @@ namespace RTS_Cam
         {
             if (useKeyboardInput)
             {
+                // Note that this is smoothed by Horizontal and Vertical sensitivity, so its -1.0, 1.0, not -1, 0, 1
                 Vector3 desiredMove = new Vector3(KeyboardInput.x, 0, KeyboardInput.y);
 
                 desiredMove *= keyboardMovementSpeed;
@@ -224,6 +227,7 @@ namespace RTS_Cam
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
 
                 m_Transform.Translate(desiredMove, Space.Self);
+                ResetTarget();
             }
 
             if (useScreenEdgeInput)
@@ -244,6 +248,7 @@ namespace RTS_Cam
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
 
                 m_Transform.Translate(desiredMove, Space.Self);
+                ResetTarget();
             }
 
             if (usePanning && Input.GetKey(panningKey) && MouseAxis != Vector2.zero)
@@ -299,20 +304,25 @@ namespace RTS_Cam
         /// </summary>
         private void Rotation()
         {
-            if (useKeyboardRotation)
-                transform.Rotate(Vector3.up, RotationDirection * Time.unscaledDeltaTime * rotationSped, Space.World);
+            //if (useKeyboardRotation)
+            //    transform.Rotate(Vector3.up, RotationDirection * Time.unscaledDeltaTime * rotationSped, Space.World);
 
-            if (useMouseRotation && Input.GetKey(mouseRotationKey))
-                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.unscaledDeltaTime * mouseRotationSpeed, Space.World);
+            //if (useMouseRotation && Input.GetKey(mouseRotationKey))
+            //    m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.unscaledDeltaTime * mouseRotationSpeed, Space.World);
         }
+
+        private Vector3 dampVelocity;
 
         /// <summary>
         /// follow targetif target != null
         /// </summary>
         private void FollowTarget()
         {
-            Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) + targetOffset;
-            m_Transform.position = Vector3.MoveTowards(m_Transform.position, targetPos, Time.unscaledDeltaTime * followingSpeed);
+            if (Vector3.Distance(targetFollow.position, transform.position) > 0.01f)
+            {
+                var newTarget = new Vector3(targetFollow.position.x, transform.position.y, targetFollow.position.z);
+                transform.position = Vector3.SmoothDamp(transform.position, newTarget + targetOffset, ref dampVelocity, followingSpeed);
+            }
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HeroPanel : MonoBehaviour
@@ -80,8 +81,19 @@ public class HeroPanel : MonoBehaviour
         }
     }
 
-    public void OnClick()
+    public void OnClick(BaseEventData baseEventData)
     {
+        PointerEventData pointerEventData = baseEventData as PointerEventData;
+
+        if (heroController == null)
+            return;
+
+        if (pointerEventData.clickCount == 2)
+        {
+            var rtsCamera = Camera.main.GetComponent<RTS_Cam.RTS_Camera>();
+            rtsCamera.SetTarget(heroController.transform);
+        }
+
         foreach (var hero in playerController.selectedHeroes)
         {
             hero.GetComponent<Selectable>().Deselect();
