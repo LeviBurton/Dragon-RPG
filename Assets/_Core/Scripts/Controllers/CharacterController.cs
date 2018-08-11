@@ -525,14 +525,19 @@ namespace RPG.Character
         {
             animator.SetFloat("AnimationSpeed", animationSpeed);
 
-            float velocityXel = transform.InverseTransformDirection(aiAgent.velocity).x / maxSideSpeed;
-            float velocityZel = transform.InverseTransformDirection(aiAgent.velocity).z / maxForwardSpeed;
+            // Side velocity
+            float velocityX = transform.InverseTransformDirection(aiAgent.velocity).x / maxSideSpeed;
 
-            if (velocityZel >= 0.01f)
+            // Forward velocity
+            float velocityZ = transform.InverseTransformDirection(aiAgent.velocity).z / maxForwardSpeed;
+
+            Vector3 animatorVelocity = new Vector3(velocityX, 0.0f, velocityZ);
+
+            if (animatorVelocity.magnitude > 0.01f)
             {
                 animator.SetBool("Moving", true);
-                animator.SetFloat("Velocity Z", velocityZel, 0.1f, Time.deltaTime);
-                animator.SetFloat("Velocity X", velocityXel, 0.1f, Time.deltaTime);
+                animator.SetFloat("Velocity Z", animatorVelocity.z, 0.1f, Time.deltaTime);
+                animator.SetFloat("Velocity X", animatorVelocity.x, 0.1f, Time.deltaTime);
             }
             else
             {
@@ -540,6 +545,7 @@ namespace RPG.Character
                 animator.SetFloat("Velocity Z", 0);
                 animator.SetFloat("Velocity X", 0);
             }
+
          }
 
         #region Tasks
