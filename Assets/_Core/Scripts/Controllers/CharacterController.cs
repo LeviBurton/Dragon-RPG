@@ -234,7 +234,7 @@ namespace RPG.Character
             SetOutlinesEnabled(false);
             minRecoveryTimeSeconds = characterConfig.GetRecoveryTime();
             currentRecoveryTimeSeconds = 0.0f;
-            SetRunning();
+            SetWalking();
             RegisterSelectableEventHandlers();
         }
 
@@ -537,7 +537,7 @@ namespace RPG.Character
             {
                 animator.SetBool("Moving", true);
                 animator.SetFloat("Velocity Z", animatorVelocity.z, 0.1f, Time.deltaTime);
-                animator.SetFloat("Velocity X", animatorVelocity.x, 0.1f, Time.deltaTime);
+              //  animator.SetFloat("Velocity X", animatorVelocity.x, 0.1f, Time.deltaTime);
             }
             else
             {

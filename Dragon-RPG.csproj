@@ -366,6 +366,9 @@
     <Compile Include="Assets\_Core\Scripts\UI\HeroPanel.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\PlayerUI_Hero.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\RecoveryBar.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\SetRun.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\SetSprint.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\SetWalk.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\SpawnCharacter.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\TargetPanel.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\TargetTargetPanel.cs" />
