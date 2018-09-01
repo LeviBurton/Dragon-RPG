@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using RPG.Characters;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
+using System.Linq;
 
 namespace RPG.Character
 {
@@ -26,18 +27,27 @@ namespace RPG.Character
         [SerializeField] Texture2D walkCursor = null;
         [SerializeField] Texture2D npcCursor = null;
         [SerializeField] Texture2D enemyCursor = null;
+        [SerializeField] Transform axisToolPrefab =  null;
+
+        Transform axisToolInstance = null;
+
+        // TODO: NOte that this list maintains our party order.
+        // Also -- this list needs to come from somewhere.  When a player creates a character,
+        // this list is populated with the character they created, so its stats need saved, etc.
+        // 
+        public List<HeroController> playerHeroes;
 
         public List<HeroController> selectedHeroes;
         public List<EnemyController> selectedEnemies;
         public EnemyController selectedEnemy;
-
-        public CharacterController selectedCharacter;
         public Transform mouseWorldTransform;
 
         bool isMouseOverEnemy = false;
         bool isMouseOverFriendly = false;
         bool isMouseOverPotentiallyWalkable = false;
         bool isSelecting = false;
+        bool isFindingMoveToPosition;
+
         bool actionPaused = false;
         bool slowMotion = false;
 
@@ -45,12 +55,19 @@ namespace RPG.Character
         float maxRaycastDepth = 100f; // Hard coded value
         GameObject objectUnderMouseCursor;
         Vector3 walkablePosition;
-
+        Transform walkToClickTransform;
+        Quaternion moveToRotation;
+        Vector3 walkToClickRotationPosition;
 
         [SerializeField] CharacterGroupController heroGroupController;
 
         void Start()
         {
+            playerHeroes = FindObjectsOfType<HeroController>().ToList();
+            selectedHeroes = new List<HeroController>();
+
+            axisToolInstance = Instantiate(axisToolPrefab, this.transform);
+            axisToolInstance.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         }
 
         // TODO: this is ready for some refactoring.  
@@ -62,10 +79,30 @@ namespace RPG.Character
             {
                 FindWhatsUnderMouse();
 
+                if (Input.GetMouseButtonUp(1))
+                {
+                    if (isMouseOverPotentiallyWalkable)
+                    {
+                        isFindingMoveToPosition = false;
+                        var formationController = heroGroupController.GetFormationController();
+                        formationController.DisableAllProjectors();
+                        axisToolInstance.gameObject.SetActive(false);
+
+                        for (int i = 0; i < selectedHeroes.Count; i++)
+                        {
+                            var character = selectedHeroes[i].GetComponent<CharacterController>();
+                            var formationSlot = formationController.formationSlots[i];
+                            character.SetTargetCursorWorldPosition(formationSlot.transform.position);
+                            character.GetComponent<CommandSystem>().QueueCommand(new Command(ECommandType.MoveToTargetCursor), true);
+                        }
+                    }
+                }
+
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("GetMouseButtonDown 0");
                     isSelecting = true;
+                    isFindingMoveToPosition = false;
+
                     mousePosition = Input.mousePosition;
 
                     if (isMouseOverEnemy)
@@ -84,7 +121,6 @@ namespace RPG.Character
                     }
                     else if (isMouseOverFriendly)
                     {
-                        Debug.LogFormat("Clicked on Player {0}", objectUnderMouseCursor.name);
                         var selectable = objectUnderMouseCursor.GetComponent<Selectable>();
 
                         // Only do this if we aren't holding down the SHIFT key, which adds to the selection.
@@ -119,6 +155,7 @@ namespace RPG.Character
                             selectedEnemy.GetComponent<Selectable>().Deselect();
                             selectedEnemy = null;
                         }
+
                         selectedHeroes.Clear();
                     }
 
@@ -133,6 +170,19 @@ namespace RPG.Character
                             var character = hero.GetComponent<CharacterController>();
                             character.SetTarget(objectUnderMouseCursor);
                             character.SetTargetCursorWorldPosition(objectUnderMouseCursor.transform.position);
+                            var targetCollider = objectUnderMouseCursor.GetComponent<CapsuleCollider>();
+                            var heroCollider = hero.GetComponent<CapsuleCollider>();
+
+                            if (targetCollider && heroCollider)
+                            {
+                                character.targetRadius = targetCollider.radius;
+                               // character.GetComponent<NavMeshAgent>().stoppingDistance = (character.targetRadius + heroCollider.radius);
+                            }
+                            else
+                            {
+                                //character.GetComponent<NavMeshAgent>().stoppingDistance = 0.1f;
+                            }
+
                             character.GetComponent<CommandSystem>().QueueCommand(new Command(ECommandType.MoveAttack), true);
                         }
 
@@ -149,7 +199,7 @@ namespace RPG.Character
                         }
                     }
 
-                    if (isMouseOverPotentiallyWalkable)
+                    else if (isMouseOverPotentiallyWalkable)
                     {
                         // Here we find all the selected heros, foreach hero we find their formation position,
                         // then off set our click point by that position.  This then becomes the 
@@ -163,19 +213,29 @@ namespace RPG.Character
                         // point, not the formation position point.  also, if each formation point has a different
                         // elevation, this may not work -- so we need to take the y of the formation position 
                         // into consideration.
+                        isFindingMoveToPosition = true;
+                        axisToolInstance.position = walkablePosition;
+                        axisToolInstance.gameObject.SetActive(true);
+                        var formationController = heroGroupController.GetFormationController();
 
-                        foreach (var hero in selectedHeroes)
-                        {
-                            var character = hero.GetComponent<CharacterController>();
-                            character.SetTargetCursorWorldPosition(walkablePosition);
-                            //character.GetComponent<CommandSystem>().SetCurrentCommand(new Command(ECommandType.MoveToTargetCursor));
+                        // orient based on 1st selected character
+                        if (selectedHeroes.Count > 0)
+                        { 
+                            var p1 = selectedHeroes[0].transform.position;
+                            var p2 = walkablePosition;
 
-                            character.GetComponent<CommandSystem>().QueueCommand(new Command(ECommandType.MoveToTargetCursor), true);
+                            moveToRotation = Quaternion.LookRotation(p2 - p1);
+                            axisToolInstance.transform.rotation = moveToRotation;
+
+                            formationController.transform.rotation = moveToRotation;
+                            formationController.transform.position = axisToolInstance.position;
+                            axisToolInstance.Translate(0, 0, -1.5f, Space.Self);
+                            formationController.transform.Translate(0, 0, -1.5f, Space.Self);
                         }
                     }
                 }
 
-                if (Input.GetMouseButtonUp(0))
+                else if (Input.GetMouseButtonUp(0))
                 {
                     foreach (var selectable in FindObjectsOfType<Selectable>())
                     {
@@ -197,7 +257,7 @@ namespace RPG.Character
                     isSelecting = false;
                 }
 
-                // Highlight all selectable heros within the selection box
+                // If we are selecting, highlight all selectable heros within the selection box
                 if (isSelecting)
                 {
                     foreach (var selectableObject in FindObjectsOfType<Selectable>())
@@ -216,18 +276,43 @@ namespace RPG.Character
                         }
                     }
                 }
-            }
-            else
-            {
-                if (isSelecting)
+
+                // We are holding a mouse button down and picking a position for our formation to move to.
+                if (isFindingMoveToPosition)
                 {
-                    foreach (var selectableObject in FindObjectsOfType<Selectable>())
+                    axisToolInstance.gameObject.SetActive(true);
+
+                    var formationController = heroGroupController.GetFormationController();
+                    for (int i = 0; i < selectedHeroes.Count; i++)
                     {
-                        selectableObject.Dehighlight();
+                        var character = selectedHeroes[i].GetComponent<CharacterController>();
+                        var formationSlot = formationController.formationSlots[i];
+                        formationSlot.SetProjectorEnabled();
+
+                        //Debug.DrawLine(character.transform.position, formationSlot.transform.position, Color.green);
                     }
+
+                    moveToRotation = Quaternion.LookRotation(walkablePosition - axisToolInstance.position);
+                    axisToolInstance.transform.rotation = moveToRotation;
+                    formationController.transform.rotation = moveToRotation;
+                    formationController.transform.position = axisToolInstance.position;
                 }
-                isSelecting = false;
             }
+
+            // This will turn of selecting if our mouse is over a UI element. 
+            // It's kind of jarring, so consider something else.  But as of right now,
+            // if we mouse over a UI element while a selection rectangle is being drawn, it kind of goofs up.
+            //else
+            //{
+            //    if (isSelecting)
+            //    {
+            //        foreach (var selectableObject in FindObjectsOfType<Selectable>())
+            //        {
+            //            selectableObject.Dehighlight();
+            //        }
+            //    }
+            //    isSelecting = false;
+            //}
         }
 
         private void HandlePause()
@@ -362,21 +447,7 @@ namespace RPG.Character
                 Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
                 isMouseOverPotentiallyWalkable = true;
                 walkablePosition = hitInfo.point;
-
-                mouseWorldTransform.position = walkablePosition;
-
-                // Get formation controller
-                var formationController = heroGroupController.GetComponentInChildren<FormationController>();
-
-                if (formationController)
-                {
-                    for (int i = 0; i < formationController.formationTransforms.Count; i++)
-                    {
-                        var transform = formationController.formationTransforms[i];
-                        var offset = formationController.formationOffsets[i];
-                        transform.position = walkablePosition + offset; 
-                    }
-                }
+               // mouseWorldTransform.position = walkablePosition;
 
                 return true;
             }

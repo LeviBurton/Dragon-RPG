@@ -16,7 +16,7 @@
     <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
-    <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
@@ -28,7 +28,7 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_3_0;UNITY_2017_3;UNITY_2017;PLATFORM_ARCH_64;UNITY_64;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_3_0;UNITY_2017_3;UNITY_2017;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -38,7 +38,7 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_3_0;UNITY_2017_3;UNITY_2017;PLATFORM_ARCH_64;UNITY_64;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_3_0;UNITY_2017_3;UNITY_2017;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
@@ -260,9 +260,6 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>Assets/ThirdParty/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
-    </Reference>
     <Reference Include="PandaBehaviour">
       <HintPath>Assets/ThirdParty/PandaBehaviour/Core/PandaBehaviour.dll</HintPath>
     </Reference>
@@ -333,6 +330,7 @@
     <Compile Include="Assets\_Core\FaceCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraRaycaster.cs" />
+    <Compile Include="Assets\_Core\Scripts\Camera\CharacterCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\PortraitCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\PortraitRenderer.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\RTS_Camera.cs" />
@@ -341,25 +339,31 @@
     <Compile Include="Assets\_Core\Scripts\Configs\EnemyConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\GameConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\HeroConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\ItemConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\WeaponConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterGroupController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Controllers\DataController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\EnemyController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\FormationController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\HeroController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\_Core\Scripts\GameData\GameData.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\AssetHelpers.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Bouncer.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\CircleProjector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Command.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\DominantHand.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\FormationSlot.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\ObjectSelector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\OtherHand.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Selectable.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\WaypointContainer.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\AbilityScoreSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\CommandSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\HealthSystem.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\InventorySystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\WeaponSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\GameTimeStats.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\HealthBar.cs" />
@@ -381,114 +385,6 @@
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Water.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\WaterBase.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\WaterTile.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Behaviors\AIDestinationSetter.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Behaviors\Patrol.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\changelog.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\AIBase.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\AILerp.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\AIPath.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\IAstarAI.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\Seeker.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AI\TurnBasedAI.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\astarclasses.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AstarData.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AstarMath.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\AstarPath.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\GraphUpdateScene.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\GraphUpdateShape.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\AnimationLink.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\ArrayPool.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\AstarDebugger.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\BinaryHeap.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\Draw.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\EditorResourceHelper.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\GraphEditorBase.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\GraphModifier.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\GraphUpdateProcessor.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\GraphUtilities.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\Int3.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\ListPool.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\MovementUtilities.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\NodeLink.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\NodeLink2.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\NodeLink3.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\ObjectPool.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\PathInterpolator.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\PathPool.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\PathProcessor.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\PathReturnQueue.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\StackPool.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\ThreadControlQueue.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\WindowsStoreCompatibility.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Misc\WorkItemProcessor.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Nodes\GraphNode.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Path.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\PathHandler.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\RVO\RVOAgent.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\RVO\RVOCoreObstacle.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\RVO\RVOCoreSimulator.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\RVO\RVOLine.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\RVO\RVOQuadtree.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Serialization\JsonConverters.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Serialization\JsonSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Serialization\SimpleJsonReplacement.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Serialization\SimpleZipReplacement.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Core\Serialization\TinyJson.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\Example12_Procedural\ProceduralGridMover.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\Example12_Procedural\ProceduralWorld.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\AstarSmoothFollow2.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\DoorController.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\DynamicGridObstacle.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\MineBotAI.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\MineBotAnimation.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\ObjectPlacer.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\ExampleScripts\TargetMover.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Base.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\GridGenerator.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\NavmeshBase.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\NavMeshGenerator.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\NodeClasses\GridNode.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\NodeClasses\GridNodeBase.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\NodeClasses\PointNode.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\NodeClasses\TriangleMeshNode.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\PointGenerator.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\QuadtreeGraph.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\BBTree.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\EuclideanEmbedding.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\GraphTransform.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\GridLookup.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\NavMeshRenderer.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\NavmeshTile.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\ObjImporter.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Generators\Utilities\PointKDTree.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Legacy\LegacyAIPath.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Legacy\MiscLegacy.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Modifiers\AlternativePath.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Modifiers\FunnelModifier.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Modifiers\Modifiers.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Modifiers\RaycastModifier.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Modifiers\SimpleSmoothModifier.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Modifiers\StartEndModifier.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Navmesh\RelevantGraphSurface.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\PackageTools\EnumFlagAttribute.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\PackageTools\UniqueComponentAttribute.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\PackageTools\VersionedMonoBehaviour.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Pathfinders\ABPath.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\TurnBased\BlockManager.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\TurnBased\SingleNodeBlocker.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\AstarChecksum.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\AstarMemory.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\AstarParallel.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\AstarProfiler.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\DotNetReplacements.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\Funnel.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\GraphGizmoHelper.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\GraphUpdateUtilities.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\PathUtilities.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\ProfileHelper.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\RetainedGizmos.cs" />
-    <Compile Include="Assets\ThirdParty\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Attributes\ReorderableTableAttribute.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Attributes\TableAttribute.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\ActionExample.cs" />
@@ -497,6 +393,43 @@
     <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\LogoTable.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\PropertyAttributeExample.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Examples\Scripts\SimpleExample.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\Blueprint.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\BlueprintDatabase.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\CraftResultSlot.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\CraftSystem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\CreateBlueprintDatabase.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\LeftClick.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\CraftSystem\RightClick.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\ExampleScript\PlayerInventory.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\ExampleScript\RandomChestLootSystem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\ExampleScript\RandomLootSystem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\ExampleScript\WorkingStation.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\FirstPerson\FirstPersonController.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Hotbar\Hotbar.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\CloseInventory.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\DesignForInventory.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\DragInventory.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\EquipmentSystem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\InputManager.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\InventoryDesign.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Inventory\StorageInventory.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ConsumeItem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\CreateAttributeDatabase.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\CreateInputManager.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\CreateItemDatabase.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\DragItem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\Item.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ItemAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ItemAttributeList.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ItemDataBaseList.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ItemOnObject.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ItemType.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\PickUpItem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\ShowTooltip.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\SlotCover.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Item\SplitItem.cs" />
+    <Compile Include="Assets\ThirdParty\InventoryMaster\Scripts\Tooltip\Tooltip.cs" />
     <Compile Include="Assets\ThirdParty\OutlineEffect\Demo\MaterialSwitcher.cs" />
     <Compile Include="Assets\ThirdParty\OutlineEffect\Demo\OutlineAnimation.cs" />
     <Compile Include="Assets\ThirdParty\OutlineEffect\Demo\Rotate.cs" />
@@ -591,17 +524,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.cginc" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Editor\EditorAssets\Materials\NavmeshOutline.shader" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Plugins\dependencies.txt" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Readme.txt" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\Readme_upgrading.txt" />
-    <None Include="Assets\ThirdParty\AstarPathfindingProject\link.xml" />
+    <None Include="Assets\ThirdParty\InventoryMaster\readme.txt" />
     <None Include="Assets\ThirdParty\OutlineEffect\Resources\OutlineBufferShader.shader" />
     <None Include="Assets\ThirdParty\OutlineEffect\Resources\OutlineShader.shader" />
     <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\SkyGradient.shader" />
@@ -741,7 +664,7 @@
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero.txt" />
-    <None Include="Assets\_Core\BehaviorTrees\Hero_CommandTest.txt" />
+    <None Include="Assets\_Core\BehaviorTrees\Hero_Default.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero_Random.txt" />
     <None Include="Assets\_Core\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />

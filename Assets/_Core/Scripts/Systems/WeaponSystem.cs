@@ -35,10 +35,8 @@ namespace RPG.Characters
         private static List<AttackAnimationRanges> attackAnimationRanges = new List<AttackAnimationRanges>();
 
         [SerializeField] float baseDamage = 10f;
-
         [SerializeField] WeaponConfig leftHandWeaponConfig;
         [SerializeField] WeaponConfig rightHandWeaponConfig;
-
         [SerializeField] WeaponConfig currentWeaponConfig;
  
         // todo consider the arguments here.  do we need more details about the hit?
@@ -97,6 +95,17 @@ namespace RPG.Characters
                 // TODO: replace this with our left and right weaponConfig
                 PutWeaponInHand(currentWeaponConfig, currentWeaponConfig.GetUseOtherHand());
             }
+
+           // SetRelaxed();
+        }
+
+        public void SetRelaxed()
+        {
+            animator.SetInteger("Weapon", -1);
+            animator.SetInteger("LeftRight", 0);
+            animator.SetInteger("LeftWeapon", 0);
+            animator.SetInteger("RightWeapon", 0);
+            animator.SetTrigger("InstantSwitchTrigger");
         }
 
         public void EquipWeapon(WeaponConfig config, EHand hand = EHand.Right)

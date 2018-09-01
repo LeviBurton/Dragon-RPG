@@ -10,8 +10,10 @@ namespace RPG.Characters
     {
         // Character size
         [SerializeField] ECharacterSize size = ECharacterSize.Medium;
-        [SerializeField] Vector3 characterCenter;
-        [SerializeField] Vector3 characterSize;
+        [SerializeField] Vector3 characterCenter;   // TODO: remove
+        [SerializeField] Vector3 characterSize;     // TODO: remove
+        [SerializeField] float colliderRadius;
+        [SerializeField] float colliderHeight;
 
         // Going to need a stats style data structure.
         // Seconds
@@ -22,6 +24,16 @@ namespace RPG.Characters
         [SerializeField] float maxForwardMoveSpeed = 10.0f;
         [SerializeField] float maxSideMoveSpeed = 5.0f;
         [SerializeField] float maxRotationSpeed;
+
+        public float GetColliderRadius()
+        {
+            return colliderRadius;
+        }
+
+        public float GetColliderHeight()
+        {
+            return colliderHeight;
+        }
 
         public Vector3 GetCharacterCenter()
         {

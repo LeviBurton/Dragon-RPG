@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c110827a163b2404f8368238c63cbdd3, type: 3}
+  m_Name: char_bigcreature
+  m_EditorClassIdentifier: 
+  size: 4
+  characterCenter: {x: 0, y: 3, z: 0}
+  characterSize: {x: 5, y: 5, z: 10}
+  colliderRadius: 0
+  colliderHeight: 0
+  recoveryTimeSeconds: 1
+  health: 100
+  maxForwardMoveSpeed: 10
+  maxSideMoveSpeed: 5
+  maxRotationSpeed: 0

@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class DamageTypeCell : TableCell
 {
-    string assetsPath = @"Assets/_Core/Configs/DamageTypes";
+    string assetsPath = @"Assets/_Core/Data/DamageTypes";
 
     List<DamageTypeConfig> items = new List<DamageTypeConfig>();
 
@@ -35,20 +35,18 @@ public class DamageTypeCell : TableCell
 
     public DamageTypeCell(SerializedObject so, string propertyName)
     {
-        sp = so.FindProperty(propertyName);
-        this.so = so;
-        RefreshAssets();
-
-        Debug.LogFormat("sp {0} so: {1}", sp, this.so);
+        //sp = so.FindProperty(propertyName);
+        //this.so = so;
+        //RefreshAssets();
     }
 
     public override void DrawCell(Rect rect)
     {
 
-        sp.intValue = EditorGUI.MaskField(rect, sp.intValue, items.Select(x => x.name).ToArray());
+       // sp.intValue = EditorGUI.MaskField(rect, sp.intValue, items.Select(x => x.name).ToArray());
 
 
-        so.ApplyModifiedProperties();
+      //  so.ApplyModifiedProperties();
     }
 
 
@@ -62,9 +60,10 @@ public class DamageTypeCell : TableCell
 
 
 }
+
 public class WeaponEditor : EditorWindow
 {
-    static string AssetsBasePath = @"Assets/_Core/Configs/Weapons";
+    static string AssetsBasePath = @"Assets/_Core/Data/Items/Weapons";
     public Vector2 scrollPosition;
     GUITableState tableState = new GUITableState();
     SerializedObject serializedObject;
@@ -147,7 +146,7 @@ public class WeaponEditor : EditorWindow
 
         List<SelectorColumn> columns = new List<SelectorColumn>();
         columns.Add(new SelectObjectReferenceColumn("Asset", TableColumn.Width(100), TableColumn.Resizeable(true)));
-        columns.Add(new SelectFromPropertyNameColumn("weaponName", "Name", TableColumn.Width(200), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
+        columns.Add(new SelectFromPropertyNameColumn("itemName", "Name", TableColumn.Width(200), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
         columns.Add(new SelectFromPropertyNameColumn("weaponType", "Weapon Type", TableColumn.Width(120), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
         columns.Add(new SelectFromPropertyNameColumn("weaponPrefab", "Weapon Prefab", TableColumn.Width(120), TableColumn.Sortable(true), TableColumn.Resizeable(true)));
         columns.Add(new SelectFromFunctionColumn(x => Foobar(x), "Damage Types", TableColumn.Width(150)));

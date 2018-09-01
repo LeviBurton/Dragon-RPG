@@ -12,24 +12,9 @@ public class HeroPanel : MonoBehaviour
     [SerializeField] Color hoveredBorderColor;
     [SerializeField] Color selectedBorderColor;
     [SerializeField] Color normalBorderColor;
-
-    Selectable selectable;
-
     [SerializeField] Image backgroundImage;
 
-    void OnEnable()
-    {
-        selectable.onSelected += OnSelected;
-        selectable.onDeselected += OnDeselected;
-        selectable.onHighlight += OnHighlight;
-        selectable.onDeHighlight += OnDehighlight;
-        backgroundImage.color = normalBorderColor;
-    }
-
-    void OnDisable()
-    {
-
-    }
+    Selectable selectable;
 
     void Awake()
     {
@@ -37,11 +22,21 @@ public class HeroPanel : MonoBehaviour
         backgroundImage = GetComponent<Image>();
     }
 
-    void Start()
+    void OnEnable()
     {
+        selectable.onSelected += OnSelected;
+        selectable.onDeselected += OnDeselected;
+        selectable.onHighlight += OnHighlight;
+        selectable.onDeHighlight += OnDehighlight;
 
+        backgroundImage.color = normalBorderColor;
     }
 
+    void OnDisable()
+    {
+    }
+
+   
     void OnSelected()
     {
         backgroundImage.color = selectedBorderColor;
@@ -54,14 +49,9 @@ public class HeroPanel : MonoBehaviour
 
     void OnHighlight()
     {
-
     }
 
     void OnDehighlight()
-    {
-
-    }
-    public void Update()
     {
     }
 

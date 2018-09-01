@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 1426169052
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: robert szarka.robert
+      Dependencies: {}
+    Info_1:
+      Name: characters
+      Dependencies: {}
+    Info_2:
+      Name: behavior_trees
+      Dependencies: {}
+    Info_3:
+      Name: prefabs/characters/heroes
+      Dependencies:
+        Dependency_0: behavior_trees
+    Info_4:
+      Name: prefabs/ui/hero
+      Dependencies: {}
+    Info_5:
+      Name: prefabs/characters/enemies
+      Dependencies:
+        Dependency_0: characters
+        Dependency_1: behavior_trees
+        Dependency_2: items
+    Info_6:
+      Name: items
+      Dependencies: {}

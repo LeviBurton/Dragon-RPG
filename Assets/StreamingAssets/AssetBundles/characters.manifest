@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 4227348364
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d229a99f84be37fcb41281d11a602cb2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: aabb08bfdb2623c318564bc192db1275
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: c110827a163b2404f8368238c63cbdd3, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/_Core/Data/Characters/char_human.asset
+- Assets/_Core/Data/Characters/char_bighuman.asset
+- Assets/_Core/Data/Characters/char_bigcreature.asset
+Dependencies: []

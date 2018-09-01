@@ -126,6 +126,8 @@ namespace RTS_Cam
             get { return Input.GetAxis(zoomingAxis); }
         }
 
+        // TODO: Fix this so that we can still get hte mouse position while its locked to the center of the screen.
+        // We need to replace Input.mousePosition.x/y with Input.GetAxis("Mouse X"), etc.
         private Vector2 MouseAxis
         {
             get { return new Vector2(Input.mousePosition.x - lastMousePosition.x, Input.mousePosition.y - lastMousePosition.y); }
@@ -255,8 +257,12 @@ namespace RTS_Cam
             {
                 Vector3 desiredMove = new Vector3(-MouseAxis.x, 0, -MouseAxis.y);
 
+                // TODO: before we can use this, see TODO for MouseAxis
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
+
                 desiredMove *= panningSpeed;
-                desiredMove *= Time.unscaledDeltaTime;
+                desiredMove *= Time.unscaledDeltaTime;  // use unscaled time so it's not affected during "slow motion" or "pausing"
                 desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
                 
@@ -265,6 +271,11 @@ namespace RTS_Cam
                 // for translations, move the parent game object.
                 // for rotations, rotate the camera itself.
                 m_Transform.Translate(desiredMove, Space.Self);
+            }
+            else
+            {
+                // TODO: before we can use this, see TODO for MouseAxis
+                //Cursor.lockState = CursorLockMode.None;
             }
 
             lastMousePosition = Input.mousePosition;

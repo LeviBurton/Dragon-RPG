@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace RPG.Character
 {
+    
     [RequireComponent(typeof(HealthSystem))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(WeaponSystem))]
@@ -22,13 +23,6 @@ namespace RPG.Character
             character = GetComponent<CharacterController>();
             weaponSystem = character.GetComponent<WeaponSystem>();
             healthSystem = character.GetComponent<HealthSystem>();
-
-            if (friendlyConfig == null)
-            {
-                throw new Exception("friendlyConfig can't be null!");
-            }
-
-         //   AddOutlinesToMeshes();
         }
 
         void AddOutlinesToMeshes()

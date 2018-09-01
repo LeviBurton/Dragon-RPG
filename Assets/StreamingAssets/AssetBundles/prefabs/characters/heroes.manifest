@@ -1,0 +1,107 @@
+ManifestFileVersion: 0
+CRC: 3057489345
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 81715915ac6c25bac5f014242e8f4d15
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 08e501402f6bf9df4da1797325f7f173
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7b6bf940a791f364aaae3f51c6157b67, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 290e7190f865c6e46803b4dd8909ba03, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c599c8a0c5c62cf4cae86399694eff69, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 92cb42219be57014497e0059634c06a4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
+- Class: 114
+  Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 74caa752e765e0a4a98b4b75d5dba053, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a5b7672309be05443aff99d03cf9a9f0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: beb75cb33cc6f884db40fe6cec105d9e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: afb9e3d4a98b07c4f9c30a2aed41ce86, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e8a09eb8e46e9604c90a5c732b9edb35, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b21be26b4f1a4c943b5a521025ef49aa, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7576d7cfc4e7de446b04400551cc4081, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe12b7dfd5e57be4c9d457a897dfb836, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 119
+  Script: {instanceID: 0}
+- Class: 124
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 195
+  Script: {instanceID: 0}
+- Class: 208
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/_Core/Prefabs/Characters/Heroes/Default Hero.prefab
+Dependencies:
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/behavior_trees

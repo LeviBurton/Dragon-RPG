@@ -17,7 +17,6 @@ namespace RPG.Characters
 
         FormationController formationController;
 
-        // Use this for initialization
         void Start()
         {
             formationController = GetComponentInChildren<FormationController>();
@@ -28,15 +27,15 @@ namespace RPG.Characters
                 var character = characters[i];
                 if (formationController)
                 {
-                    var transform = formationController.formationTransforms[i];
+                    var transform = formationController.formationSlots[i].transform;
                     character.transform.position = transform.position;
                 }
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        public FormationController GetFormationController()
         {
+            return formationController;
         }
 
         public void AddCharacter(Character.CharacterController character)

@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class FormationController : MonoBehaviour
 {
-    public List<Transform> formationTransforms;
+    public List<FormationSlot> formationSlots;
     public List<Vector3> formationOffsets;
     public List<Transform> currentTransforms;
     public List<Vector3> potentialTransformPositions;
 
     private void Awake()
     {
-        formationTransforms = new List<Transform>();
+        formationSlots = new List<FormationSlot>();
+
 
         foreach (Transform child in transform)
         {
-            formationTransforms.Add(child);
+            formationSlots.Add(child.GetComponent<FormationSlot>());
             formationOffsets.Add(child.localPosition);
         }
     }
 
-    void Start()
+    public void DisableAllProjectors()
     {
-
+        foreach (var slot in formationSlots)
+        {
+            slot.SetProjectorDisabled();
+        }
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

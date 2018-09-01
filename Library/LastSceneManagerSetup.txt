@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Levels/Combat Sandbox.unity
+- path: Assets/_Levels/Character Creator/sceen_character_creator.unity
   isLoaded: 1
   isActive: 1

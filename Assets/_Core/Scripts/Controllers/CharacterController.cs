@@ -5,7 +5,6 @@ using Panda;
 
 using RPG.Characters;
 using System.Collections.Generic;
-using Pathfinding;
 using System;
 
 namespace RPG.Character
@@ -34,7 +33,8 @@ namespace RPG.Character
         [SerializeField] CharacterConfig characterConfig;
         [SerializeField] Animator animator;
         [SerializeField] Rigidbody rigidBody;
-        [SerializeField] AIPath aiAgent;
+        [SerializeField] NavMeshAgent aiAgent;
+        [SerializeField] float accelerationMultiplier = 2.0f;
 
         float currentForwardSpeed;
         public float CurrentForwardSpeed
@@ -46,7 +46,8 @@ namespace RPG.Character
             set
             {
                 currentForwardSpeed = value;
-                aiAgent.maxSpeed = currentForwardSpeed;
+                aiAgent.speed = currentForwardSpeed;
+                aiAgent.acceleration = currentForwardSpeed * accelerationMultiplier;
             }
         }
 
@@ -97,7 +98,8 @@ namespace RPG.Character
             set
             {
                 maxForwardSpeed = value;
-                aiAgent.maxSpeed = maxForwardSpeed;
+                aiAgent.speed = maxForwardSpeed;
+                aiAgent.acceleration = maxForwardSpeed * accelerationMultiplier;
             }
         }
 
@@ -117,7 +119,6 @@ namespace RPG.Character
             }
         }
 
-
         [SerializeField] float maxRotationSpeed;
         public float MaxRotationSpeed
         {
@@ -128,7 +129,7 @@ namespace RPG.Character
             set
             {
                 maxRotationSpeed = value;
-                aiAgent.rotationSpeed = maxRotationSpeed;
+                aiAgent.angularSpeed = maxRotationSpeed;
             }
         }
 
@@ -154,11 +155,13 @@ namespace RPG.Character
         private HealthSystem healthSystem;
         private WeaponSystem weaponSystem;
         private CommandSystem commandSystem;
+        private AbilityScoreSystem abilityScoreSystem;
 
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
         private float idleWaitTime = 0.0f;
+        public  float targetRadius = 0.0f;
 
         [Header("Gizmos")]
         [SerializeField] Color boundingBoxColor = Color.white;
@@ -171,13 +174,16 @@ namespace RPG.Character
             maxRotationSpeed = characterConfig.GetMaxRotationSpeed();
             characterSize = characterConfig.GetSize();
 
-            var collider = GetComponent<BoxCollider>();
-            collider.center = characterConfig.GetCharacterCenter();
-            collider.size = characterConfig.GetCharacterSize();
+            var collider = GetComponent<CapsuleCollider>();
+            collider.radius = characterConfig.GetColliderRadius();
+            collider.height = characterConfig.GetColliderHeight();
 
-            aiAgent = GetComponent<AIPath>();
-            aiAgent.maxSpeed = maxForwardSpeed;
-            aiAgent.rotationSpeed = maxRotationSpeed;
+            aiAgent = GetComponent<NavMeshAgent>();
+            aiAgent.speed = maxForwardSpeed;
+            aiAgent.acceleration = maxForwardSpeed * 2.5f;
+            aiAgent.angularSpeed = maxRotationSpeed;
+            aiAgent.updateRotation = true;
+            aiAgent.updatePosition = true;
 
             rigidBody = GetComponent<Rigidbody>();
 
@@ -198,6 +204,8 @@ namespace RPG.Character
             }
 
             commandSystem = GetComponent<CommandSystem>();
+            abilityScoreSystem = GetComponent<AbilityScoreSystem>();
+
         }
 
         private void OnEnable()
@@ -207,6 +215,7 @@ namespace RPG.Character
                 healthSystem.onDamage += OnDamage;
                 healthSystem.onHeal += OnHeal;
             }
+
             if (weaponSystem)
             {
                 weaponSystem.onAttackComplete += OnAttackComplete;
@@ -234,8 +243,8 @@ namespace RPG.Character
             SetOutlinesEnabled(false);
             minRecoveryTimeSeconds = characterConfig.GetRecoveryTime();
             currentRecoveryTimeSeconds = 0.0f;
-            SetWalking();
             RegisterSelectableEventHandlers();
+            SetWalking();
         }
 
         void Update()
@@ -248,7 +257,87 @@ namespace RPG.Character
 
         #endregion
 
-        #region Selectable Events
+        #region Movement
+        public float GetStoppingDistance()
+        {
+            return aiAgent.stoppingDistance;
+        }
+
+        public float GetRemainingDistance()
+        {
+            return aiAgent.remainingDistance;
+        }
+
+        public void SetDestination(Vector3 worldPosition)
+        {
+            aiAgent.isStopped = false;
+            aiAgent.destination = worldPosition;
+        }
+
+        public void RotateTowardsPosition(Vector3 position)
+        {
+            if (manualRotation)
+            {
+                Vector3 targetDir = (position - transform.position).normalized;
+                if (targetDir != Vector3.zero)
+                {
+                    var lookRotation = Quaternion.LookRotation(new Vector3(targetDir.x, 0, targetDir.z));
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * maxRotationSpeed);
+                }
+            }
+        }
+
+        public void RotateTowardsTarget(GameObject target)
+        {
+            RotateTowardsPosition(target.transform.position);
+        }
+        #endregion
+
+        #region Targets
+        public GameObject GetTarget()
+        {
+            return target;
+        }
+
+        public void ResetTargetCursor()
+        {
+            targetCursor.transform.SetParent(transform);
+        }
+
+        public Transform GetTargetCursorTransform()
+        {
+            return targetCursor.transform;
+        }
+
+        public void SetTargetCursorWorldPosition(Vector3 worldPosition)
+        {
+            targetCursor.transform.parent = null;
+
+            // Move the target cursor to worldPosition
+            targetCursor.transform.position = worldPosition;
+        }
+
+        // TODO: might not need this.  we currently just move the target around by a worldPosition.
+        public void AttachTargetCursorTo(GameObject targetGameObject)
+        {
+            // attach our target cursor to the targetGameObject
+            //targetCursor.transform.SetParent(targetGameObject.transform);
+        }
+
+        public void SetTarget(GameObject target)
+        {
+            this.target = target;
+        }
+
+        public void ClearTarget()
+        {
+            ResetTargetCursor();
+            this.target = null;
+        }
+
+        #endregion
+
+        #region Selectable
         void OnSelected()
         {
             SetOutlinesEnabled(true);
@@ -273,7 +362,7 @@ namespace RPG.Character
         }
         #endregion
 
-        #region Animation Events
+        #region Animation
         private void HandleHitAndShootAnimationEvents()
         {
             // TODO: we are telling the target to run their GetHitTrigger animation.
@@ -311,7 +400,7 @@ namespace RPG.Character
         }
         #endregion
 
-        #region WeaponSystem Events
+        #region WeaponSystem
         public void OnAttackComplete(WeaponSystem weaponSystem, GameObject hitObject)
         {
             // This is called AFTER DamageAfterDelay!!!
@@ -325,7 +414,14 @@ namespace RPG.Character
         }
         #endregion
 
-        #region HealthSystem Events
+        #region HealthSystem
+
+        [Task]
+        public bool IsAlive()
+        {
+            return healthSystem != null && healthSystem.IsAlive();
+        }
+
         void OnDamage(float damageAmount)
         {
             bool characterDies = healthSystem.HealthAsPercentage <= Mathf.Epsilon;
@@ -355,9 +451,7 @@ namespace RPG.Character
             }
 
             GetComponent<CapsuleCollider>().enabled = false;
-            GetComponent<BoxCollider>().enabled = false;
             aiAgent.enabled = false;
-            GetComponent<Seeker>().enabled = false;
 
             var circleProjector = GetComponentInChildren<Projector>();
             if (circleProjector)
@@ -374,82 +468,6 @@ namespace RPG.Character
 
         #endregion
 
-        #region Movement
-        public float GetStoppingDistance()
-        {
-            return 0;
-        }
-
-        [Task]
-        public bool IsAlive()
-        {
-            return healthSystem != null && healthSystem.IsAlive();
-        }
-
-        public void SetDestination(Vector3 worldPosition)
-        {
-            aiAgent.isStopped = false;
-            aiAgent.destination = worldPosition;
-        }
-
-        public void RotateTowardsPosition(Vector3 position)
-        {
-            if (manualRotation)
-            {
-                Vector3 targetDir = (position - transform.position).normalized;
-                if (targetDir != Vector3.zero)
-                {
-                    var lookRotation = Quaternion.LookRotation(new Vector3(targetDir.x, 0, targetDir.z));
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * maxRotationSpeed);
-                }
-            }
-        }
-
-        public void RotateTowardsTarget(GameObject target)
-        {
-            RotateTowardsPosition(target.transform.position);
-        }
-        #endregion
-
-        #region Targets
-        public GameObject GetTarget()
-        {
-            return target;
-        }
-
-        public void SetTargetCursorWorldPosition(Vector3 worldPosition)
-        {
-            targetCursor.transform.parent = null;
-
-            // Move the target cursor to worldPosition
-            targetCursor.transform.position = worldPosition;
-        }
-
-        // TODO: might not need this.  we currently just move the target around by a worldPosition.
-        public void AttachTargetCursorTo(GameObject targetGameObject)
-        {
-            // attach our target cursor to the targetGameObject
-            //targetCursor.transform.SetParent(targetGameObject.transform);
-        }
-
-        public void ResetTargetCursor()
-        {
-            targetCursor.transform.SetParent(transform);
-        }
-
-        public void SetTarget(GameObject target)
-        {
-            this.target = target;
-        }
-
-        public void ClearTarget()
-        {
-            ResetTargetCursor();
-            this.target = null;
-        }
-
-        #endregion
-
         #region Size
         public ECharacterSize GetCharacterSize()
         {
@@ -458,26 +476,29 @@ namespace RPG.Character
 
         public float GetCharacterRadius()
         {
-            float radius = 0.0f;
+            var collider = GetComponent<CapsuleCollider>();
+            return collider.radius;
 
-            if (characterSize == ECharacterSize.Small)
-            {
-                radius = 0.5f;
-            }
-            else if (characterSize == ECharacterSize.Medium)
-            {
-                radius = 1.0f;
-            }
-            else if (characterSize == ECharacterSize.Large)
-            {
-                return 3.0f;
-            }
-            else if (characterSize == ECharacterSize.Gargantuan)
-            {
-                return 10.0f;
-            }
+            //float radius = 0.0f;
 
-            return radius;
+            //if (characterSize == ECharacterSize.Small)
+            //{
+            //    radius = 0.5f;
+            //}
+            //else if (characterSize == ECharacterSize.Medium)
+            //{
+            //    radius = 1.0f;
+            //}
+            //else if (characterSize == ECharacterSize.Large)
+            //{
+            //    return 3.0f;
+            //}
+            //else if (characterSize == ECharacterSize.Gargantuan)
+            //{
+            //    return 10.0f;
+            //}
+
+            //return radius;
         }
         #endregion
 
@@ -537,7 +558,7 @@ namespace RPG.Character
             {
                 animator.SetBool("Moving", true);
                 animator.SetFloat("Velocity Z", animatorVelocity.z, 0.1f, Time.deltaTime);
-              //  animator.SetFloat("Velocity X", animatorVelocity.x, 0.1f, Time.deltaTime);
+                animator.SetFloat("Velocity X", animatorVelocity.x, 0.1f, Time.deltaTime);
             }
             else
             {
@@ -545,7 +566,6 @@ namespace RPG.Character
                 animator.SetFloat("Velocity Z", 0);
                 animator.SetFloat("Velocity X", 0);
             }
-
          }
 
         #region Tasks
@@ -569,13 +589,15 @@ namespace RPG.Character
         [Task]
         bool IsAtTargetCursor()
         {
-            return Vector3.Distance(transform.position, targetCursor.transform.position) <= aiAgent.endReachedDistance;
+
+            return Vector3.Distance(transform.position, targetCursor.transform.position) <= aiAgent.stoppingDistance;
         }
 
         [Task]
         bool IsAtTarget()
         {
-            return Vector3.Distance(transform.position, target.transform.position) <= aiAgent.endReachedDistance;
+            Debug.Log("IsAtTarget");
+            return Vector3.Distance(transform.position, target.transform.position) <= aiAgent.stoppingDistance;
         }
 
         [Task]
@@ -591,7 +613,7 @@ namespace RPG.Character
 
                 if (target != null)
                 {
-                    distance = Vector3.Distance(transform.position, target.transform.position);
+                    distance = Vector3.Distance(transform.position, target.transform.position) - (GetCharacterRadius() +  targetRadius);
                 }
                 else
                 {
@@ -611,11 +633,14 @@ namespace RPG.Character
         [Task]
         void MoveToTargetCursor()
         {
+            targetRadius = 0.0f;
             SetDestination(targetCursor.transform.position);
         }
 
         // TODO: so this works, but it is not pretty, at all.
         // I think I need to re-implement a stop moving task.
+        // This should actually be split into 2 methods: Move, Attack.
+        // Combining them like this is confusing.
         [Task]
         bool MoveAttack()
         {
@@ -626,17 +651,17 @@ namespace RPG.Character
             }
 
             aiAgent.isStopped = false;
-
             Vector3 worldPosition = Vector3.zero;
 
             if (target != null)
             {
-                SetTargetCursorWorldPosition(target.transform.position);
+                ResetTargetCursor();
+               // SetTargetCursorWorldPosition(target.transform.position);
             }
 
             SetDestination(targetCursor.transform.position);
 
-            return IsWithinWeaponRange();
+            return false;
         }
 
         [Task]
@@ -687,7 +712,7 @@ namespace RPG.Character
             if (target)
             {
                 Quaternion lookAtRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, aiAgent.rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, aiAgent.angularSpeed * Time.deltaTime);
             }
 
             return true;
@@ -740,13 +765,7 @@ namespace RPG.Character
         [Task]
         void ChooseRandomPosition()
         {
-            var point = UnityEngine.Random.insideUnitSphere * 25f;
-            point.y = 0;
-            point += aiAgent.position;
-
-            SetTargetCursorWorldPosition(point);
-            aiAgent.SearchPath();
-
+     
             Task.current.Succeed();
         }
 
@@ -980,14 +999,13 @@ namespace RPG.Character
             if (IsAlive())
             {
                 var previousColor = Gizmos.color;
-
-                var boxCollider = GetComponent<BoxCollider>();
-                if (boxCollider)
+                var collider = GetComponent<CapsuleCollider>();
+                if (collider)
                 {
                     Gizmos.color = boundingBoxColor;
                     Matrix4x4 oldGizmosMatrix = Gizmos.matrix;
-                    Gizmos.matrix = Matrix4x4.TRS(boxCollider.transform.TransformPoint(boxCollider.center), boxCollider.transform.rotation, boxCollider.transform.lossyScale);
-                    Gizmos.DrawWireCube(Vector3.zero, boxCollider.size);
+                    Gizmos.matrix = Matrix4x4.TRS(collider.transform.TransformPoint(collider.center), collider.transform.rotation, collider.transform.lossyScale);
+                    Gizmos.DrawWireSphere(Vector3.zero, collider.radius);
                     Gizmos.matrix = oldGizmosMatrix;
                     Gizmos.color = previousColor;
                 }

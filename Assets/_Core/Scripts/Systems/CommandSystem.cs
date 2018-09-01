@@ -55,18 +55,6 @@ public class CommandSystem : MonoBehaviour
         commands = new Queue<Command>();
     }
 
-    //public void FixedUpdate()
-    //{
-    //    if (commands.Count > 0)
-    //    {
-    //        Debug.LogFormat("Command Queue ({0}): ", commands.Count);
-    //        foreach (var command in commands)
-    //        {
-    //            Debug.LogFormat("\t {0} {1}", command.commandType, command.commandStatus);
-    //        }
-    //    }
-    //}
-
     public void SetCurrentCommand(Command command)
     {
         currentCommand = command;

@@ -78,10 +78,10 @@ namespace RPG.Characters
     }
 
     [CreateAssetMenu(menuName = "RPG/Weapon")]
-    public class WeaponConfig : ScriptableObject
+    public class WeaponConfig : ItemConfig
     {
-        [SerializeField] string weaponName;
-
+        [Header("Weapon")]
+        [Space(10)]
         // For melee weapons, this will be 0.  
         // All other is measured in meters.
         [SerializeField] float weaponRange = 0.0f;
@@ -115,7 +115,7 @@ namespace RPG.Characters
  
         public string GetWeaponName()
         {
-            return weaponName;
+            return itemName;
         }
 
         public EWeaponType GetWeaponType()
