@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 3736714385
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ebc7d120ef27d608411376ffc11a42ad
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/_Core/Data/BehaviorTrees/Enemy_Ranged_Queue.BT.txt
+- Assets/_Core/Data/BehaviorTrees/Hero_Random.txt
+- Assets/_Core/Data/BehaviorTrees/Enemy_Melee.BT.txt
+- Assets/_Core/Data/BehaviorTrees/Hero_Support.txt
+- Assets/_Core/Data/BehaviorTrees/Hero.txt
+- Assets/_Core/Data/BehaviorTrees/Hero_Default.txt
+- Assets/_Core/Data/BehaviorTrees/Do_Nothing.BT.txt
+- Assets/_Core/Data/BehaviorTrees/Enemy_Group.BT.txt
+- Assets/_Core/Data/BehaviorTrees/Enemy_Ranged.BT.txt
+Dependencies: []

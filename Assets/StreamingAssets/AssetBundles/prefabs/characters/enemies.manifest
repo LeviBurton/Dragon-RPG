@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4073047146
+CRC: 2623628578
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4ae66cbc8d612b163f1530f71029ed03
+    Hash: 0d203e316070bc2d0edc9c00c11d040b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: bd9045adc6ff6059615ea18db0f5e0bb
+    Hash: bdda1528812545928c66a8d0dff27c31
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -99,5 +99,5 @@ Assets:
 - Assets/_Core/Prefabs/Characters/Enemies/Default Enemy.prefab
 Dependencies:
 - C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/characters
-- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/behavior_trees
-- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/items
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/items
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/behaviortrees

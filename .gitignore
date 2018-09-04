@@ -264,6 +264,7 @@ __pycache__/
 Temp/
 
 #??
+Build/
 Build_Data/
 test_Data/
 
@@ -271,4 +272,6 @@ test_Data/
 Assets/Asset Packs - For Students/
 Assets/PostApocalypseGunsDemo/
 Assets/RPG Character Animation Pack/
-Assets/ThirdParty
+Assets/ThirdParty/
+Assets/TextMesh Pro/
+Library/

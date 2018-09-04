@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3057489345
+CRC: 4201367895
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 81715915ac6c25bac5f014242e8f4d15
+    Hash: 44425ddc36beea5125f0cedf296b266d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 08e501402f6bf9df4da1797325f7f173
@@ -104,4 +104,4 @@ ClassTypes:
 Assets:
 - Assets/_Core/Prefabs/Characters/Heroes/Default Hero.prefab
 Dependencies:
-- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/behavior_trees
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/behaviortrees

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1426169052
+CRC: 4277536791
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -9,21 +9,31 @@ AssetBundleManifest:
       Name: characters
       Dependencies: {}
     Info_2:
-      Name: behavior_trees
-      Dependencies: {}
-    Info_3:
       Name: prefabs/characters/heroes
       Dependencies:
-        Dependency_0: behavior_trees
-    Info_4:
+        Dependency_0: modules/core/behaviortrees
+    Info_3:
       Name: prefabs/ui/hero
       Dependencies: {}
-    Info_5:
+    Info_4:
       Name: prefabs/characters/enemies
       Dependencies:
         Dependency_0: characters
-        Dependency_1: behavior_trees
-        Dependency_2: items
+        Dependency_1: modules/core/items
+        Dependency_2: modules/core/behaviortrees
+    Info_5:
+      Name: modules/core/classes
+      Dependencies: {}
     Info_6:
-      Name: items
+      Name: modules/core/races
+      Dependencies: {}
+    Info_7:
+      Name: modules/core/items
+      Dependencies:
+        Dependency_0: modules/core/damagetypes
+    Info_8:
+      Name: modules/core/damagetypes
+      Dependencies: {}
+    Info_9:
+      Name: modules/core/behaviortrees
       Dependencies: {}

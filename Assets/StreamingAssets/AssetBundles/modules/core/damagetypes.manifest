@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 269457413
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3bc23905f14be9ebc059143914a5a429
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea197e69058bb5d9e4c48d9e0cb75e33
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: a8a3fc1e2b34bee4ba3f273bd144972b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/_Core/Data/DamageTypes/dmgtype_crush.asset
+- Assets/_Core/Data/DamageTypes/dmgtype_pierce.asset
+- Assets/_Core/Data/DamageTypes/dmgtype_slash.asset
+Dependencies: []

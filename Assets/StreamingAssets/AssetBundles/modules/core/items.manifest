@@ -1,0 +1,47 @@
+ManifestFileVersion: 0
+CRC: 3654121729
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d92232cdb3a3c187a339c803db0a36ac
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9627101644288f4eb6a43e2f45146157
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4334fef0ad9d26140a4fdd7194294c67, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a8a3fc1e2b34bee4ba3f273bd144972b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e06118bfb1fe1584793348b3d9869154, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/_Core/Data/Items/Junk/item_junk_rock.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_staff.asset
+- Assets/_Core/Data/Items/Junk/item_junk_marbles.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_1h_sword.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_pistol.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_2h_bow.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_2h_crossbow.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_unarmed.asset
+- Assets/_Core/Data/Items/Weapons/item_wpn_2h_sword.asset
+Dependencies:
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/damagetypes
