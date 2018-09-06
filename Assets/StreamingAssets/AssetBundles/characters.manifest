@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4227348364
+CRC: 4103198794
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -14,7 +14,7 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
-- Assets/_Core/Data/Characters/char_human.asset
-- Assets/_Core/Data/Characters/char_bighuman.asset
-- Assets/_Core/Data/Characters/char_bigcreature.asset
+- Assets/Modules/Core/Characters/char_human.asset
+- Assets/Modules/Core/Characters/char_bighuman.asset
+- Assets/Modules/Core/Characters/char_bigcreature.asset
 Dependencies: []

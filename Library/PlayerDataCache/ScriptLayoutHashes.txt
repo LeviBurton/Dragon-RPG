@@ -29,6 +29,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 8ea3dc59f828d80355fc948d51226188 Assembly-CSharp.dll:.AudioTrigger
 c08b196716247885d3b27f7f282b2568 Assembly-CSharp.dll:UnityStandardAssets.ImageEffects.ImageEffectBase
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.WaypointContainer
+4a5d68530e5420d387be9fdcc05cc612 Assembly-CSharp.dll:.RaceConfig
 50ca4014320a246794413603b66c876f Assembly-CSharp.dll:.Hotbar
 8c500ff117c4c67cb69ea13e3349be01 Assembly-CSharp.dll:.CameraControls
 56441db03d5b4bb548b050e61dd1186e Assembly-CSharp.dll:cakeslice.OutlineEffect
@@ -199,6 +200,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 50a0fa002cfc67638c87a901e46b763e Assembly-CSharp.dll:TMPro.Examples.TMP_TextSelector_B
+7778830b626d121544d0884493f5f0d7 Assembly-CSharp.dll:.UI_Character_Creation
 e2c2c4dbecc9f1ffadbdd4ec7a3c46bc Assembly-CSharp.dll:.SpawnCharacter
 c9d5452de91aa49ec8b9a441a825234e Assembly-CSharp.dll:.BlueprintDatabase
 a6578b5933cd152b03b422d8b6a3cb12 PandaBehaviour.dll:Panda.BehaviourTree
@@ -229,11 +231,13 @@ e763036081c708b34f78f5a56f72c23d TextMeshPro-2017.3-Runtime.dll:TMPro.TMP_StyleS
 5833a86cc374f497ae8d9fb9d8c3e5f4 TextMeshPro-2017.3-Runtime.dll:TMPro.TMP_SubMeshUI
 22bb40270d2bfc0d0884e2aefd3d1c60 TextMeshPro-2017.3-Runtime.dll:TMPro.TMP_Text
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:TMPro.Examples.TMP_TextSelector_A
+4a5d68530e5420d387be9fdcc05cc612 Assembly-CSharp.dll:.ClassConfig
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Config.GameConfig
 b900ead596b2fb1093b31cb63a678767 Assembly-CSharp.dll:TMPro.Examples.TextMeshProFloatingText
 32c520cf2f03008db50723e29fb52270 Assembly-CSharp.dll:Panda.Examples.Shooter.Patroller
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DataController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RPG.Characters.HeroConfig
+4a5d68530e5420d387be9fdcc05cc612 Assembly-CSharp.dll:.GenderConfig
 599823f456798e5cdce19f7d786c56e7 Assembly-CSharp.dll:Panda.Examples.Shooter.HUD
 239c3e5a7329a5e39ed8676536f1a524 Assembly-CSharp.dll:.GUIControls
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:ProBuilder2.Examples.HueCube
@@ -370,6 +374,7 @@ f93d475e1f6e065742683ac5df8396fc Assembly-CSharp.dll:.LogoTable
 641f53d7e088bb7d2ce7a1cab5822135 Assembly-CSharp.dll:Panda.Examples.Shooter.TriggerType
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExitButton
 af7666733efcc974926d7d470e1732a6 Assembly-CSharp.dll:TMPro.Examples.SkewTextExample
+4928e9ad107ebbba2b6e681dfdb0cdc9 Assembly-CSharp.dll:.UI_Icon
 f5f1827b3a6663b2fb84dcb489a09fa7 Assembly-CSharp.dll:.FirstPersonController
 32dcc1dca94294515dfea07e896e1a84 Assembly-CSharp.dll:ProBuilder2.Examples.RuntimeEdit
 fa9fbd679f67b24f4e8a537e26e73bf9 Assembly-CSharp.dll:.SimpleExample

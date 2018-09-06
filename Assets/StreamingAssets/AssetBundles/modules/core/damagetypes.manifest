@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 269457413
+CRC: 2949863089
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -14,7 +14,7 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
-- Assets/_Core/Data/DamageTypes/dmgtype_crush.asset
-- Assets/_Core/Data/DamageTypes/dmgtype_pierce.asset
-- Assets/_Core/Data/DamageTypes/dmgtype_slash.asset
+- Assets/Modules/Core/DamageTypes/dmgtype_crush.asset
+- Assets/Modules/Core/DamageTypes/dmgtype_pierce.asset
+- Assets/Modules/Core/DamageTypes/dmgtype_slash.asset
 Dependencies: []

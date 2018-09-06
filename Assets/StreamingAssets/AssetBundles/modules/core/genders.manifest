@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 2607988651
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5af41537f3bfe9a408516a4fa7ac3428
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f65e095f670536da084412dc2c0dc986
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: aeef97b63555b4144a62a9c6ee1cadd6, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Genders/gender_female.asset
+- Assets/Modules/Core/Genders/gender_male.asset
+Dependencies: []

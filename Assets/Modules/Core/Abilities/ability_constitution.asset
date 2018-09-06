@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+  m_Name: ability_constitution
+  m_EditorClassIdentifier: 
+  SortOrder: 2
+  Name: Constitution
+  ShortName: Con
+  Description: "Constitution represents your character\u2019s health and stamina.
+    A Constitution bonus increases a character\u2019s hit points, so the ability is
+    important for all classes. Some creatures, such as undead and constructs, do not
+    have a Constitution score. Their modifier is +0 for any Constitution-based checks.
+    A character with a Constitution score of 0 is dead.\r\n\r\nYou apply your character\u2019s
+    Constitution modifier to:\r\n\r\nEach roll of a Hit Die (though a penalty can
+    never drop a result below 1\u2014that is, a character always gains at least 1
+    hit point each time he advances in level).\r\nFortitude saving throws, for resisting
+    poison, disease, and similar threats.\r\nIf a character\u2019s Constitution score
+    changes enough to alter his or her Constitution modifier, the character\u2019s
+    hit points also increase or decrease accordingly.\r\n\r\nTemporary Bonuses: Temporary
+    increases to your Constitution score give you a bonus on your Fortitude saving
+    throws. In addition, multiply your total Hit Dice by this bonus and add that amount
+    to your current and total hit points. When the bonus ends, remove this total from
+    your current and total hit points.\r\n\r\nPermanent Bonuses: Ability bonuses with
+    a duration greater than 1 day actually increase the relevant ability score after
+    24 hours. Modify all skills and statistics as appropriate. This might cause you
+    to gain skill points, hit points, and other bonuses. These bonuses should be noted
+    separately in case they are removed.\r\n\r\nAbility Damage: Damage to your Constitution
+    score causes you to take penalties on your Fortitude saving throws. In addition,
+    multiply your total Hit Dice by the Ability Damage penalty and subtract that amount
+    from your current and total hit points. Lost hit points are restored when the
+    damage to your Constitution is healed. See Ability Score Damage below."

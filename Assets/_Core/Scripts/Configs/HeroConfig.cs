@@ -10,12 +10,17 @@ namespace RPG.Characters
     public class HeroData
     {
         public string name;
+        public string genderAssetName;
+        public string raceAssetName;
+        public string classAssetName;
+
         public ECharacterType characterType;
         public ECharacterSize characterSize;
         public float maxHealth;
         public float currentHealth;
         public float currentXP;
-        public AbilityScoreSet abilityScores;
+
+        public List<AbilityData> abilities;
     }
 
     [CreateAssetMenu(menuName = "RPG/Hero")]

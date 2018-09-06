@@ -1,21 +1,26 @@
 ManifestFileVersion: 0
-CRC: 3406076080
+CRC: 2127173521
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f6195c2b0d5925ba8e480d9b41511287
+    Hash: 49291c33d76bb54c563e0a5e11d384db
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 75c5889b1b0ebfb8b3a53bcefe35d2f6
+    Hash: 262d5cd678ae3fb926d2618a5d53d4d3
 HashAppended: 0
 ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 5946fc86e934400429b3649e9c4b1728, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
-- Assets/_Core/Data/Classes/class_mage.asset
-- Assets/_Core/Data/Classes/class_fighter.asset
-- Assets/_Core/Data/Classes/class_medic.asset
-- Assets/_Core/Data/Classes/class_rogue.asset
+- Assets/Modules/Core/Classes/class_rogue.asset
+- Assets/Modules/Core/Classes/class_mage.asset
+- Assets/Modules/Core/Classes/class_fighter.asset
+- Assets/Modules/Core/Classes/class_medic.asset
+- Assets/Modules/Core/Classes/class_ranger.asset
 Dependencies: []

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 2108210716, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: txt_gra_title
   m_EditorClassIdentifier: 
-  topLeft: {r: 0.5735294, g: 0.5735294, b: 0.5735294, a: 1}
-  topRight: {r: 0.5735294, g: 0.5735294, b: 0.5735294, a: 1}
+  topLeft: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 1}
+  topRight: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 1}
   bottomLeft: {r: 0.3897059, g: 0.3897059, b: 0.3897059, a: 1}
   bottomRight: {r: 0.3897059, g: 0.3897059, b: 0.3897059, a: 1}

@@ -8,7 +8,7 @@ using System.Text;
 [Serializable]
 public class GameData
 {
-    public List<HeroData> allHeroes = new List<HeroData>();
-    public List<HeroData> currentHeroes = new List<HeroData>();
+    public HeroData hero;
+    public List<HeroData> partyHeroes = new List<HeroData>();
 }
 

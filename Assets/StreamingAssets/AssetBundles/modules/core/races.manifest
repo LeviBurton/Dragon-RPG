@@ -1,19 +1,24 @@
 ManifestFileVersion: 0
-CRC: 3906333389
+CRC: 1576283838
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e642ad037b444c015eaa3e5da49258a4
+    Hash: 12954fef2f4969691144fa993b0dbb29
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b4c902ab0b20d52fe845f00efd8ad6b7
+    Hash: 988a4b7a488b8ea8d20d9ffbe06ce783
 HashAppended: 0
 ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 395652e033d4900488be4c0e3adbf26c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
-- Assets/_Core/Data/Races/race_human.asset
-- Assets/_Core/Data/Races/race_elf.asset
+- Assets/Modules/Core/Races/race_human.asset
+- Assets/Modules/Core/Races/race_elf.asset
+- Assets/Modules/Core/Races/race_ork.asset
 Dependencies: []

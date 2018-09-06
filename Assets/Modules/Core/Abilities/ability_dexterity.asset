@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+  m_Name: ability_dexterity
+  m_EditorClassIdentifier: 
+  SortOrder: 1
+  Name: Dexterity
+  ShortName: Dex
+  Description: "Dexterity measures agility, reflexes, and balance. This ability is
+    the most important one for rogues, but it\u2019s also useful for characters who
+    wear light or medium armor or no armor at all. This ability is vital for characters
+    seeking to excel with ranged weapons, such as the bow or sling. A character with
+    a Dexterity score of 0 is incapable of moving and is effectively immobile (but
+    not unconscious).\r\n\r\nYou apply your character\u2019s Dexterity modifier to:\r\n\r\nRanged
+    attack rolls, including those for attacks made with bows, crossbows, throwing
+    axes, and many ranged spell attacks like scorching ray or searing light.\r\nArmor
+    Class (AC), provided that the character can react to the attack.\r\nReflex saving
+    throws, for avoiding fireballs and other attacks that you can escape by moving
+    quickly.\r\nAcrobatics, Disable Device, Escape Artist, Fly, Ride, Sleight of Hand,
+    and Stealth checks.\r\nTemporary Bonuses: Temporary increases to your Dexterity
+    score give you a bonus on Dexterity-based skill checks, Ranged attack rolls, initiative
+    checks, and Reflex saving throws. The bonus also applies to your Armor Class,
+    your Combat Maneuver Bonus (if you are Tiny or smaller), and your Combat Maneuver
+    Defense.\r\n\r\nPermanent Bonuses: Ability bonuses with a duration greater than
+    1 day actually increase the relevant ability score after 24 hours. Modify all
+    skills and statistics as appropriate. This might cause you to gain skill points,
+    hit points, and other bonuses. These bonuses should be noted separately in case
+    they are removed.\r\n\r\nAbility Damage: Damage to your Dexterity score causes
+    you to take penalties on Dexterity-based skill checks, ranged attack rolls, initiative
+    checks, and Reflex saving throws. The Ability Damage penalty also applies to your
+    Armor Class, your Combat Maneuver Bonus (if you are Tiny or smaller), and to your
+    Combat Maneuver Defense. See Ability Score Damage below."

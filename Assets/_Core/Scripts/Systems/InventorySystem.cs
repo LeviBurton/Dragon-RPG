@@ -14,10 +14,10 @@ namespace RPG.Characters
 
         private void Awake()
         {
-            itemAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/items");
-            itemConfigs = new List<ItemConfig>();
-            itemsAssetBundle = AssetBundle.LoadFromFile(itemAssetsPath);
-            itemConfigs = itemsAssetBundle.LoadAllAssets<ItemConfig>().ToList();
+            //itemAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/items");
+            //itemConfigs = new List<ItemConfig>();
+            //itemsAssetBundle = AssetBundle.LoadFromFile(itemAssetsPath);
+            //itemConfigs = itemsAssetBundle.LoadAllAssets<ItemConfig>().ToList();
         }
 
         void Start()

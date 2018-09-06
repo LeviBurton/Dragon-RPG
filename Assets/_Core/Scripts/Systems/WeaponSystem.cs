@@ -250,6 +250,11 @@ namespace RPG.Characters
             return currentWeaponConfig;
         }
 
+        public void RemoveWeaponFromHand()
+        {
+            Destroy(weaponObject);
+        }
+
         public void PutWeaponInHand(WeaponConfig weaponToUse, bool useOtherHand = false)
         {
             currentWeaponConfig = weaponToUse;

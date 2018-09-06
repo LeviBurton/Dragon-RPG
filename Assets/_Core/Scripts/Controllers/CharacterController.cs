@@ -155,7 +155,7 @@ namespace RPG.Character
         private HealthSystem healthSystem;
         private WeaponSystem weaponSystem;
         private CommandSystem commandSystem;
-        private AbilityScoreSystem abilityScoreSystem;
+        private AbilitySystem abilityScoreSystem;
 
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
@@ -204,7 +204,7 @@ namespace RPG.Character
             }
 
             commandSystem = GetComponent<CommandSystem>();
-            abilityScoreSystem = GetComponent<AbilityScoreSystem>();
+            abilityScoreSystem = GetComponent<AbilitySystem>();
 
         }
 

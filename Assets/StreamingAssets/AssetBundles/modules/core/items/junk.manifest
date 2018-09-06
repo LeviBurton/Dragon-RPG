@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1798952303
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 182f0e0bbad62e0032a8fe16cba06826
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 69213439b1e49c0499e3686c19b92d1a
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 4334fef0ad9d26140a4fdd7194294c67, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Items/Junk/item_junk_rock.asset
+- Assets/Modules/Core/Items/Junk/item_junk_marbles.asset
+Dependencies: []

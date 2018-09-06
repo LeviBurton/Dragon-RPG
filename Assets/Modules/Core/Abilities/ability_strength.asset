@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+  m_Name: ability_strength
+  m_EditorClassIdentifier: 
+  Order: 0
+  Name: Strength
+  ShortName: Str
+  Description: "See Carrying Capacity for details on lifting and dragging.\r\n\r\nStrength
+    measures muscle and physical power. This ability is important for those who engage
+    in hand-to-hand (or \u201Cmelee\u201D) combat, such as fighters, monks, paladins,
+    and some rangers. Strength also sets the maximum amount of weight your character
+    can carry.\r\n\r\nA character with a Strength score of 0 is too weak to move in
+    any way and is unconscious. Some creatures (such as incorporeal creatures) do
+    not possess a Strength score and have no modifier at all to Strength-based skills
+    or checks.\r\n\r\nYou apply your character\u2019s Strength modifier to:\r\n\r\nMelee
+    attack rolls.\r\nDamage rolls when using a melee weapon or a thrown weapon, including
+    a sling. (Exceptions: Off-hand attacks receive only half the character\u2019s
+    Strength bonus, while two-handed attacks receive 1\u20131/2 times the Strength
+    bonus. A Strength penalty, but not a bonus, applies to attacks made with a bow
+    that is not a composite bow.)\r\nClimb and Swim checks.\r\nStrength checks (for
+    breaking down doors and the like).\r\nYour Strength score determines your characters
+    carrying capacity.\r\n\r\nTemporary Bonuses: Temporary increases to your Strength
+    score give you a bonus on Strength-based skill checks, melee attack rolls, and
+    weapon damage rolls (if they rely on Strength). The bonus also applies to your
+    Combat Maneuver Bonus (if you are Small or larger) and to your Combat Maneuver
+    Defense.\r\n\r\nPermanent Bonuses: Ability bonuses with a duration greater than
+    1 day actually increase the relevant ability score after 24 hours. Modify all
+    skills and statistics as appropriate. This might cause you to gain skill points,
+    hit points, and other bonuses. These bonuses should be noted separately in case
+    they are removed.\r\n\r\nAbility Damage: Damage to your Strength score causes
+    you to take penalties on Strength-based skill checks, melee attack rolls, and
+    weapon damage rolls (if they rely on Strength). The Ability Damage penalty also
+    applies to your Combat Maneuver Bonus (if you are Small or larger) and your Combat
+    Maneuver Defense. See Ability Score Damage below."

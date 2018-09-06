@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 3602536612
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d44c372dbcd4177299cce81dae2d7575
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 71e8387ce6c4f48644bbb0a03cdebd53
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Abilities/ability_wisdom.asset
+- Assets/Modules/Core/Abilities/ability_constitution.asset
+- Assets/Modules/Core/Abilities/ability_charisma.asset
+- Assets/Modules/Core/Abilities/ability_strength.asset
+- Assets/Modules/Core/Abilities/ability_dexterity.asset
+- Assets/Modules/Core/Abilities/ability_intelligence.asset
+Dependencies: []

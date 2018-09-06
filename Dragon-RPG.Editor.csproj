@@ -323,6 +323,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Core\Editor\CreateAssetBundles.cs" />
+    <Compile Include="Assets\_Core\Editor\ReorderableArrayInspector.cs" />
+    <Compile Include="Assets\_Core\Editor\SerializedPropExtension.cs" />
     <Compile Include="Assets\_Core\Editor\WeaponEditor.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ActionCell.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\LabelCell.cs" />
@@ -426,6 +428,15 @@
     <Compile Include="Assets\ThirdParty\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Modules\Core\BehaviorTrees\Do_Nothing.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Group.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Melee.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Default.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Random.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
@@ -561,15 +572,6 @@
     <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Do_Nothing.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Group.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Melee.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Ranged.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero_Default.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero_Random.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />

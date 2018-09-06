@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+  m_Name: ability_intelligence
+  m_EditorClassIdentifier: 
+  SortOrder: 3
+  Name: Intelligence
+  ShortName: Int
+  Description: "Intelligence determines how well your character learns and reasons.
+    This ability is important for wizards because it affects their spellcasting ability
+    in many ways. Creatures of animal-level instinct have Intelligence scores of 1
+    or 2. Any creature capable of understanding speech has a score of at least 3.
+    A character with an Intelligence score of 0 is comatose. Some creatures do not
+    possess an Intelligence score. Their modifier is +0 for any Intelligence-based
+    skills or checks.\r\n\r\nYou apply your character\u2019s Intelligence modifier
+    to:\r\n\r\nThe number of bonus languages your character knows at the start of
+    the game. These are in addition to any starting racial languages and Common. If
+    you have a penalty, you can still read and speak your racial languages unless
+    your Intelligence is lower than 3.\r\nThe number of skill points gained each level,
+    though your character always gets at least 1 skill point per level.\r\nAppraise,
+    Craft, Knowledge, Linguistics, and Spellcraft checks.\r\nA wizard gains bonus
+    spells based on his Intelligence score. The minimum Intelligence score needed
+    to cast a wizard spell is 10 + the spell\u2019s level.\r\n\r\nTemporary Bonuses:
+    Temporary increases to your Intelligence score give you a bonus on Intelligence-based
+    skill checks. This bonus also applies to any spell DCs based on Intelligence.\r\n\r\nPermanent
+    Bonuses: Ability bonuses with a duration greater than 1 day actually increase
+    the relevant ability score after 24 hours. Modify all skills and statistics as
+    appropriate. This might cause you to gain skill points, hit points, and other
+    bonuses. These bonuses should be noted separately in case they are removed.\r\n\r\nAbility
+    Damage: Damage to your Intelligence score causes you to take penalties on Intelligence-based
+    skill checks. The Ability Damage penalty also applies to any spell DCs based on
+    Intelligence. See Ability Score Damage below."

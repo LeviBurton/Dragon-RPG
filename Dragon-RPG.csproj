@@ -327,13 +327,16 @@
     <Compile Include="Assets\_Characters\Special Abilities\SpecialAbilities.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
     <Compile Include="Assets\_Core\CameraFacingBillboard.cs" />
+    <Compile Include="Assets\_Core\EditScriptableAttribute.cs" />
     <Compile Include="Assets\_Core\FaceCamera.cs" />
+    <Compile Include="Assets\_Core\ReorderableAttribute.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraRaycaster.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CharacterCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\PortraitCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\PortraitRenderer.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\RTS_Camera.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\AbilityConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\CharacterConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\ClassConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\DamageTypeConfig.cs" />
@@ -363,7 +366,7 @@
     <Compile Include="Assets\_Core\Scripts\Misc\OtherHand.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Selectable.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\WaypointContainer.cs" />
-    <Compile Include="Assets\_Core\Scripts\Systems\AbilityScoreSystem.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\AbilitySystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\CommandSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\HealthSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\InventorySystem.cs" />
@@ -381,6 +384,7 @@
     <Compile Include="Assets\_Core\Scripts\UI\TargetPanel.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\TargetTargetPanel.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_Character_Creation.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\UI_Icon.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
@@ -528,6 +532,15 @@
     <Compile Include="Assets\ThirdParty\RtsStyleSelection\Script\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Modules\Core\BehaviorTrees\Do_Nothing.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Group.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Melee.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Default.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Random.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
@@ -663,15 +676,6 @@
     <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Do_Nothing.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Group.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Melee.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Ranged.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero_Default.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero_Random.txt" />
-    <None Include="Assets\_Core\Data\BehaviorTrees\Hero_Support.txt" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />

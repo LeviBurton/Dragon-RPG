@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3281689703
+CRC: 718652389
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 681e6a6891bfe1c35f46d847873ed0ba
+    Hash: 747a36cdf83b9c69ac202bf6a41eb16b
   TypeTreeHash:
     serializedVersion: 2
     Hash: a4bc3d01c1e9bd705df84b4c582ef58e
@@ -50,5 +50,5 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
-- Assets/_Core/Prefabs/UI/HeroPanel.prefab
+- Assets/Modules/Core/Prefabs/UI/HeroPanel.prefab
 Dependencies: []
