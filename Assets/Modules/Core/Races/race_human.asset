@@ -16,4 +16,4 @@ MonoBehaviour:
   Description: 'Descriptive text explaining what a <color=#FFFF00>human</color> is.
 
 '
-  spriteIcon: {fileID: 21300000, guid: f1dca46eeb0a2914381bbfe9d260d035, type: 3}
+  spriteIcon: {fileID: 21300000, guid: c17b280198ab025429fe32ee6d69bc1f, type: 3}

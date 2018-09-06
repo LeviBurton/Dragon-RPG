@@ -532,15 +532,15 @@
     <Compile Include="Assets\ThirdParty\RtsStyleSelection\Script\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Modules\Core\BehaviorTrees\Do_Nothing.BT.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Group.BT.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Melee.BT.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Ranged.BT.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Enemy_Ranged_Queue.BT.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Hero.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Default.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Random.txt" />
-    <None Include="Assets\Modules\Core\BehaviorTrees\Hero_Support.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\be_enemy_ranged.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_enemy_group.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_enemy_melee.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_enemy_ranged_queue.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_default.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_random.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_support.txt" />
+    <None Include="Assets\Modules\Core\BehaviorTrees\bt_nothing.txt" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />

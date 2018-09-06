@@ -10,6 +10,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// We use this for creating a new Hero when the game starts.
+// This just controls the UI and populates a n
 public class UI_Character_Creation : MonoBehaviour {
 
     [Reorderable]
@@ -71,6 +73,7 @@ public class UI_Character_Creation : MonoBehaviour {
         contentPages[currentContentIndex].gameObject.SetActive(true);
 
         ClearOptions();
+
         nextButton.interactable = false;
         prevButton.interactable = false;
 
@@ -127,10 +130,11 @@ public class UI_Character_Creation : MonoBehaviour {
             var go = Instantiate(toggleIconPrefab, classOptions.transform);
 
             var uiIcon = go.GetComponent<UI_Icon>();
+
             uiIcon.iconImage.sprite = config.Value.spriteIcon;
             var toggle = go.GetComponentInChildren<Toggle>();
-           
             var toggleGroup = go.transform.parent.GetComponent<ToggleGroup>();
+
             toggle.group = toggleGroup;
 
             if (selectedClass == config.Value)
@@ -269,8 +273,10 @@ public class UI_Character_Creation : MonoBehaviour {
         foreach (var ability in gameController.abilityConfigs.OrderBy(x => x.Value.SortOrder))
         {
             var data = new AbilityData();
+
             data.abilityValue = 8;
             data.abilityAssetPath = ability.Key;
+
             newHeroData.abilities.Add(data);
         }
 
@@ -284,7 +290,7 @@ public class UI_Character_Creation : MonoBehaviour {
         var previousContentIndex = currentContentIndex;
         contentPages[previousContentIndex].gameObject.SetActive(false);
 
-        ++currentContentIndex;
+        currentContentIndex++;
        
         if (currentContentIndex >= contentPages.Length)
         {

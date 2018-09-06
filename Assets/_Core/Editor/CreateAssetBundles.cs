@@ -7,6 +7,18 @@ using UnityEngine;
 
 public class CreateAssetBundles
 {
+#if UNITY_EDITOR
+    [InitializeOnLoad]
+    public class Startup
+    {
+        static Startup()
+        {
+            Debug.Log("Building Asset Bundles");
+            BuildAllAssetBundles();
+        }
+    }
+#endif
+
     [MenuItem("Assets/Build AssetBundles")]
     static void BuildAllAssetBundles()
     {
@@ -16,6 +28,7 @@ public class CreateAssetBundles
         {
             Directory.CreateDirectory(assetBundleDirectory);
         }
+
         BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows);
     }
 }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2091656249
+CRC: 4293611416
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ebc7d120ef27d608411376ffc11a42ad
+    Hash: ac6eb96f6d439ef492e2f28237b1801b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ad585dd02dfb5016c0dad519eab8f49
@@ -12,13 +12,13 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/Modules/Core/BehaviorTrees/Enemy_Ranged_Queue.BT.txt
-- Assets/Modules/Core/BehaviorTrees/Hero_Random.txt
-- Assets/Modules/Core/BehaviorTrees/Enemy_Melee.BT.txt
-- Assets/Modules/Core/BehaviorTrees/Hero_Support.txt
-- Assets/Modules/Core/BehaviorTrees/Hero.txt
-- Assets/Modules/Core/BehaviorTrees/Hero_Default.txt
-- Assets/Modules/Core/BehaviorTrees/Do_Nothing.BT.txt
-- Assets/Modules/Core/BehaviorTrees/Enemy_Group.BT.txt
-- Assets/Modules/Core/BehaviorTrees/Enemy_Ranged.BT.txt
+- Assets/Modules/Core/BehaviorTrees/bt_enemy_ranged_queue.txt
+- Assets/Modules/Core/BehaviorTrees/bt_hero_random.txt
+- Assets/Modules/Core/BehaviorTrees/bt_enemy_melee.txt
+- Assets/Modules/Core/BehaviorTrees/bt_hero_support.txt
+- Assets/Modules/Core/BehaviorTrees/bt_hero.txt
+- Assets/Modules/Core/BehaviorTrees/bt_hero_default.txt
+- Assets/Modules/Core/BehaviorTrees/bt_nothing.txt
+- Assets/Modules/Core/BehaviorTrees/bt_enemy_group.txt
+- Assets/Modules/Core/BehaviorTrees/be_enemy_ranged.txt
 Dependencies: []
