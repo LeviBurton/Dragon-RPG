@@ -15,25 +15,19 @@ namespace RPG.Character
         [SerializeField] GameConfig gameConfig;
 
         private string abilitiesAssetBundlePath;
-
-        [NonSerialized]
-        public Dictionary<string, AbilityConfig> abilityConfigs = new Dictionary<string, AbilityConfig>();
+        [NonSerialized] public Dictionary<string, AbilityConfig> abilityConfigs = new Dictionary<string, AbilityConfig>();
 
         private string classAssetBundlePath;
-        [NonSerialized]
-        public Dictionary<string, ClassConfig> classConfigs = new Dictionary<string, ClassConfig>();
+        [NonSerialized] public Dictionary<string, ClassConfig> classConfigs = new Dictionary<string, ClassConfig>();
 
         private string raceAssetsPath;
-        [NonSerialized]
-        public Dictionary<string, RaceConfig> raceConfigs = new Dictionary<string, RaceConfig>();
+        [NonSerialized] public Dictionary<string, RaceConfig> raceConfigs = new Dictionary<string, RaceConfig>();
 
         private string genderAssetsPath;
-        [NonSerialized]
-        public Dictionary<string, GenderConfig> genderConfigs = new Dictionary<string, GenderConfig>();
+        [NonSerialized] public Dictionary<string, GenderConfig> genderConfigs = new Dictionary<string, GenderConfig>();
 
         private string weaponAssetsPath;
-        [NonSerialized]
-        public Dictionary<string, WeaponConfig> weaponConfigs = new Dictionary<string, WeaponConfig>();
+        [NonSerialized] public Dictionary<string, WeaponConfig> weaponConfigs = new Dictionary<string, WeaponConfig>();
 
         private string gameDataFileName = "gameData.json";
 
@@ -70,6 +64,8 @@ namespace RPG.Character
 
         public void LoadAssetBundles()
         {
+            // TODO: to support modularity in the future, we should be able to specify loading of a specific modules assetbundles.
+            // Shouldn't be difficult at all.  
             genderAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/genders");
             var genderAssetBundle = AssetBundle.LoadFromFile(genderAssetsPath);
             foreach (var assetName in genderAssetBundle.GetAllAssetNames())

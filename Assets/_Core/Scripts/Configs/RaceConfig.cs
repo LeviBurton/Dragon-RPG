@@ -8,7 +8,7 @@ public class RaceConfig : ScriptableObject
     public int SortOrder;
     public string Name;
 
-    [Multiline(12)]
+    [TextArea(3, 30)]
     public string Description;
 
     public Sprite spriteIcon;

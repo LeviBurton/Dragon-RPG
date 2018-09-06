@@ -9,7 +9,7 @@ public class GenderConfig : ScriptableObject
 
     public string Name;
 
-    [Multiline(12)]
+    [TextArea(3, 30)]
     public string Description;
     public Sprite spriteIcon;
 

@@ -13,13 +13,12 @@ public class CreateAssetBundles
     {
         static Startup()
         {
-            Debug.Log("Building Asset Bundles");
             BuildAllAssetBundles();
         }
     }
 #endif
 
-    [MenuItem("Assets/Build AssetBundles")]
+    [MenuItem("Assets/Build All AssetBundles")]
     static void BuildAllAssetBundles()
     {
         string assetBundleDirectory = Application.streamingAssetsPath + "/AssetBundles";

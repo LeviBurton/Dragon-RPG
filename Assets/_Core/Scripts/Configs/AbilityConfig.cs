@@ -17,6 +17,6 @@ public class AbilityConfig : ScriptableObject
     public string Name;
     public string ShortName;
 
-    [Multiline(8)]
+    [TextArea(3, 30)]
     public string Description;
 }

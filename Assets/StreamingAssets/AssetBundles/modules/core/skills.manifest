@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 1542733172
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d1de738a221f50ad49b3ec43e622f15a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ed6c44ff3b4c25e6ce8cf21dd6d29be0
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 477b37f25bfcee446bc96f5e115257a9, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Skills/skill_craft_chemical.asset
+- Assets/Modules/Core/Skills/skill_diplomacy.asset
+- Assets/Modules/Core/Skills/skill_move_silently.asset
+- Assets/Modules/Core/Skills/skill_repair.asset
+- Assets/Modules/Core/Skills/skill_disable_device.asset
+- Assets/Modules/Core/Skills/skill_research.asset
+- Assets/Modules/Core/Skills/skill_intimidate.asset
+- Assets/Modules/Core/Skills/skill_craft_electronic.asset
+- Assets/Modules/Core/Skills/skill_craft.asset
+- Assets/Modules/Core/Skills/skill_spot.asset
+- Assets/Modules/Core/Skills/skill_craft_structural.asset
+- Assets/Modules/Core/Skills/skill_survival.asset
+- Assets/Modules/Core/Skills/skill_craft_mechanical.asset
+- Assets/Modules/Core/Skills/skill_concentration.asset
+Dependencies:
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/abilities

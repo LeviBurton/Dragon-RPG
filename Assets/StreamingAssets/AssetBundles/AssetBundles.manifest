@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3829930857
+CRC: 3641773726
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -46,3 +46,7 @@ AssetBundleManifest:
     Info_12:
       Name: modules/core/abilities
       Dependencies: {}
+    Info_13:
+      Name: modules/core/skills
+      Dependencies:
+        Dependency_0: modules/core/abilities

@@ -346,6 +346,8 @@
     <Compile Include="Assets\_Core\Scripts\Configs\HeroConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\ItemConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\RaceConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\SkillConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\SpellConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\WeaponConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterGroupController.cs" />
