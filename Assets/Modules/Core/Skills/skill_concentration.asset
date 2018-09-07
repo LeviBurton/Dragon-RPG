@@ -15,5 +15,8 @@ MonoBehaviour:
   parentConfig: {fileID: 0}
   Name: Concentration
   Description: 
+  canUseUntrained: 0
   primaryAbility: {fileID: 11400000, guid: cc21b9e2d810b17458438003d22f1314, type: 2}
+  classSkills:
+  - {fileID: 11400000, guid: 881077275d6d7f441a151c45eac997cd, type: 2}
   iconSprite: {fileID: 0}

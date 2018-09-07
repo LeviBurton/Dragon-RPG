@@ -15,5 +15,9 @@ MonoBehaviour:
   parentConfig: {fileID: 0}
   Name: Intimidate
   Description: 
+  canUseUntrained: 1
   primaryAbility: {fileID: 11400000, guid: 51bdc72a35d7d4a4c99a45fdc3ca14ad, type: 2}
+  classSkills:
+  - {fileID: 11400000, guid: 881077275d6d7f441a151c45eac997cd, type: 2}
+  - {fileID: 11400000, guid: 929f464dabefa4b44bfe59c012cb55f1, type: 2}
   iconSprite: {fileID: 0}

@@ -341,6 +341,7 @@
     <Compile Include="Assets\_Core\Scripts\Configs\ClassConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\DamageTypeConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\EnemyConfig.cs" />
+    <Compile Include="Assets\_Core\Scripts\Configs\FeatConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\GameConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\GenderConfig.cs" />
     <Compile Include="Assets\_Core\Scripts\Configs\HeroConfig.cs" />

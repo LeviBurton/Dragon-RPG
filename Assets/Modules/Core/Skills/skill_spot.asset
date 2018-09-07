@@ -15,5 +15,9 @@ MonoBehaviour:
   parentConfig: {fileID: 0}
   Name: Spot
   Description: 
+  canUseUntrained: 1
   primaryAbility: {fileID: 11400000, guid: 770b41f1a2fee71448ef98957c9ffd53, type: 2}
+  classSkills:
+  - {fileID: 11400000, guid: 881077275d6d7f441a151c45eac997cd, type: 2}
+  - {fileID: 11400000, guid: eef8537eee64a6140862fe4b9545da1b, type: 2}
   iconSprite: {fileID: 0}

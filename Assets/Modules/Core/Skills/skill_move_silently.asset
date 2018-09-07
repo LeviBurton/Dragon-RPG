@@ -15,5 +15,8 @@ MonoBehaviour:
   parentConfig: {fileID: 0}
   Name: Move Silent
   Description: 
+  canUseUntrained: 1
   primaryAbility: {fileID: 11400000, guid: 4aeb7a1e0064e7146a402e6d19b0342d, type: 2}
+  classSkills:
+  - {fileID: 11400000, guid: c30c4dc9f1d7fe347bb61c348e3743bc, type: 2}
   iconSprite: {fileID: 0}

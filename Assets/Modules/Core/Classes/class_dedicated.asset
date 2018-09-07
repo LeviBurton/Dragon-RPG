@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5946fc86e934400429b3649e9c4b1728, type: 3}
+  m_Name: class_dedicated
+  m_EditorClassIdentifier: 
+  SortOrder: 4
+  Name: Dedicated
+  Description: 'The <color=orange><b>Dedicated</b></color> hero uses her <color=yellow><b>Wisdom</b></color>
+    score to best advantage.  This class demonstrates a focus on willpower, common
+    sense, perception, and intuition.  Sense of self and devotion of purpose, as well
+    as keen senses and a greater ability to analyze information combine to define
+    the <color=orange><b>Dedicated</b></color>.
+
+
+    <size=105%><color=#999999>Examples of Dedicated</color></size>
+
+    Health care workers, clergy, activists, investigators, and those dedicated to
+    a cause or idea are some of the professional choices available to the <color=orange><b>Dedicated</b></color>.'
+  classSkills: []
+  spriteIcon: {fileID: 21300000, guid: 031b0cd153441a347a80b288f6b528f8, type: 3}

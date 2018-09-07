@@ -15,5 +15,10 @@ MonoBehaviour:
   parentConfig: {fileID: 11400000, guid: bd0e03c680baabd4682fad6b7f422d15, type: 2}
   Name: Structural
   Description: 
+  canUseUntrained: 1
   primaryAbility: {fileID: 11400000, guid: 8c6923effe866f343a14048bbdc6d464, type: 2}
+  classSkills:
+  - {fileID: 11400000, guid: 4fb14e38b80b8694bac3f7ba3a43f22c, type: 2}
+  - {fileID: 11400000, guid: 881077275d6d7f441a151c45eac997cd, type: 2}
+  - {fileID: 11400000, guid: 453bd9bdb4926da4dba0371d74a3c6b6, type: 2}
   iconSprite: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SubjectNerd.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class SkillConfig : ScriptableObject
     public string Name;
     [TextArea(3, 30)]
     public string Description;
+    public bool canUseUntrained;
     public AbilityConfig primaryAbility;
-    public Sprite iconSprite;
 
+    public Sprite iconSprite;
 }

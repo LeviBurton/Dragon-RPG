@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SubjectNerd.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,11 @@ public class ClassConfig : ScriptableObject
     public int SortOrder;
     public string Name;
 
-    [TextArea(3, 30)]
+    [TextArea(10, 80)]
     public string Description;
+
+    [Reorderable]
+    public SkillConfig[] classSkills;
 
     public Sprite spriteIcon;
 

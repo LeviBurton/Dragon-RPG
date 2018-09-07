@@ -11,8 +11,8 @@ namespace RPG.Character
 {
     public class GameController : MonoBehaviour
     {
-        // TODO: may not need this.
-        [SerializeField] GameConfig gameConfig;
+        private string skillsAssetBundlePath;
+        [NonSerialized] public Dictionary<string, SkillConfig> skillConfigs = new Dictionary<string, SkillConfig>();
 
         private string abilitiesAssetBundlePath;
         [NonSerialized] public Dictionary<string, AbilityConfig> abilityConfigs = new Dictionary<string, AbilityConfig>();
@@ -38,52 +38,60 @@ namespace RPG.Character
 
         private void Awake()
         {
-            LoadAssetBundles();
+            LoadCoreAssetBundles();
             LoadGameData();
         }
 
-        void Start()
-        {
-            selectedCharacters = new List<CharacterController>();
-            playerCharacters = FindObjectsOfType<CharacterController>().Where(c => c.characterType == ECharacterType.Player).ToList();
-            string assetBundleDirectory = Application.streamingAssetsPath + "/AssetBundles";
-        }
-
-        public void AddHeroToParty(HeroData hero)
-        {
-            gameData.partyHeroes.Add(hero);
-        }
-
-        public void SetHeroData(HeroData heroData)
-        {
-            if (gameData == null)
-                return;
-
-            gameData.hero = heroData;
-        }
-
-        public void LoadAssetBundles()
+        public void LoadCoreAssetBundles()
         {
             // TODO: to support modularity in the future, we should be able to specify loading of a specific modules assetbundles.
             // Shouldn't be difficult at all.  
-            genderAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/genders");
-            var genderAssetBundle = AssetBundle.LoadFromFile(genderAssetsPath);
-            foreach (var assetName in genderAssetBundle.GetAllAssetNames())
-            {
-                Debug.Log("loading gender: " + assetName);
-                var config = genderAssetBundle.LoadAsset<GenderConfig>(assetName);
-                genderConfigs.Add(assetName, config);
-            }
+            LoadGenderAssetBundle();
+            LoadClassesAssetBundle();
+            LoadRacesAssetBundle();
+            LoadAbilitiesAssetBundle();
+            LoadWeaponsAssetBundle();
+            LoadSkillsAssetBundle();
+        }
 
-            classAssetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/classes");
-            var classAssetBundle = AssetBundle.LoadFromFile(classAssetBundlePath);
-            foreach (var assetName in classAssetBundle.GetAllAssetNames())
+        private void LoadSkillsAssetBundle()
+        {
+            skillsAssetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/skills");
+            var skillsAssetBundle = AssetBundle.LoadFromFile(skillsAssetBundlePath);
+            foreach (var assetName in skillsAssetBundle.GetAllAssetNames())
             {
-                Debug.Log("loading class: " + assetName);
-                var config = classAssetBundle.LoadAsset<ClassConfig>(assetName);
-                classConfigs.Add(assetName, config);
+                Debug.Log("loading skills: " + assetName);
+                var config = skillsAssetBundle.LoadAsset<SkillConfig>(assetName);
+                skillConfigs.Add(assetName, config);
             }
+        }
 
+        private void LoadWeaponsAssetBundle()
+        {
+            weaponAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/items/weapons");
+            var weaponAssetBundle = AssetBundle.LoadFromFile(weaponAssetsPath);
+            foreach (var assetName in weaponAssetBundle.GetAllAssetNames())
+            {
+                Debug.Log("loading weapon: " + assetName);
+                var config = weaponAssetBundle.LoadAsset<WeaponConfig>(assetName);
+                weaponConfigs.Add(assetName, config);
+            }
+        }
+
+        private void LoadAbilitiesAssetBundle()
+        {
+            abilitiesAssetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/abilities");
+            var abilitiesAssetBundle = AssetBundle.LoadFromFile(abilitiesAssetBundlePath);
+            foreach (var assetName in abilitiesAssetBundle.GetAllAssetNames())
+            {
+                Debug.Log("loading ability: " + assetName);
+                var config = abilitiesAssetBundle.LoadAsset<AbilityConfig>(assetName);
+                abilityConfigs.Add(assetName, config);
+            }
+        }
+
+        private void LoadRacesAssetBundle()
+        {
             raceAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/races");
             var raceAssetBundle = AssetBundle.LoadFromFile(raceAssetsPath);
             foreach (var assetName in raceAssetBundle.GetAllAssetNames())
@@ -92,23 +100,29 @@ namespace RPG.Character
                 var config = raceAssetBundle.LoadAsset<RaceConfig>(assetName);
                 raceConfigs.Add(assetName, config);
             }
+        }
 
-            abilitiesAssetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/abilities");
-            var abilitesBudle = AssetBundle.LoadFromFile(abilitiesAssetBundlePath);
-            foreach (var assetName in abilitesBudle.GetAllAssetNames())
+        private void LoadClassesAssetBundle()
+        {
+            classAssetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/classes");
+            var classAssetBundle = AssetBundle.LoadFromFile(classAssetBundlePath);
+            foreach (var assetName in classAssetBundle.GetAllAssetNames())
             {
-                Debug.Log("loading ability: " + assetName);
-                var config = abilitesBudle.LoadAsset<AbilityConfig>(assetName);
-                abilityConfigs.Add(assetName, config);
+                Debug.Log("loading class: " + assetName);
+                var config = classAssetBundle.LoadAsset<ClassConfig>(assetName);
+                classConfigs.Add(assetName, config);
             }
+        }
 
-            weaponAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/items/weapons");
-            var weaponAssetBundle = AssetBundle.LoadFromFile(weaponAssetsPath);
-            foreach (var assetName in weaponAssetBundle.GetAllAssetNames())
+        private void LoadGenderAssetBundle()
+        {
+            genderAssetsPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/genders");
+            var genderAssetBundle = AssetBundle.LoadFromFile(genderAssetsPath);
+            foreach (var assetName in genderAssetBundle.GetAllAssetNames())
             {
-                Debug.Log("loading weapon: " + assetName);
-                var config = weaponAssetBundle.LoadAsset<WeaponConfig>(assetName);
-                weaponConfigs.Add(assetName, config);
+                Debug.Log("loading gender: " + assetName);
+                var config = genderAssetBundle.LoadAsset<GenderConfig>(assetName);
+                genderConfigs.Add(assetName, config);
             }
         }
 
@@ -132,5 +146,20 @@ namespace RPG.Character
             string filePath = Path.Combine(Application.streamingAssetsPath, gameDataFileName);
             File.WriteAllText(filePath, dataAsJson);
         }
+
+
+        public void AddHeroToParty(HeroData hero)
+        {
+            gameData.partyHeroes.Add(hero);
+        }
+
+        public void SetHeroData(HeroData heroData)
+        {
+            if (gameData == null)
+                return;
+
+            gameData.hero = heroData;
+        }
+
     }
 }

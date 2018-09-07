@@ -23,5 +23,7 @@ MonoBehaviour:
     effectively, and to influence others.
 
 '
+  canUseUntrained: 1
   primaryAbility: {fileID: 11400000, guid: 51bdc72a35d7d4a4c99a45fdc3ca14ad, type: 2}
+  classSkills: []
   iconSprite: {fileID: 0}

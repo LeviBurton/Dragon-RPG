@@ -1,16 +1,18 @@
 ManifestFileVersion: 0
-CRC: 2127173521
+CRC: 2149998388
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 49291c33d76bb54c563e0a5e11d384db
+    Hash: ee5a17b70b97baebaa3daa793e3d4836
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 262d5cd678ae3fb926d2618a5d53d4d3
+    Hash: a4936b0ecbe9bbf3f1e46f696fe98afe
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 477b37f25bfcee446bc96f5e115257a9, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5946fc86e934400429b3649e9c4b1728, type: 3}
 - Class: 115
@@ -18,9 +20,11 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Modules/Core/Classes/class_rogue.asset
-- Assets/Modules/Core/Classes/class_mage.asset
-- Assets/Modules/Core/Classes/class_fighter.asset
-- Assets/Modules/Core/Classes/class_medic.asset
-- Assets/Modules/Core/Classes/class_ranger.asset
-Dependencies: []
+- Assets/Modules/Core/Classes/class_tough.asset
+- Assets/Modules/Core/Classes/class_strong.asset
+- Assets/Modules/Core/Classes/class_fast.asset
+- Assets/Modules/Core/Classes/class_charismatic.asset
+- Assets/Modules/Core/Classes/class_smart.asset
+- Assets/Modules/Core/Classes/class_dedicated.asset
+Dependencies:
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/skills
