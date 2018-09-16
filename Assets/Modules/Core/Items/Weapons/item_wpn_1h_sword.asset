@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -18,17 +18,17 @@ MonoBehaviour:
   cost: 5
   weight: 1
   isVisibleToInventory: 1
-  weaponRange: 0.5
+  weaponRange: 3
   gripTransform: {fileID: 4012722514763844, guid: 8da9e3c996bb1334cbd90e8305caa61f,
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 8
-  recoveryTimeSeconds: 3
+  recoveryTimeSeconds: 1.5
   damageTypes:
-  - {fileID: 11400000, guid: 6da86e8871c2ae54fb12001f6007be5c, type: 2}
-  attackSpeedSeconds: 1.1
+  - {fileID: 11400000, guid: f12b22d7ed4b96e4698596c336495799, type: 2}
+  attackSpeedSeconds: 1.5
   weaponPrefab: {fileID: 100050, guid: 4d3ff1b31cb814e4aae6266213c9574c, type: 3}
   useOtherHand: 0
-  baseDamage: 15
+  baseDamage: 18
   aimWeapon: 0
   particlePrefab: {fileID: 0}

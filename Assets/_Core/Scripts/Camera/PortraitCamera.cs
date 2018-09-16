@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RPG.Characters;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEngine;
 // Then restores their previous layers on post render..
 public class PortraitCamera : MonoBehaviour
 {
-    [SerializeField] RPG.Character.CharacterController characterController;
+    [SerializeField] CharacterSystem characterController;
     int previousLayer;
 
     private Camera cam;

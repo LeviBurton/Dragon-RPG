@@ -13,7 +13,7 @@ public class CreateAssetBundles
     {
         static Startup()
         {
-            BuildAllAssetBundles();
+           // BuildAllAssetBundles();
         }
     }
 #endif

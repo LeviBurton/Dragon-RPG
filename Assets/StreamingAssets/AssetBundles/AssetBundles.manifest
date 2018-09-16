@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2144161249
+CRC: 1083685050
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -25,6 +25,7 @@ AssetBundleManifest:
       Name: modules/core/classes
       Dependencies:
         Dependency_0: modules/core/skills
+        Dependency_1: modules/core/dice
     Info_6:
       Name: modules/core/races
       Dependencies: {}
@@ -52,3 +53,10 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: modules/core/classes
         Dependency_1: modules/core/abilities
+    Info_14:
+      Name: modules/core/feats
+      Dependencies:
+        Dependency_0: modules/core/abilities
+    Info_15:
+      Name: modules/core/dice
+      Dependencies: {}

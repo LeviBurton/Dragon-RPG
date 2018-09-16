@@ -15,22 +15,13 @@ MonoBehaviour:
   Name: Wisdom
   ShortName: Wis
   Description: "Wisdom describes a character\u2019s willpower, common sense, awareness,
-    and intuition. Wisdom is the most important ability for clerics and druids, and
-    it is also important for monks and rangers. If you want your character to have
-    acute senses, put a high score in Wisdom. Every creature has a Wisdom score. A
-    character with a Wisdom score of 0 is incapable of rational thought and is unconscious.\r\n\r\nYou
-    apply your character\u2019s Wisdom modifier to:\r\n\r\nWill saving throws (for
-    negating the effects of charm person and other spells).\r\nHeal, Perception, Profession,
-    Sense Motive, and Survival checks.\r\nClerics, druids, and rangers get bonus spells
-    based on their Wisdom scores. The minimum Wisdom score needed to cast a cleric,
-    druid, or ranger spell is 10 + the spell\u2019s level.\r\n\r\nTemporary Bonuses:
-    Temporary increases to your Wisdom score give you a bonus on Wisdom-based skill
-    checks and Will saving throws. This bonus also applies to any spell DCs based
-    on Wisdom.\r\n\r\nPermanent Bonuses: Ability bonuses with a duration greater than
-    1 day actually increase the relevant ability score after 24 hours. Modify all
-    skills and statistics as appropriate. This might cause you to gain skill points,
-    hit points, and other bonuses. These bonuses should be noted separately in case
-    they are removed.\r\n\r\nAbility Damage: Damage to your Wisdom score causes you
-    to take penalties on Wisdom-based skill checks and Will saving throws. The Ability
-    Damage penalty also applies to any spell DCs based on Wisdom. See Ability Score
-    Damage below."
+    and intuition.  Compared to Intelligence, Wisdom relates to being in tune with
+    and aware of one's surroundings, while Intelligence represents one's ability to
+    analyze information.  An \"absent-minded professor\" has a low Wisdom score and
+    a high Intelligence score.  A simpleton with low Intelligence might nevertheless
+    have a great insight (high Wisdom.)  If you want your character to have keen senses,
+    put a high score in Wisdom.  This is the ability associated with Dedicated heroes.\n
+    \ You apply your character's Wisdom modifier to:\n\n<indent=15%>\nWill saving
+    throws, for using certain class talents or resisting other class talents\n\nListen,
+    Spot, and Treat Injury checks, and other skill checks for which Wisdom is the
+    key ability\n</indent>\n"

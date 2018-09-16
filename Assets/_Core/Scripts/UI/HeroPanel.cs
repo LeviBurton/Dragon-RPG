@@ -1,4 +1,5 @@
 ﻿using RPG.Character;
+using RPG.Characters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,18 @@ public class HeroPanel : MonoBehaviour
 
     void Awake()
     {
+        if (heroController == null)
+            return;
+
         selectable = heroController.GetComponent<Selectable>();
         backgroundImage = GetComponent<Image>();
     }
 
     void OnEnable()
     {
+        if (heroController == null)
+            return;
+
         selectable.onSelected += OnSelected;
         selectable.onDeselected += OnDeselected;
         selectable.onHighlight += OnHighlight;
@@ -34,6 +41,8 @@ public class HeroPanel : MonoBehaviour
 
     void OnDisable()
     {
+         if (heroController == null)
+            return;
     }
 
    
@@ -84,23 +93,18 @@ public class HeroPanel : MonoBehaviour
             rtsCamera.SetTarget(heroController.transform);
         }
 
-        foreach (var hero in playerController.selectedHeroes)
-        {
-            hero.GetComponent<Selectable>().Deselect();
-        }
-
+        playerController.selectedHero.GetComponent<Selectable>().Deselect();
+        playerController.selectedHero = heroController;
         heroController.GetComponent<Selectable>().Select();
-        playerController.selectedHeroes.Clear();
-        playerController.selectedHeroes.Add(heroController);
     }
 
     public void OnSelect()
     {
-        Debug.Log("OnSelect");
+
     }
 
     public void OnDeselect()
     {
-        Debug.Log("OnDeselect");
+
     }
 }

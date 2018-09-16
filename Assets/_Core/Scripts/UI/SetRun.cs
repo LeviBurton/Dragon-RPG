@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using RPG.Characters;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SetRun : MonoBehaviour {
-    RPG.Character.CharacterController[] chars;
+    CharacterSystem[] chars;
 
     // Use this for initialization
     void Start()
     {
-        chars = FindObjectsOfType<RPG.Character.CharacterController>();
+        chars = FindObjectsOfType<CharacterSystem>();
     }
 
     public void OnClick()

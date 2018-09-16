@@ -260,6 +260,15 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Rewired_Editor">
+      <HintPath>Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll</HintPath>
+    </Reference>
     <Reference Include="TextMeshPro-2017.3-Editor">
       <HintPath>Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Editor.dll</HintPath>
     </Reference>
@@ -326,6 +335,21 @@
     <Compile Include="Assets\_Core\Editor\ReorderableArrayInspector.cs" />
     <Compile Include="Assets\_Core\Editor\SerializedPropExtension.cs" />
     <Compile Include="Assets\_Core\Editor\WeaponEditor.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\ControlMapperInspector.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomButtonInspector.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomSliderInspector.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomToggleInspector.cs" />
+    <Compile Include="Assets\Rewired\Integration\UnityUI\Editor\RewiredStandaloneInputModuleInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\ControllerDataFilesInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\CustomInspector_External.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\HardwareJoystickMapInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\HardwareJoystickTemplateMapInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\InitializerInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\InputManagerInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\PlayerControllerInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\PlayerMouseInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\UserDataStore_PlayerPrefsInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\UnityEditorBridge.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ActionCell.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\LabelCell.cs" />
     <Compile Include="Assets\ThirdParty\GUITable\Code\Editor\Cells\ObjectCell.cs" />
@@ -437,6 +461,10 @@
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_random.txt" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_support.txt" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_nothing.txt" />
+    <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
+    <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
+    <None Include="Assets\Rewired\Documentation\licences.txt" />
+    <None Include="Assets\Rewired\Internal\Libraries\Runtime\Rewired_Core.XML" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
@@ -576,6 +604,7 @@
     <None Include="Assets\_Core\Shaders\Grid.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />
     <None Include="Assets\_Core\Shaders\UnlitAlphaBlendedTextureProjector.shader" />
+    <None Include="Assets\_Core\Shaders\shader_dissolve.shader" />
     <None Include="Assets\_Environment\Village\FXWaterPro.shader" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
   </ItemGroup>

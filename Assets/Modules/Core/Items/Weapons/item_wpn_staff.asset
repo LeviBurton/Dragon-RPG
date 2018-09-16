@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,20 +14,21 @@ MonoBehaviour:
   itemName: Staff
   bodySlot: 11
   itemType: 0
+  itemImage: {fileID: 0}
   cost: 0
   weight: 0
   isVisibleToInventory: 1
-  weaponName: Staff - Basic
-  weaponRange: 0.5
+  weaponRange: 3
   gripTransform: {fileID: 4012722514763844, guid: 8da9e3c996bb1334cbd90e8305caa61f,
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 7
-  recoveryTimeSeconds: 3
-  damageTypes: []
-  attackSpeedSeconds: 1.1
+  recoveryTimeSeconds: 2
+  damageTypes:
+  - {fileID: 11400000, guid: 92b03cc744aec394b9bd29866b159c30, type: 2}
+  attackSpeedSeconds: 2
   weaponPrefab: {fileID: 100050, guid: fb92c5d21e8ad8046a6b40d839763a76, type: 3}
   useOtherHand: 0
-  baseDamage: 18
+  baseDamage: 20
   aimWeapon: 0
   particlePrefab: {fileID: 0}

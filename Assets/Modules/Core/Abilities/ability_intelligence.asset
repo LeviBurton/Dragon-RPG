@@ -15,26 +15,10 @@ MonoBehaviour:
   Name: Intelligence
   ShortName: Int
   Description: "Intelligence determines how well your character learns and reasons.
-    This ability is important for wizards because it affects their spellcasting ability
-    in many ways. Creatures of animal-level instinct have Intelligence scores of 1
-    or 2. Any creature capable of understanding speech has a score of at least 3.
-    A character with an Intelligence score of 0 is comatose. Some creatures do not
-    possess an Intelligence score. Their modifier is +0 for any Intelligence-based
-    skills or checks.\r\n\r\nYou apply your character\u2019s Intelligence modifier
-    to:\r\n\r\nThe number of bonus languages your character knows at the start of
-    the game. These are in addition to any starting racial languages and Common. If
-    you have a penalty, you can still read and speak your racial languages unless
-    your Intelligence is lower than 3.\r\nThe number of skill points gained each level,
-    though your character always gets at least 1 skill point per level.\r\nAppraise,
-    Craft, Knowledge, Linguistics, and Spellcraft checks.\r\nA wizard gains bonus
-    spells based on his Intelligence score. The minimum Intelligence score needed
-    to cast a wizard spell is 10 + the spell\u2019s level.\r\n\r\nTemporary Bonuses:
-    Temporary increases to your Intelligence score give you a bonus on Intelligence-based
-    skill checks. This bonus also applies to any spell DCs based on Intelligence.\r\n\r\nPermanent
-    Bonuses: Ability bonuses with a duration greater than 1 day actually increase
-    the relevant ability score after 24 hours. Modify all skills and statistics as
-    appropriate. This might cause you to gain skill points, hit points, and other
-    bonuses. These bonuses should be noted separately in case they are removed.\r\n\r\nAbility
-    Damage: Damage to your Intelligence score causes you to take penalties on Intelligence-based
-    skill checks. The Ability Damage penalty also applies to any spell DCs based on
-    Intelligence. See Ability Score Damage below."
+    \ Intelligence is important for any character who wants to have a wide assortment
+    of skills, and it is the ability associated with Smart heroes.\n  You apply your
+    character's Intelligence modifier to:\n\n<indent=15%>\nThe number of skill points
+    gained at each new level (though an Intelligence penalty can never reduce this
+    number below 1; your character always gets at least 1 skill point per level)\n\nSearch
+    and Knowledge checks, and other skill checks for which Intelligence is the key
+    ability\n</indent>"

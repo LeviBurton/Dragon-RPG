@@ -7,7 +7,12 @@ namespace RPG.Config
     [CreateAssetMenu(menuName = "RPG/Damage Type")]
     public class DamageTypeConfig : ScriptableObject
     {
-        [SerializeField] string name;
-        int selectionMask;
+        public int SortOrder;
+        public string Name;
+        public string ShortName;
+
+        [TextArea(3, 30)]
+        public string Description;
+
     }
 }

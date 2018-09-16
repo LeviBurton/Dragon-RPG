@@ -51,5 +51,11 @@ public class FeatConfig : ScriptableObject
     [TextArea(3, 30)]
     public string Description;
 
+    [TextArea(3, 30)]
+    public string Benefit;
+
+    [TextArea(3, 30)]
+    public string Special;
+
     public FeatRequirement featRequirements;
 }

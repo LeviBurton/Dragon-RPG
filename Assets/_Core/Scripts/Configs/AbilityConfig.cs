@@ -6,8 +6,17 @@ using UnityEngine;
 [Serializable]
 public class AbilityData
 {
-    public string abilityAssetPath;
-    public int abilityValue;
+    [NonSerialized]
+    public readonly AbilityConfig abilityConfig;
+    public string name;
+    public int value;
+
+    public AbilityData(string name, AbilityConfig config, int value)
+    {
+        this.abilityConfig = config;
+        this.name = name;
+        this.value = value;
+    }
 }
 
 [CreateAssetMenu(menuName = "RPG/Ability")]
@@ -19,4 +28,6 @@ public class AbilityConfig : ScriptableObject
 
     [TextArea(3, 30)]
     public string Description;
+
+    public string assetPath;
 }

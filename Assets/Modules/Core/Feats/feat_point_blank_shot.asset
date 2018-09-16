@@ -18,6 +18,10 @@ MonoBehaviour:
   ShortName: Point Blank Shot
   Description: You are skilled at making well-placed shots with ranged weapons at
     close range.
+  Benefit: You get a +1 bonus on attack and damage rolls with ranged weapns against
+    opponents within 10 meters.
+  Special: 
   featRequirements:
     requiredSkills: []
     requiredAbilities: []
+    otherFeatRequirements: []

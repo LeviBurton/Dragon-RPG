@@ -10,7 +10,7 @@ public enum ECommandType
     MoveToTarget,
     MoveToTargetCursor,
     AttackTarget,
-    Follow,
+    FollowTarget,
     HoldPosition,
     Use,
     Cast
@@ -75,6 +75,15 @@ public class CommandSystem : MonoBehaviour
     }
 
     [Task]
+    bool IsCurrentCommand_FollowTarget()
+    {
+        if (commands.Count == 0)
+            return false;
+
+        return commands.Peek() != null && commands.Peek().commandType == ECommandType.FollowTarget;
+    }
+
+    [Task]
     bool IsCurrentCommand_MoveAttack()
     {
         if (commands.Count == 0)
@@ -115,7 +124,8 @@ public class CommandSystem : MonoBehaviour
     {
         if (commands.Count == 0)
             return false;
-        return commands.Peek() != null && commands.Peek().commandType == ECommandType.Follow;
+
+        return commands.Peek() != null && commands.Peek().commandType == ECommandType.FollowTarget;
     }
 
     [Task]

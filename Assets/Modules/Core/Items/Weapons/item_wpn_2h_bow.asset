@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,20 +14,21 @@ MonoBehaviour:
   itemName: Bow
   bodySlot: 11
   itemType: 0
+  itemImage: {fileID: 0}
   cost: 0
   weight: 0
   isVisibleToInventory: 1
-  weaponName: 2Hand-Bow Basic
-  weaponRange: 20
+  weaponRange: 25
   gripTransform: {fileID: 4012722514763844, guid: 8da9e3c996bb1334cbd90e8305caa61f,
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 4
-  recoveryTimeSeconds: 4
-  damageTypes: []
-  attackSpeedSeconds: 1.1
+  recoveryTimeSeconds: 2
+  damageTypes:
+  - {fileID: 11400000, guid: 85d6017aa4fa59a4593ca8f265f8d23c, type: 2}
+  attackSpeedSeconds: 2
   weaponPrefab: {fileID: 100050, guid: e9ebfd61d4a1b494faf4927176030477, type: 3}
   useOtherHand: 1
-  baseDamage: 15
+  baseDamage: 20
   aimWeapon: 0
   particlePrefab: {fileID: 0}

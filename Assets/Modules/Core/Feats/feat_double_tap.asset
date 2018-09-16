@@ -17,8 +17,17 @@ MonoBehaviour:
   Name: Double Tap
   ShortName: Double Tap
   Description: You can make two quick shots with a firearm as a single attack.
+  Benefit: 'When using a semiautomatic firearm with at least tow bullets loaded, you
+    may fire two bullets as a single attack against a single target.  You receive
+    a -2 penalty on this attack, but you deal +1 die of damage with a successful hit.  For
+    example, a firearm that normally deals 2d6 points of damage instead deals 3d6.
+
+    Using this feat fires two bullets and can only be done if thte weapon has two
+    bullets in it.'
+  Special: 
   featRequirements:
     requiredSkills: []
     requiredAbilities:
     - ability: {fileID: 11400000, guid: 4aeb7a1e0064e7146a402e6d19b0342d, type: 2}
       value: 13
+    otherFeatRequirements: []

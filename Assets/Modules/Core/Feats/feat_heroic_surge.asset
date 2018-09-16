@@ -17,6 +17,12 @@ MonoBehaviour:
   Name: Heroic Surge
   ShortName: Heroic surge
   Description: You can perform an additional action in a round.
+  Benefit: "You may take an extra move action or attack action in a round, either
+    before or after your regular actions.  You may use Heroic surge a number of times
+    per day depending on your character level (as shown below), but never morem than
+    once per round\n\n<b>Character Level</b>\t<b>Times per Day</b>\n1-4th\t\t1\n5th-8th\t\t2\n9th-12th\t\t3\n13th-16th\t\t4\n17th-20th\t\t5"
+  Special: 
   featRequirements:
     requiredSkills: []
     requiredAbilities: []
+    otherFeatRequirements: []

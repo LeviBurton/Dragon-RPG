@@ -17,8 +17,15 @@ MonoBehaviour:
   Name: Dodge
   ShortName: Dodge
   Description: You are adept at dodging attacks.
+  Benefit: During your action, you designate an opponent and recieve a +1 dodge bonus
+    to Defense against any subsequent attacks from that opponent.  You can select
+    a new opponent on any action.
+  Special: A condition that makes you lose your Dexterity bonus to Defense also makes
+    you lose dodge bonuses.  Also, dodge bonuses stack with each other, unlike most
+    other types of bonuses.
   featRequirements:
     requiredSkills: []
     requiredAbilities:
     - ability: {fileID: 11400000, guid: 4aeb7a1e0064e7146a402e6d19b0342d, type: 2}
       value: 13
+    otherFeatRequirements: []

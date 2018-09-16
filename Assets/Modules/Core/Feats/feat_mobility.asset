@@ -18,9 +18,14 @@ MonoBehaviour:
   ShortName: Mobility
   Description: You are skilled at dodging past opponents and avoiding the attacks
     they make against you.
+  Benefit: You get a +4 dodge bonus to Defense against attacks of opportunity provoked
+    when you move out of a threatened area.
+  Special: A condition that makes you lose your Dexterity bonus to Defense also makes
+    you lose dodge bonuses.  Also, dodge bonuses stack with each other, unlke most
+    other types of bonuses.
   featRequirements:
     requiredSkills: []
     requiredAbilities:
     - ability: {fileID: 11400000, guid: 4aeb7a1e0064e7146a402e6d19b0342d, type: 2}
-      value: 12
+      value: 13
     otherFeatRequirements: []

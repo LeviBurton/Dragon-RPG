@@ -13,7 +13,11 @@ public class HealthBar : MonoBehaviour {
 
     void OnDamage(float damageAmount)
     {
-        healthBar.fillAmount = healthSystem.HealthAsPercentage;
+        if (healthBar)
+        {
+            healthBar.fillAmount = healthSystem.HealthAsPercentage;
+        }
+
         if (healthValues)
         {
             healthValues.SetText(string.Format("{0}/{1}", healthSystem.GetCurrentHealth(), healthSystem.GetMaxHealth()));
@@ -22,6 +26,15 @@ public class HealthBar : MonoBehaviour {
 
     void OnHeal(float healAmount)
     {
+        if (healthBar)
+        {
+            healthBar.fillAmount = healthSystem.HealthAsPercentage;
+        }
+
+        if (healthValues)
+        {
+            healthValues.SetText(string.Format("{0}/{1}", healthSystem.GetCurrentHealth(), healthSystem.GetMaxHealth()));
+        }
     }
 
     private void OnEnable()

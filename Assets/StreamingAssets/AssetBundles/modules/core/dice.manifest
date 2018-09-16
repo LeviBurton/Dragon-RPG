@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 3670160881
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9fee6dad42c160c365dd4c5440c685ed
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6cab8ed90cbe90ac65587174b5a3e813
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 40d36f51e5469c34a91b42a13eb7e6e4, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Dice/dice_d6.asset
+- Assets/Modules/Core/Dice/dice_d8.asset
+- Assets/Modules/Core/Dice/dice_d4.asset
+- Assets/Modules/Core/Dice/dice_d12.asset
+- Assets/Modules/Core/Dice/dice_d20.asset
+- Assets/Modules/Core/Dice/dice_d10.asset
+- Assets/Modules/Core/Dice/dice_d5.asset
+Dependencies: []

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using RPG.Character;
+
 using TMPro;
 
 public class RecoveryBar : MonoBehaviour {
-    [SerializeField] RPG.Character.CharacterController character;
+    [SerializeField] CharacterSystem character;
     [SerializeField] Image recoveryImage;
     [SerializeField] TextMeshProUGUI textValues;
 

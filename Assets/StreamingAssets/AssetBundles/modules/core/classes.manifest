@@ -1,16 +1,18 @@
 ManifestFileVersion: 0
-CRC: 2149998388
+CRC: 2695702678
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ee5a17b70b97baebaa3daa793e3d4836
+    Hash: 7116f6bd1e1efd5f6759200ac4d1d571
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a4936b0ecbe9bbf3f1e46f696fe98afe
+    Hash: 75dd261d2e49f27ed8d135c2c3b354ce
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 40d36f51e5469c34a91b42a13eb7e6e4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 477b37f25bfcee446bc96f5e115257a9, type: 3}
 - Class: 114
@@ -28,3 +30,4 @@ Assets:
 - Assets/Modules/Core/Classes/class_dedicated.asset
 Dependencies:
 - C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/skills
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/dice

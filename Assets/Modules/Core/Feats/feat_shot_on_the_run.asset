@@ -17,6 +17,14 @@ MonoBehaviour:
   Name: Shot on the Run
   ShortName: Shot on the Run
   Description: You are highly trained in skirmish ranged weapon tactics.
+  Benefit: 'When using an attack action with a ranged weapon, you can move both before
+    and after the attack, provided that your total distance moved is not greater than
+    your speed.
+
+    Moving in this way does not provoke an attack of opportunity from the defender
+    you are attacking (though it can provoke attacks of opportunity from others, as
+    normal.)'
+  Special: 
   featRequirements:
     requiredSkills: []
     requiredAbilities: []

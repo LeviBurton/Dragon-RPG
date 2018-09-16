@@ -43,7 +43,7 @@ public class UI_Character_Creation : MonoBehaviour {
     public HealthSystem healthSystem;
     public AbilitySystem abilityScoreSystem;
     
-    public RPG.Character.CharacterController characterController;
+    public CharacterSystem characterController;
 
     public string contentPageTitleOne = "Race/Gender/Class";
     public string contentPageTitleTwo = "Abilities";
@@ -55,7 +55,7 @@ public class UI_Character_Creation : MonoBehaviour {
     void Start()
     {
         heroController = FindObjectOfType<HeroController>();
-        characterController = heroController.GetComponent<RPG.Character.CharacterController>();
+        characterController = heroController.GetComponent<CharacterSystem>();
         weaponSystem = characterController.GetComponent<WeaponSystem>();
         healthSystem = characterController.GetComponent<HealthSystem>();
         abilityScoreSystem = characterController.GetComponent<AbilitySystem>();
@@ -272,10 +272,7 @@ public class UI_Character_Creation : MonoBehaviour {
 
         foreach (var ability in gameController.abilityConfigs.OrderBy(x => x.Value.SortOrder))
         {
-            var data = new AbilityData();
-
-            data.abilityValue = 8;
-            data.abilityAssetPath = ability.Key;
+            var data = new AbilityData(ability.Key, ability.Value, 8);
 
             newHeroData.abilities.Add(data);
         }

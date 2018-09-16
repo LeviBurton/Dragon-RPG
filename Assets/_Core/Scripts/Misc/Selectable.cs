@@ -28,9 +28,6 @@ public class Selectable : MonoBehaviour
 
     public void Select()
     {
-        if (isSelected)
-            return;
-
         isSelected = true;
 
         if (onSelected != null)
@@ -39,9 +36,6 @@ public class Selectable : MonoBehaviour
 
     public void Deselect()
     {
-        if (!isSelected)
-            return;
-
         isSelected = false;
         if (onDeselected != null)
             onDeselected();

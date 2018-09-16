@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,10 +14,10 @@ MonoBehaviour:
   itemName: Pistol
   bodySlot: 10
   itemType: 0
+  itemImage: {fileID: 0}
   cost: 0
   weight: 0
   isVisibleToInventory: 1
-  weaponName: Pistol - Basic
   weaponRange: 10
   gripTransform: {fileID: 4157477511442614, guid: 3c4280098da208a41842184361da571c,
     type: 2}
@@ -25,10 +25,11 @@ MonoBehaviour:
     type: 2}
   weaponType: 12
   recoveryTimeSeconds: 3
-  damageTypes: []
-  attackSpeedSeconds: 1.1
+  damageTypes:
+  - {fileID: 11400000, guid: 85d6017aa4fa59a4593ca8f265f8d23c, type: 2}
+  attackSpeedSeconds: 1.5
   weaponPrefab: {fileID: 100050, guid: 040ffa37ce9c91e4e843c922c36d1540, type: 3}
   useOtherHand: 0
-  baseDamage: 10
+  baseDamage: 15
   aimWeapon: 0
   particlePrefab: {fileID: 0}

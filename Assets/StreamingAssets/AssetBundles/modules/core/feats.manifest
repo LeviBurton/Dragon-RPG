@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 1720367403
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f13049e84465ed1d3a01e85b6e7435fe
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 992d500632fd833ba14769b42a7da748
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: cb9d0145c49eb55459b4c51597da120b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d402887e6ba220e47976bcd9985f0a43, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Feats/feat_point_blank_shot.asset
+- Assets/Modules/Core/Feats/feat_shot_on_the_run.asset
+- Assets/Modules/Core/Feats/feat_mobility.asset
+- Assets/Modules/Core/Feats/feat_heroic_surge.asset
+- Assets/Modules/Core/Feats/feat_dodge.asset
+- Assets/Modules/Core/Feats/feat_double_tap.asset
+Dependencies:
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/abilities

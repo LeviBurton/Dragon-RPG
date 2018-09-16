@@ -13,14 +13,14 @@ namespace RPG.Characters
     {
         // Note that we may not need this -- since we need a parent owner of this component anyway, 
         // we might as well just use the children of that as the list of enemies.
-        public List<Character.CharacterController> characters;
+        public List<CharacterSystem> characters;
 
         FormationController formationController;
 
         void Start()
         {
             formationController = GetComponentInChildren<FormationController>();
-            characters = GetComponentsInChildren<Character.CharacterController>().ToList();
+            characters = GetComponentsInChildren<CharacterSystem>().ToList();
 
             for (int i = 0; i < characters.Count; i++)
             {
@@ -38,13 +38,13 @@ namespace RPG.Characters
             return formationController;
         }
 
-        public void AddCharacter(Character.CharacterController character)
+        public void AddCharacter(CharacterSystem character)
         {
             // OnAddEnemy event
             characters.Add(character);
         }
 
-        public void RemoveEnemy(Character.CharacterController character)
+        public void RemoveEnemy(CharacterSystem character)
         {
             // OnRemoveEnemy event
             characters.Remove(character);

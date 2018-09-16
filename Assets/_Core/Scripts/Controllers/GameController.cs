@@ -14,6 +14,9 @@ namespace RPG.Character
         private string skillsAssetBundlePath;
         [NonSerialized] public Dictionary<string, SkillConfig> skillConfigs = new Dictionary<string, SkillConfig>();
 
+        private string featsAssetBundlePath;
+        [NonSerialized] public Dictionary<string, FeatConfig> featConfigs = new Dictionary<string, FeatConfig>();
+
         private string abilitiesAssetBundlePath;
         [NonSerialized] public Dictionary<string, AbilityConfig> abilityConfigs = new Dictionary<string, AbilityConfig>();
 
@@ -32,14 +35,38 @@ namespace RPG.Character
         private string gameDataFileName = "gameData.json";
 
         public GameData gameData;
-
-        public List<CharacterController> selectedCharacters;
-        public List<CharacterController> playerCharacters;
+        public List<HeroController> heroesInPlay;
+        public ExplorationModeCamera explorationModeCameraRig;
 
         private void Awake()
         {
             LoadCoreAssetBundles();
             LoadGameData();
+        }
+
+        private void Start()
+        {
+            InitScene();
+        }
+
+        public void InitScene()
+        {
+            // TODO: 
+            // Spawn heroes
+            // etc..
+
+            // For now, just grab them from the scene
+            heroesInPlay = FindObjectsOfType<HeroController>().ToList();
+            explorationModeCameraRig = FindObjectOfType<ExplorationModeCamera>();
+
+            foreach (var hero in heroesInPlay)
+            {
+                hero.GetComponent<Selectable>().Deselect();
+            }
+
+            heroesInPlay[0].GetComponent<Selectable>().Select();
+
+            explorationModeCameraRig.SetTarget(heroesInPlay[0].transform);
         }
 
         public void LoadCoreAssetBundles()
@@ -52,6 +79,19 @@ namespace RPG.Character
             LoadAbilitiesAssetBundle();
             LoadWeaponsAssetBundle();
             LoadSkillsAssetBundle();
+            LoadFeatsAssetBundle();
+        }
+
+        private void LoadFeatsAssetBundle()
+        {
+            featsAssetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles/modules/core/feats");
+            var featsAssetBundle = AssetBundle.LoadFromFile(featsAssetBundlePath);
+            foreach (var assetName in featsAssetBundle.GetAllAssetNames())
+            {
+                Debug.Log("loading feats: " + assetName);
+                var config = featsAssetBundle.LoadAsset<FeatConfig>(assetName);
+                featConfigs.Add(config.name, config);
+            }
         }
 
         private void LoadSkillsAssetBundle()
@@ -62,7 +102,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading skills: " + assetName);
                 var config = skillsAssetBundle.LoadAsset<SkillConfig>(assetName);
-                skillConfigs.Add(assetName, config);
+                skillConfigs.Add(config.name, config);
             }
         }
 
@@ -74,7 +114,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading weapon: " + assetName);
                 var config = weaponAssetBundle.LoadAsset<WeaponConfig>(assetName);
-                weaponConfigs.Add(assetName, config);
+                weaponConfigs.Add(config.name, config);
             }
         }
 
@@ -86,7 +126,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading ability: " + assetName);
                 var config = abilitiesAssetBundle.LoadAsset<AbilityConfig>(assetName);
-                abilityConfigs.Add(assetName, config);
+                abilityConfigs.Add(config.name, config);
             }
         }
 
@@ -98,7 +138,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading race: " + assetName);
                 var config = raceAssetBundle.LoadAsset<RaceConfig>(assetName);
-                raceConfigs.Add(assetName, config);
+                raceConfigs.Add(config.name, config);
             }
         }
 
@@ -110,7 +150,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading class: " + assetName);
                 var config = classAssetBundle.LoadAsset<ClassConfig>(assetName);
-                classConfigs.Add(assetName, config);
+                classConfigs.Add(config.name, config);
             }
         }
 
@@ -122,7 +162,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading gender: " + assetName);
                 var config = genderAssetBundle.LoadAsset<GenderConfig>(assetName);
-                genderConfigs.Add(assetName, config);
+                genderConfigs.Add(config.name, config);
             }
         }
 

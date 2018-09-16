@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using RPG.Characters;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetPanel : MonoBehaviour
 {
-    [SerializeField] RPG.Character.CharacterController target;
+    [SerializeField] CharacterSystem target;
 
 	// Use this for initialization
 	void Start ()

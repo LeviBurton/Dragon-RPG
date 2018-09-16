@@ -22,4 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f87a7436b535f4245b1d1b63b2f8ea86, type: 2}
   - {fileID: 11400000, guid: b6a3fb4bc14395f43827cd526d2f3214, type: 2}
   - {fileID: 11400000, guid: 1ed167687b4d9e24d895076993529eb1, type: 2}
+  hitDice: {fileID: 11400000, guid: cafeda0b73be4b9468e24a811b647607, type: 2}
   spriteIcon: {fileID: 21300000, guid: 031b0cd153441a347a80b288f6b528f8, type: 3}

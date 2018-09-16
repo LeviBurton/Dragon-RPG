@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using RPG.Characters;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PortraitRenderer : MonoBehaviour
 {
-    [SerializeField] RPG.Character.CharacterController characterController;
+    [SerializeField] CharacterSystem characterController;
     private RawImage rawImage;
 
     void Start ()

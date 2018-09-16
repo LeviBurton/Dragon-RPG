@@ -14,7 +14,12 @@ MonoBehaviour:
   enabled: 1
   parentConfig: {fileID: 0}
   Name: Bluff
-  Description: 
+  Description: "When you look araund for clues and\r\nmake deductions based on those
+    clues. you make an\r\nIntelligence (Investigation) check. You might deduce the\r\nlocation
+    of a hidden object, discern fram the appearance\r\nof a wound what kind of weapon
+    dealt it, or determine\r\nthe weakest point in a tunnelthat could cause itto\r\ncollapse.
+    Pouring through ancient scrolls in search of\r\na hidden fragment of knowledge
+    might also call for an\r\nIntelligence (Investigalion) check."
   canUseUntrained: 0
   primaryAbility: {fileID: 11400000, guid: 8c6923effe866f343a14048bbdc6d464, type: 2}
   iconSprite: {fileID: 0}

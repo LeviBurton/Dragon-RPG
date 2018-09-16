@@ -1,7 +1,17 @@
 ﻿using SubjectNerd.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class ClassData
+{
+    [NonSerialized]
+    public readonly ClassConfig classConfig;
+    public string name;
+    public int level;
+}
 
 [CreateAssetMenu(menuName = "RPG/Class")]
 public class ClassConfig : ScriptableObject
@@ -15,6 +25,7 @@ public class ClassConfig : ScriptableObject
     [Reorderable]
     public SkillConfig[] classSkills;
 
-    public Sprite spriteIcon;
+    public DiceConfig hitDice;
 
+    public Sprite spriteIcon;
 }

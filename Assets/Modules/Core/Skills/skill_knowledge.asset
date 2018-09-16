@@ -16,5 +16,5 @@ MonoBehaviour:
   Name: Knowledge
   Description: 
   canUseUntrained: 0
-  primaryAbility: {fileID: 0}
+  primaryAbility: {fileID: 11400000, guid: 8c6923effe866f343a14048bbdc6d464, type: 2}
   iconSprite: {fileID: 0}

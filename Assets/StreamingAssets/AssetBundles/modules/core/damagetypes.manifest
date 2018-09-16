@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3448016357
+CRC: 2131307817
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a33dfdc287e66ea55fe3f4c896bf30a3
+    Hash: bb27925a4b8953a47be9bdd3357216b5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ea197e69058bb5d9e4c48d9e0cb75e33
+    Hash: 9abe25c0b0ed865a9a20612fca9627a0
 HashAppended: 0
 ClassTypes:
 - Class: 114
@@ -14,7 +14,17 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
-- Assets/Modules/Core/DamageTypes/dt_crush.asset
-- Assets/Modules/Core/DamageTypes/dt_pierce.asset
-- Assets/Modules/Core/DamageTypes/dt_slash.asset
+- Assets/Modules/Core/DamageTypes/dmg_cold.asset
+- Assets/Modules/Core/DamageTypes/dmg_thunder.asset
+- Assets/Modules/Core/DamageTypes/dmg_nectrotic.asset
+- Assets/Modules/Core/DamageTypes/dmg_fire.asset
+- Assets/Modules/Core/DamageTypes/dmg_bludgeoning.asset
+- Assets/Modules/Core/DamageTypes/dmg_slashing.asset
+- Assets/Modules/Core/DamageTypes/dmg_radiant.asset
+- Assets/Modules/Core/DamageTypes/dmg_acid.asset
+- Assets/Modules/Core/DamageTypes/dmg_piercing.asset
+- Assets/Modules/Core/DamageTypes/dmg_force.asset
+- Assets/Modules/Core/DamageTypes/dmg_lightning.asset
+- Assets/Modules/Core/DamageTypes/dmg_pyschic.asset
+- Assets/Modules/Core/DamageTypes/dmg_poison.asset
 Dependencies: []

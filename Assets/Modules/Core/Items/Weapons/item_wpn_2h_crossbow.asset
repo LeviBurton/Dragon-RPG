@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,18 +14,19 @@ MonoBehaviour:
   itemName: Crossbow
   bodySlot: 11
   itemType: 0
+  itemImage: {fileID: 0}
   cost: 0
   weight: 0
   isVisibleToInventory: 1
-  weaponName: 2Hand-Crossbow
   weaponRange: 15
   gripTransform: {fileID: 4012722514763844, guid: 8da9e3c996bb1334cbd90e8305caa61f,
     type: 2}
   muzzleTipTransform: {fileID: 0}
   weaponType: 5
-  recoveryTimeSeconds: 6
-  damageTypes: []
-  attackSpeedSeconds: 1.1
+  recoveryTimeSeconds: 3
+  damageTypes:
+  - {fileID: 11400000, guid: 85d6017aa4fa59a4593ca8f265f8d23c, type: 2}
+  attackSpeedSeconds: 2
   weaponPrefab: {fileID: 100050, guid: 403a4016bfa4d5e4d8b1e02c1ce5762a, type: 3}
   useOtherHand: 0
   baseDamage: 30

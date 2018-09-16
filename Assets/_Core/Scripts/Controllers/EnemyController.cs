@@ -10,10 +10,10 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using RPG.Characters;
 
-namespace RPG.Character
+namespace RPG.Characters
 {
     [RequireComponent(typeof(HealthSystem))]
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(CharacterSystem))]
     [RequireComponent(typeof(WeaponSystem))]
     public class EnemyController : MonoBehaviour
     {
@@ -29,13 +29,13 @@ namespace RPG.Character
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
 
-        CharacterController character;
+        CharacterSystem character;
         WeaponSystem weaponSystem;
         HealthSystem healthSystem;
 
         void Start()
         {
-            character = GetComponent<CharacterController>();
+            character = GetComponent<CharacterSystem>();
             AddOutlinesToMeshes();
             character.SetOutlinesEnabled(false);
 

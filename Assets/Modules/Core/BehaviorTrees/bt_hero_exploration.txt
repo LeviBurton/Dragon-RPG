@@ -1,0 +1,31 @@
+tree "Root"
+	fallback
+		tree "CheckCommandQueue"
+		tree "FollowTarget"
+		tree "Idle"
+
+tree "CheckCommandQueue"
+    sequence
+        IsCurrentCommand_Done
+        PopCommand
+	
+tree "FollowTarget"
+	while 
+		sequence 
+			IsCurrentCommand_FollowTarget
+
+		sequence
+			FollowTarget
+			
+tree "MoveToTargetCursor"
+   while
+		sequence
+			IsCurrentCommand_MoveToTargetCursor
+			not IsAtTargetCursor
+
+		sequence
+			MoveToTargetCursor
+			SetCommandDone
+
+tree "Idle"
+	Succeed
