@@ -110,6 +110,10 @@ namespace RPG.Characters
 
         public void EquipWeapon(WeaponConfig config, EHand hand = EHand.Right)
         {
+            animator.SetInteger("LeftRight", 0);
+            animator.SetInteger("LeftWeapon", 0);
+            animator.SetInteger("RightWeapon", 0);
+
             if (currentWeaponConfig != config)
                 currentWeaponConfig = config;
 

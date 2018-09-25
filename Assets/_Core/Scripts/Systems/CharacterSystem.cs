@@ -34,6 +34,7 @@ namespace RPG.Characters
         [SerializeField] NavMeshAgent aiAgent;
         [SerializeField] float accelerationMultiplier = 2.0f;
 
+        public FormationController formationController = null;
 
         Vector3 inputVec;
         Vector3 currentVelocity;
@@ -209,27 +210,33 @@ namespace RPG.Characters
             var portraitCamera = GetComponentInChildren<Camera>();
             if (portraitCamera)
             {
-                portraitTexture = new RenderTexture(512, 512, 32, RenderTextureFormat.ARGB32);
-                portraitTexture.Create();
-                portraitTexture.name = string.Format("{0} Portrait Texture", this.name);
+                portraitTexture = new RenderTexture(128, 128, 16, RenderTextureFormat.Default);
+                portraitTexture.antiAliasing = 2;
+                portraitTexture.name = string.Format("rendertex_{0}", this.name);
                 portraitCamera.targetTexture = portraitTexture;
+                portraitTexture.Create();
             }
 
             commandSystem = GetComponent<CommandSystem>();
             abilityScoreSystem = GetComponent<AbilitySystem>();
-
         }
 
         private void OnEnable()
         {
             RegisterSelectableEventHandlers();
+            RegisterHealthSystemEventHandlers();
+            RegisterWeaponSystemEventHandlers();
+        }
 
-            if (healthSystem)
-            {
-                healthSystem.onDamage += OnDamage;
-                healthSystem.onHeal += OnHeal;
-            }
+        private void OnDisable()
+        {
+            UnRegisterSelectableEventHandlers();
+            UnRegisterHealthSystemEventHandlers();
+            UnRegisterWeaponSystemEventHandlers();
+        }
 
+        private void RegisterWeaponSystemEventHandlers()
+        {
             if (weaponSystem)
             {
                 weaponSystem.onAttackComplete += OnAttackComplete;
@@ -237,20 +244,32 @@ namespace RPG.Characters
             }
         }
 
-        private void OnDisable()
+        private void RegisterHealthSystemEventHandlers()
         {
-            UnRegisterSelectableEventHandlers();
-
             if (healthSystem)
             {
-                healthSystem.onDamage -= OnDamage;
-                healthSystem.onHeal -= OnHeal;
+                healthSystem.onDamage += OnDamage;
+                healthSystem.onHeal += OnHeal;
+                healthSystem.onDeath += OnDeath;
             }
+        }
 
+        private void UnRegisterWeaponSystemEventHandlers()
+        {
             if (weaponSystem)
             {
                 weaponSystem.onAttackComplete -= OnAttackComplete;
                 weaponSystem.onHit -= OnHit;
+            }
+        }
+
+        private void UnRegisterHealthSystemEventHandlers()
+        {
+            if (healthSystem)
+            {
+                healthSystem.onDamage -= OnDamage;
+                healthSystem.onHeal -= OnHeal;
+                healthSystem.onDeath -= OnDeath;
             }
         }
 
@@ -279,7 +298,6 @@ namespace RPG.Characters
             // TODO: need acceleration/deceleration here!
             if (!aiAgent.enabled)
             {
-                //  Vector3 moveDelta = inputVec * CurrentForwardSpeed * Time.deltaTime;
                 Move(inputVec);
                 currentVelocity = characterController.velocity;
                 RotateTowardsCurrentVelocity();
@@ -287,10 +305,13 @@ namespace RPG.Characters
             else
             {
                 currentVelocity = aiAgent.velocity;
+
                 // TODO: figure out why we can't match the agents desired velocity in Move!
                 if (aiAgent.updatePosition == false)
                 {
-                    Move(aiAgent.desiredVelocity);
+                    Vector3 nextPosition = aiAgent.nextPosition;
+                    transform.position = nextPosition;
+                    RotateTowardsCurrentVelocity();
                 }
             }
         }
@@ -299,9 +320,9 @@ namespace RPG.Characters
         {
             var lookRotation = new Vector3(currentVelocity.x, 0, currentVelocity.z);
 
-            if (lookRotation != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), Time.deltaTime * MaxRotationSpeed);
+            if (lookRotation.magnitude > 0.4f)
+            { 
+                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), Time.deltaTime * MaxRotationSpeed);
             }
         }
 
@@ -322,7 +343,7 @@ namespace RPG.Characters
          
             CheckGroundStatus();
 
-            move.y = -9.8f * Time.deltaTime; // Apply gravity per second
+            move.y = -(9.8f * Time.deltaTime); // Apply gravity per second
 
             characterController.Move(move);
         }
@@ -391,9 +412,12 @@ namespace RPG.Characters
 
         public void SetDestination(Vector3 worldPosition)
         {
-            aiAgent.updatePosition = true;
-            aiAgent.isStopped = false;
-            aiAgent.destination = worldPosition;
+
+            if (aiAgent.enabled)
+            {
+                aiAgent.isStopped = false;
+                aiAgent.destination = worldPosition;
+            }
         }
 
         public void RotateTowardsPosition(Vector3 position)
@@ -464,25 +488,24 @@ namespace RPG.Characters
         {
             Debug.Log(name + ": CharacterSystem OnSelected");
             selectedProjector.enabled = true;
+            SetOutlinesEnabled(true);
         }
 
         void OnDeselected()
         {
             Debug.Log(name + ": CharacterSystem OnDeselected");
             selectedProjector.enabled = false;
+            SetOutlinesEnabled(false);
         }
 
         void OnDeHighlight()
         {
-            if (!selectable.isSelected)
-            {
-                //SetOutlinesEnabled(false);
-            }
+           
         }
 
         void OnHighlight()
         {
-           // SetOutlinesEnabled(true);
+          
         }
 
         #endregion
@@ -549,20 +572,12 @@ namespace RPG.Characters
 
         void OnDamage(float damageAmount)
         {
-            bool characterDies = healthSystem.HealthAsPercentage <= Mathf.Epsilon;
-
-            if (characterDies)
-            {
-                OnDeath();
-            }
         }
 
         void OnHeal(float healAmount)
         {
-
         }
 
-        // Note that we just call this internally -- it is not an event handler.
         void OnDeath()
         {
             currentRecoveryTimeSeconds = 0.0f;
@@ -576,6 +591,8 @@ namespace RPG.Characters
             }
 
             aiAgent.enabled = false;
+
+            SetOutlinesEnabled(false);
 
             var circleProjector = GetComponentInChildren<Projector>();
             if (circleProjector)
@@ -626,6 +643,7 @@ namespace RPG.Characters
 
             if (selectable != null)
             {
+                // TODO: switch to unity events so we can bind these in the editor.
                 selectable.onSelected += OnSelected;
                 selectable.onDeselected += OnDeselected;
                 selectable.onHighlight += OnHighlight;
@@ -654,7 +672,6 @@ namespace RPG.Characters
             }
         }
 
-        
         #region Tasks
 
         [Task]
@@ -719,10 +736,16 @@ namespace RPG.Characters
         }
 
         [Task]
-        void MoveToTargetCursor()
+        bool MoveToTargetCursor()
         {
+            if (Vector3.Distance(transform.position, targetCursor.transform.position) < aiAgent.stoppingDistance)
+            {
+                return true;
+            }
+
             targetRadius = 0.0f;
             SetDestination(targetCursor.transform.position);
+            return false;
         }
 
         // TODO: so this works, but it is not pretty, at all.
@@ -806,6 +829,7 @@ namespace RPG.Characters
             if (target)
             {
                 Quaternion lookAtRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                lookAtRotation.x = 0; lookAtRotation.z = 0;
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, aiAgent.angularSpeed * Time.deltaTime);
             }
 
@@ -968,7 +992,6 @@ namespace RPG.Characters
                 chooseRandomTime = 5.0f;
                 return true;
             }
-
 
             return false;
         }

@@ -34,18 +34,18 @@ namespace RPG.Character
 
         private string gameDataFileName = "gameData.json";
 
+        // TODO: make this private as needed.
         public GameData gameData;
         public List<HeroController> heroesInPlay;
-        public ExplorationModeCamera explorationModeCameraRig;
+        public ExploreModeCameraController explorationModeCameraRig;
+        public List<EncounterSystem> encounters;
+        public List<LocationEntryPoint> locationEntryPoints;
+        public EncounterSystem currentEncounterSystem;
 
         private void Awake()
         {
             LoadCoreAssetBundles();
             LoadGameData();
-        }
-
-        private void Start()
-        {
             InitScene();
         }
 
@@ -56,19 +56,53 @@ namespace RPG.Character
             // etc..
 
             // For now, just grab them from the scene
-            heroesInPlay = FindObjectsOfType<HeroController>().ToList();
-            explorationModeCameraRig = FindObjectOfType<ExplorationModeCamera>();
+            heroesInPlay = FindObjectsOfType<HeroController>().OrderBy(hero => hero.isPrimaryHero).ToList();
+            explorationModeCameraRig = FindObjectOfType<ExploreModeCameraController>();
+            locationEntryPoints = FindObjectsOfType<LocationEntryPoint>().ToList();
+            encounters = FindObjectsOfType<EncounterSystem>().ToList();
 
+            var primaryHero = heroesInPlay.Where(hero => hero.isPrimaryHero).SingleOrDefault();
+            var formationController = primaryHero.GetComponent<CharacterSystem>().formationController;
+            var startingPoint = locationEntryPoints.SingleOrDefault(entry => entry.isStartEntryPoint == true);
+
+            formationController.transform.position = startingPoint.transform.position;
+            formationController.SetLeader(primaryHero.gameObject);
+
+        }
+
+        private void Start()
+        {
             foreach (var hero in heroesInPlay)
             {
                 hero.GetComponent<Selectable>().Deselect();
             }
 
-            heroesInPlay[0].GetComponent<Selectable>().Select();
-
-            explorationModeCameraRig.SetTarget(heroesInPlay[0].transform);
+            var primaryHero = heroesInPlay.Where(hero => hero.isPrimaryHero).SingleOrDefault();
+            primaryHero.GetComponent<Selectable>().Select();
+            explorationModeCameraRig.SetTarget(primaryHero.transform);
         }
 
+        #region Encounter Event Handlers
+        public void OnEncounterStart(EncounterSystem encounterSystem)
+        {
+            currentEncounterSystem = encounterSystem;
+  
+            Debug.LogFormat("Encounter {0} triggered, starting.", encounterSystem.name);
+            foreach (var e in encounterSystem.enemies)
+            {
+                e.GetComponent<Panda.BehaviourTree>().enabled = true;
+            }
+        }
+
+        public void OnEncounterEnd(EncounterSystem encounterSystem)
+        {
+            currentEncounterSystem = null;
+            Time.timeScale = 1.0f;
+        }
+
+        #endregion
+
+        #region Asset Bundlees
         public void LoadCoreAssetBundles()
         {
             // TODO: to support modularity in the future, we should be able to specify loading of a specific modules assetbundles.
@@ -165,6 +199,7 @@ namespace RPG.Character
                 genderConfigs.Add(config.name, config);
             }
         }
+        #endregion
 
         public void LoadGameData()
         {
@@ -185,12 +220,6 @@ namespace RPG.Character
             string dataAsJson = JsonUtility.ToJson(gameData);
             string filePath = Path.Combine(Application.streamingAssetsPath, gameDataFileName);
             File.WriteAllText(filePath, dataAsJson);
-        }
-
-
-        public void AddHeroToParty(HeroData hero)
-        {
-            gameData.partyHeroes.Add(hero);
         }
 
         public void SetHeroData(HeroData heroData)

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Rewired;
 
 namespace RTS_Cam
 {
@@ -7,6 +8,7 @@ namespace RTS_Cam
     [AddComponentMenu("RTS Camera")]
     public class RTS_Camera : MonoBehaviour
     {
+        Player rewiredPlayer = null;
 
         #region Foldouts
 
@@ -173,6 +175,7 @@ namespace RTS_Cam
 
         private void Start()
         {
+            rewiredPlayer = ReInput.players.GetPlayer(0);
             zoomPos = 0.75f;
 
             m_Transform = transform;
@@ -287,10 +290,13 @@ namespace RTS_Cam
         private void HeightCalculation()
         {
             float distanceToGround = DistanceToGround();
+    
+            var cameraZoom = rewiredPlayer.GetAxis("Camera Zoom");
+            Debug.LogFormat("scrollwheel: {0} cameraZoom: {1}", ScrollWheel, cameraZoom);
 
             if (useScrollwheelZooming)
             {
-                zoomPos -= ScrollWheel * Time.unscaledDeltaTime * scrollWheelZoomingSensitivity;
+                zoomPos -= cameraZoom * Time.unscaledDeltaTime * 0.5f;
             }
             if (useKeyboardZooming)
             {
@@ -301,13 +307,16 @@ namespace RTS_Cam
 
             float targetHeight = Mathf.Lerp(minHeight, maxHeight, zoomPos);
             float difference = 0;
-
+            
             // 
             // if (distanceToGround != targetHeight)
             //  difference = targetHeight - distanceToGround;
 
             m_Transform.position = Vector3.Lerp(m_Transform.position,
-                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z), Time.unscaledDeltaTime * heightDampening);
+                                                new Vector3(m_Transform.position.x, 
+                                                            targetHeight + difference, 
+                                                            m_Transform.position.z), 
+                                                Time.unscaledDeltaTime * heightDampening);
         }
 
         /// <summary>

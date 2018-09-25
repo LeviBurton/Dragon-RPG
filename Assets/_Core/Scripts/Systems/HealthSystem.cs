@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace RPG.Characters
@@ -10,6 +11,9 @@ namespace RPG.Characters
 
         public delegate void OnHeal(float healAmount);
         public event OnHeal onHeal;
+
+        public delegate void OnDeath();
+        public event OnDeath onDeath;
 
         [SerializeField] float maxHealthPoints = 100f;      // TODO: get from owner config (such as Enemy Config, Player Config)
         [SerializeField] float deathVanishSeconds = 2.0f;
@@ -73,6 +77,11 @@ namespace RPG.Characters
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damageAmount, 0f, maxHealthPoints);
             onDamage(damageAmount);
+
+            if (HealthAsPercentage <= Mathf.Epsilon)
+            {
+                onDeath();
+            }
         }
     }
 }

@@ -12,6 +12,29 @@ public class FormationController : MonoBehaviour
 
     float updatePathTimer = 1.0f;
 
+    public void SetLeader(GameObject newLeader)
+    {
+        var currentLeader = formationSlots[0].GetObjectInSlot();
+
+        foreach (var slot in formationSlots)
+        {
+            var o = slot.GetObjectInSlot();
+            if (o == newLeader)
+            {
+                slot.SetObjectInSlot(currentLeader);
+            }
+        }
+
+        formationSlots[0].SetObjectInSlot(newLeader);
+    }
+
+    public void SwapObjectsInSlot(FormationSlot sourceslot, FormationSlot destinationSlot)
+    {
+        var tmp = sourceslot;
+        sourceslot = destinationSlot;
+        destinationSlot = tmp;
+    }
+
     private void Awake()
     {
         formationSlots = new List<FormationSlot>();
@@ -22,6 +45,15 @@ public class FormationController : MonoBehaviour
             formationOffsets.Add(child.localPosition);
         }
 
+    }
+
+    void Start()
+    {
+        foreach (var slot in formationSlots)
+        {
+            var obj = slot.GetObjectInSlot();
+            obj.transform.position = slot.transform.position;
+        }
     }
 
     void Update()

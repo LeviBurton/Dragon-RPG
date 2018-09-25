@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_2_7;UNITY_2018_2;UNITY_2018;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_2_7;UNITY_2018_2;UNITY_2018;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT;UNITY_POST_PROCESSING_STACK_V2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -78,7 +78,6 @@
     <Compile Include="Assets\_Core\Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CameraRaycaster.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\CharacterCamera.cs" />
-    <Compile Include="Assets\_Core\Scripts\Camera\ExplorationModeCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\PortraitCamera.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\PortraitRenderer.cs" />
     <Compile Include="Assets\_Core\Scripts\Camera\RTS_Camera.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="Assets\_Core\Scripts\Controllers\CharacterGroupController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\DataController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Controllers\ExploreModeCameraController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\FormationController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\_Core\Scripts\Controllers\HeroController.cs" />
@@ -111,17 +111,22 @@
     <Compile Include="Assets\_Core\Scripts\Misc\Command.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\DominantHand.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\FormationSlot.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\LocationEntryPoint.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\Noise.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\ObjectSelector.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\OtherHand.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\Selectable.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\StaticClasses.cs" />
+    <Compile Include="Assets\_Core\Scripts\Misc\TextureCreator.cs" />
     <Compile Include="Assets\_Core\Scripts\Misc\WaypointContainer.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\AbilitySystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\CharacterSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\CommandSystem.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\EncounterSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\HealthSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\InventorySystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\SkillSystem.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\SpawnerSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\WeaponSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\ExitButton.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\GameTimeStats.cs" />
@@ -139,6 +144,7 @@
     <Compile Include="Assets\_Core\Scripts\UI\UI_AbilityEditor_Row.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_Character_Creation.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_Icon.cs" />
+    <Compile Include="Assets\_Core\Scripts\UnityEvents\UnityEventTypes.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
@@ -281,19 +287,6 @@
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\Unit.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\UnitExplosion.cs" />
     <Compile Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\WaypointPath.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Misc\HueCube.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Procedural Mesh\ExtrudeRandomEdges.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_Constant.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_Enum.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_IconUtility.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_IgnoreSnapAttribute.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\Classes\pg_Util.cs" />
-    <Compile Include="Assets\ThirdParty\ProCore\ProGrids\MonoBehaviour\pg_IgnoreSnap.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Code\CameraController.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Code\GUIControls.cs" />
     <Compile Include="Assets\ThirdParty\RPG Character Animation Pack\Code\IKHands.cs" />
@@ -316,26 +309,20 @@
     <Compile Include="Assets\ThirdParty\RtsStyleSelection\Script\Utils.cs" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\Patroller.BT.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProGrids\Shader\pg_GridShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_enemy_ranged_queue.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
     <None Include="Assets\_Core\Shaders\UnlitAlphaBlendedTextureProjector.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\01_Move\Assets\Move.BT.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ShowAlphaChannel.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\02_PlayTag\Assets\TagDialogue.BT.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_SelectionPicker.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\About\changelog.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\DiffuseVertexColor.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Core\PandaBehaviour.xml" />
     <None Include="Assets\ThirdParty\PandaBehaviour\README.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\SunShaftsComposite.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_random.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
-    <None Include="Assets\_Core\Shaders\Grid.shader" />
+    <None Include="Assets\_Core\Shaders\shader_grid.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\Player.BT.txt" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\Sniper.BT.txt" />
@@ -346,7 +333,6 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\00_ChangeColor\Assets\ChangeColor.BT.txt" />
     <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Guidelines.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_FaceHighlight.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_support.txt" />
     <None Include="Assets\Rewired\Extras\TouchControls\Shaders\ColorShift.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\MotionBlur.shader" />
@@ -357,22 +343,17 @@
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\Hunter.BT.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\RadialBlur.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+    <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Readme.txt" />
     <None Include="Assets\Rewired\Documentation\licences.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ContrastComposite.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\FisheyeShader.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_UnlitSolidColor.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_hero_default.txt" />
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_ReferenceUnlit.shader" />
+    <None Include="Assets\_Core\Shaders\shader_gradient.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\frag_ao.cginc" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\03_Shooter\Assets\AI.BT.lib.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\DiffuseTextureBlend.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_StandardVertexColor.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_nothing.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_VertexPicker.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_HideVertices.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
     <None Include="Assets\_Core\Shaders\shader_dissolve.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\bt_enemy_group.txt" />
@@ -381,16 +362,12 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\SSAOShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ConvertDepth.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_FacePicker.shader" />
     <None Include="Assets\Modules\Core\BehaviorTrees\be_enemy_ranged.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\CreaseApply.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\GlobalFog.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
@@ -400,14 +377,12 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\CameraMotionBlur.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\About\pc_AboutEntry_ProBuilder.txt" />
     <None Include="Assets\_Environment\Water\Water\Shaders\FXWaterPro.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\02_PlayTag\Assets\PlayTag.commented.BT.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\ProjectorAdditiveTint.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\MotionBlurClear.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
@@ -417,8 +392,6 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\VortexEffect.shader" />
     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
     <None Include="Assets\ThirdParty\RtsStyleSelection\Projector\ProjectorAdditiveTint.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProGrids\About\changelog.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_NormalPreview.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\NoiseAndGrain.shader" />
     <None Include="Assets\ThirdParty\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\VignettingShader.shader" />
@@ -434,20 +407,29 @@
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
     <None Include="Assets\_Core\Shaders\CircleProjectcionShader.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\Examples\02_PlayTag\Assets\PlayTag.BT.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\BlendModesOverlay.shader" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\readme.txt" />
     <None Include="Assets\SETUP &amp; STANDARDS.txt" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\SimpleClear.shader" />
     <None Include="Assets\ThirdParty\POLYGON_Renderbox\Shaders\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
     <None Include="Assets\ThirdParty\PandaBehaviour\ChangeLog.txt" />
-    <None Include="Assets\ThirdParty\ProCore\ProBuilder\Shader\pb_SmoothingPreview.shader" />
     <None Include="Assets\_Core\Shaders\GridProjectionShader.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
     <None Include="Assets\ThirdParty\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids.Editor">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -456,6 +438,18 @@
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AssetBundleBrowser.Editor">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -667,23 +661,23 @@
     <Reference Include="PandaBehaviour">
       <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Assets/ThirdParty/PandaBehaviour/Core/PandaBehaviour.dll</HintPath>
     </Reference>
-    <Reference Include="ProBuilderCore-Unity5">
-      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Assets/ThirdParty/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
-    </Reference>
-    <Reference Include="ProBuilderMeshOps-Unity5">
-      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Assets/ThirdParty/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
-    </Reference>
-    <Reference Include="KdTreeLib">
-      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Assets/ThirdParty/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="pb_Stl">
-      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Assets/ThirdParty/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
-    </Reference>
-    <Reference Include="Poly2Tri">
-      <HintPath>C:/Projects/Dragon-RPG/Dragon-RPG/Assets/ThirdParty/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderMeshOps.dll</HintPath>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/levib/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
@@ -715,6 +709,20 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Unity.Recorder.Editor.csproj">
+      <Project>{D43E4754-8DA7-3611-F5EA-3D5740764C87}</Project>
+      <Name>Unity.Recorder.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.csproj">
+      <Project>{E4539ACD-BE43-05DF-5D29-3456F73E5720}</Project>
+      <Name>Unity.Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.Samples.csproj">
+      <Project>{5ABB4DE2-0BD2-33C9-0183-4C2F24F532FC}</Project>
+      <Name>Unity.Recorder.Samples</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

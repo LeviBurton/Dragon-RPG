@@ -56,25 +56,24 @@ namespace RPG.Character
         Quaternion moveToRotation;
         Vector3 walkToClickRotationPosition;
         Vector3 controllerMove;
-        ExplorationModeCamera explorerModeCamera;
+        ExploreModeCameraController explorerModeCamera;
 
         [SerializeField] CharacterGroupController heroGroupController;
 
         void Start()
         {
             mainCamera = Camera.main.transform;
-            explorerModeCamera = FindObjectOfType<ExplorationModeCamera>();
+            explorerModeCamera = FindObjectOfType<ExploreModeCameraController>();
             rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
             playerHeroes = gameController.heroesInPlay;
 
-            selectedHeroIndex = 0;
-            selectedHero = playerHeroes[selectedHeroIndex];
+            selectedHero = playerHeroes.Where(hero => hero.isPrimaryHero).SingleOrDefault();
+            selectedHeroIndex = playerHeroes.IndexOf(selectedHero);
 
             //axisToolInstance = Instantiate(axisToolPrefab, this.transform);
             //axisToolInstance.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         }
 
-        // TODO: refactor.  this is a mess
         void GetRewiredInput()
         {
             float h = rewiredPlayer.GetAxis("Move Horizontal");
@@ -95,7 +94,6 @@ namespace RPG.Character
 
         }
 
-        // TODO: refactor.  this is a mess
         void CheckIfNextPreviousHeroRequested()
         {
             if (rewiredPlayer.GetButtonDown("Select Previous Hero"))
@@ -127,8 +125,11 @@ namespace RPG.Character
 
             // wrap around to start of playerHeroes array if at the end
             selectedHeroIndex = ((++selectedHeroIndex % playerHeroes.Count) + playerHeroes.Count) % playerHeroes.Count;
-
             selectedHero = playerHeroes[selectedHeroIndex];
+
+            var character = selectedHero.GetComponent<CharacterSystem>();
+            character.formationController.SetLeader(selectedHero.gameObject);
+
             selectedHero.GetComponent<Selectable>().Select();
             selectedHero.GetComponent<NavMeshAgent>().enabled = false;
             explorerModeCamera.SetTarget(selectedHero.transform);
@@ -143,9 +144,13 @@ namespace RPG.Character
 
             // wrap around to end of playerHeroes array if at the start
             selectedHeroIndex = ((--selectedHeroIndex % playerHeroes.Count) + playerHeroes.Count) % playerHeroes.Count;
-
             selectedHero = playerHeroes[selectedHeroIndex];
+
+            var character = selectedHero.GetComponent<CharacterSystem>();
+            character.formationController.SetLeader(selectedHero.gameObject);
+
             selectedHero.GetComponent<Selectable>().Select();
+            selectedHero.GetComponent<NavMeshAgent>().enabled = false;
             explorerModeCamera.SetTarget(selectedHero.transform);
         }
 
@@ -159,7 +164,7 @@ namespace RPG.Character
                 selectedHero.GetComponent<CharacterSystem>().SetMovementInputVector(controllerMove);
             }
 
-            //HandlePause();
+            HandlePause();
 
             #region Old Mouse Code 
             //if (!EventSystem.current.IsPointerOverGameObject())

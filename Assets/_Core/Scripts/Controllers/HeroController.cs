@@ -16,6 +16,8 @@ namespace RPG.Characters
         [SerializeField] HeroConfig friendlyConfig;
         [SerializeField] Light selectedLight = null;
 
+        public bool isPrimaryHero = false;
+
         CharacterSystem character;
         WeaponSystem weaponSystem;
         HealthSystem healthSystem;
@@ -32,11 +34,16 @@ namespace RPG.Characters
             UnRegisterEventHandlers();
         }
 
-        void Start()
+        void Awake()
         {
             character = GetComponent<CharacterSystem>();
             weaponSystem = character.GetComponent<WeaponSystem>();
             healthSystem = character.GetComponent<HealthSystem>();
+        }
+
+        void Start()
+        {
+            AddOutlinesToMeshes();
         }
 
         void RegisterEventHandlers()
@@ -47,6 +54,11 @@ namespace RPG.Characters
                 selectable.onSelected += OnSelected;
                 selectable.onDeselected += OnDeselected;
             }
+
+            if (healthSystem)
+            {
+                healthSystem.onDamage += OnDamage;
+            }
         }
 
         void UnRegisterEventHandlers()
@@ -56,6 +68,21 @@ namespace RPG.Characters
             {
                 selectable.onSelected -= OnSelected;
                 selectable.onDeselected -= OnDeselected;
+            }
+
+            if (healthSystem)
+            {
+                healthSystem.onDamage -= OnDamage;
+            }
+        }
+
+        public void OnDamage(float damageAmount)
+        {
+            bool characterDies = healthSystem.HealthAsPercentage <= Mathf.Epsilon;
+
+            if (characterDies)
+            {
+                selectedLight.enabled = false;
             }
         }
 
