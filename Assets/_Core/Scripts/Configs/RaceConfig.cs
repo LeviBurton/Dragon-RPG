@@ -11,6 +11,9 @@ public class RaceConfig : ScriptableObject
     [TextArea(3, 30)]
     public string Description;
 
+    public int BaseMovementSpeed;
+
     public Sprite spriteIcon;
+
 
 }

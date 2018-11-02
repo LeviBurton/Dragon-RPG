@@ -272,7 +272,7 @@ public class UI_Character_Creation : MonoBehaviour {
 
         foreach (var ability in gameController.abilityConfigs.OrderBy(x => x.Value.SortOrder))
         {
-            var data = new AbilityData(ability.Key, ability.Value, 8);
+            var data = new AbilityData(ability.Value.Type, ability.Value.Name, ability.Value, 8);
 
             newHeroData.abilities.Add(data);
         }

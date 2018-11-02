@@ -18,7 +18,7 @@ public class UI_AbilityEditor : MonoBehaviour
         {
             var go = Instantiate(rowPrefab, transform);
             var row = go.GetComponent<UI_AbilityEditor_Row>();
-            row.abilityData = new AbilityData(ability.Key, ability.Value, 12);
+            row.abilityData = new AbilityData(ability.Value.Type, ability.Value.Name, ability.Value, 12);
         }
 	}
 }

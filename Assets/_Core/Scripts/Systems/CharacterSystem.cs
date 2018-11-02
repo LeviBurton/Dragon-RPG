@@ -38,11 +38,24 @@ namespace RPG.Characters
 
         Vector3 inputVec;
         Vector3 currentVelocity;
-
         float turnAmount;
         float forwardAmount;
         Vector3 inputVector;
         float currentForwardSpeed;
+        bool canMove;
+        bool isStopping = false;
+        bool isStopped;
+        bool inputEnabled = false;
+
+        public void EnableInput(bool enable)
+        {
+            if (!enable)
+            {
+                inputVec = Vector3.zero;
+            }
+
+            inputEnabled = enable;
+        }
 
         public float CurrentForwardSpeed
         {
@@ -71,6 +84,17 @@ namespace RPG.Characters
             }
         }
 
+
+
+
+
+        [Task]
+        public bool Stop()
+        {
+            isStopping = true;
+            return true;
+        }
+
         [Task]
         public bool SetWalking()
         {
@@ -94,6 +118,11 @@ namespace RPG.Characters
             CurrentSideSpeed = MaxForwardSpeed;
             return true;
         }
+
+
+
+
+
 
         [SerializeField] float maxForwardSpeed;
         public float MaxForwardSpeed
@@ -328,7 +357,10 @@ namespace RPG.Characters
 
         public void SetMovementInputVector(Vector3 moveVector)
         {
-            inputVec = moveVector;
+            if (!inputEnabled)
+            {
+                inputVec = moveVector;
+            }
         }
 
         public void Move(Vector3 move)
@@ -400,6 +432,13 @@ namespace RPG.Characters
 
         #region Movement
 
+        [Task]
+        public void StopMoving()
+        {
+            aiAgent.isStopped = true;
+            isStopping = true;
+        }
+
         public float GetStoppingDistance()
         {
             return aiAgent.stoppingDistance;
@@ -412,7 +451,6 @@ namespace RPG.Characters
 
         public void SetDestination(Vector3 worldPosition)
         {
-
             if (aiAgent.enabled)
             {
                 aiAgent.isStopped = false;
@@ -681,14 +719,7 @@ namespace RPG.Characters
             return true;
         }
         
-        [Task]
-        public bool StopMoving()
-        {
-            aiAgent.isStopped = true;
-
-            return true;
-        }
-
+       
         // TODO: i feel having a separate one of these for target vs target cursor is bad design, but whatever...
         [Task]
         bool IsAtTargetCursor()

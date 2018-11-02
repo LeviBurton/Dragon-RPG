@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,6 +14,7 @@ MonoBehaviour:
   SortOrder: 3
   Name: Intelligence
   ShortName: Int
+  Type: 3
   Description: "Intelligence determines how well your character learns and reasons.
     \ Intelligence is important for any character who wants to have a wide assortment
     of skills, and it is the ability associated with Smart heroes.\n  You apply your
@@ -22,3 +23,4 @@ MonoBehaviour:
     number below 1; your character always gets at least 1 skill point per level)\n\nSearch
     and Knowledge checks, and other skill checks for which Intelligence is the key
     ability\n</indent>"
+  assetPath: 

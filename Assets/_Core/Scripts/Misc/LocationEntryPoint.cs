@@ -11,6 +11,12 @@ public enum ELocationEntryType
 
 public class LocationEntryPoint : MonoBehaviour
 {
+    public float startCameraRotationAngle = 130.0f;
+    public float startCameraZoom = 15.0f;
+
+    public Event_LocationEntryEnter onLocationEnter;
+    public Event_LocationEntryExit onLocationExit;
+
     public bool isStartEntryPoint = false;
     public LocationEntryPoint toLocationEntryPoint;
     public LocationEntryPoint fromLocationEntryPoint;
@@ -20,13 +26,10 @@ public class LocationEntryPoint : MonoBehaviour
     public bool enableSceneViewLabel = false;
     public ELocationEntryType entryType = ELocationEntryType.Both;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+        // Test.
+        onLocationEnter.Invoke(this);
+    }
+
 }

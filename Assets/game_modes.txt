@@ -1,0 +1,22 @@
+﻿General notes, etc. concerning the overall game flow/design
+
+The game will consist of 2 modes:
+
+	1. Exploration Mode
+	2. Encounter Mode
+
+Exploration Mode
+Exporation mode is where the player can control a single hero at a time, and the rest of the party will follow
+It is in this mode that the player explores the world.  The player can control a single hero at a time.  Unselected heroes
+will follow the selected hero.  In this mode the player can interact with objects such as: 
+	
+	* Doors
+	* Entrance/Exits
+	* NPCs
+	* Traps
+	* Items
+	* Loot
+
+Encounter Mode
+Encoutner mode is where the player participates in turn-based combat with enemies.  Encounter mode is generall triggered with a collider in the world (an Encounter component)
+

@@ -14,6 +14,7 @@ public class ExploreModeCameraController : MonoBehaviour
     public float zoomSpeed = 10.0f;
     public float maxZoom = 50.0f;
     public float minZoom = 2.0f;
+    public float zoomControlSensitivity = 0.25f;
 
     Player rewiredPlayer;
     Vector3 positionDampVelocity;
@@ -22,19 +23,20 @@ public class ExploreModeCameraController : MonoBehaviour
     int rewiredPlayerId = 0;
     float inputCameraZoom;
     float inputCameraRotate;
-    float zoomPos = 0; //value in range (0, 1) used as t in Matf.Lerp
 
     void Start ()
     {
         rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
-        zoomPos = 0.5f;
     }
 
     void Update()
     {
         inputCameraZoom = rewiredPlayer.GetAxis("Camera Zoom");
         inputCameraRotate = rewiredPlayer.GetAxis("Camera Rotate");
+    }
 
+    void LateUpdate()
+    {
         if (target != null)
         {
             FollowTarget();
@@ -46,27 +48,20 @@ public class ExploreModeCameraController : MonoBehaviour
 
     private void ZoomCamera()
     {
-        var cameraZoom = rewiredPlayer.GetAxis("Camera Zoom");
+        if (Mathf.Abs(inputCameraZoom) < zoomControlSensitivity)
+            return;
+
         var distanceToTargetOffset = Vector3.Distance(mainCamera.transform.position, targetLookAtOffset.position);
 
-        // TODO: lerp these values.
+        // check to see if we are within the min/max extents, or at the extents.
+        // when at minZoom allow zooming out, when at maxZoom allow zooming in, when between, allow zoom in/out.
+        bool bCanZoom = distanceToTargetOffset <= minZoom && inputCameraZoom < 0 ||
+                        distanceToTargetOffset >= maxZoom && inputCameraZoom > 0 ||
+                        distanceToTargetOffset < maxZoom && distanceToTargetOffset > minZoom;
 
-        // We are at the minimum extents but want to zoom out.
-        if (distanceToTargetOffset <= minZoom && cameraZoom < 0)
+        if (bCanZoom)
         {
-            mainCamera.transform.position += mainCamera.transform.forward * cameraZoom;
-        }
-
-        // We are at the maximum extents but want to zoom in.
-        if (distanceToTargetOffset >= maxZoom && cameraZoom > 0)
-        {
-            mainCamera.transform.position += mainCamera.transform.forward * cameraZoom;
-        }
-
-        // We are in between the min/max extents and can zoom in/out freely.
-        if (distanceToTargetOffset < maxZoom && distanceToTargetOffset > minZoom)
-        {
-            mainCamera.transform.position += mainCamera.transform.forward * cameraZoom;
+            mainCamera.transform.position += mainCamera.transform.forward * inputCameraZoom * zoomSpeed * Time.unscaledDeltaTime;
         }
     }
 
@@ -81,10 +76,6 @@ public class ExploreModeCameraController : MonoBehaviour
     void LookAtTarget()
     {
         mainCamera.transform.LookAt(transform.position + transform.InverseTransformPoint(targetLookAtOffset.position));
-
-        //Vector3 direction = target.position - cameraOffset.position;
-        //Quaternion rotation = Quaternion.LookRotation(direction);
-        //cameraOffset.rotation = Quaternion.Slerp(transform.rotation, rotation, lookRotationSpeed * Time.unscaledDeltaTime);
     }
 
     void FollowTarget()

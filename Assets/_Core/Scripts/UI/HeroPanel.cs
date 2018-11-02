@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class HeroPanel : MonoBehaviour
 {
     [SerializeField] HeroController heroController;
-    [SerializeField] PlayerController playerController;
+    [SerializeField] ExplorationMode playerController;
     [SerializeField] Color hoveredBorderColor;
     [SerializeField] Color selectedBorderColor;
     [SerializeField] Color normalBorderColor;

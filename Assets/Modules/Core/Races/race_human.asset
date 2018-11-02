@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: 'Descriptive text explaining what a <color=#FFFF00>human</color> is.
 
 '
+  BaseMovementSpeed: 10
   spriteIcon: {fileID: 21300000, guid: c17b280198ab025429fe32ee6d69bc1f, type: 3}

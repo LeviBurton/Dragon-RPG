@@ -27,7 +27,7 @@ namespace RPG.Characters
             foreach (RaycastHit hit in hits)
             {
                 var damageable = hit.collider.gameObject.GetComponent<HealthSystem>();
-                bool hitPlayer = hit.collider.gameObject.GetComponent<PlayerController>();
+                bool hitPlayer = hit.collider.gameObject.GetComponent<ExplorationMode>();
 
                 if (damageable != null && !hitPlayer)
                 {

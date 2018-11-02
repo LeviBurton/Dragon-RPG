@@ -25,6 +25,8 @@ namespace RPG.Characters
         [SerializeField] Sprite attackActionImage;
         [SerializeField] Image actionImage;
 
+        public bool isMyTurn = false;
+
         private float minRecoveryTimeSeconds;
         private float maxRecoveryTimeSeconds;
         private float currentRecoveryTimeSeconds;
@@ -69,11 +71,10 @@ namespace RPG.Characters
             }
         }
 
-        void OnDrawGizmos()
+        [Task]
+        public bool IsMyTurn()
         {
-         
+            return isMyTurn;
         }
-
-   
     }
 }

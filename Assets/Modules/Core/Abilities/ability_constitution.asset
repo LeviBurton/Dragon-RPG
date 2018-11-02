@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,9 +14,11 @@ MonoBehaviour:
   SortOrder: 2
   Name: Constitution
   ShortName: Con
+  Type: 2
   Description: "Constitution represents your character's health and stamina.  Constitution
     is the ability associated with Tough heroes.\n  You apply your Constitution modifier
     to:\n\n<indent=15%>\nEach die roll for gaining additional hit points (though a
     Constitution penalty can never reduce a hit point roll below 1; that is, a character
     always gains at least 1 hit point each time they gain a level)\n\nFortitutde saving
     throws, for resisting poison and similar threats\n\nConcentration checks\n</indent>"
+  assetPath: 

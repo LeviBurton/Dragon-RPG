@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,6 +14,7 @@ MonoBehaviour:
   SortOrder: 1
   Name: Dexterity
   ShortName: Dex
+  Type: 1
   Description: "Dexterity measures hand-eye coordinate, agility, reflexes, and balance.
     \ This ability is important for characters who want to be good shots with ranged
     weapons (such as pistols) or who want to handle the controls of a vehicle fairly
@@ -22,3 +23,4 @@ MonoBehaviour:
     as with firearms\n\nDefense, provided the character can react to the attack\n\nReflex
     saving throws, for avoiding grenades and similar attacks\n\nMove Silently and
     Hide checks, and other skill checks for which Dexterity is the key ability\n</indent>"
+  assetPath: 

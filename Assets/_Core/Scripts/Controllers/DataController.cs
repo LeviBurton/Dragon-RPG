@@ -5,12 +5,7 @@ using UnityEngine;
 
 public class DataController : MonoBehaviour
 {
-  
-   
     void Start () {
         
     }
-
-
- 
 }

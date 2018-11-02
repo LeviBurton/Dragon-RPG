@@ -22,6 +22,15 @@ public class TextureCreator : MonoBehaviour
 
     [Range(0f, 1f)]
     public float persistence = 0.5f;
+
+    private void Start()
+    {
+        foreach (var color in coloring.colorKeys)
+        {
+            Debug.LogFormat("{0} {1}", color.color, color.time);
+        }
+    }
+
     private void Update()
     {
         if (transform.hasChanged)
@@ -30,6 +39,7 @@ public class TextureCreator : MonoBehaviour
             FillTexture();
         }
     }
+
     void OnEnable()
     {
         if (texture == null)
@@ -42,6 +52,7 @@ public class TextureCreator : MonoBehaviour
             GetComponent<MeshRenderer>().sharedMaterial.mainTexture = texture;
         }
 
+        
         FillTexture();
     }
 

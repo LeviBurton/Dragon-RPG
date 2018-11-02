@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RPG.Character
 {
@@ -18,7 +19,7 @@ namespace RPG.Character
         [NonSerialized] public Dictionary<string, FeatConfig> featConfigs = new Dictionary<string, FeatConfig>();
 
         private string abilitiesAssetBundlePath;
-        [NonSerialized] public Dictionary<string, AbilityConfig> abilityConfigs = new Dictionary<string, AbilityConfig>();
+        [NonSerialized] public Dictionary<EAbilities, AbilityConfig> abilityConfigs = new Dictionary<EAbilities, AbilityConfig>();
 
         private string classAssetBundlePath;
         [NonSerialized] public Dictionary<string, ClassConfig> classConfigs = new Dictionary<string, ClassConfig>();
@@ -41,6 +42,9 @@ namespace RPG.Character
         public List<EncounterSystem> encounters;
         public List<LocationEntryPoint> locationEntryPoints;
         public EncounterSystem currentEncounterSystem;
+
+        public EncounterMode encounterMode;
+        public ExplorationMode explorationMode;
 
         private void Awake()
         {
@@ -67,7 +71,6 @@ namespace RPG.Character
 
             formationController.transform.position = startingPoint.transform.position;
             formationController.SetLeader(primaryHero.gameObject);
-
         }
 
         private void Start()
@@ -82,22 +85,70 @@ namespace RPG.Character
             explorationModeCameraRig.SetTarget(primaryHero.transform);
         }
 
+        #region Location Entry Handlers
+        public void OnLocationEnter(LocationEntryPoint locationEntryPoint)
+        {
+            if (locationEntryPoint.isStartEntryPoint)
+            {
+                explorationModeCameraRig.transform.rotation = Quaternion.AngleAxis(locationEntryPoint.startCameraRotationAngle, Vector3.up);
+                explorationModeCameraRig.mainCamera.transform.position = explorationModeCameraRig.targetLookAtOffset.position + explorationModeCameraRig.mainCamera.transform.forward * -1.0f * locationEntryPoint.startCameraZoom;
+            }
+        }
+
+        public void OnLocationExit(LocationEntryPoint locationEntryPoint)
+        {
+
+        }
+        #endregion
+
         #region Encounter Event Handlers
         public void OnEncounterStart(EncounterSystem encounterSystem)
         {
             currentEncounterSystem = encounterSystem;
-  
-            Debug.LogFormat("Encounter {0} triggered, starting.", encounterSystem.name);
+
+            /*
+             * change game mode to encounter?
+             * disable all movement input.
+             * show encounter start UI
+             * show encounter combatants UI, establish turn order.
+
+             * lerp camera to encounter start position
+             * start moving heroes to starting encounter position (which should just be 
+             * the target the moment we start the encounter.) 
+             * 
+             */
+            // disable all input except the main menu.
+
+            // turn on behavior trees for enemies.  
+            // enemies will need some initial state
             foreach (var e in encounterSystem.enemies)
             {
-                e.GetComponent<Panda.BehaviourTree>().enabled = true;
+                var c = e.GetComponent<CharacterSystem>();
+                c.ResetTargetCursor();
+                c.ClearTarget();
             }
+            
+            // move the player heroes into position, 
+            // once they are in position, give control back to player.
+            foreach (var hero in heroesInPlay)
+            {
+                var c = hero.GetComponent<CharacterSystem>();
+                c.EnableInput(false);
+                c.ResetTargetCursor();
+                c.ClearTarget();
+            }
+            
+            explorationMode.enabled = false;
+            encounterMode.enabled = true;
         }
 
         public void OnEncounterEnd(EncounterSystem encounterSystem)
         {
             currentEncounterSystem = null;
             Time.timeScale = 1.0f;
+
+            explorationMode.enabled = true;
+            encounterMode.enabled = false;
         }
 
         #endregion
@@ -160,7 +211,7 @@ namespace RPG.Character
             {
                 Debug.Log("loading ability: " + assetName);
                 var config = abilitiesAssetBundle.LoadAsset<AbilityConfig>(assetName);
-                abilityConfigs.Add(config.name, config);
+                abilityConfigs.Add(config.Type, config);
             }
         }
 

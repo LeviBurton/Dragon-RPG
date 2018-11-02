@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,6 +14,7 @@ MonoBehaviour:
   SortOrder: 4
   Name: Wisdom
   ShortName: Wis
+  Type: 4
   Description: "Wisdom describes a character\u2019s willpower, common sense, awareness,
     and intuition.  Compared to Intelligence, Wisdom relates to being in tune with
     and aware of one's surroundings, while Intelligence represents one's ability to
@@ -25,3 +26,4 @@ MonoBehaviour:
     throws, for using certain class talents or resisting other class talents\n\nListen,
     Spot, and Treat Injury checks, and other skill checks for which Wisdom is the
     key ability\n</indent>\n"
+  assetPath: 

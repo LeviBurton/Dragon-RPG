@@ -16,7 +16,6 @@ public class LocationEntryPointHandle : MonoBehaviour
         {
             return;
         }
-
         GUIStyle style = new GUIStyle();
         style.normal.textColor = Color.white;
         style.fontSize = 12;
@@ -32,7 +31,6 @@ public class LocationEntryPointHandle : MonoBehaviour
         var size = collider.size;
         collider.center = new Vector3(0, size.y / 2, 0);
         var position = locationEntryPoint.transform.position;
-
 
         Handles.DrawWireCube(position + collider.center, size);
     }

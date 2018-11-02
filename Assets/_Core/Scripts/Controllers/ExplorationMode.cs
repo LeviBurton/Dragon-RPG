@@ -12,7 +12,7 @@ using Rewired;
 
 namespace RPG.Character
 {
-    public class PlayerController : MonoBehaviour
+    public class ExplorationMode : MonoBehaviour
     {
         [SerializeField] LayerMask enemyLayerMask = (1 << 9);
         [SerializeField] LayerMask walkableLayerMask = (1 << 8);
@@ -26,7 +26,6 @@ namespace RPG.Character
 
         Transform mainCamera;
         Transform axisToolInstance = null;
-
 
         #region Rewired stuff
         int rewiredPlayerId = 0;
@@ -60,13 +59,22 @@ namespace RPG.Character
 
         [SerializeField] CharacterGroupController heroGroupController;
 
+        private void OnEnable()
+        {
+            
+        }
+
+        private void OnDisable()
+        {
+            
+        }
+
         void Start()
         {
             mainCamera = Camera.main.transform;
             explorerModeCamera = FindObjectOfType<ExploreModeCameraController>();
             rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
             playerHeroes = gameController.heroesInPlay;
-
             selectedHero = playerHeroes.Where(hero => hero.isPrimaryHero).SingleOrDefault();
             selectedHeroIndex = playerHeroes.IndexOf(selectedHero);
 

@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,6 +14,7 @@ MonoBehaviour:
   SortOrder: 5
   Name: Charisma
   ShortName: Cha
+  Type: 5
   Description: "Charisma measures a character's force of personality, persuasiveness,
     magnetism, ability to lead, and physical attractiveness.  It represents strength
     of personaility, not merely how others perceive you in a social setting.  This
@@ -21,3 +22,4 @@ MonoBehaviour:
     modifier to:\n\n<indent=15%>\nBluff, Diplomacy, and Disguise checks, as well as
     other skill checks for which Charisma is the key ability\n\nChecks representing
     attempts to influce others\n</indent>"
+  assetPath: 
