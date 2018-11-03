@@ -202,7 +202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1178285408165458
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 114863115221931306}
   - component: {fileID: 114533684586610448}
   - component: {fileID: 114823687966334392}
+  - component: {fileID: 114886961201460370}
   m_Layer: 11
   m_Name: prefab_hero_default
   m_TagString: Player
@@ -1433,7 +1434,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168951245723564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.04, z: 0}
+  m_LocalPosition: {x: 0, y: 2.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4769890647107998}
@@ -1687,7 +1688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1344628111396350}
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 25.000042, y: 0, z: -13.9999275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4197542391356960}
@@ -2065,16 +2066,16 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.8882, g: 1, b: 0.48400003, a: 1}
-  m_Intensity: 2
-  m_Range: 10
+  m_Color: {r: 0.91707665, g: 0.9811321, b: 0.68956923, a: 1}
+  m_Intensity: 1.5
+  m_Range: 5.86
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.3
+    m_Strength: 0.533
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2187,6 +2188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friendlyConfig: {fileID: 11400000, guid: 9d6cc66b79b0cca47acda438c3c180a4, type: 2}
   selectedLight: {fileID: 108620788173431378}
+  isPrimaryHero: 1
 --- !u!114 &114155701905661706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2275,8 +2277,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6d9e3942e11fd45b2f3715e27b72aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityConfigs: []
+  abilityConfigs:
+  - {fileID: 11400000, guid: fed789db13dbc034e87d0b366f93fd2f, type: 2}
+  - {fileID: 11400000, guid: 4aeb7a1e0064e7146a402e6d19b0342d, type: 2}
+  - {fileID: 11400000, guid: cc21b9e2d810b17458438003d22f1314, type: 2}
+  - {fileID: 11400000, guid: 8c6923effe866f343a14048bbdc6d464, type: 2}
+  - {fileID: 11400000, guid: 770b41f1a2fee71448ef98957c9ffd53, type: 2}
+  - {fileID: 11400000, guid: 51bdc72a35d7d4a4c99a45fdc3ca14ad, type: 2}
   abilityData: []
+  abilities: 
 --- !u!114 &114636665187359624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2407,6 +2416,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb9e3d4a98b07c4f9c30a2aed41ce86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114886961201460370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344628111396350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24bfd243ec22bb4a80605169b8eede4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: ba476d3763cbe4544a3415cc8647e269, type: 2}
+  - {fileID: 11400000, guid: 4fbb25828197b714da87efd0acf2dfaa, type: 2}
+  - {fileID: 11400000, guid: bab5345175dad9944b8df32273b689be, type: 2}
+  - {fileID: 11400000, guid: 61c7a4761231ed743905dc8af4ceeaeb, type: 2}
+  - {fileID: 11400000, guid: 0bcd0fb4f809b174683995ab2f5a490b, type: 2}
+  - {fileID: 11400000, guid: 4aa9e8ff885a8614ebc9fc2305c5cfc0, type: 2}
 --- !u!114 &114896060710781580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2748,7 +2775,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868399571523462}
-  m_LocalRotation: {x: 0.3420201, y: 0.0000010430813, z: 0.00000037252903, w: -0.93969274}
+  m_LocalRotation: {x: 0.4226182, y: 0.0000009536743, z: 0.00000047683716, w: -0.9063078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.025000034, y: 0.025000008, z: 0.025000034}
   m_Children:

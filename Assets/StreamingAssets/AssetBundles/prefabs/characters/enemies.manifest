@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4216323446
+CRC: 2201010158
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 30132f0336154128e32cf40923cc57b5
+    Hash: e77c3d3267d2335e53f7138b7cd89db3
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 83cdd7035178251e62091e605936ff78
+    Hash: 5d050a3df0cab5dc6bf896568356ac4f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,8 +24,6 @@ ClassTypes:
 - Class: 43
   Script: {instanceID: 0}
 - Class: 48
-  Script: {instanceID: 0}
-- Class: 49
   Script: {instanceID: 0}
 - Class: 54
   Script: {instanceID: 0}
@@ -73,6 +71,10 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 7576d7cfc4e7de446b04400551cc4081, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe12b7dfd5e57be4c9d457a897dfb836, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a24bfd243ec22bb4a80605169b8eede4, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 119
@@ -97,5 +99,5 @@ Assets:
 - Assets/_Core/Prefabs/Characters/Enemies/Default Enemy.prefab
 Dependencies:
 - C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/characters
-- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/behaviortrees
 - C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/items/weapons
+- C:/Projects/Dragon-RPG/Dragon-RPG/Assets/StreamingAssets/AssetBundles/modules/core/actions

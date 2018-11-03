@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 3328868816
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: cbe386fa321cf3f939d7d53d37c2c21c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6f3c7f363afb12708a17ac3eb19205f3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Modules/Core/Actions/action_core_search.asset
+- Assets/Modules/Core/Actions/action_core_cast_spell.asset
+- Assets/Modules/Core/Actions/action_core_ready.asset
+- Assets/Modules/Core/Actions/action_core_disengage.asset
+- Assets/Modules/Core/Actions/action_core_dash.asset
+- Assets/Modules/Core/Actions/action_core_dodge.asset
+- Assets/Modules/Core/Actions/action_core_attack.asset
+- Assets/Modules/Core/Actions/action_core_use_object.asset
+- Assets/Modules/Core/Actions/action_core_help.asset
+- Assets/Modules/Core/Actions/action_core_hide.asset
+- Assets/Modules/Core/Actions/action_core_move.asset
+Dependencies: []

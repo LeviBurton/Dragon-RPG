@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_help
+  m_EditorClassIdentifier: 
+  actionName: Help
+  Description: "You can lend your aid to another creature in the\r\ncompletion of
+    a task. When you take the Help action,\r\nthe creature you aid gains advantage
+    on the next ability\r\ncheck it makes to perform the task you are helping with,\r\nprovided
+    that it makes the check before the start of\r\nyour next turn.\nAlternatively,
+    you can aid a friendly creature in\r\nattacking a creature within 5 feet of you.
+    Vou feint,\r\ndistract the target, or in some other way team up to\r\nmake your
+    ally's attack more effective. lf your ally\r\nattacks the target before your next
+    turn, the Iirst attack\r\nroll is made with advantage."
+  spriteIcon: {fileID: 0}
+  executeMethodName: core_help

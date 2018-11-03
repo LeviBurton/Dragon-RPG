@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_ready
+  m_EditorClassIdentifier: 
+  actionName: Ready
+  Description: "Sometimes you want to get the jump on a foe or wait for\r\na particular
+    circumstance before you act. To do so, you\r\ncan take lhe Ready action on your
+    turn so that you can\r\nact later in the round using your reaction.\r\nFirst,
+    you decide what perceivable circumstance\r\nwill trigger your reaction. Then,
+    you choose lhe action\r\nyou will take in response to that trigger, or you choose\r\nto
+    move up to your speed in response to it. Examples\r\ninclude \"lf lhe cultist
+    steps on the trapdoor, 1'11pull the\r\nlever that opens it,\" and \"If the goblin
+    steps next to me,\r\nI move away.\"\r\nWhen the lrigger occurs, you can either
+    take your\r\nreaction right after the trigger finishes or ignore\r\nthe trigger.
+    Remember that you can take only one\r\nreaction per round.\r\nWhen you ready a
+    spell, you cast it as normal but\r\nhold its energy, which you release with your
+    reaction\r\nwhen the trigger occurs. To be readied, a spell must'\r\nhave a casting
+    time of 1 action, and holding onto the\r\nspell's magic requires concenlration
+    (explained in\r\nchapter 10). If your concentration is broken, the spell\r\ndissipates
+    without taking effect. For example, if you are\r\nconcentrating on the web spell
+    and ready magic missiJe,\r\nyour web spell ends, and if you take damage before\r\nyou
+    release magie missiJe with your reaction, your\r\nconcentration might be broken."
+  spriteIcon: {fileID: 0}
+  executeMethodName: core_ready

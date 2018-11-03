@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Core\Editor\ActionConfigEditor.cs" />
     <Compile Include="Assets\_Core\Editor\CreateAssetBundles.cs" />
     <Compile Include="Assets\_Core\Editor\EncounterLabelHandle.cs" />
     <Compile Include="Assets\_Core\Editor\LocationEntryPointHandle.cs" />

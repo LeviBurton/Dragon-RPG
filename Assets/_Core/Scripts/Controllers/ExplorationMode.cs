@@ -75,7 +75,7 @@ namespace RPG.Character
             explorerModeCamera = FindObjectOfType<ExploreModeCameraController>();
             rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
             playerHeroes = gameController.heroesInPlay;
-            selectedHero = playerHeroes.Where(hero => hero.isPrimaryHero).SingleOrDefault();
+            selectedHero = playerHeroes.SingleOrDefault(hero => hero.isPrimaryHero);
             selectedHeroIndex = playerHeroes.IndexOf(selectedHero);
 
             //axisToolInstance = Instantiate(axisToolPrefab, this.transform);

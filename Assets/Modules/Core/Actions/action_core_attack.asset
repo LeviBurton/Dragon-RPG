@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_attack
+  m_EditorClassIdentifier: 
+  actionName: Attack
+  Description: "The most common action to take in combat is the Attack\r\naction,
+    whether you are swinging a sword, Iiring an\r\narrow fram a bow, or brawling with
+    your fists.\r\nWith this action, you make one melee or ranged\r\nattack. See the
+    \"Making an Attack\" section for the rules\r\nthat govern attacks.\r\nCertain
+    features, such as the Extra Attack feature\r\nof the Iighter, allow you to make
+    more than one attack\r\nwith this action."
+  spriteIcon: {fileID: 21300000, guid: 58a72c3810517654890a185ab78c0700, type: 3}
+  executeMethodName: core_attack

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_hide
+  m_EditorClassIdentifier: 
+  actionName: Hide
+  Description: "When you take the Hide action, you make a Dexterity\r\n(Stealth) check
+    in an attempt to hide, following the rules\r\nin chapter 7 for hiding. lfyou succeed,
+    you gain certain\r\nbenelits, as described in the \"Unseen Attackers and\r\nTargets\"
+    section later in this chapter."
+  spriteIcon: {fileID: 0}
+  executeMethodName: core_hide

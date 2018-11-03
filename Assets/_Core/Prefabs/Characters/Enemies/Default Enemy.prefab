@@ -664,9 +664,10 @@ GameObject:
   - component: {fileID: 114648082685957498}
   - component: {fileID: 143377180874118026}
   - component: {fileID: 195874635489365318}
+  - component: {fileID: 114929090057216124}
   m_Layer: 9
   m_Name: Default Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1529,7 +1530,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617351745679496}
   m_LocalRotation: {x: -0, y: -0.68429184, z: -0, w: -0.7292083}
-  m_LocalPosition: {x: 4.73, y: 2.65, z: 2.74}
+  m_LocalPosition: {x: 28, y: 0, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4757227796169498}
@@ -2323,7 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scripts:
-  - {fileID: 4900000, guid: d5bf07b29be439e459eaafe37ad652b9, type: 3}
+  - {fileID: 0}
   autoReset: 1
   tickOn: 0
   sourceInfos:
@@ -2350,6 +2351,7 @@ MonoBehaviour:
   moveActionImage: {fileID: 21300000, guid: 8834906b0f94bb44fbe52ce2624e2fc9, type: 3}
   attackActionImage: {fileID: 21300000, guid: 58a72c3810517654890a185ab78c0700, type: 3}
   actionImage: {fileID: 0}
+  isMyTurn: 0
 --- !u!114 &114743118696606000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2409,6 +2411,7 @@ MonoBehaviour:
   animator: {fileID: 95183012762861314}
   aiAgent: {fileID: 0}
   accelerationMultiplier: 2
+  formationController: {fileID: 0}
   maxForwardSpeed: 7
   maxSideSpeed: 5
   maxRotationSpeed: 720
@@ -2420,7 +2423,6 @@ MonoBehaviour:
   attackActionImage: {fileID: 0}
   characterSize: 1
   animationSpeed: 1
-  selectedLight: {fileID: 0}
   portraitTexture: {fileID: 0}
   targetCursor: {fileID: 1830531010555804}
   target: {fileID: 0}
@@ -2428,6 +2430,24 @@ MonoBehaviour:
   selectedProjector: {fileID: 119326638877238850}
   targetRadius: 0
   boundingBoxColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114929090057216124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617351745679496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24bfd243ec22bb4a80605169b8eede4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: ba476d3763cbe4544a3415cc8647e269, type: 2}
+  - {fileID: 11400000, guid: 4fbb25828197b714da87efd0acf2dfaa, type: 2}
+  - {fileID: 11400000, guid: bab5345175dad9944b8df32273b689be, type: 2}
+  - {fileID: 11400000, guid: 61c7a4761231ed743905dc8af4ceeaeb, type: 2}
+  - {fileID: 11400000, guid: 0bcd0fb4f809b174683995ab2f5a490b, type: 2}
+  - {fileID: 11400000, guid: 4aa9e8ff885a8614ebc9fc2305c5cfc0, type: 2}
 --- !u!114 &114988870045082484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2601,9 +2621,9 @@ NavMeshAgent:
   m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 99
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2739,7 +2759,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086951322681086}
-  m_LocalRotation: {x: 0.23404154, y: -0.6852317, z: -0.24940386, w: -0.643024}
+  m_LocalRotation: {x: 0.2891942, y: -0.6608872, z: -0.3081767, w: -0.62017906}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_Children:

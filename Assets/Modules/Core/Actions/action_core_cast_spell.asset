@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_cast_spell
+  m_EditorClassIdentifier: 
+  actionName: Cast Spell
+  Description: "Spellcasters such as wizards and clerics, as well as\r\nmany monsters,
+    have access to spells and can use\r\nthem to great effect in combal. Each spell
+    has a casting\r\ntime, which specilies whether the caster must use an\r\naction,
+    a reaction, minutes, or even hours to cast the\r\nspell. Casting a spell is, therefore,
+    not necessarily an\r\naction. Most spells do have a casting time of 1 action,\r\nso
+    a spellcaster often uses his or her action in combat\r\nto cast such a spell."
+  spriteIcon: {fileID: 0}
+  executeMethodName: core_cast_spell

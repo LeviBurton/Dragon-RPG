@@ -127,6 +127,7 @@
     <Compile Include="Assets\_Core\Scripts\Rules\Initiative.cs" />
     <Compile Include="Assets\_Core\Scripts\Rules\RandomNumberGenerator.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\AbilitySystem.cs" />
+    <Compile Include="Assets\_Core\Scripts\Systems\ActionSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\CharacterSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\CommandSystem.cs" />
     <Compile Include="Assets\_Core\Scripts\Systems\EncounterSystem.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Assets\_Environment\Water\Water\Scripts\Water.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\WaterBase.cs" />
     <Compile Include="Assets\_Environment\Water\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\Modules\Core\Actions\CoreActions.cs" />
     <Compile Include="Assets\Rewired\Examples\ControlRemapping1\Scripts\ControlRemappingDemo1.cs" />
     <Compile Include="Assets\Rewired\Examples\CustomControllersTilt\Scripts\CustomControllersTiltDemo.cs" />
     <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo.cs" />

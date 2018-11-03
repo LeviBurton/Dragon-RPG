@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 67290449
+CRC: 1098625515
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 53e3f966e89198c735d6a1d46323eb7f
+    Hash: df0353cf216b89eee6c4b806ad0812d5
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ad585dd02dfb5016c0dad519eab8f49
@@ -20,6 +20,7 @@ Assets:
 - Assets/Modules/Core/BehaviorTrees/bt_hero_default.txt
 - Assets/Modules/Core/BehaviorTrees/bt_nothing.txt
 - Assets/Modules/Core/BehaviorTrees/bt_enemy_group.txt
+- Assets/Modules/Core/BehaviorTrees/bt_enemy_turn_based.txt
 - Assets/Modules/Core/BehaviorTrees/be_enemy_ranged.txt
 - Assets/Modules/Core/BehaviorTrees/bt_hero_exploration.txt
 Dependencies: []

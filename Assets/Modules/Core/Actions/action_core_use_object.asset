@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_use_object
+  m_EditorClassIdentifier: 
+  actionName: Use Object
+  Description: "You normally interact with an object while doing\r\nsomething else,
+    such as when you draw a sword as part\r\nof an attack. When an object requires
+    your action for\r\nits use, you take the Use an Object action. This action\r\nis
+    also useful when you want to interact with more than\r\none object on your turno"
+  spriteIcon: {fileID: 0}
+  executeMethodName: core_use_object

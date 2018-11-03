@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b7853165c0144aa0e16b778177562, type: 3}
+  m_Name: action_core_dodge
+  m_EditorClassIdentifier: 
+  actionName: Dodge
+  Description: "When you take the Dodge action, you focus entirely on\r\navoiding
+    attacks. Until the start of your next turn, any\r\nattack roll made againsl you
+    has disadvantage if you\r\ncan see the attacker, and you make Dexterity saving\r\nthrows
+    with advantage. Vou lose this benelit if you are\r\nincapacitated (as explained
+    in appendix A) or if your\r\nspeed drops to O."
+  spriteIcon: {fileID: 0}
+  executeMethodName: core_dodge
