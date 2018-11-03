@@ -150,6 +150,8 @@
     <Compile Include="Assets\_Core\Scripts\UI\TargetTargetPanel.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_AbilityEditor.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_AbilityEditor_Row.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\UI_ActionBar.cs" />
+    <Compile Include="Assets\_Core\Scripts\UI\UI_ActionButton.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_Character_Creation.cs" />
     <Compile Include="Assets\_Core\Scripts\UI\UI_Icon.cs" />
     <Compile Include="Assets\_Core\Scripts\UnityEvents\UnityEventTypes.cs" />

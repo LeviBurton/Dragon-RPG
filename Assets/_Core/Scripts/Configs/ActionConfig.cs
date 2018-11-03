@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "RPG/Action")]
 public class ActionConfig : ScriptableObject
 {
+    //public delegate void OnActionComplete(ActionConfig actionConfig, GameObject executer);
+    //public event OnActionComplete onActionComplete;
+
     public string actionName;
 
     [TextArea(3, 30)]
@@ -14,7 +17,7 @@ public class ActionConfig : ScriptableObject
     public Sprite spriteIcon;
 
     // We bind the functionality of the action to a static method.  This allows us to 
-    // customize the behavior in code and bind that to this action asset.
+    // define the behavior in code then bind that to this action asset.
     public string executeMethodName = string.Empty;
     public MethodInfo executeMethod = null;
     private Action<ActionConfig, GameObject> actionExecuteDelegate = null;
@@ -62,6 +65,8 @@ public class ActionConfig : ScriptableObject
         actionExecuteDelegate = (Action<ActionConfig, GameObject>)Delegate.CreateDelegate(typeof(Action<ActionConfig, GameObject>), executeMethod);
     }
 
+    // This method is what we will call when the user wants to execute one of their actions.  
+    // It will call the bound delegate we selected in the inspector.
     public void Execute(GameObject executer)
     {
         if (actionExecuteDelegate == null)

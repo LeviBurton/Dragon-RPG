@@ -71,10 +71,9 @@ public class ActionConfigEditor : Editor
         EditorGUILayout.PropertyField(spriteIconProp);
 
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Action Method", GUILayout.ExpandWidth(false));
+        EditorGUILayout.LabelField("Action Method");
         selectedActionMethod = EditorGUILayout.Popup(selectedActionMethod, actionMethodNames.ToArray());
-        targetActionConfig.executeMethodName = actionMethodNames[selectedActionMethod];
-        targetActionConfig.BindExecuteMethod(targetActionConfig.executeMethodName);
+        targetActionConfig.BindExecuteMethod(actionMethodNames[selectedActionMethod]);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.EndVertical();

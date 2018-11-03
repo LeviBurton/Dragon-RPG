@@ -18,5 +18,5 @@ MonoBehaviour:
     a reaction, minutes, or even hours to cast the\r\nspell. Casting a spell is, therefore,
     not necessarily an\r\naction. Most spells do have a casting time of 1 action,\r\nso
     a spellcaster often uses his or her action in combat\r\nto cast such a spell."
-  spriteIcon: {fileID: 0}
+  spriteIcon: {fileID: 21300000, guid: d17d011611ce20c49bf68c149c86a825, type: 3}
   executeMethodName: core_cast_spell

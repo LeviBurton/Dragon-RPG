@@ -140,6 +140,9 @@ namespace RPG.Character
             
             explorationMode.enabled = false;
             encounterMode.enabled = true;
+
+
+
         }
 
         public void OnEncounterEnd(EncounterSystem encounterSystem)
